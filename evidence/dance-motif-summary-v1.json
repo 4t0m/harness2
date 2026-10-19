@@ -1,0 +1,235 @@
+{
+  "scope": "Raw proposal replay. Tool representation comparison; compiler owns movement expansion and grammar. Brief fidelity is an offline metric, not aesthetic quality. Hosted and local runtimes/schema implementations differ; latency is not a hardware comparison.",
+  "source_sha256": "32b5fc85fd44a15ed5fb2c54f2ddb0b863b3dc74fddeb641ba6b5747cb71ceb0",
+  "summary_source_sha256": "22679c1e08e0e0d4eb026570ac6c505695338d3a33d3083396a15ac89501ed03",
+  "conditions": [
+    {
+      "model": "gemma4:e2b",
+      "condition": "compact",
+      "tasks": 8,
+      "first_compiled": 8,
+      "final_compiled": 8,
+      "first_brief_correct": 6,
+      "final_brief_correct": 6,
+      "calls": 8,
+      "initial_prompt_tokens_range": [
+        202,
+        225
+      ],
+      "output_tokens_range": [
+        23,
+        24
+      ],
+      "initial_characters_range": [
+        796,
+        896
+      ],
+      "total_input_tokens": 1732,
+      "total_output_tokens": 188,
+      "median_first_provider_seconds": 0.8868595830281265,
+      "median_total_provider_seconds": 0.8868595830281265,
+      "median_native_decode_tokens_per_second": 64.74892630372645,
+      "hosted_cost_usd": 0
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "expanded",
+      "tasks": 8,
+      "first_compiled": 0,
+      "final_compiled": 0,
+      "first_brief_correct": 0,
+      "final_brief_correct": 0,
+      "calls": 16,
+      "initial_prompt_tokens_range": [
+        222,
+        245
+      ],
+      "output_tokens_range": [
+        105,
+        114
+      ],
+      "initial_characters_range": [
+        873,
+        973
+      ],
+      "total_input_tokens": 4959,
+      "total_output_tokens": 1758,
+      "median_first_provider_seconds": 2.2516090210410766,
+      "median_total_provider_seconds": 4.471592333051376,
+      "median_native_decode_tokens_per_second": 63.349143350165036,
+      "hosted_cost_usd": 0
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "compact",
+      "tasks": 8,
+      "first_compiled": 8,
+      "final_compiled": 8,
+      "first_brief_correct": 8,
+      "final_brief_correct": 8,
+      "calls": 8,
+      "initial_prompt_tokens_range": [
+        202,
+        225
+      ],
+      "output_tokens_range": [
+        28,
+        29
+      ],
+      "initial_characters_range": [
+        796,
+        896
+      ],
+      "total_input_tokens": 1728,
+      "total_output_tokens": 228,
+      "median_first_provider_seconds": 1.172219333529938,
+      "median_total_provider_seconds": 1.172219333529938,
+      "median_native_decode_tokens_per_second": 36.53836924440204,
+      "hosted_cost_usd": 0
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "expanded",
+      "tasks": 8,
+      "first_compiled": 0,
+      "final_compiled": 0,
+      "first_brief_correct": 0,
+      "final_brief_correct": 0,
+      "calls": 16,
+      "initial_prompt_tokens_range": [
+        219,
+        242
+      ],
+      "output_tokens_range": [
+        74,
+        82
+      ],
+      "initial_characters_range": [
+        873,
+        973
+      ],
+      "total_input_tokens": 4647,
+      "total_output_tokens": 1246,
+      "median_first_provider_seconds": 3.02511556254467,
+      "median_total_provider_seconds": 6.249241312558297,
+      "median_native_decode_tokens_per_second": 30.01467890113419,
+      "hosted_cost_usd": 0
+    },
+    {
+      "model": "qwen/qwen3.6-35b-a3b",
+      "condition": "compact",
+      "tasks": 8,
+      "first_compiled": 8,
+      "final_compiled": 8,
+      "first_brief_correct": 8,
+      "final_brief_correct": 8,
+      "calls": 8,
+      "initial_prompt_tokens_range": [
+        198,
+        221
+      ],
+      "output_tokens_range": [
+        18,
+        19
+      ],
+      "initial_characters_range": [
+        796,
+        896
+      ],
+      "total_input_tokens": 1696,
+      "total_output_tokens": 148,
+      "median_first_provider_seconds": 0.4996183119947091,
+      "median_total_provider_seconds": 0.4996183119947091,
+      "median_native_decode_tokens_per_second": null,
+      "hosted_cost_usd": 0.00036635
+    },
+    {
+      "model": "qwen/qwen3.6-35b-a3b",
+      "condition": "expanded",
+      "tasks": 8,
+      "first_compiled": 4,
+      "final_compiled": 4,
+      "first_brief_correct": 4,
+      "final_brief_correct": 4,
+      "calls": 12,
+      "initial_prompt_tokens_range": [
+        215,
+        238
+      ],
+      "output_tokens_range": [
+        74,
+        80
+      ],
+      "initial_characters_range": [
+        873,
+        973
+      ],
+      "total_input_tokens": 3221,
+      "total_output_tokens": 916,
+      "median_first_provider_seconds": 0.9226457084878348,
+      "median_total_provider_seconds": 1.4545568120665848,
+      "median_native_decode_tokens_per_second": null,
+      "hosted_cost_usd": 0.0013607
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "condition": "compact",
+      "tasks": 8,
+      "first_compiled": 8,
+      "final_compiled": 8,
+      "first_brief_correct": 8,
+      "final_brief_correct": 8,
+      "calls": 8,
+      "initial_prompt_tokens_range": [
+        207,
+        350
+      ],
+      "output_tokens_range": [
+        17,
+        23
+      ],
+      "initial_characters_range": [
+        796,
+        896
+      ],
+      "total_input_tokens": 2264,
+      "total_output_tokens": 152,
+      "median_first_provider_seconds": 0.7246730625047348,
+      "median_total_provider_seconds": 0.7246730625047348,
+      "median_native_decode_tokens_per_second": null,
+      "hosted_cost_usd": 0.000184544
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "condition": "expanded",
+      "tasks": 8,
+      "first_compiled": 8,
+      "final_compiled": 8,
+      "first_brief_correct": 8,
+      "final_brief_correct": 8,
+      "calls": 8,
+      "initial_prompt_tokens_range": [
+        239,
+        384
+      ],
+      "output_tokens_range": [
+        91,
+        112
+      ],
+      "initial_characters_range": [
+        873,
+        973
+      ],
+      "total_input_tokens": 2468,
+      "total_output_tokens": 778,
+      "median_first_provider_seconds": 1.6516826665611006,
+      "median_total_provider_seconds": 1.6516826665611006,
+      "median_native_decode_tokens_per_second": null,
+      "hosted_cost_usd": 0.000372712
+    }
+  ],
+  "total_calls": 84,
+  "hosted_calls": 36,
+  "reported_hosted_cost_usd": 0.0022843060000000003,
+  "complete": true
+}
