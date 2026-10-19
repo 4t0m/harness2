@@ -1,0 +1,26 @@
+{
+  "checked_at_utc": "2026-10-19T08:10:15.969289+00:00",
+  "query": "query { gpuTypes(input:{id:\"NVIDIA GeForce RTX 5090\"}) { id displayName memoryInGb secure:lowestPrice(input:{gpuCount:1,secureCloud:true}) { stockStatus uninterruptablePrice availableGpuCounts } community:lowestPrice(input:{gpuCount:1,secureCloud:false}) { stockStatus uninterruptablePrice availableGpuCounts } } }",
+  "response": {
+    "data": {
+      "gpuTypes": [
+        {
+          "id": "NVIDIA GeForce RTX 5090",
+          "displayName": "RTX 5090",
+          "memoryInGb": 32,
+          "secure": {
+            "stockStatus": "Low",
+            "uninterruptablePrice": 1.19,
+            "availableGpuCounts": null
+          },
+          "community": {
+            "stockStatus": null,
+            "uninterruptablePrice": null,
+            "availableGpuCounts": null
+          }
+        }
+      ]
+    }
+  },
+  "resource_mutations": 0
+}

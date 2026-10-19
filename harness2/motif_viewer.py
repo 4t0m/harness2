@@ -65,9 +65,28 @@ class MotifViewer:
 
     def __init__(self, model: str, output: str | Path, *, lifetime: int = 300,
                  provider=None, html_path: str | Path = DEFAULT_HTML,
-                 clock=time.monotonic) -> None:
-        if model not in MODELS:
+                 clock=time.monotonic, provider_metadata: dict | None = None,
+                 extra_source_files: tuple[str, ...] = ()) -> None:
+        if provider_metadata is None:
+            provider_metadata = {"provider_kind": "ollama", "checkpoint_name": model,
+                                 "served_model": model}
+        if (type(provider_metadata) is not dict or
+                not set(provider_metadata).issubset({"provider_kind", "checkpoint_name",
+                                                     "served_model"}) or
+                provider_metadata.get("provider_kind") not in ("ollama", "openai_compatible") or
+                provider_metadata.get("served_model") != model or
+                type(model) is not str or not 1 <= len(model) <= 200 or
+                type(provider_metadata.get("checkpoint_name")) is not str or
+                not 1 <= len(provider_metadata["checkpoint_name"]) <= 200 or
+                any(ord(c) < 33 or ord(c) == 127
+                    for c in provider_metadata["checkpoint_name"])):
+            raise ValueError("invalid provider metadata")
+        if model not in MODELS and not (
+                provider is not None and
+                provider_metadata["provider_kind"] == "openai_compatible"):
             raise ValueError("unsupported local model")
+        if provider_metadata["provider_kind"] == "openai_compatible" and provider is None:
+            raise ValueError("remote provider required")
         if type(lifetime) is not int or not 1 <= lifetime <= 600:
             raise ValueError("lifetime must be 1 to 600 seconds")
         output = Path(output)
@@ -82,6 +101,7 @@ class MotifViewer:
         if provider is not None and not callable(provider):
             raise ValueError("provider must be callable")
         self.model = model
+        self.provider_metadata = dict(provider_metadata)
         self.output = output
         self._html = html
         self._provider = provider or _default_provider
@@ -95,9 +115,10 @@ class MotifViewer:
         self._closing = False
         self._timer: threading.Timer | None = None
         self._report = {
-            "scope": "Finite loopback motif viewer. Local intent proposals and host motion; "
-                     "no persistent service, avatar rig, or aesthetic validation.",
-            "model": model, "started_at_utc": _utc(), "lifetime_seconds": lifetime,
+            "scope": "Finite loopback motif viewer. Operator-configured intent proposals "
+                     "and host motion; no persistent service, avatar rig, or aesthetic validation.",
+            "model": model, "provider": dict(provider_metadata),
+            "started_at_utc": _utc(), "lifetime_seconds": lifetime,
             "max_calls": MAX_CALLS, "max_samples_logged": MAX_SAMPLES,
             "provider_timeout_seconds": 20, "provider_output_tokens": 128,
             "provider_context_tokens": 4096, "sources": {}, "events": [],
@@ -108,6 +129,17 @@ class MotifViewer:
         self._report["sources"] = {
             item: _sha((root / item).read_bytes()) for item in SOURCE_FILES
         }
+        if type(extra_source_files) not in (tuple, list) or len(extra_source_files) > 8:
+            raise ValueError("invalid extra source list")
+        for item in extra_source_files:
+            if (type(item) is not str or not item or item.startswith("/") or
+                    ".." in Path(item).parts or item in self._report["sources"]):
+                raise ValueError("invalid extra source path")
+            source = root / item
+            if (not source.is_file() or source.is_symlink() or
+                    not source.resolve().is_relative_to(root.resolve())):
+                raise ValueError("extra source unavailable")
+            self._report["sources"][item] = _sha(source.read_bytes())
         self._report["sources"]["experiments/motif_viewer.html"] = _sha(html)
 
         viewer = self
@@ -244,6 +276,8 @@ class MotifViewer:
                     "events": list(self._report["events"]),
                     "calls_started": len(self._report["calls"]),
                     "worker_busy": self._busy, "model": self.model,
+                    "provider_kind": self.provider_metadata["provider_kind"],
+                    "checkpoint_name": self.provider_metadata["checkpoint_name"],
                     "remaining_seconds": max(0, self._deadline_time - self._clock())}
 
     def direct(self, brief: str) -> tuple[int, dict]:
@@ -258,6 +292,7 @@ class MotifViewer:
             request = self._runtime.request(at, 5000)
             row = {"request_id": request["request_id"], "request_at_ms": at,
                    "brief": brief, "system": SYSTEMS["compact"],
+                   "provider_kind": self.provider_metadata["provider_kind"],
                    "provider_started_ms": None, "provider_finished_ms": None,
                    "raw_response": None, "content": None, "finish_reason": None,
                    "delivery": None}
