@@ -18,3 +18,10 @@ User authorized continued exploration, multiple experiment rounds, notes in this
 5. Add pose/variant authoring and six-beat recovery tasks; separate artistic preference from structural acceptance.
 
 RunPod is authorized as a possible next execution environment, but no pod has been created or priced in this round. The dual-5090 local deployment remains future preparation. The goal remains active beyond a single demo; do not equate completed scaffolding with the full exploration being finished.
+
+## First implementation checkpoint
+
+- Creative ledger committed: eight CPU checks passed, bounded retry lineage, completed receipt preservation and dependency recovery. No art generated; budget remains metadata.
+- Actual Harness² actor loop committed: two mirrored training cases and one separate diagonal holdout verified. Deliberately flawed scripted baseline fails, deterministic edited policy passes. This proves adapter wiring only, not model adaptation or persistent learned memory (experience editor returns NO_ENTRY).
+- Chat provider committed: six offline transport checks; dedicated API-key environment, no redirects, token/response size bounds, socket timeout. An outer worker still needs a hard total deadline before live use. No endpoint contacted.
+- Next integration: connect this provider to ActorAdapter.execute with preserved raw proposals and trusted oracle, then qualify a real endpoint and bounded repair. The current scripted selector is not a learned decision maker.
