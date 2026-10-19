@@ -175,5 +175,7 @@
     "experiments/motif_remote_probe.py": "06ff5af5024da62e2a32bec84e213c2471a3135610b9548e09831e1e5fbea66b",
     "harness2/motif_remote_provider.py": "b481b3372de642dd6032d8280231a2c13ab3bce24ada50551ad34b310cf8c754",
     "harness2/bounded_json_http.py": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f"
-  }
+  },
+  "final_trial_template_count": 0,
+  "inventory_note": "GraphQL lists 14 other templates; none matches the owned controller ID or h2-motif/h2-field-check/h2-zero-check prefixes. REST listed zero templates. No other templates were modified."
 }
