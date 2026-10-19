@@ -25,15 +25,15 @@ from experiments.dance_step_task_cases import CASES
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_IN = ROOT / "evidence/dance-step-task-model-v1.json"
-EVIDENCE_OUT = ROOT / "evidence/dance-step-task-flat-v1.json"
-OUTPUT_DIR = Path("/Users/adom/Development/hermes-testing/runs/harness2-step-task-flat-v1")
+EVIDENCE_OUT = ROOT / "evidence/dance-step-task-flat-v2.json"
+OUTPUT_DIR = Path("/Users/adom/Development/hermes-testing/runs/harness2-step-task-flat-v2")
 CASE_ID = "offset_return_to_mark_with_endpoint_direction"
 MODEL_NAME = "hermes-lab-qwen3-8b:latest"
 WIDTH, HEIGHT = 640, 420
 FPS = 20
 ANIMATION_FRAMES = 80
 TOTAL_SAMPLES = 81
-SCALE_PX_PER_M = 180.0
+SCALE_PX_PER_M = 160.0
 ORIGIN_X_PX = 320.0
 GROUND_Y_PX = 370.0
 EXPECTED_PYTHON = Path(
@@ -138,7 +138,7 @@ def _draw_scene(joints: dict, task: dict, frame_index: int,
     _dashed_line(draw, ((target_x, 78), (target_x, lane_y - 12)), PALETTE["target"], width=2)
     draw.polygon(((target_x - 6, 76), (target_x + 6, 76), (target_x, 84)),
                  fill=PALETTE["target"])
-    draw.text((max(16, min(570, target_x - 34)), 84), "TARGET", fill=PALETTE["target"], font=small_font)
+    draw.text((max(16, min(570, target_x + 24)), 112), "TARGET", fill=PALETTE["target"], font=small_font)
     draw.text((lane_left - 16, 404), f"{lo}", fill=PALETTE["muted"], font=small_font)
     draw.text((lane_right - 18, 404), f"{hi} mm", fill=PALETTE["muted"], font=small_font)
 
@@ -164,7 +164,9 @@ def _draw_scene(joints: dict, task: dict, frame_index: int,
               fill=PALETTE["shirt_light"], width=3)
     draw.line((left_hip[0], left_hip[1], right_hip[0], right_hip[1]),
               fill=PALETTE["ink"], width=3)
-    draw.line((projected["neck"], projected["spine"]), fill=PALETTE["skin"], width=7)
+    draw.line((projected["head"], ((left_shoulder[0] + right_shoulder[0]) // 2,
+                                    (left_shoulder[1] + right_shoulder[1]) // 2 + 2)),
+              fill=PALETTE["skin"], width=7)
 
     for side in ("left", "right"):
         _draw_limb(draw, [projected[f"{side}_shoulder"], projected[f"{side}_elbow"],
@@ -188,8 +190,6 @@ def _draw_scene(joints: dict, task: dict, frame_index: int,
                  fill=PALETTE["root"], outline=PALETTE["ink"], width=1)
     draw.text((24, 78), f"root x = {world_root_mm:+0.0f} mm",
               fill=PALETTE["ink"], font=small_font)
-    draw.text((24, 96), "Generic cel-flat proxy; joint tracks projected front-on (x,z).",
-              fill=PALETTE["muted"], font=small_font)
     image.save(output_path, format="PNG", optimize=True)
     return {
         "frame": frame_index,
@@ -228,7 +228,7 @@ def _render_video(frame_dir: Path, video_path: Path) -> tuple[dict, str]:
         raise RuntimeError("ffmpeg and ffprobe are required for this preview")
     media_dir = Path("/private/tmp")
     media_dir.mkdir(parents=True, exist_ok=True)
-    descriptor, log_name = tempfile.mkstemp(prefix="harness2-step-task-flat-v1-",
+    descriptor, log_name = tempfile.mkstemp(prefix="harness2-step-task-flat-v2-",
                                             suffix=".log", dir=media_dir)
     os.close(descriptor)
     log_path = Path(log_name)

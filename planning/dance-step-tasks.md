@@ -34,3 +34,11 @@ This solver is deliberately small and domain-specific. It establishes that assig
 Use natural failures from this trial as development material for an actual Harness² guidance refinement, then evaluate independently authored new constraints. Keep a fixed baseline and one-correction comparator, include total tokens/latency, and freeze the host validator. A separate constrained-choice condition should expose only host-feasible routes; score task completion separately from preference quality. Do not tune on these now-observed cases and call them a heldout gain.
 
 Primary artifacts: `experiments/dance_step_task_cases.py`, `experiments/dance_step_task_probe.py`, `evidence/dance-step-task-model-v1.json`, `evidence/dance-step-task-summary-v1.json`, and `investigations/2026-10-19-step-task-results.md`. The frozen stepping and earlier phrase modules remain unchanged.
+
+## Flat 2D proof of concept
+
+The accepted Qwen correction for the preset offset-start task now drives a simple flat character preview: `/Users/adom/Development/hermes-testing/runs/harness2-step-task-flat-v2/preview.mp4`. The task starts at−200mm and finishes at+200mm. Its first model attempt was rejected; the video uses the accepted second attempt, not a deterministic replacement. Model evidence and motion receipts are unchanged.
+
+The preview front-projects the actual joint tracks with the world-start offset. It encodes80frames at20fps for4seconds,640×420; terminal sample80 is saved separately as `endpoint.png`. Thus the last encoded frame is at3.95seconds and displays+197mm; the separate endpoint verifies+200mm. All81×18joint projections and81saved root-marker pixels were checked, and six decoded stills plus the endpoint inspected. V1 is retained with its source at commit c293f2e; v2 fixes a disconnected-looking neck stroke and overlapping labels. The result is a flat motion proxy, not production anime artwork or a skinned avatar.
+
+A single CPU timing pass measured median12.3milliseconds for enumerating and compiling the first feasible plan, with a13.6millisecond maximum across the twelve tasks; imports/startup are excluded. These tiny-domain results support keeping positioning in trusted code and reserving model calls for choices that benefit from language or taste. Evidence: `dance-step-task-solver-timing-v1.json`.
