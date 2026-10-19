@@ -1,0 +1,45 @@
+{
+  "scope": "Independent replay of saved live local-provider responses and finite playback samples. Verifies orchestration, not persistent service behavior, human dance quality, or model generation of motion frames.",
+  "live_evidence_sha256": "177591ef8a327813a05623f792366e7e10da77b6fe26d0be3140c6b26d79153e",
+  "source_hashes_match": true,
+  "all_six_raw_scores_match_host_briefs": true,
+  "all_six_prompt_and_response_bindings_match": true,
+  "all_samples_match_compiled_or_frozen_frames": true,
+  "provider_calls": 6,
+  "input_tokens": 1286,
+  "output_tokens": 156,
+  "api_cost_usd": null,
+  "runs": [
+    {
+      "case_id": "runtime_e2b_returning_sway_replacement",
+      "model": "gemma4:e2b",
+      "phase_sample_counts": {
+        "initial": 80,
+        "replacement": 7,
+        "frozen": 54
+      },
+      "switch_relative_ms": 4000,
+      "stop_relative_ms": 4353,
+      "third_inference_started_before_stop": true,
+      "third_inference_finished_after_stop": true,
+      "stale_delivery_status": "rejected_stale",
+      "max_sample_lateness_ms": 17
+    },
+    {
+      "case_id": "runtime_qwen_pulse_replacement",
+      "model": "hermes-lab-qwen3-8b:latest",
+      "phase_sample_counts": {
+        "initial": 80,
+        "replacement": 7,
+        "frozen": 54
+      },
+      "switch_relative_ms": 4000,
+      "stop_relative_ms": 4355,
+      "third_inference_started_before_stop": true,
+      "third_inference_finished_after_stop": true,
+      "stale_delivery_status": "rejected_stale",
+      "max_sample_lateness_ms": 18
+    }
+  ],
+  "complete": true
+}

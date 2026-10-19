@@ -1,0 +1,17 @@
+{
+  "complete": true,
+  "preview_sha256": "5b50f059bc20436506e881ae293ec71791c5f84a2b373641369b84920b62e4cc",
+  "checker_sha256": "b5bc3baf39e924bbbed12d24c662e9c982fbeb2f6c760c1df541318925f54274",
+  "projected_points_checked": 5076,
+  "source_png_root_markers_checked": 282,
+  "decoded_grid": "/Users/adom/Development/hermes-testing/runs/harness2-motif-runtime-v1/decoded-check.png",
+  "decoded_grid_sha256": "02a33ebd607ee2b4fe3a6723fdc5bbf6e4dcb76c48e32cd89f1fed11bbc74184",
+  "decoded_frame_indices": [
+    40,
+    80,
+    88,
+    120
+  ],
+  "provider_calls": 0,
+  "scope": "Source projection and PNG marker verification, with sparse decoded frames for human-facing visual inspection; not a dance-quality judgment."
+}

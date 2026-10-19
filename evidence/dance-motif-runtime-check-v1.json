@@ -1,0 +1,82 @@
+{
+  "source_sha256": "177591ef8a327813a05623f792366e7e10da77b6fe26d0be3140c6b26d79153e",
+  "checker_sha256": "459ebf257444048fbaea2ae42abe2227ad0641fbe4d995a7089e6420055b41bc",
+  "scope": "Independent replay from raw accepted scores and wall-clock event/sample logs. Finite orchestration; no persistent display, aesthetic judgment, repeated latency benchmark or H2 adaptation.",
+  "runs": [
+    {
+      "case_id": "runtime_e2b_returning_sway_replacement",
+      "model": "gemma4:e2b",
+      "brief_correct": 3,
+      "calls": 3,
+      "replacement_switch_relative_ms": 4000,
+      "replacement_ready_relative_ms": 1764,
+      "interrupt_relative_ms": 4353,
+      "stale_completion_after_stop_ms": 1115,
+      "sample_count": 141,
+      "post_stop_frozen_samples": 54,
+      "stop_source_frame": 7,
+      "max_sample_lateness_ms": 17,
+      "median_sample_lateness_ms": 8,
+      "initial_context_tokens": [
+        214,
+        219,
+        213
+      ],
+      "output_tokens": [
+        24,
+        23,
+        23
+      ],
+      "provider_seconds": [
+        3.303550833952613,
+        0.980355832958594,
+        0.9038153330329806
+      ],
+      "preparation_seconds": [
+        0.29574054095428437,
+        0.27919191599357873,
+        0.2944588749669492
+      ],
+      "control_checks_pass": true
+    },
+    {
+      "case_id": "runtime_qwen_pulse_replacement",
+      "model": "hermes-lab-qwen3-8b:latest",
+      "brief_correct": 3,
+      "calls": 3,
+      "replacement_switch_relative_ms": 4000,
+      "replacement_ready_relative_ms": 1739,
+      "interrupt_relative_ms": 4355,
+      "stale_completion_after_stop_ms": 1153,
+      "sample_count": 141,
+      "post_stop_frozen_samples": 54,
+      "stop_source_frame": 7,
+      "max_sample_lateness_ms": 18,
+      "median_sample_lateness_ms": 9,
+      "initial_context_tokens": [
+        218,
+        212,
+        210
+      ],
+      "output_tokens": [
+        28,
+        29,
+        29
+      ],
+      "provider_seconds": [
+        1.958974082954228,
+        0.914237166987732,
+        0.9200557500589639
+      ],
+      "preparation_seconds": [
+        0.2966063340427354,
+        0.30017437506467104,
+        0.302303500007838
+      ],
+      "control_checks_pass": true
+    }
+  ],
+  "provider_calls": 6,
+  "hosted_calls": 0,
+  "complete": true
+}
