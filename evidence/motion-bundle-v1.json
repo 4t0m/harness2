@@ -1,0 +1,74 @@
+{
+  "scope": "portable local reference bundle; no H3 compatibility claim",
+  "path": "/Users/adom/Development/hermes-testing/runs/harness2-motion-bundle-v1",
+  "verification": {
+    "valid": true,
+    "schema_version": 1,
+    "assets": {
+      "tracks.json": {
+        "sha256": "6a270b71f50fb9c2b3c5de1dae9467edd4a8ad4012ba1bbb9aed67a121e563cf",
+        "size_bytes": 395167
+      },
+      "original.json": {
+        "sha256": "d3458d49aa0dff4d1ba42ae3bc0c80cb5ea98d37abe3ef9ea3cef0d1ba29b43b",
+        "size_bytes": 164825
+      },
+      "comparison.mp4": {
+        "sha256": "fae23a8b9cd88af9084ecdf50f18e7e89a4ee83a382e62d0ccfed727834a3d44",
+        "size_bytes": 58360
+      }
+    },
+    "motion_preserved": true,
+    "video": {
+      "width": 512,
+      "height": 320,
+      "frame_count": 40,
+      "fps": "10/1",
+      "duration_seconds": 4.0
+    }
+  },
+  "manifest": {
+    "schema_version": 1,
+    "scope": "Portable technical stick-figure motion reference; no H3 compatibility, biomechanics, or style claim.",
+    "assets": {
+      "tracks.json": {
+        "sha256": "6a270b71f50fb9c2b3c5de1dae9467edd4a8ad4012ba1bbb9aed67a121e563cf",
+        "size_bytes": 395167
+      },
+      "original.json": {
+        "sha256": "d3458d49aa0dff4d1ba42ae3bc0c80cb5ea98d37abe3ef9ea3cef0d1ba29b43b",
+        "size_bytes": 164825
+      },
+      "comparison.mp4": {
+        "sha256": "fae23a8b9cd88af9084ecdf50f18e7e89a4ee83a382e62d0ccfed727834a3d44",
+        "size_bytes": 58360
+      }
+    },
+    "track_labels": [
+      "original",
+      "edited"
+    ],
+    "motion": {
+      "coordinate_system": "world x=lateral, y=forward, z=up; meters",
+      "source_fps": 20,
+      "source_frame_count": 81,
+      "endpoint_inclusive": true,
+      "beats": 8,
+      "bpm": 120,
+      "edit_bounds_beats": [
+        2,
+        6
+      ],
+      "original_sequence_sha256": "b499ab93bc684b12c91b2f75cf57c51c7a8bfc8c3cf113c47abac344b3da130a",
+      "edited_sequence_sha256": "2b17d4f9b9b476940ec9fbd35b589cd0b5b4e2947761bbb443b92865f8ce3174"
+    },
+    "video": {
+      "width": 512,
+      "height": 320,
+      "frame_count": 40,
+      "fps": "10/1",
+      "duration_seconds": 4.0
+    },
+    "renderer_context": "Technical stick-figure comparison from the procedural motion prototype; original and edited tracks shown side by side."
+  }
+}
