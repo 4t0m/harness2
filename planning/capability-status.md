@@ -141,3 +141,8 @@ The operations handoff and direct saved-schema inspection establish MiniMax H3's
 ## Small-model visual verification limit
 
 The local Gemma vision pilot exposes a new boundary: E2B returned same for all6pose comparisons (4/6due to unchanged controls), and E4B returned left for all6(1/6). AllJSONwasvalid. Both pass red/blue image diagnostics, yet free-text pose comparisons still fail when flipped. These models have not qualified as visual acceptance judges. Twenty local calls total, no hosted fees; raw responses and native prompt counts188for main comparisons retained. Details and baseline warnings in dance-lab.md. Use deterministic joint/protection checks for acceptance and treat model visual descriptions as unverified assistance.
+
+
+## Vision comparison follow-up
+
+Hosted Gemma26B-A4B and31B both detect the clear arm edit in2/2orientations but falsely report differences in4/4unchanged controls;12calls cost$0.0004018675reported. Isolating eachactor did not rescue local E2B/E4B: allcrops callednarrow, so derivedpairs stay at the always-same4/6baseline. An8call enum-order perturbation changed nothing. See dance-lab.md and dance-vision-comparison-summary-v1.json. These are manual interface probes on reusedfixtures, not Harness² adaptation or heldout success. Stop repeating thisfixture; keep deterministic checks and expand useful actor staging/motion capabilities while planning fresh visual evaluation.

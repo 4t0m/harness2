@@ -11,3 +11,12 @@ Run at most8additional local calls:2colorcards and2comparison descriptions permo
 
 
 Results: both models correctly identified both color cards. This rules out a wholly absent image signal for the simple-card path, not every preprocessing or spatial-understanding issue. Both free-text descriptions got the relative width direction right in the normal accent image, with imprecise/exaggerated limb descriptions. E2B still described the right figure as inward on the flipped image; E4B called flipped hand widths similar. Removing the schema is therefore not a sufficient repair. Finer spatial interpretation/orientation sensitivity remains unresolved; no provider fault inferred. Do not promote this pilot to an autonomous visual acceptance oracle. Primary raw calls are in dance-vision-diagnostic-v1.json; explicit parent review separate. No baseline score rewritten.
+
+## Cropped treatment follow-up
+
+Single-actor treatment returned narrow for all12crops permodel, leaving bothpaircomparisons at the always-same baseline4/6. Absolute narrow/wide vocabulary adds a possible interpretation threshold confound, so2/12host-label accuracy is not a general spatial capability score.
+
+Next discriminating check: keep identical image bytes, system/user prompts, model and generation parameters, but swap the schema enum from [narrow,wide,unclear] to [wide,narrow,unclear]. Four matched crops permodel (normal/flipped accent, bothactors),8calls total. If answers switch with enum order, decoding/option-order sensitivity contributes; if they remain narrow, this perturbation does not support that explanation and wording/visual interpretation remains unresolved. This is an in-place diagnosis on reused examples, not a new heldout trial. Do not alter the original results.
+
+
+Enum-order result: all8repeated crops still returned narrow, with complete stop responses. Swapping the first two enum options did not alter any answer; this test does not support an option-order explanation. Interpretation threshold and geometric perception remain unresolved. The hosted26B-A4B and31B comparison both detected the edited side in2/2orientations but falsely reported right on all4unchanged controls, so larger models do not yet solve acceptance either. Stop retuning on this fixture; require fresh poses and explicit task definitions before promotion.

@@ -1,0 +1,2175 @@
+{
+  "scope": "reused-fixture manual interface treatment, not heldout generalization or Harness2 adaptation",
+  "runner_sha256": "c6a396467067a8806a9f354cacfca0f6f6ed00bdf509997535b629480b290512",
+  "manifest": {
+    "status": "prepared_for_crop_and_oracle_review",
+    "scope": "Reused-fixture single-actor pose interface treatment; not held-out quality",
+    "source_images": "/Users/adom/Development/hermes-testing/runs/harness2-dance-vision-v1/images",
+    "source_hashes": {
+      "frame05-normal": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+      "frame05-flip": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+      "frame20-normal": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "frame20-flip": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "frame35-normal": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+      "frame35-flip": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267"
+    },
+    "models": [
+      "gemma4:e2b",
+      "gemma4:e4b"
+    ],
+    "crops": [
+      {
+        "crop_id": "frame05-normal-left",
+        "pair_case_id": "frame05-normal",
+        "source_image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+        "source_side": "left",
+        "crop_box_xywh": [
+          0,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame05-normal-left.png",
+        "image_sha256": "88785c313c9fa89f87e7d3936db1878bf71c41fcae908f24cbcbab705bb810d6",
+        "image_bytes": 32129,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame05-normal-right",
+        "pair_case_id": "frame05-normal",
+        "source_image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+        "source_side": "right",
+        "crop_box_xywh": [
+          256,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame05-normal-right.png",
+        "image_sha256": "6d9eedaf99aabb3a532061cfc09caed1425c99fb507376682376a60401e66cbb",
+        "image_bytes": 32584,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame05-flip-left",
+        "pair_case_id": "frame05-flip",
+        "source_image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+        "source_side": "left",
+        "crop_box_xywh": [
+          0,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame05-flip-left.png",
+        "image_sha256": "4c42ffd45412d77fd19791d4cd1b628837285ceea5affa13c07b0665ef8f6c9f",
+        "image_bytes": 32118,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame05-flip-right",
+        "pair_case_id": "frame05-flip",
+        "source_image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+        "source_side": "right",
+        "crop_box_xywh": [
+          256,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame05-flip-right.png",
+        "image_sha256": "7234890a3bf7a86325967d2da1e66f651142a8293b225b289e62160e9b3ecf4e",
+        "image_bytes": 31446,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame20-normal-left",
+        "pair_case_id": "frame20-normal",
+        "source_image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+        "source_side": "left",
+        "crop_box_xywh": [
+          0,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame20-normal-left.png",
+        "image_sha256": "2bb83cdb96bbfc0f0a980f0935fa937d073552c654722333df9eb16ddaca177f",
+        "image_bytes": 32508,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame20-normal-right",
+        "pair_case_id": "frame20-normal",
+        "source_image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+        "source_side": "right",
+        "crop_box_xywh": [
+          256,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame20-normal-right.png",
+        "image_sha256": "6c9073f90ac9e73c92d7f0098a2ca4cac53cbe3d3607b5aacbaefe582b3d8b36",
+        "image_bytes": 31447,
+        "expected_host_only": "narrow"
+      },
+      {
+        "crop_id": "frame20-flip-left",
+        "pair_case_id": "frame20-flip",
+        "source_image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+        "source_side": "left",
+        "crop_box_xywh": [
+          0,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame20-flip-left.png",
+        "image_sha256": "3342b7058ddec17b149dfc192abed97911be4b2758d9ff794d8c78d6fd3acfc2",
+        "image_bytes": 31069,
+        "expected_host_only": "narrow"
+      },
+      {
+        "crop_id": "frame20-flip-right",
+        "pair_case_id": "frame20-flip",
+        "source_image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+        "source_side": "right",
+        "crop_box_xywh": [
+          256,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame20-flip-right.png",
+        "image_sha256": "a0bc3929f2e17cc6a48a05de4747704c89d9861a5046ddbf1141995f6de52218",
+        "image_bytes": 31652,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame35-normal-left",
+        "pair_case_id": "frame35-normal",
+        "source_image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+        "source_side": "left",
+        "crop_box_xywh": [
+          0,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame35-normal-left.png",
+        "image_sha256": "75fdf38ed066b8fd46e36f1307882793ffe0a5de093dd72af3fd0f0ab99bb450",
+        "image_bytes": 32871,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame35-normal-right",
+        "pair_case_id": "frame35-normal",
+        "source_image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+        "source_side": "right",
+        "crop_box_xywh": [
+          256,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame35-normal-right.png",
+        "image_sha256": "6eae22c1b0f7d37aa6c11eba46b5363912e7960a2c0e2fbc4ace7b7c0933dcd4",
+        "image_bytes": 33289,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame35-flip-left",
+        "pair_case_id": "frame35-flip",
+        "source_image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+        "source_side": "left",
+        "crop_box_xywh": [
+          0,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame35-flip-left.png",
+        "image_sha256": "658c0d8d6c2086709dade41d8f710dea9c50167ac5f4a1af0e93cbda3ca5499d",
+        "image_bytes": 32877,
+        "expected_host_only": "wide"
+      },
+      {
+        "crop_id": "frame35-flip-right",
+        "pair_case_id": "frame35-flip",
+        "source_image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+        "source_side": "right",
+        "crop_box_xywh": [
+          256,
+          0,
+          256,
+          320
+        ],
+        "image": "images/frame35-flip-right.png",
+        "image_sha256": "01e816628095d5ec10dcef35dae0c19bbd1c0593d5f8ee85c6b503a377027413",
+        "image_bytes": 32199,
+        "expected_host_only": "wide"
+      }
+    ],
+    "pair_expected_host_only": {
+      "frame05-normal": "same",
+      "frame05-flip": "same",
+      "frame20-normal": "right",
+      "frame20-flip": "left",
+      "frame35-normal": "same",
+      "frame35-flip": "same"
+    },
+    "order_seed": 20261020,
+    "order_by_model": {
+      "gemma4:e2b": [
+        "frame05-normal-right",
+        "frame05-flip-left",
+        "frame20-normal-left",
+        "frame20-flip-left",
+        "frame35-normal-left",
+        "frame35-normal-right",
+        "frame05-normal-left",
+        "frame35-flip-right",
+        "frame05-flip-right",
+        "frame20-normal-right",
+        "frame35-flip-left",
+        "frame20-flip-right"
+      ],
+      "gemma4:e4b": [
+        "frame20-flip-right",
+        "frame35-flip-left",
+        "frame20-normal-right",
+        "frame05-flip-right",
+        "frame35-flip-right",
+        "frame05-normal-left",
+        "frame35-normal-right",
+        "frame35-normal-left",
+        "frame20-flip-left",
+        "frame20-normal-left",
+        "frame05-flip-left",
+        "frame05-normal-right"
+      ]
+    },
+    "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+    "user_prompt": "Classify the pose of the single stick figure in this image.",
+    "schema": {
+      "type": "object",
+      "required": [
+        "hands_pose"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "hands_pose": {
+          "type": "string",
+          "enum": [
+            "narrow",
+            "wide",
+            "unclear"
+          ]
+        }
+      }
+    },
+    "options": {
+      "num_ctx": 4096,
+      "num_predict": 64,
+      "temperature": 0
+    },
+    "think": false,
+    "max_calls": 24,
+    "transport_timeout_seconds": 35,
+    "hard_deadline_seconds": 40,
+    "api_cost_usd": null,
+    "local_hardware_cost": "unmeasured"
+  },
+  "model_metadata": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "modified_at": "2026-06-21T01:51:57.487036893-04:00",
+      "size": 7162405886
+    },
+    "gemma4:e4b": {
+      "name": "gemma4:e4b",
+      "digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "modified_at": "2026-06-21T00:43:17.334386392-04:00",
+      "size": 9608350718
+    }
+  },
+  "summary": {
+    "gemma4:e2b": {
+      "crops_correct": 2,
+      "crop_count": 12,
+      "strict_valid": 12,
+      "pairs_correct": 4,
+      "pair_count": 6,
+      "changed_pairs_correct": 0,
+      "changed_pair_count": 2,
+      "native_prompt_token_counts": [
+        132
+      ],
+      "native_output_token_counts": [
+        9
+      ],
+      "summed_pair_inference_wall_seconds_range": [
+        1.4214484170079231,
+        4.10604437510483
+      ],
+      "warm_single_call_wall_seconds_range": [
+        0.7057419168995693,
+        0.7494512919802219
+      ]
+    },
+    "gemma4:e4b": {
+      "crops_correct": 2,
+      "crop_count": 12,
+      "strict_valid": 12,
+      "pairs_correct": 4,
+      "pair_count": 6,
+      "changed_pairs_correct": 0,
+      "changed_pair_count": 2,
+      "native_prompt_token_counts": [
+        132
+      ],
+      "native_output_token_counts": [
+        9
+      ],
+      "summed_pair_inference_wall_seconds_range": [
+        1.8181369160301983,
+        4.738579374970868
+      ],
+      "warm_single_call_wall_seconds_range": [
+        0.8995816669194028,
+        0.947967000072822
+      ]
+    }
+  },
+  "calls": [
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame05-normal-right",
+      "pair_case_id": "frame05-normal",
+      "source_side": "right",
+      "source_image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+      "image_sha256": "6d9eedaf99aabb3a532061cfc09caed1425c99fb507376682376a60401e66cbb",
+      "image_bytes": 32584,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:43.257137Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3389846375,
+        "load_duration": 2959814666,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 282827000,
+        "eval_count": 9,
+        "eval_duration": 140707000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 3389846375,
+      "load_duration": 2959814666,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 282827000,
+      "eval_count": 9,
+      "eval_duration": 140707000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 3.391364125069231
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame05-flip-left",
+      "pair_case_id": "frame05-flip",
+      "source_side": "left",
+      "source_image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+      "image_sha256": "4c42ffd45412d77fd19791d4cd1b628837285ceea5affa13c07b0665ef8f6c9f",
+      "image_bytes": 32118,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:43.978513Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 718279209,
+        "load_duration": 290378542,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 279424000,
+        "eval_count": 9,
+        "eval_duration": 143054000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 718279209,
+      "load_duration": 290378542,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 279424000,
+      "eval_count": 9,
+      "eval_duration": 143054000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.719741249922663
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame20-normal-left",
+      "pair_case_id": "frame20-normal",
+      "source_side": "left",
+      "source_image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "image_sha256": "2bb83cdb96bbfc0f0a980f0935fa937d073552c654722333df9eb16ddaca177f",
+      "image_bytes": 32508,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:44.695096Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 713979291,
+        "load_duration": 286129875,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 282359000,
+        "eval_count": 9,
+        "eval_duration": 140191000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 713979291,
+      "load_duration": 286129875,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 282359000,
+      "eval_count": 9,
+      "eval_duration": 140191000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7154028749791905
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame20-flip-left",
+      "pair_case_id": "frame20-flip",
+      "source_side": "left",
+      "source_image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "image_sha256": "3342b7058ddec17b149dfc192abed97911be4b2758d9ff794d8c78d6fd3acfc2",
+      "image_bytes": 31069,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "narrow",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:45.412379Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 715269333,
+        "load_duration": 284740083,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 280844000,
+        "eval_count": 9,
+        "eval_duration": 144061000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 715269333,
+      "load_duration": 284740083,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 280844000,
+      "eval_count": 9,
+      "eval_duration": 144061000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.7164951659506187
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame35-normal-left",
+      "pair_case_id": "frame35-normal",
+      "source_side": "left",
+      "source_image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+      "image_sha256": "75fdf38ed066b8fd46e36f1307882793ffe0a5de093dd72af3fd0f0ab99bb450",
+      "image_bytes": 32871,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:46.119122Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 704344792,
+        "load_duration": 283092792,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 277311000,
+        "eval_count": 9,
+        "eval_duration": 138487000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 704344792,
+      "load_duration": 283092792,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 277311000,
+      "eval_count": 9,
+      "eval_duration": 138487000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7057419168995693
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame35-normal-right",
+      "pair_case_id": "frame35-normal",
+      "source_side": "right",
+      "source_image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+      "image_sha256": "6eae22c1b0f7d37aa6c11eba46b5363912e7960a2c0e2fbc4ace7b7c0933dcd4",
+      "image_bytes": 33289,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:46.835687Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 714374458,
+        "load_duration": 286147708,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 279394000,
+        "eval_count": 9,
+        "eval_duration": 143410000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 714374458,
+      "load_duration": 286147708,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 279394000,
+      "eval_count": 9,
+      "eval_duration": 143410000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7157065001083538
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame05-normal-left",
+      "pair_case_id": "frame05-normal",
+      "source_side": "left",
+      "source_image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+      "image_sha256": "88785c313c9fa89f87e7d3936db1878bf71c41fcae908f24cbcbab705bb810d6",
+      "image_bytes": 32129,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:47.551355Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 713455375,
+        "load_duration": 284212083,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 282244000,
+        "eval_count": 9,
+        "eval_duration": 141782000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 713455375,
+      "load_duration": 284212083,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 282244000,
+      "eval_count": 9,
+      "eval_duration": 141782000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7146802500355989
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame35-flip-right",
+      "pair_case_id": "frame35-flip",
+      "source_side": "right",
+      "source_image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+      "image_sha256": "01e816628095d5ec10dcef35dae0c19bbd1c0593d5f8ee85c6b503a377027413",
+      "image_bytes": 32199,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:48.268025Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 714539083,
+        "load_duration": 282783166,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 282557000,
+        "eval_count": 9,
+        "eval_duration": 143816000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 714539083,
+      "load_duration": 282783166,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 282557000,
+      "eval_count": 9,
+      "eval_duration": 143816000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.71595275006257
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame05-flip-right",
+      "pair_case_id": "frame05-flip",
+      "source_side": "right",
+      "source_image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+      "image_sha256": "7234890a3bf7a86325967d2da1e66f651142a8293b225b289e62160e9b3ecf4e",
+      "image_bytes": 31446,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:48.979574Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 709283084,
+        "load_duration": 282622750,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 280138000,
+        "eval_count": 9,
+        "eval_duration": 141107000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 709283084,
+      "load_duration": 282622750,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 280138000,
+      "eval_count": 9,
+      "eval_duration": 141107000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7105120000196621
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame20-normal-right",
+      "pair_case_id": "frame20-normal",
+      "source_side": "right",
+      "source_image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "image_sha256": "6c9073f90ac9e73c92d7f0098a2ca4cac53cbe3d3607b5aacbaefe582b3d8b36",
+      "image_bytes": 31447,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "narrow",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:49.698441Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 717007458,
+        "load_duration": 286769917,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 281448000,
+        "eval_count": 9,
+        "eval_duration": 142791000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 717007458,
+      "load_duration": 286769917,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 281448000,
+      "eval_count": 9,
+      "eval_duration": 142791000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.7182275000959635
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame35-flip-left",
+      "pair_case_id": "frame35-flip",
+      "source_side": "left",
+      "source_image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+      "image_sha256": "658c0d8d6c2086709dade41d8f710dea9c50167ac5f4a1af0e93cbda3ca5499d",
+      "image_bytes": 32877,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:50.417739Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 712277541,
+        "load_duration": 285480458,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 281007000,
+        "eval_count": 9,
+        "eval_duration": 140576000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 712277541,
+      "load_duration": 285480458,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 281007000,
+      "eval_count": 9,
+      "eval_duration": 140576000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7135948329232633
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "crop_id": "frame20-flip-right",
+      "pair_case_id": "frame20-flip",
+      "source_side": "right",
+      "source_image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "image_sha256": "a0bc3929f2e17cc6a48a05de4747704c89d9861a5046ddbf1141995f6de52218",
+      "image_bytes": 31652,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:22:51.168068Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 748144458,
+        "load_duration": 317687750,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 281992000,
+        "eval_count": 9,
+        "eval_duration": 142994000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 748144458,
+      "load_duration": 317687750,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 281992000,
+      "eval_count": 9,
+      "eval_duration": 142994000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7494512919802219
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame20-flip-right",
+      "pair_case_id": "frame20-flip",
+      "source_side": "right",
+      "source_image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "image_sha256": "a0bc3929f2e17cc6a48a05de4747704c89d9861a5046ddbf1141995f6de52218",
+      "image_bytes": 31652,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:22:54.984256Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3813750208,
+        "load_duration": 3190693416,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 418435000,
+        "eval_count": 9,
+        "eval_duration": 199532000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 3813750208,
+      "load_duration": 3190693416,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 418435000,
+      "eval_count": 9,
+      "eval_duration": 199532000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 3.8150263329735026
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame35-flip-left",
+      "pair_case_id": "frame35-flip",
+      "source_side": "left",
+      "source_image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+      "image_sha256": "658c0d8d6c2086709dade41d8f710dea9c50167ac5f4a1af0e93cbda3ca5499d",
+      "image_bytes": 32877,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:22:55.896766Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 910126041,
+        "load_duration": 289019500,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 411907000,
+        "eval_count": 9,
+        "eval_duration": 203522000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 910126041,
+      "load_duration": 289019500,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 411907000,
+      "eval_count": 9,
+      "eval_duration": 203522000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.9113386659882963
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame20-normal-right",
+      "pair_case_id": "frame20-normal",
+      "source_side": "right",
+      "source_image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "image_sha256": "6c9073f90ac9e73c92d7f0098a2ca4cac53cbe3d3607b5aacbaefe582b3d8b36",
+      "image_bytes": 31447,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "narrow",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:22:56.810004Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 910988250,
+        "load_duration": 286749625,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 414018000,
+        "eval_count": 9,
+        "eval_duration": 204653000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 910988250,
+      "load_duration": 286749625,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 414018000,
+      "eval_count": 9,
+      "eval_duration": 204653000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.9120557080022991
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame05-flip-right",
+      "pair_case_id": "frame05-flip",
+      "source_side": "right",
+      "source_image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+      "image_sha256": "7234890a3bf7a86325967d2da1e66f651142a8293b225b289e62160e9b3ecf4e",
+      "image_bytes": 31446,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:22:57.709681Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 898689500,
+        "load_duration": 281537542,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 411207000,
+        "eval_count": 9,
+        "eval_duration": 200222000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 898689500,
+      "load_duration": 281537542,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 411207000,
+      "eval_count": 9,
+      "eval_duration": 200222000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.8995816669194028
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame35-flip-right",
+      "pair_case_id": "frame35-flip",
+      "source_side": "right",
+      "source_image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+      "image_sha256": "01e816628095d5ec10dcef35dae0c19bbd1c0593d5f8ee85c6b503a377027413",
+      "image_bytes": 32199,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:22:58.617154Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 905547208,
+        "load_duration": 283011750,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 413198000,
+        "eval_count": 9,
+        "eval_duration": 203672000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 905547208,
+      "load_duration": 283011750,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 413198000,
+      "eval_count": 9,
+      "eval_duration": 203672000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.9067982500419021
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame05-normal-left",
+      "pair_case_id": "frame05-normal",
+      "source_side": "left",
+      "source_image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+      "image_sha256": "88785c313c9fa89f87e7d3936db1878bf71c41fcae908f24cbcbab705bb810d6",
+      "image_bytes": 32129,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:22:59.539718Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 914912333,
+        "load_duration": 284632417,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 415536000,
+        "eval_count": 9,
+        "eval_duration": 208673000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 914912333,
+      "load_duration": 284632417,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 415536000,
+      "eval_count": 9,
+      "eval_duration": 208673000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.9189843749627471
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame35-normal-right",
+      "pair_case_id": "frame35-normal",
+      "source_side": "right",
+      "source_image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+      "image_sha256": "6eae22c1b0f7d37aa6c11eba46b5363912e7960a2c0e2fbc4ace7b7c0933dcd4",
+      "image_bytes": 33289,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:23:00.451657Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 909809875,
+        "load_duration": 283525291,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 414315000,
+        "eval_count": 9,
+        "eval_duration": 206315000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 909809875,
+      "load_duration": 283525291,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 414315000,
+      "eval_count": 9,
+      "eval_duration": 206315000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.9112764579476789
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame35-normal-left",
+      "pair_case_id": "frame35-normal",
+      "source_side": "left",
+      "source_image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+      "image_sha256": "75fdf38ed066b8fd46e36f1307882793ffe0a5de093dd72af3fd0f0ab99bb450",
+      "image_bytes": 32871,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:23:01.385774Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 931354958,
+        "load_duration": 288513333,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 436145000,
+        "eval_count": 9,
+        "eval_duration": 200499000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 931354958,
+      "load_duration": 288513333,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 436145000,
+      "eval_count": 9,
+      "eval_duration": 200499000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.9326469158986583
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame20-flip-left",
+      "pair_case_id": "frame20-flip",
+      "source_side": "left",
+      "source_image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "image_sha256": "3342b7058ddec17b149dfc192abed97911be4b2758d9ff794d8c78d6fd3acfc2",
+      "image_bytes": 31069,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "narrow",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:23:02.309881Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 922611083,
+        "load_duration": 284865958,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 429929000,
+        "eval_count": 9,
+        "eval_duration": 202017000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 922611083,
+      "load_duration": 284865958,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 429929000,
+      "eval_count": 9,
+      "eval_duration": 202017000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.9235530419973657
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame20-normal-left",
+      "pair_case_id": "frame20-normal",
+      "source_side": "left",
+      "source_image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "image_sha256": "2bb83cdb96bbfc0f0a980f0935fa937d073552c654722333df9eb16ddaca177f",
+      "image_bytes": 32508,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:23:03.235862Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 924135584,
+        "load_duration": 285995375,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 428411000,
+        "eval_count": 9,
+        "eval_duration": 203789000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 924135584,
+      "load_duration": 285995375,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 428411000,
+      "eval_count": 9,
+      "eval_duration": 203789000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.9253308329498395
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame05-flip-left",
+      "pair_case_id": "frame05-flip",
+      "source_side": "left",
+      "source_image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+      "image_sha256": "4c42ffd45412d77fd19791d4cd1b628837285ceea5affa13c07b0665ef8f6c9f",
+      "image_bytes": 32118,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:23:04.165202Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 926996583,
+        "load_duration": 287003542,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 428981000,
+        "eval_count": 9,
+        "eval_duration": 204518000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 926996583,
+      "load_duration": 287003542,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 428981000,
+      "eval_count": 9,
+      "eval_duration": 204518000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.9284413340501487
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "crop_id": "frame05-normal-right",
+      "pair_case_id": "frame05-normal",
+      "source_side": "right",
+      "source_image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+      "image_sha256": "6d9eedaf99aabb3a532061cfc09caed1425c99fb507376682376a60401e66cbb",
+      "image_bytes": 32584,
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "hands_pose"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hands_pose": {
+            "type": "string",
+            "enum": [
+              "narrow",
+              "wide",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "think": false,
+      "expected_host_only": "wide",
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:23:05.11466Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 946749666,
+        "load_duration": 287361416,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 449152000,
+        "eval_count": 9,
+        "eval_duration": 204186000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 946749666,
+      "load_duration": 287361416,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 449152000,
+      "eval_count": 9,
+      "eval_duration": 204186000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.947967000072822
+    }
+  ],
+  "pairs": [
+    {
+      "model": "gemma4:e2b",
+      "pair_case_id": "frame05-normal",
+      "left_crop_id": "frame05-normal-left",
+      "right_crop_id": "frame05-normal-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e2b",
+      "pair_case_id": "frame05-flip",
+      "left_crop_id": "frame05-flip-left",
+      "right_crop_id": "frame05-flip-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e2b",
+      "pair_case_id": "frame20-normal",
+      "left_crop_id": "frame20-normal-left",
+      "right_crop_id": "frame20-normal-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "right",
+      "semantic_correct": false,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e2b",
+      "pair_case_id": "frame20-flip",
+      "left_crop_id": "frame20-flip-left",
+      "right_crop_id": "frame20-flip-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "left",
+      "semantic_correct": false,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e2b",
+      "pair_case_id": "frame35-normal",
+      "left_crop_id": "frame35-normal-left",
+      "right_crop_id": "frame35-normal-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e2b",
+      "pair_case_id": "frame35-flip",
+      "left_crop_id": "frame35-flip-left",
+      "right_crop_id": "frame35-flip-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e4b",
+      "pair_case_id": "frame05-normal",
+      "left_crop_id": "frame05-normal-left",
+      "right_crop_id": "frame05-normal-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e4b",
+      "pair_case_id": "frame05-flip",
+      "left_crop_id": "frame05-flip-left",
+      "right_crop_id": "frame05-flip-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e4b",
+      "pair_case_id": "frame20-normal",
+      "left_crop_id": "frame20-normal-left",
+      "right_crop_id": "frame20-normal-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "right",
+      "semantic_correct": false,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e4b",
+      "pair_case_id": "frame20-flip",
+      "left_crop_id": "frame20-flip-left",
+      "right_crop_id": "frame20-flip-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "left",
+      "semantic_correct": false,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e4b",
+      "pair_case_id": "frame35-normal",
+      "left_crop_id": "frame35-normal-left",
+      "right_crop_id": "frame35-normal-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    },
+    {
+      "model": "gemma4:e4b",
+      "pair_case_id": "frame35-flip",
+      "left_crop_id": "frame35-flip-left",
+      "right_crop_id": "frame35-flip-right",
+      "left_answer": "narrow",
+      "right_answer": "narrow",
+      "derived_pair": "same",
+      "expected_host_only": "same",
+      "semantic_correct": true,
+      "status": "derived"
+    }
+  ],
+  "interpretation": "Every crop answered narrow. Both models produce same for every pair; 4/6 is constant-answer baseline. Absolute narrow/wide criterion may itself be ambiguous; not a general spatial capability score."
+}

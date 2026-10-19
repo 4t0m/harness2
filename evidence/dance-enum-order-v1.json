@@ -1,0 +1,376 @@
+{
+  "scope": "reused-fixture enum order diagnosis; no adaptation or unseen generalization",
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "modified_at": "2026-06-21T01:51:57.487036893-04:00",
+      "size": 7162405886
+    },
+    "gemma4:e4b": {
+      "name": "gemma4:e4b",
+      "digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "modified_at": "2026-06-21T00:43:17.334386392-04:00",
+      "size": 9608350718
+    }
+  },
+  "schema_before": {
+    "type": "object",
+    "required": [
+      "hands_pose"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "hands_pose": {
+        "type": "string",
+        "enum": [
+          "narrow",
+          "wide",
+          "unclear"
+        ]
+      }
+    }
+  },
+  "schema_after": {
+    "type": "object",
+    "required": [
+      "hands_pose"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "hands_pose": {
+        "type": "string",
+        "enum": [
+          "wide",
+          "narrow",
+          "unclear"
+        ]
+      }
+    }
+  },
+  "max_calls": 8,
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "crop_id": "frame20-normal-left",
+      "image_sha256": "2bb83cdb96bbfc0f0a980f0935fa937d073552c654722333df9eb16ddaca177f",
+      "expected_host_only": "wide",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:24:10.536704Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 531478666,
+        "load_duration": 311085916,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 79312000,
+        "eval_count": 9,
+        "eval_duration": 135811000
+      },
+      "total_duration": 531478666,
+      "load_duration": 311085916,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 79312000,
+      "eval_count": 9,
+      "eval_duration": 135811000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.5324214169522747
+    },
+    {
+      "model": "gemma4:e2b",
+      "crop_id": "frame20-normal-right",
+      "image_sha256": "6c9073f90ac9e73c92d7f0098a2ca4cac53cbe3d3607b5aacbaefe582b3d8b36",
+      "expected_host_only": "narrow",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:24:11.022768Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 483231708,
+        "load_duration": 287971416,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 57040000,
+        "eval_count": 9,
+        "eval_duration": 132912000
+      },
+      "total_duration": 483231708,
+      "load_duration": 287971416,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 57040000,
+      "eval_count": 9,
+      "eval_duration": 132912000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.48779299994930625
+    },
+    {
+      "model": "gemma4:e2b",
+      "crop_id": "frame20-flip-left",
+      "image_sha256": "3342b7058ddec17b149dfc192abed97911be4b2758d9ff794d8c78d6fd3acfc2",
+      "expected_host_only": "narrow",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:24:11.504248Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 475613625,
+        "load_duration": 280532792,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 56844000,
+        "eval_count": 9,
+        "eval_duration": 132910000
+      },
+      "total_duration": 475613625,
+      "load_duration": 280532792,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 56844000,
+      "eval_count": 9,
+      "eval_duration": 132910000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.4767534169368446
+    },
+    {
+      "model": "gemma4:e2b",
+      "crop_id": "frame20-flip-right",
+      "image_sha256": "a0bc3929f2e17cc6a48a05de4747704c89d9861a5046ddbf1141995f6de52218",
+      "expected_host_only": "wide",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:24:11.97496Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 469257167,
+        "load_duration": 274801083,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 56685000,
+        "eval_count": 9,
+        "eval_duration": 132417000
+      },
+      "total_duration": 469257167,
+      "load_duration": 274801083,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 56685000,
+      "eval_count": 9,
+      "eval_duration": 132417000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.4717331250431016
+    },
+    {
+      "model": "gemma4:e4b",
+      "crop_id": "frame20-normal-left",
+      "image_sha256": "2bb83cdb96bbfc0f0a980f0935fa937d073552c654722333df9eb16ddaca177f",
+      "expected_host_only": "wide",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:24:12.527305Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 548051292,
+        "load_duration": 280017583,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 76797000,
+        "eval_count": 9,
+        "eval_duration": 185250000
+      },
+      "total_duration": 548051292,
+      "load_duration": 280017583,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 76797000,
+      "eval_count": 9,
+      "eval_duration": 185250000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.5493127079680562
+    },
+    {
+      "model": "gemma4:e4b",
+      "crop_id": "frame20-normal-right",
+      "image_sha256": "6c9073f90ac9e73c92d7f0098a2ca4cac53cbe3d3607b5aacbaefe582b3d8b36",
+      "expected_host_only": "narrow",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:24:13.058621Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 528757916,
+        "load_duration": 273451500,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 61074000,
+        "eval_count": 9,
+        "eval_duration": 188731000
+      },
+      "total_duration": 528757916,
+      "load_duration": 273451500,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 61074000,
+      "eval_count": 9,
+      "eval_duration": 188731000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.5299273750279099
+    },
+    {
+      "model": "gemma4:e4b",
+      "crop_id": "frame20-flip-left",
+      "image_sha256": "3342b7058ddec17b149dfc192abed97911be4b2758d9ff794d8c78d6fd3acfc2",
+      "expected_host_only": "narrow",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:24:13.631009Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 569998209,
+        "load_duration": 315706167,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 59845000,
+        "eval_count": 9,
+        "eval_duration": 188517000
+      },
+      "total_duration": 569998209,
+      "load_duration": 315706167,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 59845000,
+      "eval_count": 9,
+      "eval_duration": 188517000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "narrow",
+      "reason": "correct",
+      "wall_seconds": 0.5709343330236152
+    },
+    {
+      "model": "gemma4:e4b",
+      "crop_id": "frame20-flip-right",
+      "image_sha256": "a0bc3929f2e17cc6a48a05de4747704c89d9861a5046ddbf1141995f6de52218",
+      "expected_host_only": "wide",
+      "system_prompt": "For this one stick figure, are the arms/hands hanging relatively close down beside the torso (narrow), or held diagonally outward well away from the torso (wide)? Judge pose only. Return exactly one JSON object with hands_pose set to narrow, wide, or unclear.",
+      "user_prompt": "Classify the pose of the single stick figure in this image.",
+      "options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:24:14.167463Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"hands_pose\": \"narrow\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 535093125,
+        "load_duration": 278581209,
+        "prompt_eval_count": 132,
+        "prompt_eval_duration": 61065000,
+        "eval_count": 9,
+        "eval_duration": 190171000
+      },
+      "total_duration": 535093125,
+      "load_duration": 278581209,
+      "prompt_eval_count": 132,
+      "prompt_eval_duration": 61065000,
+      "eval_count": 9,
+      "eval_duration": 190171000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "narrow",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.5362368749920279
+    }
+  ],
+  "script_sha256": "0660e60ea9769a3fbe41fc03c569eb2cee536c09a711bf7dc976f107d9bccf9f",
+  "complete": true
+}

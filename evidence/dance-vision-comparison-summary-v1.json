@@ -1,0 +1,104 @@
+{
+  "hosted": {
+    "google/gemma-4-26b-a4b-it": {
+      "correct": 2,
+      "total": 6,
+      "changed_correct": 2,
+      "changed_total": 2,
+      "unchanged_correct": 0,
+      "unchanged_total": 4,
+      "providers": [
+        "Darkbloom",
+        "NextBit"
+      ],
+      "reported_prompt_token_counts": [
+        389,
+        495
+      ],
+      "reported_completion_token_counts": [
+        10
+      ],
+      "wall_seconds_range": [
+        0.8298819999909028,
+        1.5676011249888688
+      ],
+      "reported_cost_usd": 0.0001540075
+    },
+    "google/gemma-4-31b-it": {
+      "correct": 2,
+      "total": 6,
+      "changed_correct": 2,
+      "changed_total": 2,
+      "unchanged_correct": 0,
+      "unchanged_total": 4,
+      "providers": [
+        "Novita"
+      ],
+      "reported_prompt_token_counts": [
+        242,
+        389
+      ],
+      "reported_completion_token_counts": [
+        10
+      ],
+      "wall_seconds_range": [
+        1.1946970829740167,
+        2.208805999951437
+      ],
+      "reported_cost_usd": 0.00024786000000000003
+    }
+  },
+  "local_crop": {
+    "gemma4:e2b": {
+      "crops_correct": 2,
+      "crop_count": 12,
+      "strict_valid": 12,
+      "pairs_correct": 4,
+      "pair_count": 6,
+      "changed_pairs_correct": 0,
+      "changed_pair_count": 2,
+      "native_prompt_token_counts": [
+        132
+      ],
+      "native_output_token_counts": [
+        9
+      ],
+      "summed_pair_inference_wall_seconds_range": [
+        1.4214484170079231,
+        4.10604437510483
+      ],
+      "warm_single_call_wall_seconds_range": [
+        0.7057419168995693,
+        0.7494512919802219
+      ]
+    },
+    "gemma4:e4b": {
+      "crops_correct": 2,
+      "crop_count": 12,
+      "strict_valid": 12,
+      "pairs_correct": 4,
+      "pair_count": 6,
+      "changed_pairs_correct": 0,
+      "changed_pair_count": 2,
+      "native_prompt_token_counts": [
+        132
+      ],
+      "native_output_token_counts": [
+        9
+      ],
+      "summed_pair_inference_wall_seconds_range": [
+        1.8181369160301983,
+        4.738579374970868
+      ],
+      "warm_single_call_wall_seconds_range": [
+        0.8995816669194028,
+        0.947967000072822
+      ]
+    }
+  },
+  "reported_hosted_cost_usd": 0.00040186750000000004,
+  "local_calls": 32,
+  "hosted_calls": 12,
+  "local_energy_hardware_cost": "unmeasured",
+  "limit": "Exploratory reused fixtures; generation backends, models, image encodings and prompts differ across treatments."
+}
