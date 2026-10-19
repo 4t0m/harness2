@@ -1,0 +1,255 @@
+{
+  "scope": "single-step synthetic ledger choices; strict and deterministic formatting replay on same responses; no real jobs",
+  "rows": [
+    {
+      "task_id": "mix-order-01",
+      "external_dispatch": false,
+      "content": "{\n  \"operation\": \"dispatch\",\n  \"job_id\": \"later_alpha\"\n}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 422,
+        "completion_tokens": 24,
+        "total_tokens": 446
+      },
+      "latency_seconds": 5.797091832966544,
+      "cost": 3.77e-05,
+      "strict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "later_alpha"
+        },
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "later_alpha"
+        },
+        "state_preserved": true
+      }
+    },
+    {
+      "task_id": "blocked-02",
+      "external_dispatch": false,
+      "content": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"dead_parent\"\n}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 389,
+        "completion_tokens": 24,
+        "total_tokens": 413
+      },
+      "latency_seconds": 6.264971208991483,
+      "cost": 2.1618e-05,
+      "strict": {
+        "valid": false,
+        "reason": "action is not among host-derived legal choices",
+        "action": null,
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": false,
+        "reason": "action is not among host-derived legal choices",
+        "action": null,
+        "state_preserved": true
+      }
+    },
+    {
+      "task_id": "approval-03",
+      "external_dispatch": false,
+      "content": "{\n\"operation\": \"wait\",\n\"job_id\": null\n}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 331,
+        "completion_tokens": 18,
+        "total_tokens": 349
+      },
+      "latency_seconds": 8.188138333964162,
+      "cost": 2.63925e-05,
+      "strict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "state_preserved": true
+      }
+    },
+    {
+      "task_id": "retry-lineage-04",
+      "external_dispatch": false,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 336,
+        "completion_tokens": 14,
+        "total_tokens": 350
+      },
+      "latency_seconds": 6.455898624961264,
+      "cost": 2.828e-05,
+      "strict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "state_preserved": true
+      }
+    },
+    {
+      "task_id": "dependency-unlocked-05",
+      "external_dispatch": false,
+      "content": "{\"operation\": \"dispatch\", \"job_id\": \"child_eta\"}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 365,
+        "completion_tokens": 17,
+        "total_tokens": 382
+      },
+      "latency_seconds": 5.805961624952033,
+      "cost": 2.84625e-05,
+      "strict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "child_eta"
+        },
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "child_eta"
+        },
+        "state_preserved": true
+      }
+    },
+    {
+      "task_id": "two-runnable-06",
+      "external_dispatch": false,
+      "content": "{\"operation\": \"dispatch\", \"job_id\": \"ready_theta\"}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 391,
+        "completion_tokens": 17,
+        "total_tokens": 408
+      },
+      "latency_seconds": 2.5739438750315458,
+      "cost": 2.0162e-05,
+      "strict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "ready_theta"
+        },
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "ready_theta"
+        },
+        "state_preserved": true
+      }
+    },
+    {
+      "task_id": "nothing-left-07",
+      "external_dispatch": false,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 390,
+        "completion_tokens": 14,
+        "total_tokens": 404
+      },
+      "latency_seconds": 0.3971699579851702,
+      "cost": 3.206e-05,
+      "strict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "state_preserved": true
+      }
+    },
+    {
+      "task_id": "human-approved-08",
+      "external_dispatch": false,
+      "content": "{\n\"operation\": \"dispatch\",\n\"job_id\": \"approved_nu\"\n}",
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 392,
+        "completion_tokens": 22,
+        "total_tokens": 414
+      },
+      "latency_seconds": 0.9834401670377702,
+      "cost": 3.078e-05,
+      "strict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "approved_nu"
+        },
+        "state_preserved": true
+      },
+      "format_replay": {
+        "changed": false,
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "dispatch",
+          "job_id": "approved_nu"
+        },
+        "state_preserved": true
+      }
+    }
+  ]
+}

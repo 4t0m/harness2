@@ -1,0 +1,19 @@
+{
+  "artistic_quality_evaluated": false,
+  "frozen_scene_count": 8,
+  "generation_performed": false,
+  "kind": "scripted_offline_fixture",
+  "provider_calls": 0,
+  "scenes": [
+    {"result": "accepted", "scripted_action": {"job_id": "later_alpha", "operation": "dispatch"}, "state_preserved": true, "task_id": "mix-order-01", "valid_choice_count": 2, "valid_choices": [{"job_id": "later_alpha", "operation": "dispatch"}, {"job_id": "retry_beta", "operation": "retry"}]},
+    {"result": "accepted", "scripted_action": {"job_id": null, "operation": "wait"}, "state_preserved": true, "task_id": "blocked-02", "valid_choice_count": 1, "valid_choices": [{"job_id": null, "operation": "wait"}]},
+    {"result": "accepted", "scripted_action": {"job_id": null, "operation": "wait"}, "state_preserved": true, "task_id": "approval-03", "valid_choice_count": 1, "valid_choices": [{"job_id": null, "operation": "wait"}]},
+    {"result": "accepted", "scripted_action": {"job_id": null, "operation": "wait"}, "state_preserved": true, "task_id": "retry-lineage-04", "valid_choice_count": 1, "valid_choices": [{"job_id": null, "operation": "wait"}]},
+    {"result": "accepted", "scripted_action": {"job_id": "child_eta", "operation": "dispatch"}, "state_preserved": true, "task_id": "dependency-unlocked-05", "valid_choice_count": 1, "valid_choices": [{"job_id": "child_eta", "operation": "dispatch"}]},
+    {"result": "accepted", "scripted_action": {"job_id": "ready_theta", "operation": "dispatch"}, "state_preserved": true, "task_id": "two-runnable-06", "valid_choice_count": 2, "valid_choices": [{"job_id": "ready_theta", "operation": "dispatch"}, {"job_id": "ready_iota", "operation": "dispatch"}]},
+    {"result": "accepted", "scripted_action": {"job_id": null, "operation": "wait"}, "state_preserved": true, "task_id": "nothing-left-07", "valid_choice_count": 1, "valid_choices": [{"job_id": null, "operation": "wait"}]},
+    {"result": "accepted", "scripted_action": {"job_id": "approved_nu", "operation": "dispatch"}, "state_preserved": true, "task_id": "human-approved-08", "valid_choice_count": 1, "valid_choices": [{"job_id": "approved_nu", "operation": "dispatch"}]}
+  ],
+  "scope": "production dispatch policy and state-transition validation only",
+  "valid_action_ordering_is_not_scored": true
+}
