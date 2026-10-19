@@ -1,0 +1,168 @@
+{
+  "scope": "12local calls, four small symbolic tasks permodel; no statistical reliability or adaptation claim",
+  "models": {
+    "gemma4:e2b": {
+      "first_correct": 3,
+      "cases": 4,
+      "after_correction_correct": 4,
+      "injected_repair_exact": true,
+      "initial_prompt_tokens_range": [
+        254,
+        265
+      ],
+      "initial_output_tokens_range": [
+        256,
+        261
+      ],
+      "initial_input_characters_range": [
+        907,
+        966
+      ],
+      "initial_wall_seconds_range": [
+        5.052840583026409,
+        7.616235624998808
+      ],
+      "observed_decode_tokens_per_second_range": [
+        53.24301740011388,
+        59.5628225749031
+      ],
+      "calls": 6
+    },
+    "hermes-lab-qwen3-8b:latest": {
+      "first_correct": 3,
+      "cases": 4,
+      "after_correction_correct": 4,
+      "injected_repair_exact": true,
+      "initial_prompt_tokens_range": [
+        250,
+        262
+      ],
+      "initial_output_tokens_range": [
+        208,
+        213
+      ],
+      "initial_input_characters_range": [
+        907,
+        966
+      ],
+      "initial_wall_seconds_range": [
+        9.763253125012852,
+        12.357977500068955
+      ],
+      "observed_decode_tokens_per_second_range": [
+        15.783612068072795,
+        25.754484331752913
+      ],
+      "calls": 6
+    }
+  },
+  "renders": [
+    {
+      "case_id": "plinth_pair_intro",
+      "complete": true,
+      "wall_seconds": 2.2210582909174263,
+      "verification": {
+        "passed": true,
+        "max_protected_position_error_m": 8.858661353272189e-08,
+        "max_segment_length_error_m": 8.772750070829005e-08,
+        "changed_frames_by_slot": {
+          "0": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "1": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        },
+        "neutral_boundary_frames": [
+          0,
+          15,
+          16,
+          31,
+          32,
+          47
+        ],
+        "scope": "sampled scene joint readback, not biomechanics, collisions, interpolation or human acting acceptance"
+      }
+    },
+    {
+      "case_id": "gallery_roles_reversed",
+      "complete": true,
+      "wall_seconds": 1.9637088750023395,
+      "verification": {
+        "passed": true,
+        "max_protected_position_error_m": 1.1450491298364647e-07,
+        "max_segment_length_error_m": 1.1569062546845643e-07,
+        "changed_frames_by_slot": {
+          "0": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "1": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        },
+        "neutral_boundary_frames": [
+          0,
+          15,
+          16,
+          31,
+          32,
+          47
+        ],
+        "scope": "sampled scene joint readback, not biomechanics, collisions, interpolation or human acting acceptance"
+      }
+    }
+  ],
+  "cost": "No hosted requests; local energy/hardware unmeasured"
+}

@@ -1,0 +1,23 @@
+{
+  "scope": "parent decoded-frame inspection plus numerical readback checks; not full-motion taste acceptance",
+  "render_evidence_sha256": "c51e8bc93577962fe43785e34cf7d75c490c9ec5d7d8f4c151c2c3a0b771584a",
+  "decoded_frames_inspected": [
+    8,
+    24,
+    47
+  ],
+  "scenes": [
+    {
+      "case_id": "plinth_pair_intro",
+      "video_sha256": "5a4c6b400818db5f9e3af094b5bf25d354d2bf476326f09cc72298831349455c",
+      "observation": "Assigned wave actor visibly raises arm, other actor stays planted, final frame neutral. Mirrored actor identities retain correct screen sides. Nod has numerical head-motion evidence but is subtle in these thumbnails.",
+      "source_plan_sha256": "7cf452f0dd22e7710d209fd69b6114108183248887d26c651a22bd0834ba3fc0"
+    },
+    {
+      "case_id": "gallery_roles_reversed",
+      "video_sha256": "fa228ac8e43ea0997da1a1bf682b73f0cb2cb63027cf0eab165f4d89bd1c3126",
+      "observation": "Assigned wave actor visibly raises arm, other actor stays planted, final frame neutral. Mirrored actor identities retain correct screen sides. Nod has numerical head-motion evidence but is subtle in these thumbnails.",
+      "source_plan_sha256": "22702025a254caa5010960169e71c4cfcb081dab4c7e95983e73771d73c1c430"
+    }
+  ]
+}

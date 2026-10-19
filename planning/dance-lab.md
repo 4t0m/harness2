@@ -193,3 +193,29 @@ Decision: stop retries on these sameimages. None of these vision paths is an aut
 Luna independently proposed6future geometric cases from source only: identical restrained/broad controls, edited actor on either side, soft-versus-clear, and a footwork-only change. Some proposed time2.0s/clear configurations overlap existing development exactly, so they are NOT untouched holdouts merely because an independent author proposed them. Use them as regression/control ideas; freeze genuinely new times, views and appearances before the next evaluation. Publish a clear task criterion to the model (that is not label leakage), but keep per-case answers and evaluator code outside editable harness prompts. Validate projected evidence where the task is image-based; a world-coordinate metric need not be visually identifiable from every camera.
 
 Next broader development should prioritize multi-step actor staging and reusable gesture/motion vocabulary. If returning to visual acceptance, test fresh poses with a clearer geometric criterion and explicit abstention/calibration; do not simply optimize scores on this six-image set.
+
+
+## Model-directed two-actor staging (2026-10-19)
+
+Expanded from one isolated motion edit to a six-second scene with two actors, fixed relative placement and three ordered two-second cues. Sol implemented `actor_staging.compile_staging`: models choose symbolic identities, anchor sides, gesture and soft/clear variation; host code resolves coordinates at anchor±0.85m and owns timing. Strict validation rejects stale revision, duplicate/missing slots, unknown identities, extra fields and invalid geometry. Eleven staging/actor-intent tests passed. No walking/path-planning claim: actors stay planted throughout.
+
+Luna authored four task fixtures independently: a greeting, mirrored roles with offset anchor, nod-before-wave, and a quiet sequence. Parent verified expected plans compile before model calls. Last two were kept out of future editor inputs, but allfour are now observed baseline cases, not untouched evaluation. No editor or Harness² refinement ran in this round.
+
+Both local Gemma E2B and older Qwen3 8B passed3/4first attempts and4/4after at most one correction. Both initially used duplicate/one-based slot values on the task phrased first/second/third. The host's structural error named required slots0/1/2; both corrected them without being supplied the desired plan. Each model then repaired a deliberately injected missing_actor cue while preserving every other JSON value and array order. The injected failures are separately labeled and do not inflate natural-repair success. Twelve local calls total; no hosted fees.
+
+| Model | Initial prompt tokens | Initial output tokens | First-attempt wall time | Observed decode tokens/s, all6calls |
+|---|---:|---:|---:|---:|
+| Gemma E2B |254–265|256–261|5.05–7.62s|53.24–59.56|
+| Older Qwen3 8B |250–262|208–213|9.76–12.36s|15.78–25.75|
+
+Exact initial character lengths, load/prefill/decode counts, raw replies and model digests remain in `actor-staging-v1.json` and `actor-staging-summary-v1.json`. These are one small Mac run, not sustained rates or5090forecasts. Qwen decode varied materially across calls; no cause established. No Blender render ran concurrently with inference.
+
+Parent rendered two accepted Gemma plans, including reversed actor order and offset anchor. Renderer preflight found and repaired an implementation mismatch: it previously assumed fixed left-to-right list order/origin; camera orientation also needed to match world+x=screen-right. The investigation preserves isolated validation evidence (1/4before,4/4after) and actual projection checks after repair.
+
+Eachvideo48frames/8fps/6seconds/512x320. Independently checked actual Blender world-joint readback acrossallframes: protected joints and nonacting actors unchanged within1.15e-7m, segment lengths within1.16e-7m, neutral restored atframes0/15/16/31/32/47. Gesture slots changed only their permitted arm/head joints. First and mirrored scenes rendered/encoded/verified in a few seconds each. Parent inspected decoded frames8/24/47: wave, correct actor sides and neutral return are clear; nod is subtle at this size. No claim of realistic acting, continuous collision-free motion or human taste acceptance.
+
+Media: `/Users/adom/Development/hermes-testing/runs/harness2-actor-scene-v1-plinth_pair_intro/scene.mp4` and `harness2-actor-scene-v1-gallery_roles_reversed/scene.mp4` under the same runs root. Evidence: `actor-staging-render-v1.json` and `actor-staging-review-v1.json`. This is an offline technical staging preview, not a persistent viewer, interruption integration, skinned production character or H3-generated scene.
+
+Next useful efficiency experiment: a compact but equally expressive intent representation that lets the host bind revision and infer the opposite-side actor and cue slots from ordered array position. That could eliminate repeated IDs/timing fields and this ordinal-index failure. Preserve allplacement/gesture/variation choices; test canonical-plan equivalence and stale-request rejection before comparing latency. Separately, the actual Harness² improver can test learned instruction changes against fixed guidance and bounded repair on freshly frozen ordinal briefs. Do not call a manually shortened protocol an adaptation gain.
+
+Latency planning: a260token plan alone needs about43.3decode tokens/s to finish within6seconds, before prefill, loading, validation or rendering. A100token equivalent would need16.7tokens/s for that same decode-only budget. These are arithmetic requirements, not model/hardware forecasts; batching and prestaging allow the language model to work ahead while deterministic animation runs at its own frame rate.

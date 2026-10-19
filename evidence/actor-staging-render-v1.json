@@ -1,0 +1,453 @@
+{
+  "scope": "two offline model-planned procedural actor scenes",
+  "model_evidence_sha256": "c4760e9ed4f5bb02545dcc8527d5fde1401623b1af7faed84ee8587fb9c59174",
+  "sources": {
+    "experiments/actor_staging_render.py": "e24fa2372662c2d446d7f4c6276fe4f6993289c13e62aed97a2c5584f0a9b90d",
+    "experiments/actor_staging_render_probe.py": "10abe8a5d65dc7f2642545c44d10570445fac75d0336da2552d4894aad6986fa"
+  },
+  "renders": [
+    {
+      "case_id": "plinth_pair_intro",
+      "model": "gemma4:e2b",
+      "model_call_kind": "bounded_correction",
+      "plan_sha256": "7cf452f0dd22e7710d209fd69b6114108183248887d26c651a22bd0834ba3fc0",
+      "source_plan": {
+        "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+        "scene_revision": "stage-demo-r4",
+        "actors": [
+          {
+            "id": "actor_rowan_17",
+            "x_m": -0.85,
+            "y_m": 0,
+            "z_m": 0
+          },
+          {
+            "id": "actor_ivo_42",
+            "x_m": 0.85,
+            "y_m": 0,
+            "z_m": 0
+          }
+        ],
+        "cues": [
+          {
+            "slot": 0,
+            "start_s": 0,
+            "end_s": 2,
+            "actor_id": "actor_rowan_17",
+            "gesture": "wave",
+            "variation": "soft"
+          },
+          {
+            "slot": 1,
+            "start_s": 2,
+            "end_s": 4,
+            "actor_id": "actor_ivo_42",
+            "gesture": "nod",
+            "variation": "clear"
+          },
+          {
+            "slot": 2,
+            "start_s": 4,
+            "end_s": 6,
+            "actor_id": "actor_rowan_17",
+            "gesture": "neutral",
+            "variation": "soft"
+          }
+        ],
+        "fps": 8,
+        "frame_count": 48,
+        "duration_s": 6
+      },
+      "verification": {
+        "passed": true,
+        "max_protected_position_error_m": 8.858661353272189e-08,
+        "max_segment_length_error_m": 8.772750070829005e-08,
+        "changed_frames_by_slot": {
+          "0": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "1": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        },
+        "neutral_boundary_frames": [
+          0,
+          15,
+          16,
+          31,
+          32,
+          47
+        ],
+        "scope": "sampled scene joint readback, not biomechanics, collisions, interpolation or human acting acceptance"
+      },
+      "motion_sha256": "56ed99386a3f9d9a32cb0437c6bc2fb6c3827d13b939b51b20944affc9f284ed",
+      "render_metadata": {
+        "engine": "BLENDER_WORKBENCH",
+        "resolution_px": [
+          512,
+          320
+        ],
+        "fps": 8,
+        "frame_count": 48,
+        "duration_s": 6.0,
+        "camera": {
+          "projection": "orthographic",
+          "location_world_m": [
+            0.0,
+            -7.0,
+            2.1500000953674316
+          ],
+          "target_world_m": [
+            0.0,
+            0.0,
+            0.96
+          ],
+          "ortho_scale_m": 4.400000095367432,
+          "actor_bounds_checked": true,
+          "screen_right_world_direction": "+x",
+          "actor_screen_order_checked": true
+        },
+        "bone_edges": [
+          [
+            "left_hip",
+            "left_knee"
+          ],
+          [
+            "left_knee",
+            "left_ankle"
+          ],
+          [
+            "right_hip",
+            "right_knee"
+          ],
+          [
+            "right_knee",
+            "right_ankle"
+          ],
+          [
+            "left_shoulder",
+            "left_elbow"
+          ],
+          [
+            "left_elbow",
+            "left_wrist"
+          ],
+          [
+            "right_shoulder",
+            "right_elbow"
+          ],
+          [
+            "right_elbow",
+            "right_wrist"
+          ],
+          [
+            "left_hip",
+            "right_hip"
+          ],
+          [
+            "left_shoulder",
+            "right_shoulder"
+          ],
+          [
+            "pelvis",
+            "left_hip"
+          ],
+          [
+            "pelvis",
+            "right_hip"
+          ],
+          [
+            "pelvis",
+            "spine"
+          ],
+          [
+            "spine",
+            "neck"
+          ],
+          [
+            "neck",
+            "head"
+          ],
+          [
+            "left_shoulder",
+            "spine"
+          ],
+          [
+            "right_shoulder",
+            "spine"
+          ],
+          [
+            "left_ankle",
+            "left_foot"
+          ],
+          [
+            "right_ankle",
+            "right_foot"
+          ]
+        ],
+        "source_motion": "dance_motion.generate('restrained').frames[8]",
+        "motion_scope": "Static staging with bounded wave/nod gestures; no root translation."
+      },
+      "complete": true,
+      "video": {
+        "width": 512,
+        "height": 320,
+        "avg_frame_rate": "8/1",
+        "duration": "6.000000",
+        "nb_read_frames": "48"
+      },
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-actor-scene-v1-plinth_pair_intro/scene.mp4",
+      "video_sha256": "5a4c6b400818db5f9e3af094b5bf25d354d2bf476326f09cc72298831349455c",
+      "visual_review": "pending",
+      "wall_seconds": 2.2210582909174263
+    },
+    {
+      "case_id": "gallery_roles_reversed",
+      "model": "gemma4:e2b",
+      "model_call_kind": "first",
+      "plan_sha256": "22702025a254caa5010960169e71c4cfcb081dab4c7e95983e73771d73c1c430",
+      "source_plan": {
+        "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+        "scene_revision": "gallery-layout-12",
+        "actors": [
+          {
+            "id": "unit_mica_08",
+            "x_m": 1.2,
+            "y_m": 0,
+            "z_m": 0
+          },
+          {
+            "id": "unit_sol_31",
+            "x_m": -0.5,
+            "y_m": 0,
+            "z_m": 0
+          }
+        ],
+        "cues": [
+          {
+            "slot": 0,
+            "start_s": 0,
+            "end_s": 2,
+            "actor_id": "unit_mica_08",
+            "gesture": "nod",
+            "variation": "clear"
+          },
+          {
+            "slot": 1,
+            "start_s": 2,
+            "end_s": 4,
+            "actor_id": "unit_sol_31",
+            "gesture": "wave",
+            "variation": "clear"
+          },
+          {
+            "slot": 2,
+            "start_s": 4,
+            "end_s": 6,
+            "actor_id": "unit_mica_08",
+            "gesture": "neutral",
+            "variation": "soft"
+          }
+        ],
+        "fps": 8,
+        "frame_count": 48,
+        "duration_s": 6
+      },
+      "verification": {
+        "passed": true,
+        "max_protected_position_error_m": 1.1450491298364647e-07,
+        "max_segment_length_error_m": 1.1569062546845643e-07,
+        "changed_frames_by_slot": {
+          "0": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "1": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        },
+        "neutral_boundary_frames": [
+          0,
+          15,
+          16,
+          31,
+          32,
+          47
+        ],
+        "scope": "sampled scene joint readback, not biomechanics, collisions, interpolation or human acting acceptance"
+      },
+      "motion_sha256": "79c985def5cbccb65c6989db51525e10ef96a0e086e2fddde8aad45cf0e49316",
+      "render_metadata": {
+        "engine": "BLENDER_WORKBENCH",
+        "resolution_px": [
+          512,
+          320
+        ],
+        "fps": 8,
+        "frame_count": 48,
+        "duration_s": 6.0,
+        "camera": {
+          "projection": "orthographic",
+          "location_world_m": [
+            0.0,
+            -7.0,
+            2.1500000953674316
+          ],
+          "target_world_m": [
+            0.0,
+            0.0,
+            0.96
+          ],
+          "ortho_scale_m": 4.400000095367432,
+          "actor_bounds_checked": true,
+          "screen_right_world_direction": "+x",
+          "actor_screen_order_checked": true
+        },
+        "bone_edges": [
+          [
+            "left_hip",
+            "left_knee"
+          ],
+          [
+            "left_knee",
+            "left_ankle"
+          ],
+          [
+            "right_hip",
+            "right_knee"
+          ],
+          [
+            "right_knee",
+            "right_ankle"
+          ],
+          [
+            "left_shoulder",
+            "left_elbow"
+          ],
+          [
+            "left_elbow",
+            "left_wrist"
+          ],
+          [
+            "right_shoulder",
+            "right_elbow"
+          ],
+          [
+            "right_elbow",
+            "right_wrist"
+          ],
+          [
+            "left_hip",
+            "right_hip"
+          ],
+          [
+            "left_shoulder",
+            "right_shoulder"
+          ],
+          [
+            "pelvis",
+            "left_hip"
+          ],
+          [
+            "pelvis",
+            "right_hip"
+          ],
+          [
+            "pelvis",
+            "spine"
+          ],
+          [
+            "spine",
+            "neck"
+          ],
+          [
+            "neck",
+            "head"
+          ],
+          [
+            "left_shoulder",
+            "spine"
+          ],
+          [
+            "right_shoulder",
+            "spine"
+          ],
+          [
+            "left_ankle",
+            "left_foot"
+          ],
+          [
+            "right_ankle",
+            "right_foot"
+          ]
+        ],
+        "source_motion": "dance_motion.generate('restrained').frames[8]",
+        "motion_scope": "Static staging with bounded wave/nod gestures; no root translation."
+      },
+      "complete": true,
+      "video": {
+        "width": 512,
+        "height": 320,
+        "avg_frame_rate": "8/1",
+        "duration": "6.000000",
+        "nb_read_frames": "48"
+      },
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-actor-scene-v1-gallery_roles_reversed/scene.mp4",
+      "video_sha256": "fa228ac8e43ea0997da1a1bf682b73f0cb2cb63027cf0eab165f4d89bd1c3126",
+      "visual_review": "pending",
+      "wall_seconds": 1.9637088750023395
+    }
+  ],
+  "complete": true
+}

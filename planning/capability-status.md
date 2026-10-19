@@ -13,6 +13,7 @@ This is the current entry point. Earlier active-goal checkpoints are historical,
 | Protected-span motion edit | blender-span-preview:48-frame transforms and isolated pixel comparisons | Host-authored edit; same-process mutation/render failed and was replaced by isolated renders. |
 | Model-selected motion variation and span edit | gesture-variation-live plus dance-model-edit-v1: local E2B selects arm accent; exact lower-body/protected-span checks; before/after render | Named deterministic operations on technical rigs, not model-generated choreography or human taste acceptance. |
 | Dance score and executable prototype | Synthetic score plus dance-motion-render-v3: two procedural stick-rig variants, checked 19 segment lengths, rendered 4s comparison | Prototype is not bound to the original score atlas, retargeted, biomechanically qualified or artistically accepted. |
+| Two-actor relative staging and cue execution | actor-staging-v1 plus two rendered scene receipts: local E2B/Qwen3-8B 3/4first,4/4after correction; exact injected ID repair | Offline procedural rigs, fixed positions, three host-timed cues; no walking, persistent playback or acting-quality acceptance. |
 | Runtime interruption/stale responses | CPU runtime with real local inference; Qwen/Gemma model-driven offline VRM cancellation and stale-response rejection | Offline renderer has a bounded synchronization wait; no persistent real-time service or audio pipeline. |
 
 Evidence files are under `evidence/`. Relevant detailed notes: production-h2-trial.md, creative-menu-comparison.md, menu-blender-preview.md, blender-span-preview.md, model-gesture-variation.md and dance-lab.md. Actual media remains in the Hermes lab's `runs/` folders; do not confuse Git receipts with bundled media assets.
@@ -146,3 +147,8 @@ The local Gemma vision pilot exposes a new boundary: E2B returned same for all6p
 ## Vision comparison follow-up
 
 Hosted Gemma26B-A4B and31B both detect the clear arm edit in2/2orientations but falsely report differences in4/4unchanged controls;12calls cost$0.0004018675reported. Isolating eachactor did not rescue local E2B/E4B: allcrops callednarrow, so derivedpairs stay at the always-same4/6baseline. An8call enum-order perturbation changed nothing. See dance-lab.md and dance-vision-comparison-summary-v1.json. These are manual interface probes on reusedfixtures, not Harness² adaptation or heldout success. Stop repeating thisfixture; keep deterministic checks and expand useful actor staging/motion capabilities while planning fresh visual evaluation.
+
+
+## Multi-cue staging checkpoint
+
+Both local models planned four two-actor scenes correctly after at most one structural correction; both repaired an injected actor ID without changing other values. Twelve calls, initial context250–265native tokens, outputs208–261tokens. Two accepted Gemma plans reached actual48frame6second Blender videos, including mirrored roles and an offset anchor. Readback checks preserve nonacting actors and untouched joints; camera order matches requested screen sides. Details, timing and boundaries in dance-lab.md. Next candidate: shorter equivalent intent representation plus fresh ordinal tasks for an actual fixed/repair/adapted comparison.
