@@ -1,0 +1,49 @@
+{
+  "kind": "scripted_cpu_fixture",
+  "scope": "creative job validation and state tracking only; no image generation or visual inspection",
+  "brief_revision": "brief-r1",
+  "brief_requirements": {
+    "coat_color": "blue",
+    "logo": "none",
+    "pose": "fixed"
+  },
+  "variation_ids": [
+    "silhouette-1",
+    "silhouette-2",
+    "silhouette-3"
+  ],
+  "plan_job_count": 3,
+  "budget": 3.0,
+  "final_states": {
+    "silhouette_1": "completed",
+    "silhouette_2": "failed",
+    "silhouette_2_retry": "completed",
+    "silhouette_3": "pending"
+  },
+  "job_lineage": {
+    "silhouette_1": null,
+    "silhouette_2": null,
+    "silhouette_2_retry": "silhouette_2",
+    "silhouette_3": null
+  },
+  "completed_artifacts": {
+    "silhouette_1": {
+      "artifact_id": "artifact-1",
+      "job_id": "silhouette_1",
+      "parent_revision": "brief-r1"
+    },
+    "silhouette_2_retry": {
+      "artifact_id": "artifact-retry-2",
+      "job_id": "silhouette_2_retry",
+      "parent_revision": "brief-r1"
+    }
+  },
+  "claims": {
+    "generation_performed": false,
+    "artistic_quality_evaluated": false,
+    "visual_brief_compliance_checked": false,
+    "model_trial": false,
+    "budget_enforced": false,
+    "budget_is_metadata_only": true
+  }
+}
