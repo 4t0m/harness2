@@ -35,3 +35,15 @@ Creative manager: first live plan was structurally valid but varied viewpoints r
 Qwen diagnostic reproduced a reasoning-only token-limit response; client now preserves incomplete-output metadata. Original smoke raw was absent, so the original exact cause remains unproven. No more Qwen retries solely to repair reporting.
 
 Next substantive tests: target selection from a multi-actor scene, bounded action compilation with unsupported controls rejected, model-selected retry/revision operations on the creative ledger, and a model-backed improver only after nontrivial baseline failures exist. Avoid treating exact JSON copying as strong agent capability. Real flat-avatar execution and RunPod remain unfinished parts of the active goal.
+
+## Intent, recovery and model-role checkpoint
+
+Actor-intent live Gemma 4 26B A4B: five correct selections; one runtime-supported rightward look, two unsupported directions and two approach previews. No actual bridge action executed yet. Context was 267–284 prompt tokens; model response 0.528–3.696 seconds. The fixtures all use the same expected target ID, so renamed/reordered heldouts are still required.
+
+Creative retry: first response chose the failed job but Markdown wrapping caused strict rejection. An optional exact-single-fence repair passes the same saved response through unchanged state validation and preserves completed receipts. This is deterministic replay, not another live success or model correction.
+
+Three-beat scene score: CPU contract tests plus one live Gemma proposal accepted, 403 input / 192 output tokens, 5.733 seconds, provider-reported $0.00017565. Outputs are symbolic cues, not rendered poses or H3 integration; short fixture timing is explicitly compressed. See evidence/scene-score-live.json.
+
+Model exploration now distinguishes compact reaction selection, slower scene direction and creative production management. See model-task-portfolio.md. User particularly wants long-context MoE vs rolling-context Gemma behavior; exact second checkpoint still needs identification. Qwen3.8-27B dense and Qwen3.6-35B-A3B MoE are current comparison candidates, not renamed earlier Qwen3.5 results.
+
+RunPod owner supplied historical setup guidance only: no verified LLM endpoint/template and no transferable Elysium spending envelope. No pod created. Remain on cheap OpenRouter until a deployment trial has a current quote and explicit inclusive cap.
