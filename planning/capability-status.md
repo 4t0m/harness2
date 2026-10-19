@@ -94,3 +94,17 @@ Evidence: `gemma-event-context-v1.json`, `gemma-event-context-schema-v1.json`. O
 `experiments/vrm_model_async_probe.py --gemma-e2b` completed the same bounded offline VRM demo with schema-constrained gesture/side intent. Both calls selected wave_goodbye/right; host compiled root x=0.35. Initial inference took 3.712 seconds; delayed inference 0.646 seconds, each 47 input and 16 output tokens. The stale reply was rejected after cancellation; 39 post-stop frames remained neutral. The resulting video hash exactly matches the visually inspected Qwen-driven counterpart because both selected the same motion and cancellation frame. Six VRM verification tests passed.
 
 Evidence: `vrm-gemma-async-v1.json`; media `/Users/adom/Development/hermes-testing/runs/round6/eidoverse-video/work/eidoverse-harness2-gemma-async-v1/avatar_probe.mp4`. Same limitations: finite offline render, bounded frame synchronization, abrupt neutral reset, root-offset placement, technical test character. No audio, walking, learned choreography, continuous viewer, or Harness² adaptation gain is established. All calls this round were local; energy/hardware cost unmeasured.
+
+## Capability limits and executable motion (2026-10-19)
+
+A fresh eight-case action-scope pilot exposed semantic failures despite constrained JSON. Sol authored the runner and four offline tests. Each model saw the same host policy, catalog and requests; at most one generic correction included its previous answer without revealing the expected action. No avatar actions were executed in this pilot.
+
+| Model | First correct | After at most one correction |
+|---|---:|---:|
+| Gemma E2B | 4/8 | 5/8 |
+| Gemma E4B | 7/8 | 7/8 |
+| Qwen3 8B | 7/8 | 7/8 |
+
+E2B returned neutral for dance (corrected), look_right for walking, neutral for ambiguous direction, and nod for ambiguous referent. E4B/Qwen classified ambiguous direction as unsupported rather than asking clarification. All other cases passed. These results establish that format enforcement does not reliably enforce capability boundaries; do not blindly dispatch schema-valid intent. Thirty total local calls, no API charges; 135–168 input tokens on first attempts. Timings may overlap a short Blender render, so this batch is not a clean speed benchmark. Evidence: `avatar-capability-v1.json`. Next adaptation candidate: priority between missing referents and absent capabilities, with freshly authored heldouts.
+
+Separately, a real procedural full-body motion prototype now produces two amplitude variants and a four-second side-by-side stick-rig video. Five motion tests and render verification passed; details and limitations are in dance-lab.md. It is not yet model choreography, retargeted avatar motion, or an H3-compatible export.

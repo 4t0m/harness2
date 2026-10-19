@@ -1,0 +1,29 @@
+{
+  "scope": "procedural generic step-touch-like stick rig; no model choreography or artistic acceptance",
+  "sources": {
+    "harness2/dance_motion.py": "f2b4f773d6410f1c510839f2587fdbf0e28d0b2623222360289755fb334c35dd",
+    "experiments/dance_motion_render.py": "81522b73fd299a13267b1da08797f1a873a44dae802f7c543e37266c12110a5e"
+  },
+  "validation": [
+    {
+      "valid": true,
+      "frame_count": 81,
+      "duration_seconds": 4.0,
+      "max_joint_delta_m": 0.06024772262243706,
+      "max_leg_segment_error_m": 1.1102230246251565e-16,
+      "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+    },
+    {
+      "valid": true,
+      "frame_count": 81,
+      "duration_seconds": 4.0,
+      "max_joint_delta_m": 0.0643719414791787,
+      "max_leg_segment_error_m": 1.1102230246251565e-16,
+      "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+    }
+  ],
+  "tracks_sha256": "0d97043c17194757a8e0906fc199c6d467938e49fe8718ba15dddc277273ebc8",
+  "complete": false,
+  "error_type": "CalledProcessError",
+  "wall_seconds": 0.6166903340490535
+}

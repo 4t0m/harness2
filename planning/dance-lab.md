@@ -95,3 +95,13 @@ Next concrete gate: qualify a minimal rig plus several reusable motion phrases, 
 ## Local renderer bridge found (2026-10-19)
 
 Existing Hermes assets include an isolated Blender 4.5.3 runtime under `runs/blender-runtime/Blender.app` and procedural scenes under `runs/round4/` in `/Users/adom/Development/hermes-testing`. Source `tools/avatar_backend.py` creates a procedural character with head/arm pivots but static leg geometry; this is not yet a dance rig. `tools/blender_mcp.py` supports neutral/wave/nod/point, two-second scenes and three reference frames. Those tools cannot execute D0 dance phrases without new rig/motion work. Reuse the runtime and camera/material setup; do not mistake static legs or a translated root for verified foot-contact choreography. No new render was performed during this inspection.
+
+## First executable procedural motion (2026-10-19)
+
+Luna implemented `harness2/dance_motion.py`: restrained/broad generic step-touch-like variants, eight beats at 120 BPM, 81 samples including endpoint over four seconds. World-space joints use two-link inverse kinematics and authored support/swing tracks. The host validator checks finite positions, exact timestamps, supporting contacts, contact height, segment lengths, planted-ankle sliding and a 0.20 m/sample continuity bound. Five targeted tests reject corrupt tracks and inspect beat boundaries. These are screening checks, not balance, joint-limit, collision or biomechanical proof.
+
+Parent rendered both variants side by side with an inexpensive Blender Workbench scene: cyan restrained, orange broad. Output is 40 frames at 10fps, 512x320, four seconds; generation/validation/render/encoding took 4.25 seconds. Sparse decoded frames confirmed visible rigs, changing poses and modest amplitude differences. No full-motion human taste review has occurred.
+
+Media: `/Users/adom/Development/hermes-testing/runs/harness2-dance-motion-v2/comparison.mp4`. Joint tracks: sibling `tracks.json`. Evidence: `dance-motion-render-v2.json`. First render failed because the renderer expected bone_edges nested under metadata; original failed receipt and log remain, and corrected v2 retained the identical track hash.
+
+This is an alternative first executable prototype, not full completion of D1: it does not execute the old D0 symbolic atlas, retarget to the VRM, or produce model-authored choreography. It supplies real tracks we can use next for bounded amplitude selection, span preservation, transition planning and low-cost auditions. Pose interpolation and contact continuity between sampled frames, learned style, musical phrasing and subjective appeal remain open.
