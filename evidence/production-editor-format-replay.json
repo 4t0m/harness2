@@ -1,0 +1,24 @@
+{
+  "provider_calls": 0,
+  "scope": "saved response format validation only; no live adoption or solver evaluation",
+  "rows": [
+    {
+      "label": "c1.a1",
+      "original_error": "editor response is not strict JSON",
+      "valid": false,
+      "reason": "guidance must be newline-terminated text"
+    },
+    {
+      "label": "inv1.a1",
+      "original_error": "editor response is not strict JSON",
+      "valid": false,
+      "reason": "guidance must be newline-terminated text"
+    },
+    {
+      "label": "dom1.a1",
+      "original_error": "editor response is not strict JSON",
+      "valid": false,
+      "reason": "guidance must be newline-terminated text"
+    }
+  ]
+}

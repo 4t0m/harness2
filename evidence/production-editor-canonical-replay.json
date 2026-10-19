@@ -1,0 +1,24 @@
+{
+  "scope": "saved proposals accepted after exact fence and trailing-newline canonicalization; no solver rerun",
+  "provider_calls": 0,
+  "rows": [
+    {
+      "label": "c1.a1",
+      "valid": true,
+      "guidance": "Choose one legal next production action from the supplied ledger.\n\nRules:\n- Dispatch a pending job only when its dependencies are complete and required human approval is present.\n- Retry a failed job only if its attempt count is below its max_attempts and it does not have an existing retry child.\n- Wait when no dispatch or retry is legal.\n\nReturn only JSON with 'operation' and 'job_id'; never claim a job ran.\n",
+      "changed": true
+    },
+    {
+      "label": "inv1.a1",
+      "valid": true,
+      "guidance": "Choose one legal next production action from the supplied ledger.\n\n- Dispatch a pending job only when its dependencies and required human approval permit it.\n- Retry a failed job only below max_attempts and without an existing retry child.\n- Wait when no dispatch or retry is legal.\n\nWhen deciding on a retry, verify the 'retry_of' field: do not retry a job if a 'retry_of' link to a previous attempt already exists in the ledger, as this would create an illegal retry chain.\n\nReturn only JSON with operation and job_id; never claim a job ran.\n",
+      "changed": true
+    },
+    {
+      "label": "dom1.a1",
+      "valid": true,
+      "guidance": "Choose one legal next production action from the supplied ledger.\n\n- ANALYTIC MOVE: classify the next action by evaluating the state of all jobs against the operational rules.\n- DECISION RULE: \n  - DISPATCH: Valid only if job is 'pending' AND all 'depends_on' jobs are 'complete' AND 'human_approved' is true.\n  - RETRY: Valid only if job is 'failed' AND 'attempt' < max_attempts AND no existing job has this job_id as a ''retry_of'.\n  - WAIT: Valid if all other legal actions are exhausted.\n- ARTIFACT CONTRACT: Return only JSON containing 'operation' (string: 'dispatch', ''retry', 'wait') and 'job_id' (string or null).\n\nWhen deciding on a job action, use the `classify_job_state` skill.\n",
+      "changed": true
+    }
+  ]
+}

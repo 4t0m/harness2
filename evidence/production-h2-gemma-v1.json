@@ -1,0 +1,980 @@
+{
+  "scope": "live Harness2 development adaptation with separate frozen combination evaluation",
+  "selection": {
+    "task_id": "blocked-02",
+    "mode": "seq",
+    "k": 1,
+    "chosen_id": "A",
+    "chosen_label": "c1",
+    "chosen_run_id": "production_h2-oc-seq1/blocked-02/c1",
+    "chosen_is_base": false,
+    "why": "trivial pool: single final at k=1; delivered without a selector session",
+    "id_map": {
+      "A": "c1"
+    },
+    "dropped": [],
+    "n_candidates": 1,
+    "ok": true,
+    "fallback": false,
+    "error": "",
+    "usd": 0.0,
+    "experience": {},
+    "trivial": true,
+    "evidence": "deliverable",
+    "chosen_run_dir": "runs/production-h2-gemma-v1/development/executions/production_h2-oc-seq1/blocked-02/c1",
+    "chosen_tree_is_base": true,
+    "harness_fingerprint": "33176f92cd5a0050"
+  },
+  "external_dispatch": false,
+  "calls": [
+    {
+      "index": 1,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 471,
+        "completion_tokens": 17,
+        "total_tokens": 488
+      },
+      "latency_seconds": 0.9238427079981193,
+      "cost": 6.803e-05,
+      "content": "{\"operation\": \"retry\", \"job_id\": \"dead_parent\"}"
+    },
+    {
+      "index": 2,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 3808,
+        "completion_tokens": 144,
+        "total_tokens": 3952
+      },
+      "latency_seconds": 8.204644124954939,
+      "cost": 0.00055264,
+      "content": "```json\n{\n  \"systemprompt\": \"Choose one legal next production action from the supplied ledger.\\n\\n- Dispatch a pending job only when its dependencies and required human approval permit it.\\n- Retry a failed job only below max_attempts and without an existing retry child.\\n- Wait when no dispatch or retry is legal.\\n\\nWhen deciding on a retry, verify the 'retry_of' field: do not retry a job if a 'retry_of' link to a previous attempt already exists in the ledger, as this would create an illegal retry chain.\\n\\nReturn only JSON with operation and job_id; never claim a job ran.\"\n}\n```"
+    },
+    {
+      "index": 3,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 3945,
+        "completion_tokens": 205,
+        "total_tokens": 4150
+      },
+      "latency_seconds": 2.8426261249696836,
+      "cost": 0.00021079,
+      "content": "```json\n{\n  \"systemprompt\": \"Choose one legal next production action from the supplied ledger.\\n\\n- ANALYTIC MOVE: classify the next action by evaluating the state of all jobs against the operational rules.\\n- DECISION RULE: \\n  - DISPATCH: Valid only if job is 'pending' AND all 'depends_on' jobs are 'complete' AND 'human_approved' is true.\\n  - RETRY: Valid only if job is 'failed' AND 'attempt' < max_attempts AND no existing job has this job_id as a ''retry_of'.\\n  - WAIT: Valid if all other legal actions are exhausted.\\n- ARTIFACT CONTRACT: Return only JSON containing 'operation' (string: 'dispatch', ''retry', 'wait') and 'job_id' (string or null).\\n\\nWhen deciding on a job action, use the `classify_job_state` skill.\"\n}\n```"
+    },
+    {
+      "index": 4,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 470,
+        "completion_tokens": 14,
+        "total_tokens": 484
+      },
+      "latency_seconds": 0.732655041036196,
+      "cost": 5.12e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 5,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 470,
+        "completion_tokens": 14,
+        "total_tokens": 484
+      },
+      "latency_seconds": 1.0990244580898434,
+      "cost": 5.12e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 6,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 3386,
+        "completion_tokens": 110,
+        "total_tokens": 3496
+      },
+      "latency_seconds": 1.659589417045936,
+      "cost": 0.00023946,
+      "content": "```json\n{\n \"systemprompt\": \"Choose one legal next production action from the supplied ledger.\\n\\nRules:\\n- Dispatch a pending job only when its dependencies are complete and required human approval is present.\\n- Retry a failed job only if its attempt count is below its max_attempts and it does not have an existing retry child.\\n- Wait when no dispatch or retry is legal.\\n\\nReturn only JSON with 'operation' and 'job_id'; never claim a job ran.\"\n}\n```"
+    },
+    {
+      "index": 7,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 471,
+        "completion_tokens": 17,
+        "total_tokens": 488
+      },
+      "latency_seconds": 0.5582874580286443,
+      "cost": 3.56175e-05,
+      "content": "{\"operation\": \"retry\", \"job_id\": \"dead_parent\"}"
+    },
+    {
+      "index": 8,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 475,
+        "completion_tokens": 14,
+        "total_tokens": 489
+      },
+      "latency_seconds": 1.1366911249933764,
+      "cost": 2.303e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 9,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 529,
+        "completion_tokens": 17,
+        "total_tokens": 546
+      },
+      "latency_seconds": 1.0048145829932764,
+      "cost": 2.5958e-05,
+      "content": "{\"operation\": \"retry\", \"job_id\": \"scene_a\"}"
+    },
+    {
+      "index": 10,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 475,
+        "completion_tokens": 14,
+        "total_tokens": 489
+      },
+      "latency_seconds": 0.9752080000471324,
+      "cost": 5.17e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 11,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 478,
+        "completion_tokens": 14,
+        "total_tokens": 492
+      },
+      "latency_seconds": 0.5325789579655975,
+      "cost": 3.822e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 12,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 531,
+        "completion_tokens": 17,
+        "total_tokens": 548
+      },
+      "latency_seconds": 0.5820923749124631,
+      "cost": 2.6042e-05,
+      "content": "{\"operation\": \"retry\", \"job_id\": \"take_c\"}"
+    },
+    {
+      "index": 13,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 478,
+        "completion_tokens": 14,
+        "total_tokens": 492
+      },
+      "latency_seconds": 0.36845987499691546,
+      "cost": 5.2e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 14,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 476,
+        "completion_tokens": 14,
+        "total_tokens": 490
+      },
+      "latency_seconds": 0.5705041249748319,
+      "cost": 3.528e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 15,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 475,
+        "completion_tokens": 14,
+        "total_tokens": 489
+      },
+      "latency_seconds": 0.6532193749444559,
+      "cost": 4.53e-05,
+      "content": "{\"operation\": \"wait\", \"job_id\": null}"
+    },
+    {
+      "index": 16,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 510,
+        "completion_tokens": 17,
+        "total_tokens": 527
+      },
+      "latency_seconds": 0.9277647080598399,
+      "cost": 2.516e-05,
+      "content": "{\"operation\": \"retry\", \"job_id\": \"clip_a\"}"
+    },
+    {
+      "index": 17,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 568,
+        "completion_tokens": 24,
+        "total_tokens": 592
+      },
+      "latency_seconds": 1.7799941659905016,
+      "cost": 2.9136e-05,
+      "content": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"clip_a\"\n}"
+    },
+    {
+      "index": 18,
+      "model": "google/gemma-4-26b-a4b-it",
+      "usage": {
+        "prompt_tokens": 511,
+        "completion_tokens": 22,
+        "total_tokens": 533
+      },
+      "latency_seconds": 1.060796209028922,
+      "cost": 3.94425e-05,
+      "content": "{\n\"operation\": \"dispatch\",\n\"job_id\": \"clip_c\"\n}"
+    }
+  ],
+  "framework": {
+    "domain": "production-planning",
+    "n_tasks": 1,
+    "seed": null,
+    "done": 1,
+    "failed": 0,
+    "tasks": [
+      {
+        "task": "blocked-02",
+        "status": "ok",
+        "library_entries_before": {
+          "seq": 0
+        }
+      }
+    ]
+  },
+  "selected_guidance": "Choose one legal next production action from the supplied ledger.\nDispatch a pending job only when its dependencies and required human approval permit it.\nRetry a failed job only below max_attempts and without an existing retry child.\nWait when no dispatch or retry is legal.\nReturn only JSON with operation and job_id; never claim a job ran.\n",
+  "development_call_count": 7,
+  "evaluation_fixtures": [
+    {
+      "task_id": "combo-cap-ready",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 2,
+      "jobs": [
+        {
+          "job_id": "scene_a",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 2,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "scene_b",
+          "status": "pending",
+          "depends_on": [],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "scene_c",
+          "status": "pending",
+          "depends_on": [
+            "scene_a"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        }
+      ]
+    },
+    {
+      "task_id": "combo-lineage",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 3,
+      "jobs": [
+        {
+          "job_id": "take_a",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "take_b",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 2,
+          "retry_of": "take_a",
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "take_c",
+          "status": "pending",
+          "depends_on": [
+            "take_a"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        }
+      ]
+    },
+    {
+      "task_id": "combo-approval-block",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 2,
+      "jobs": [
+        {
+          "job_id": "design_a",
+          "status": "pending",
+          "depends_on": [],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": true,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "design_b",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 2,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "design_c",
+          "status": "pending",
+          "depends_on": [
+            "design_b"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": true,
+          "human_approved": true,
+          "artifact_receipt": null
+        }
+      ]
+    },
+    {
+      "task_id": "combo-retry-success",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 3,
+      "jobs": [
+        {
+          "job_id": "clip_a",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "clip_b",
+          "status": "completed",
+          "depends_on": [],
+          "attempt": 2,
+          "retry_of": "clip_a",
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": {
+            "artifact_id": "asset-clip-b",
+            "job_id": "clip_b",
+            "parent_revision": "dispatch-r1"
+          }
+        },
+        {
+          "job_id": "clip_c",
+          "status": "pending",
+          "depends_on": [
+            "clip_a"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": true,
+          "human_approved": true,
+          "artifact_receipt": null
+        }
+      ]
+    }
+  ],
+  "evaluation": [
+    {
+      "task_id": "combo-cap-ready",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"operation\": \"wait\", \"job_id\": null}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          },
+          {
+            "content": "{\"operation\": \"retry\", \"job_id\": \"scene_a\"}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"operation\": \"wait\", \"job_id\": null}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "combo-lineage",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"operation\": \"wait\", \"job_id\": null}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          },
+          {
+            "content": "{\"operation\": \"retry\", \"job_id\": \"take_c\"}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"operation\": \"wait\", \"job_id\": null}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "combo-approval-block",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"operation\": \"wait\", \"job_id\": null}",
+            "valid": true,
+            "reason": null
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"operation\": \"wait\", \"job_id\": null}",
+            "valid": true,
+            "reason": null
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "combo-retry-success",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"operation\": \"retry\", \"job_id\": \"clip_a\"}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          },
+          {
+            "content": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"clip_a\"\n}",
+            "valid": false,
+            "reason": "action is not among host-derived legal choices"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\n\"operation\": \"dispatch\",\n\"job_id\": \"clip_c\"\n}",
+            "valid": true,
+            "reason": null
+          }
+        ]
+      }
+    }
+  ],
+  "development_verdicts": [
+    {
+      "run": "development/executions/production_h2-oc-agg1/blocked-02/base1",
+      "verdict": {
+        "task_id": "blocked-02",
+        "valid": false,
+        "status": "rejected",
+        "reason": "action is not among host-derived legal choices",
+        "valid_choices": [
+          {
+            "operation": "wait",
+            "job_id": null
+          }
+        ],
+        "before": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "after": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "state_preserved": true,
+        "generation_performed": false
+      }
+    },
+    {
+      "run": "development/executions/production_h2-oc-seq1/blocked-02/c1",
+      "verdict": {
+        "task_id": "blocked-02",
+        "valid": false,
+        "status": "rejected",
+        "reason": "action is not among host-derived legal choices",
+        "valid_choices": [
+          {
+            "operation": "wait",
+            "job_id": null
+          }
+        ],
+        "before": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "after": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "state_preserved": true,
+        "generation_performed": false
+      }
+    },
+    {
+      "run": "development/executions/production_h2-oc-seq1/blocked-02/dom1",
+      "verdict": {
+        "task_id": "blocked-02",
+        "valid": true,
+        "status": "accepted",
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "valid_choices": [
+          {
+            "operation": "wait",
+            "job_id": null
+          }
+        ],
+        "before": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "after": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "state_preserved": true,
+        "generation_performed": false
+      }
+    },
+    {
+      "run": "development/executions/production_h2-oc-seq1/blocked-02/inv1",
+      "verdict": {
+        "task_id": "blocked-02",
+        "valid": true,
+        "status": "accepted",
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "valid_choices": [
+          {
+            "operation": "wait",
+            "job_id": null
+          }
+        ],
+        "before": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "after": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "state_preserved": true,
+        "generation_performed": false
+      }
+    }
+  ],
+  "guidance_changed": false,
+  "interpretation": "All editor calls rejected; selected guidance unchanged. Adapted-labelled evaluation is an identical-guidance repeat, not an adaptation gain.",
+  "editor_receipts": [
+    {
+      "label": "c1.a1",
+      "mode": "model_guidance",
+      "attempts": 1,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md",
+        "decisions/dom1.md",
+        "decisions/inv1.md"
+      ],
+      "context_sha256": "bc4dab916637749ce34899f55f719e499668f157617ce1e81556c10bb8d0969f",
+      "content": "```json\n{\n \"systemprompt\": \"Choose one legal next production action from the supplied ledger.\\n\\nRules:\\n- Dispatch a pending job only when its dependencies are complete and required human approval is present.\\n- Retry a failed job only if its attempt count is below its max_attempts and it does not have an existing retry child.\\n- Wait when no dispatch or retry is legal.\\n\\nReturn only JSON with 'operation' and 'job_id'; never claim a job ran.\"\n}\n```",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3386,
+        "completion_tokens": 110,
+        "total_tokens": 3496
+      },
+      "latency_seconds": 1.659589417045936,
+      "model_served": "google/gemma-4-26b-a4b-it",
+      "cost_usd": 0.00023946,
+      "error": "editor response is not strict JSON"
+    },
+    {
+      "label": "inv1.a1",
+      "mode": "model_guidance",
+      "attempts": 1,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md"
+      ],
+      "context_sha256": "1755771d8cb007fee1789fc0059a320c3f4289e49eb3bc14358f9c8ae7fc9c08",
+      "content": "```json\n{\n  \"systemprompt\": \"Choose one legal next production action from the supplied ledger.\\n\\n- Dispatch a pending job only when its dependencies and required human approval permit it.\\n- Retry a failed job only below max_attempts and without an existing retry child.\\n- Wait when no dispatch or retry is legal.\\n\\nWhen deciding on a retry, verify the 'retry_of' field: do not retry a job if a 'retry_of' link to a previous attempt already exists in the ledger, as this would create an illegal retry chain.\\n\\nReturn only JSON with operation and job_id; never claim a job ran.\"\n}\n```",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3808,
+        "completion_tokens": 144,
+        "total_tokens": 3952
+      },
+      "latency_seconds": 8.204644124954939,
+      "model_served": "google/gemma-4-26b-a4b-it",
+      "cost_usd": 0.00055264,
+      "error": "editor response is not strict JSON"
+    },
+    {
+      "label": "dom1.a1",
+      "mode": "model_guidance",
+      "attempts": 1,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md"
+      ],
+      "context_sha256": "1755771d8cb007fee1789fc0059a320c3f4289e49eb3bc14358f9c8ae7fc9c08",
+      "content": "```json\n{\n  \"systemprompt\": \"Choose one legal next production action from the supplied ledger.\\n\\n- ANALYTIC MOVE: classify the next action by evaluating the state of all jobs against the operational rules.\\n- DECISION RULE: \\n  - DISPATCH: Valid only if job is 'pending' AND all 'depends_on' jobs are 'complete' AND 'human_approved' is true.\\n  - RETRY: Valid only if job is 'failed' AND 'attempt' < max_attempts AND no existing job has this job_id as a ''retry_of'.\\n  - WAIT: Valid if all other legal actions are exhausted.\\n- ARTIFACT CONTRACT: Return only JSON containing 'operation' (string: 'dispatch', ''retry', 'wait') and 'job_id' (string or null).\\n\\nWhen deciding on a job action, use the `classify_job_state` skill.\"\n}\n```",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3945,
+        "completion_tokens": 205,
+        "total_tokens": 4150
+      },
+      "latency_seconds": 2.8426261249696836,
+      "model_served": "google/gemma-4-26b-a4b-it",
+      "cost_usd": 0.00021079,
+      "error": "editor response is not strict JSON"
+    }
+  ]
+}
