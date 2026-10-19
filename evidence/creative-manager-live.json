@@ -1,0 +1,58 @@
+{
+  "scope": "live OpenRouter synthetic job-plan trial, not generated art or creative quality evidence",
+  "model": "google/gemma-4-26b-a4b-it",
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 178,
+    "completion_tokens": 272,
+    "total_tokens": 450
+  },
+  "latency_seconds": 0.7595374169759452,
+  "reported_cost": 6.676e-05,
+  "content": "{\n  \"parent_revision\": \"brief-r1\",\n  \"capability\": \"synthetic_silhouette_v1\",\n  \"budget\": 3.0,\n  \"jobs\": [\n    {\n      \"job_id\": \"silhouette_001\",\n      \"variation_id\": \"v_blue_coat_static_profile\",\n      \"depends_on\": [],\n      \"status\": \"pending\",\n      \"parent_revision\": \"brief-r1\",\n      \"attempt\": 1\n    },\n    {\n      \"job_id\": \"silhouette_002\",\n      \"variation_id\": \"v_blue_coat_static_front\",\n      \"depends_on\": [],\n      \"status\": \"pending\",\n      \"parent_revision\": \"brief-r1\",\n      \"attempt\": 1\n    },\n    {\n      \"job_id\": \"silhouette_003\",\n      \"variation_id\": \"v_blue_coat_static_threequarter\",\n      \"depends_on\": [],\n      \"status\": \"pending\",\n      \"parent_revision\": \"brief-r1\",\n      \"attempt\": 1\n    }\n  ]\n}",
+  "valid_plan": true,
+  "snapshot": {
+    "brief_revision": "brief-r1",
+    "capability": "synthetic_silhouette_v1",
+    "budget": 3.0,
+    "jobs": [
+      {
+        "job_id": "silhouette_001",
+        "variation_id": "v_blue_coat_static_profile",
+        "depends_on": [],
+        "parent_revision": "brief-r1",
+        "status": "pending",
+        "attempt": 1,
+        "parent_job_id": null,
+        "artifact_receipt": null
+      },
+      {
+        "job_id": "silhouette_002",
+        "variation_id": "v_blue_coat_static_front",
+        "depends_on": [],
+        "parent_revision": "brief-r1",
+        "status": "pending",
+        "attempt": 1,
+        "parent_job_id": null,
+        "artifact_receipt": null
+      },
+      {
+        "job_id": "silhouette_003",
+        "variation_id": "v_blue_coat_static_threequarter",
+        "depends_on": [],
+        "parent_revision": "brief-r1",
+        "status": "pending",
+        "attempt": 1,
+        "parent_job_id": null,
+        "artifact_receipt": null
+      }
+    ],
+    "completed_artifacts": {}
+  },
+  "semantic_review": {
+    "reviewer": "parent assistant text inspection",
+    "finding": "Variation labels describe viewpoints, not unambiguous silhouette design changes.",
+    "creative_brief_success": "not established",
+    "visual_review": "no images generated"
+  }
+}
