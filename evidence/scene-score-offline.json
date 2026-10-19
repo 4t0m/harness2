@@ -1,0 +1,380 @@
+{
+  "scope": "CPU-only scripted pose choices; compressed fixture shot manifest with optional static staging suggestions only; no art/model/renderer/H3 runtime or collision-safe movement",
+  "scene_revision": "h3-skeleton-v1",
+  "pose_atlas": [
+    "neutral",
+    "listen",
+    "point",
+    "turn_away"
+  ],
+  "cases": [
+    {
+      "name": "correct",
+      "proposal": {
+        "scene_revision": "h3-skeleton-v1",
+        "beats": [
+          {
+            "beat_id": "beat-1",
+            "pose": "listen",
+            "intensity": "subtle",
+            "target_id": "ren",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-2",
+            "pose": "point",
+            "intensity": "strong",
+            "target_id": "mira",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-3",
+            "pose": "turn_away",
+            "intensity": "normal",
+            "target_id": "aya",
+            "duration_frames": 6
+          }
+        ]
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": true,
+        "accepted": true,
+        "reason": null,
+        "manifest": {
+          "kind": "h3_scene_skeleton",
+          "scene_revision": "h3-skeleton-v1",
+          "frame_rate": 12,
+          "timing_scope": "compressed contract fixture, not acting timing",
+          "rendered": false,
+          "runtime_executed": false,
+          "shot_cues": [
+            {
+              "beat_id": "beat-1",
+              "start_frame": 0,
+              "end_frame_exclusive": 6,
+              "duration_frames": 6,
+              "actor_id": "aya",
+              "target_id": "ren",
+              "channel": "body",
+              "pose_atlas_key": "listen",
+              "intensity": "subtle",
+              "scene_actor_position": {
+                "x": 0.2,
+                "y": 0.5
+              },
+              "staging_suggestion": {
+                "optional_anchor": {
+                  "x": 0.37000000000000005,
+                  "y": 0.5
+                },
+                "edge_gap_at_anchor": 0.08,
+                "target_screen_direction": "screen_right",
+                "target_snapshot": {
+                  "x": 0.55,
+                  "y": 0.5
+                },
+                "checks": "target clearance at static anchor only; no path or other-actor collision check"
+              }
+            },
+            {
+              "beat_id": "beat-2",
+              "start_frame": 6,
+              "end_frame_exclusive": 12,
+              "duration_frames": 6,
+              "actor_id": "aya",
+              "target_id": "mira",
+              "channel": "body",
+              "pose_atlas_key": "point",
+              "intensity": "strong",
+              "scene_actor_position": {
+                "x": 0.2,
+                "y": 0.5
+              },
+              "staging_suggestion": {
+                "optional_anchor": {
+                  "x": 0.6699999999999999,
+                  "y": 0.5
+                },
+                "edge_gap_at_anchor": 0.08000000000000006,
+                "target_screen_direction": "screen_right",
+                "target_snapshot": {
+                  "x": 0.85,
+                  "y": 0.5
+                },
+                "checks": "target clearance at static anchor only; no path or other-actor collision check"
+              }
+            },
+            {
+              "beat_id": "beat-3",
+              "start_frame": 12,
+              "end_frame_exclusive": 18,
+              "duration_frames": 6,
+              "actor_id": "ren",
+              "target_id": "aya",
+              "channel": "body",
+              "pose_atlas_key": "turn_away",
+              "intensity": "normal",
+              "scene_actor_position": {
+                "x": 0.55,
+                "y": 0.5
+              },
+              "staging_suggestion": {
+                "optional_anchor": {
+                  "x": 0.38,
+                  "y": 0.5
+                },
+                "edge_gap_at_anchor": 0.08,
+                "target_screen_direction": "screen_left",
+                "target_snapshot": {
+                  "x": 0.2,
+                  "y": 0.5
+                },
+                "checks": "target clearance at static anchor only; no path or other-actor collision check"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "wrong_target",
+      "proposal": {
+        "scene_revision": "h3-skeleton-v1",
+        "beats": [
+          {
+            "beat_id": "beat-1",
+            "pose": "listen",
+            "intensity": "subtle",
+            "target_id": "ren",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-2",
+            "pose": "point",
+            "intensity": "strong",
+            "target_id": "ren",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-3",
+            "pose": "turn_away",
+            "intensity": "normal",
+            "target_id": "aya",
+            "duration_frames": 6
+          }
+        ]
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": false,
+        "accepted": false,
+        "reason": "creative beat choices differ from request",
+        "manifest": {
+          "kind": "h3_scene_skeleton",
+          "scene_revision": "h3-skeleton-v1",
+          "frame_rate": 12,
+          "timing_scope": "compressed contract fixture, not acting timing",
+          "rendered": false,
+          "runtime_executed": false,
+          "shot_cues": [
+            {
+              "beat_id": "beat-1",
+              "start_frame": 0,
+              "end_frame_exclusive": 6,
+              "duration_frames": 6,
+              "actor_id": "aya",
+              "target_id": "ren",
+              "channel": "body",
+              "pose_atlas_key": "listen",
+              "intensity": "subtle",
+              "scene_actor_position": {
+                "x": 0.2,
+                "y": 0.5
+              },
+              "staging_suggestion": {
+                "optional_anchor": {
+                  "x": 0.37000000000000005,
+                  "y": 0.5
+                },
+                "edge_gap_at_anchor": 0.08,
+                "target_screen_direction": "screen_right",
+                "target_snapshot": {
+                  "x": 0.55,
+                  "y": 0.5
+                },
+                "checks": "target clearance at static anchor only; no path or other-actor collision check"
+              }
+            },
+            {
+              "beat_id": "beat-2",
+              "start_frame": 6,
+              "end_frame_exclusive": 12,
+              "duration_frames": 6,
+              "actor_id": "aya",
+              "target_id": "ren",
+              "channel": "body",
+              "pose_atlas_key": "point",
+              "intensity": "strong",
+              "scene_actor_position": {
+                "x": 0.2,
+                "y": 0.5
+              },
+              "staging_suggestion": {
+                "optional_anchor": {
+                  "x": 0.37000000000000005,
+                  "y": 0.5
+                },
+                "edge_gap_at_anchor": 0.08,
+                "target_screen_direction": "screen_right",
+                "target_snapshot": {
+                  "x": 0.55,
+                  "y": 0.5
+                },
+                "checks": "target clearance at static anchor only; no path or other-actor collision check"
+              }
+            },
+            {
+              "beat_id": "beat-3",
+              "start_frame": 12,
+              "end_frame_exclusive": 18,
+              "duration_frames": 6,
+              "actor_id": "ren",
+              "target_id": "aya",
+              "channel": "body",
+              "pose_atlas_key": "turn_away",
+              "intensity": "normal",
+              "scene_actor_position": {
+                "x": 0.55,
+                "y": 0.5
+              },
+              "staging_suggestion": {
+                "optional_anchor": {
+                  "x": 0.38,
+                  "y": 0.5
+                },
+                "edge_gap_at_anchor": 0.08,
+                "target_screen_direction": "screen_left",
+                "target_snapshot": {
+                  "x": 0.2,
+                  "y": 0.5
+                },
+                "checks": "target clearance at static anchor only; no path or other-actor collision check"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "stale_revision",
+      "proposal": {
+        "scene_revision": "prior-v0",
+        "beats": [
+          {
+            "beat_id": "beat-1",
+            "pose": "listen",
+            "intensity": "subtle",
+            "target_id": "ren",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-2",
+            "pose": "point",
+            "intensity": "strong",
+            "target_id": "mira",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-3",
+            "pose": "turn_away",
+            "intensity": "normal",
+            "target_id": "aya",
+            "duration_frames": 6
+          }
+        ]
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": false,
+        "semantic_correct": false,
+        "accepted": false,
+        "reason": "stale scene revision"
+      }
+    },
+    {
+      "name": "conflicting_timeline",
+      "proposal": {
+        "scene_revision": "h3-skeleton-v1",
+        "beats": [
+          {
+            "beat_id": "beat-1",
+            "pose": "listen",
+            "intensity": "subtle",
+            "target_id": "ren",
+            "duration_frames": 8
+          },
+          {
+            "beat_id": "beat-2",
+            "pose": "point",
+            "intensity": "strong",
+            "target_id": "mira",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-3",
+            "pose": "turn_away",
+            "intensity": "normal",
+            "target_id": "aya",
+            "duration_frames": 6
+          }
+        ]
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": false,
+        "semantic_correct": false,
+        "accepted": false,
+        "reason": "conflicting actor/channel timelines"
+      }
+    },
+    {
+      "name": "unknown_pose",
+      "proposal": {
+        "scene_revision": "h3-skeleton-v1",
+        "beats": [
+          {
+            "beat_id": "beat-1",
+            "pose": "dance",
+            "intensity": "subtle",
+            "target_id": "ren",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-2",
+            "pose": "point",
+            "intensity": "strong",
+            "target_id": "mira",
+            "duration_frames": 6
+          },
+          {
+            "beat_id": "beat-3",
+            "pose": "turn_away",
+            "intensity": "normal",
+            "target_id": "aya",
+            "duration_frames": 6
+          }
+        ]
+      },
+      "verdict": {
+        "schema_valid": false,
+        "compiled": false,
+        "semantic_correct": false,
+        "accepted": false,
+        "reason": "unknown pose"
+      }
+    }
+  ]
+}
