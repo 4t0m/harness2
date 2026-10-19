@@ -1,0 +1,39 @@
+{
+  "kind": "deterministic_repair_replay",
+  "scope": "offline parser replay and trusted job transition only; no model retry, paid call, image generation, or visual-quality evaluation",
+  "source_evidence": "evidence/creative-retry-live.json",
+  "source_result": "rejected",
+  "source_validation_error": "response must be one strict JSON object",
+  "source_model": "google/gemma-4-26b-a4b-it",
+  "repair_mode": "exact_single_full_response_json_fence",
+  "fence_repair_applied": true,
+  "original_raw_content": "```json\n{\n  \"operation\": \"retry_failed\",\n  \"job_id\": \"slot_2\",\n  \"new_job_id\": \"slot_2_retry_1\"\n}\n```",
+  "normalized_content": "{\n  \"operation\": \"retry_failed\",\n  \"job_id\": \"slot_2\",\n  \"new_job_id\": \"slot_2_retry_1\"\n}",
+  "intent": {
+    "operation": "retry_failed",
+    "job_id": "slot_2",
+    "new_job_id": "slot_2_retry_1"
+  },
+  "result": "retry_queued",
+  "prior_completed_receipt_preserved": {
+    "artifact_id": "artifact-slot-1",
+    "job_id": "slot_1",
+    "parent_revision": "brief-r1"
+  },
+  "unaffected_jobs_preserved": true,
+  "new_job": {
+    "job_id": "slot_2_retry_1",
+    "parent_job_id": "slot_2",
+    "attempt": 2,
+    "status": "pending"
+  },
+  "existing_job_states_after": {
+    "slot_1": "completed",
+    "slot_2": "failed",
+    "slot_3": "pending"
+  },
+  "model_retry_performed": false,
+  "paid_call_performed": false,
+  "generation_performed": false,
+  "visual_quality_evaluated": false
+}

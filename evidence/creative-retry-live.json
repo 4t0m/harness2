@@ -1,0 +1,66 @@
+{
+  "expected_failed_job_host_only": "slot_2",
+  "finish_reason": "stop",
+  "fixture": {
+    "brief_revision": "brief-r1",
+    "budget": 3.0,
+    "capability": "synthetic_silhouette_v1",
+    "completed_artifacts": {
+      "slot_1": {
+        "artifact_id": "artifact-slot-1",
+        "job_id": "slot_1",
+        "parent_revision": "brief-r1"
+      }
+    },
+    "jobs": [
+      {
+        "artifact_receipt": {
+          "artifact_id": "artifact-slot-1",
+          "job_id": "slot_1",
+          "parent_revision": "brief-r1"
+        },
+        "attempt": 1,
+        "depends_on": [],
+        "job_id": "slot_1",
+        "parent_job_id": null,
+        "parent_revision": "brief-r1",
+        "status": "completed",
+        "variation_id": "silhouette-1"
+      },
+      {
+        "artifact_receipt": null,
+        "attempt": 1,
+        "depends_on": [],
+        "job_id": "slot_2",
+        "parent_job_id": null,
+        "parent_revision": "brief-r1",
+        "status": "failed",
+        "variation_id": "silhouette-2"
+      },
+      {
+        "artifact_receipt": null,
+        "attempt": 1,
+        "depends_on": [],
+        "job_id": "slot_3",
+        "parent_job_id": null,
+        "parent_revision": "brief-r1",
+        "status": "pending",
+        "variation_id": "silhouette-3"
+      }
+    ]
+  },
+  "generation_performed": false,
+  "latency_seconds": 0.7551652080146596,
+  "model_requested": "google/gemma-4-26b-a4b-it",
+  "model_served": "google/gemma-4-26b-a4b-it",
+  "raw_content": "```json\n{\n  \"operation\": \"retry_failed\",\n  \"job_id\": \"slot_2\",\n  \"new_job_id\": \"slot_2_retry_1\"\n}\n```",
+  "result": "rejected",
+  "scope": "retry selection and host-side job-state transition only; no image generation or visual-quality evaluation",
+  "usage": {
+    "completion_tokens": 49,
+    "prompt_tokens": 533,
+    "total_tokens": 582
+  },
+  "validation_error": "response must be one strict JSON object",
+  "visual_quality_evaluated": false
+}
