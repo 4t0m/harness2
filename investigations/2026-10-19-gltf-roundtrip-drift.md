@@ -1,0 +1,11 @@
+# Animated GLB roundtrip drift
+
+The first export/import completed but independent joint/mesh endpoint comparison failed: maximum error0.27069m across81source samples. Preserve the GLB/logs/failed receipt. No claim of portable animation is supported yet.
+
+Hypotheses: (1) importer/exporter timebase changed (fps/frame range); (2) imported actions are inactive or assigned incorrectly; (3) exported keyframes or coordinate transforms changed geometry. Inspect source/export time accessor ranges, imported FPS/action ranges and sampled left_wrist positions before changing code. Same duration/range with constant imported positions supports2; scaled range supports1; correct timing and variable but axis-transformed positions supports3. Compare exact sample positions and raw glTF channel data if those observations do not discriminate.
+
+Primary evidence: imported FPS20 and all action ranges1–81 matched source timing. The wrist was constant across sampled frames, with no active action and its NLA track muted. Raw GLB JSON contained37separate animations (one per object), despite SCENE mode. The installed Blender exporter source declares export_anim_scene_split_object default=True. This explains partial activation on import: the generated scene was split into separate clips. Set that flag False and export a fresh v2; require one animation plus exact roundtrip sample agreement before claiming success.
+
+V2 with split=False produced one animation/45channels and passed all81samples. However, the zero joint-error metric used mathutils.Vector subtraction, rounding both source and imported points to float32. This distinguishes same float32 representation from exact original-number preservation. V3 switches to Python math.dist against original JSON numbers to measure quantization too; the1e-5m tolerance remains unchanged.
+
+V3 independently imported one animation/45 channels and passed all81samples against original JSON precision: max joint error6.0064e-8m, max bone endpoint error2.5278e-7m, below the unchanged1e-5m tolerance. Whole export/import1.49seconds. Receipt evidence/dance-gltf-v3.json is current; v1 failure and v2 rounded-comparison receipt remain. This verifies sampled proxy-scene motion portability, not interpolation between samples, a skinned rig, VRM retargeting or H3 ingestion.

@@ -1,0 +1,23 @@
+{
+  "scope": "animated proxy scene portability; not skinned rig/VRM/H3",
+  "source_sha256": "6a270b71f50fb9c2b3c5de1dae9467edd4a8ad4012ba1bbb9aed67a121e563cf",
+  "script_sha256": "29a5731c1da0cdec29f10d2836bfaa55dceeb1d59ad94d21d00e06117910cfcc",
+  "roundtrip": {
+    "scope": "animated proxy meshes roundtripped through GLB; not skinned rig, VRM or H3 input",
+    "imported_start_frame": 1.0,
+    "sample_count": 81,
+    "fps": 20,
+    "joint_count": 18,
+    "bone_count": 19,
+    "max_joint_error_m": 6.00641882556189e-08,
+    "max_bone_endpoint_error_m": 2.52777081306889e-07,
+    "passed": true
+  },
+  "animation_count": 1,
+  "animation_channels": 45,
+  "glb_bytes": 219020,
+  "glb_sha256": "9a4794cdf3a4d221d55c224d2be1a11e0691bb6bef8f5e26728a3fb5827f8e63",
+  "path": "/Users/adom/Development/hermes-testing/runs/harness2-dance-gltf-v3/edited-motion.glb",
+  "complete": true,
+  "wall_seconds": 1.4905487499199808
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "Preserved failed initial export; retrospectively indexed after v3",
+  "complete": false,
+  "animation_count": 37,
+  "glb_sha256": "10260304718cd1c4011bf034c1f5e56e17e5bb474cdefb4c617e56d737a763d4",
+  "path": "/Users/adom/Development/hermes-testing/runs/harness2-dance-gltf-v1/edited-motion.glb",
+  "roundtrip": {
+    "scope": "animated proxy meshes roundtripped through GLB; not skinned rig, VRM or H3 input",
+    "imported_start_frame": 1.0,
+    "sample_count": 81,
+    "fps": 20,
+    "joint_count": 18,
+    "bone_count": 19,
+    "max_joint_error_m": 0.27069219354546153,
+    "max_bone_endpoint_error_m": 0.27069224859381674,
+    "passed": false
+  },
+  "cause": "Exporter split scene into per-object animations; imported tracks were inactive/muted. Fixed by export_anim_scene_split_object=False."
+}
