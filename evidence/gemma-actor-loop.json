@@ -1,0 +1,308 @@
+{
+  "scope": "Actual OpenRouter solver within Harness2 sequential k1 loop; scripted improver/selector; no rendered avatar",
+  "model": "google/gemma-4-26b-a4b-it",
+  "run_domain": {
+    "domain": "actor-planning",
+    "n_tasks": 1,
+    "seed": null,
+    "done": 1,
+    "failed": 0,
+    "tasks": [
+      {
+        "task": "left-mirror",
+        "status": "ok",
+        "library_entries_before": {
+          "seq": 0
+        }
+      }
+    ]
+  },
+  "selection": {
+    "ok": true,
+    "chosen_label": "c1"
+  },
+  "receipts": [
+    {
+      "run_id": "actor_model-oc-agg1/left-mirror/base1",
+      "verdict": {
+        "status": "first_pass",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999993,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.41999999999999993,
+            "y": 0.5
+          }
+        },
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"aya\", \"radius\": 0.05, \"x\": 0.8, \"y\": 0.5}, \"target\": {\"id\": \"ren\", \"radius\": 0.05, \"x\": 0.2, \"y\": 0.5}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 287,
+            "completion_tokens": 102,
+            "total_tokens": 389
+          },
+          "latency_seconds": 1.5302269579842687,
+          "served_model": "google/gemma-4-26b-a4b-it",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999993,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.41999999999999993,
+              "y": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "actor_model-oc-seq1/left-mirror/c1",
+      "verdict": {
+        "status": "first_pass",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999993,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.41999999999999993,
+            "y": 0.5
+          }
+        },
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"aya\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 288,
+            "completion_tokens": 102,
+            "total_tokens": 390
+          },
+          "latency_seconds": 1.5995816250797361,
+          "served_model": "google/gemma-4-26b-a4b-it",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999993,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.41999999999999993,
+              "y": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "actor_model-oc-seq1/left-mirror/dom1",
+      "verdict": {
+        "status": "first_pass",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999993,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.41999999999999993,
+            "y": 0.5
+          }
+        },
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"aya\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 287,
+            "completion_tokens": 102,
+            "total_tokens": 389
+          },
+          "latency_seconds": 1.9389062500558794,
+          "served_model": "google/gemma-4-26b-a4b-it",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999993,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.41999999999999993,
+              "y": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "actor_model-oc-seq1/left-mirror/inv1",
+      "verdict": {
+        "status": "first_pass",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999993,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.41999999999999993,
+            "y": 0.5
+          }
+        },
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"aya\", \"radius\": 0.05, \"x\": 0.8, \"y\": 0.5}, \"target\": {\"id\": \"ren\", \"radius\": 0.05, \"x\": 0.2, \"y\": 0.5}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 287,
+            "completion_tokens": 102,
+            "total_tokens": 389
+          },
+          "latency_seconds": 1.4589954579714686,
+          "served_model": "google/gemma-4-26b-a4b-it",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999993,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.41999999999999993,
+              "y": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "heldout-adapted",
+      "verdict": {
+        "status": "first_pass",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.13999999999999999,
+          "travel_distance": 0.4672481884034769,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.43021260191509864,
+            "y": 0.5376560767001891
+          }
+        },
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"mira\", \"x\": 0.82, \"y\": 0.28, \"radius\": 0.04}, \"target\": {\"id\": \"sora\", \"x\": 0.23, \"y\": 0.67, \"radius\": 0.06}, \"context\": \"greeting\", \"intensity\": \"normal\", \"facing\": \"toward_camera\", \"stop_gap\": 0.14}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 292,
+            "completion_tokens": 107,
+            "total_tokens": 399
+          },
+          "latency_seconds": 2.042787834070623,
+          "served_model": "google/gemma-4-26b-a4b-it",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.13999999999999999,
+            "travel_distance": 0.4672481884034769,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.43021260191509864,
+              "y": 0.5376560767001891
+            }
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "heldout-base",
+      "verdict": {
+        "status": "first_pass",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.13999999999999999,
+          "travel_distance": 0.4672481884034769,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.43021260191509864,
+            "y": 0.5376560767001891
+          }
+        },
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"mira\", \"x\": 0.82, \"y\": 0.28, \"radius\": 0.04}, \"target\": {\"id\": \"sora\", \"x\": 0.23, \"y\": 0.67, \"radius\": 0.06}, \"context\": \"greeting\", \"intensity\": \"normal\", \"facing\": \"toward_camera\", \"stop_gap\": 0.14}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 293,
+            "completion_tokens": 107,
+            "total_tokens": 400
+          },
+          "latency_seconds": 1.7280904999934137,
+          "served_model": "google/gemma-4-26b-a4b-it",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.13999999999999999,
+            "travel_distance": 0.4672481884034769,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.43021260191509864,
+              "y": 0.5376560767001891
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "One adaptation task and one holdout; not statistical reliability",
+    "Baseline guidance intentionally flawed; not a fair generic-harness benchmark",
+    "No model-backed improver or persistent learned memory"
+  ],
+  "token_totals": {
+    "prompt_tokens": 1734,
+    "completion_tokens": 622,
+    "total_tokens": 2356
+  },
+  "all_first_pass": true,
+  "adaptation_gain": "not demonstrated: base and refined proposals both passed"
+}

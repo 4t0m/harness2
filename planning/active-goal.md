@@ -25,3 +25,13 @@ RunPod is authorized as a possible next execution environment, but no pod has be
 - Actual Harness² actor loop committed: two mirrored training cases and one separate diagonal holdout verified. Deliberately flawed scripted baseline fails, deterministic edited policy passes. This proves adapter wiring only, not model adaptation or persistent learned memory (experience editor returns NO_ENTRY).
 - Chat provider committed: six offline transport checks; dedicated API-key environment, no redirects, token/response size bounds, socket timeout. An outer worker still needs a hard total deadline before live use. No endpoint contacted.
 - Next integration: connect this provider to ActorAdapter.execute with preserved raw proposals and trusted oracle, then qualify a real endpoint and bounded repair. The current scripted selector is not a learned decision maker.
+
+## Live OpenRouter checkpoint
+
+User authorized cheap OpenRouter before RunPod. Gemma 4 26B A4B passed six actual solver calls through the actor-loop experiment (base, inv, dom, compose, two holdouts); all were first-pass, including baseline. No adaptation gain is demonstrated. Total reported tokens: 1,734 prompt and 622 completion. Improver/selector are still scripted. Evidence: evidence/gemma-actor-loop.json.
+
+Creative manager: first live plan was structurally valid but varied viewpoints rather than unambiguous silhouette designs. An explicit fixed-camera silhouette contract then passed a live Gemma follow-up. Keep structural intent, semantic compliance and actual image quality separate; see planning/creative-dimensions.md.
+
+Qwen diagnostic reproduced a reasoning-only token-limit response; client now preserves incomplete-output metadata. Original smoke raw was absent, so the original exact cause remains unproven. No more Qwen retries solely to repair reporting.
+
+Next substantive tests: target selection from a multi-actor scene, bounded action compilation with unsupported controls rejected, model-selected retry/revision operations on the creative ledger, and a model-backed improver only after nontrivial baseline failures exist. Avoid treating exact JSON copying as strong agent capability. Real flat-avatar execution and RunPod remain unfinished parts of the active goal.
