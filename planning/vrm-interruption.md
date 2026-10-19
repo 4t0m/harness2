@@ -1,0 +1,9 @@
+# VRM stop and neutral recovery
+
+Actual renderer test,2026-10-19. Existing idle clip sampled at0.3s provides a saved neutral pose across22mapped normalized humanoid bones. Play wave_goodbye; at frame index12 stop all actions, remove the rig's mixer registration, clear the legacy mixer reference, restore saved normalized transforms and propagate them through VRM.update(0). Renderer continues for12more frames.
+
+State evidence:24samples total; right-upper-arm rotation diverges by up to1.834radians before interruption (sign-invariant quaternion angle). Every mapped bone exactly matches saved normalized pose after interruption; no mixer registration remains. Root position stays[0.35,0,0]. Decoded video is24frames,640x360,1.6seconds. Visual inspection of decoded frames11/12 shows raised arm then lowered arms. This is an immediate snap to neutral, not a polished blend.
+
+Evidence: evidence/vrm-interrupt-live.json; source experiments/vrm_interrupt_scene.js and runner experiments/vrm_interrupt_probe.py. The rotation metric has tests ensuring opposite quaternion signs do not masquerade as motion. No model call was needed; this isolates executor recovery from inference. Source Eidoverse commit pinned and shared GPU lock respected. Output is `/Users/adom/Development/hermes-testing/runs/round6/eidoverse-video/work/eidoverse-harness2-interrupt-v1/avatar_probe.mp4`.
+
+Boundary: the event is scheduled by deterministic frame index inside an offline render. It does not prove asynchronous input delivery, wall-clock deadlines, concurrent calls or late-response rejection in a persistent avatar process. Existing event-runtime simulator covers some policy behavior separately; joining those two pieces remains future work. Frozen idle pose is not continuously animated idle, and no subjective preference is inferred.
