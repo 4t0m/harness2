@@ -1,0 +1,213 @@
+{
+  "scope": "Reused-fixture balanced full/compact local interface comparison; no learning, render or generalization claim.",
+  "evidence_sha256": "400c20c4a40e2e0aa19ad56b5b4db85e4b9224d96f9c588157435097f7c9c10b",
+  "total_calls": 20,
+  "equivalence": {
+    "canonical_equal_plans": 13824,
+    "scope": "All two-side assignments and all three-cue actor/gesture/variation combinations for four scene fixtures."
+  },
+  "conditions": [
+    {
+      "model": "gemma4:e2b",
+      "protocol": "full",
+      "first_correct": 3,
+      "final_correct": 4,
+      "case_count": 4,
+      "correction_calls": 1,
+      "initial_metrics": {
+        "input_text_characters": {
+          "min": 907,
+          "max": 966,
+          "median": 945.0
+        },
+        "prompt_eval_count": {
+          "min": 254,
+          "max": 265,
+          "median": 257.0
+        },
+        "eval_count": {
+          "min": 256,
+          "max": 261,
+          "median": 257.5
+        },
+        "wall_seconds": {
+          "min": 4.816304083098657,
+          "max": 8.424650166998617,
+          "median": 4.94340004195692
+        },
+        "load_duration": {
+          "min": 277857334,
+          "max": 2991115041,
+          "median": 278979312.5
+        },
+        "prompt_eval_duration": {
+          "min": 193130000,
+          "max": 266702000,
+          "median": 213772000.0
+        },
+        "eval_duration": {
+          "min": 4339195000,
+          "max": 5207152000,
+          "median": 4422520000.0
+        }
+      },
+      "total_wall_seconds_including_corrections": 27.958893251023255,
+      "total_output_tokens_including_corrections": 1293
+    },
+    {
+      "model": "gemma4:e2b",
+      "protocol": "compact",
+      "first_correct": 2,
+      "final_correct": 3,
+      "case_count": 4,
+      "correction_calls": 2,
+      "initial_metrics": {
+        "input_text_characters": {
+          "min": 933,
+          "max": 992,
+          "median": 971.0
+        },
+        "prompt_eval_count": {
+          "min": 272,
+          "max": 283,
+          "median": 275.0
+        },
+        "eval_count": {
+          "min": 51,
+          "max": 54,
+          "median": 52.0
+        },
+        "wall_seconds": {
+          "min": 1.3101762499427423,
+          "max": 1.4720912090269849,
+          "median": 1.3735434375121258
+        },
+        "load_duration": {
+          "min": 276408083,
+          "max": 289741917,
+          "median": 280937979.0
+        },
+        "prompt_eval_duration": {
+          "min": 192460000,
+          "max": 276845000,
+          "median": 220040000.0
+        },
+        "eval_duration": {
+          "min": 832215000,
+          "max": 907348000,
+          "median": 865484500.0
+        }
+      },
+      "total_wall_seconds_including_corrections": 7.9537056249100715,
+      "total_output_tokens_including_corrections": 311
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "protocol": "full",
+      "first_correct": 3,
+      "final_correct": 4,
+      "case_count": 4,
+      "correction_calls": 1,
+      "initial_metrics": {
+        "input_text_characters": {
+          "min": 907,
+          "max": 966,
+          "median": 945.0
+        },
+        "prompt_eval_count": {
+          "min": 250,
+          "max": 262,
+          "median": 253.0
+        },
+        "eval_count": {
+          "min": 208,
+          "max": 213,
+          "median": 211.5
+        },
+        "wall_seconds": {
+          "min": 8.833037709002383,
+          "max": 9.806396708008833,
+          "median": 9.367115875007585
+        },
+        "load_duration": {
+          "min": 107303792,
+          "max": 248518333,
+          "median": 111626312.0
+        },
+        "prompt_eval_duration": {
+          "min": 415208000,
+          "max": 920947000,
+          "median": 493554000.0
+        },
+        "eval_duration": {
+          "min": 8217236999,
+          "max": 9190286000,
+          "median": 8515746500.0
+        }
+      },
+      "total_wall_seconds_including_corrections": 46.744952084030956,
+      "total_output_tokens_including_corrections": 1055
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "protocol": "compact",
+      "first_correct": 4,
+      "final_correct": 4,
+      "case_count": 4,
+      "correction_calls": 0,
+      "initial_metrics": {
+        "input_text_characters": {
+          "min": 933,
+          "max": 992,
+          "median": 971.0
+        },
+        "prompt_eval_count": {
+          "min": 271,
+          "max": 283,
+          "median": 274.0
+        },
+        "eval_count": {
+          "min": 66,
+          "max": 70,
+          "median": 68.0
+        },
+        "wall_seconds": {
+          "min": 3.022228291956708,
+          "max": 4.363639792078175,
+          "median": 3.5574358124868013
+        },
+        "load_duration": {
+          "min": 111268292,
+          "max": 1199730166,
+          "median": 114788208.5
+        },
+        "prompt_eval_duration": {
+          "min": 438720000,
+          "max": 625025000,
+          "median": 542012500.0
+        },
+        "eval_duration": {
+          "min": 2464667000,
+          "max": 3073280000,
+          "median": 2623209000.0
+        }
+      },
+      "total_wall_seconds_including_corrections": 14.500739709008485,
+      "total_output_tokens_including_corrections": 272
+    }
+  ],
+  "limitations": [
+    "Four reused cases; no unseen generalization, model adaptation or new rendering.",
+    "One sample per model/protocol/case; cold loading, caching and time variation confound latency.",
+    "Task-specific expected plans detect semantic errors here; structural compiler alone does not.",
+    "Local energy/hardware cost unmeasured; no hosted calls."
+  ],
+  "next_fixture_freeze": {
+    "path": "experiments/actor_staging_fresh_cases.py",
+    "sha256": "46f0a48884246276b7076708500cd9bf3493d76e4055323ba2e91f1a6036f458",
+    "train_count": 4,
+    "eval_count": 4,
+    "model_calls": 0,
+    "authorship": "Luna independently authored; expected plans compile. Evaluation content not sent to a solver or editor. Separation is by cases within staging family, not new task family."
+  }
+}

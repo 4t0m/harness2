@@ -152,3 +152,7 @@ Hosted Gemma26B-A4B and31B both detect the clear arm edit in2/2orientations but 
 ## Multi-cue staging checkpoint
 
 Both local models planned four two-actor scenes correctly after at most one structural correction; both repaired an injected actor ID without changing other values. Twelve calls, initial context250–265native tokens, outputs208–261tokens. Two accepted Gemma plans reached actual48frame6second Blender videos, including mirrored roles and an offset anchor. Readback checks preserve nonacting actors and untouched joints; camera order matches requested screen sides. Details, timing and boundaries in dance-lab.md. Next candidate: shorter equivalent intent representation plus fresh ordinal tasks for an actual fixed/repair/adapted comparison.
+
+## Compact staging tradeoff
+
+`actor-staging-compact-v1.json` records 20 balanced local calls on four reused cases. Compact output preserves all 13,824 enumerated canonical plans while reducing output to 51–70 tokens. Qwen3 8B improves from 3/4 initial to 4/4, median first response 9.37 to 3.56 s. E2B drops from 3/4 to 2/4 initial and from 4/4 to 3/4 after correction despite faster output. Valid-but-wrong cue order passes structural validation and is caught only by the task oracle. Keep format choice model-specific; no general reliability or adaptation gain claimed. Fresh 4-development/4-evaluation cases are frozen for a future actual Harness² comparison. See dance-lab.md for full metrics and limitations.

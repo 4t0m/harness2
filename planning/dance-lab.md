@@ -219,3 +219,24 @@ Media: `/Users/adom/Development/hermes-testing/runs/harness2-actor-scene-v1-plin
 Next useful efficiency experiment: a compact but equally expressive intent representation that lets the host bind revision and infer the opposite-side actor and cue slots from ordered array position. That could eliminate repeated IDs/timing fields and this ordinal-index failure. Preserve allplacement/gesture/variation choices; test canonical-plan equivalence and stale-request rejection before comparing latency. Separately, the actual Harness² improver can test learned instruction changes against fixed guidance and bounded repair on freshly frozen ordinal briefs. Do not call a manually shortened protocol an adaptation gain.
 
 Latency planning: a260token plan alone needs about43.3decode tokens/s to finish within6seconds, before prefill, loading, validation or rendering. A100token equivalent would need16.7tokens/s for that same decode-only budget. These are arithmetic requirements, not model/hardware forecasts; batching and prestaging allow the language model to work ahead while deterministic animation runs at its own frame rate.
+
+## Compact staging comparison (2026-10-19)
+
+Sol added an equivalent shorter protocol: `left` selects one actor, the other actor is inferred, and three ordered `[actor, gesture, variation]` arrays supply the cues. The host binds a frozen scene snapshot and rejects changed current facts, even anchor-coordinate changes with unchanged revision. Ten compiler tests pass. Exhaustive enumeration of both side assignments and every three-cue actor/gesture/variation combination across the four existing scene fixtures produced **13,824 exactly equal canonical plans**. No gesture or variation was removed to improve speed.
+
+Twenty local calls compared full and compact formats on the same four previously observed cases. Protocol order alternated within each model and reversed between models; at most one immediate correction was allowed. Prompts, schemas, model digests, native timing and all failed replies are in `actor-staging-compact-v1.json`; derived metrics and fresh-fixture freeze are in `actor-staging-compact-summary-v1.json`.
+
+| Local model / format | First correct | After at most one correction | Initial output tokens | Median first response |
+|---|---:|---:|---:|---:|
+| Gemma E2B full | 3/4 | 4/4 | 256–261 | 4.94 s |
+| Gemma E2B compact | 2/4 | 3/4 | 51–54 | 1.37 s |
+| Older Qwen3 8B full | 3/4 | 4/4 | 208–213 | 9.37 s |
+| Older Qwen3 8B compact | 4/4 | 4/4 | 66–70 | 3.56 s |
+
+The compact initial prompt is slightly LONGER: 933–992 characters and 271–283 native tokens, versus full 907–966 characters and 250–265 tokens. Savings are in generated output, not initial transcript length. Median output reduction is about 80% for E2B and 68% for Qwen. Native median decode time falls from 4.42 to 0.87 s for E2B and 8.52 to 2.62 s for Qwen. These are tiny reused-case measurements with cold-load/cache/time effects, not sustained service benchmarks or 5090 projections. At 70 output tokens, the decode-only requirement for a six-second planning horizon is about 11.7 tokens/s; input processing and other work still consume time.
+
+The compact E2B failures are valid but semantically wrong plans: the first two requested cues are swapped, putting the left actor first. One generic correction recovers the quiet case; the gallery case remains wrong. Independent expansion through the old compiler agrees with the compact result, ruling out a compact-only compiler error. All Qwen compact cases pass. The investigation retains the hypotheses and primary evidence. A concise interface is therefore a useful Qwen candidate, but cannot yet replace the full E2B interface on reliability grounds.
+
+Crucial boundary: the expected fixture plan detects those semantic mistakes in this experiment. Production structural validation alone would accept them. Do not claim the host can automatically detect arbitrary natural-language misunderstanding without an independent semantic check, constrained task authoring or review. No new rendering was required: accepted plans are exactly equal to canonical fixture plans. No model learning, Harness² adaptation, GPU rental or paid provider calls occurred in this comparison.
+
+Luna separately authored four new development and four evaluation cases covering ordinal language, audience-relative sides, later amendments and repeated actor cues. Their expected plans compile, and their source hash is frozen in the summary before model use. Evaluation cases remain unseen by solvers/editors; this is a within-family split, not new-family generalization. Next actual Harness² experiment should learn guidance with development-only failures, compare fixed/repair/adapted conditions, and retain the compact/full choice as a separate experimental factor. The new development cases and the observed gallery ordering error provide useful material for that bounded round.
