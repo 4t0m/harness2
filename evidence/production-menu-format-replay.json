@@ -1,0 +1,30 @@
+{
+  "source": "evidence/production-menu-gemma-live.json",
+  "provider_calls": 0,
+  "rows": [
+    {
+      "task_id": "pose-explore",
+      "format_changed": false,
+      "legal": true,
+      "priority_match": true
+    },
+    {
+      "task_id": "motion-first",
+      "format_changed": true,
+      "legal": true,
+      "priority_match": true
+    },
+    {
+      "task_id": "preserve-span",
+      "format_changed": true,
+      "legal": true,
+      "priority_match": true
+    },
+    {
+      "task_id": "cheap-preview",
+      "format_changed": true,
+      "legal": true,
+      "priority_match": true
+    }
+  ]
+}

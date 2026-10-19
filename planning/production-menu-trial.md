@@ -1,0 +1,11 @@
+# Legal-menu creative-priority selection
+
+Different responsibility split from raw-ledger reasoning: host enumerates legal actions; model selects one for an explicit creative brief. This is a candidate production architecture, not evidence the model learned constraints. Initial four cases cover silhouette exploration, motion before lighting, preserving approved spans, and cheap previews before polish. Expected choices are objective instruction matches, not subjective art-quality scores. Three options each, with intended answers at varied indices.
+
+production_menu.menu derives options from the unchanged host oracle. resolve reconstructs options, checks the host-retained SHA-256 of the ledger/descriptions/brief, parses a choice ID and revalidates its action. The caller must retain the issued fingerprint. No mutable returned menu can rewrite the action. A changed ledger or brief rejects the old choice. Real external dispatch still needs an atomic lock/transaction covering validation and commit; the prototype returns a pure data transition, not a production-ready job service.
+
+Initial Gemma trial: 1/4 strict accepted; 4/4 legal and priority-matched after exact-single-fence repair of saved responses. Three original responses were fenced. Four calls used 719 input tokens and 57 output tokens. Reported cost $0.00007387; hosted latency approximately 0.38–0.75s per call. Initial requests 172–184 tokens. No renderer/job dispatch and no extra inference for repair. These deliberately simple examples are not comparable accuracy scores to the harder raw-ledger combination suite.
+
+Four offline tests cover legal filtering, changed state/brief, malformed or forged selections, and mutated return values. Next: broader realistic briefs with conflicts and ambiguity, option-order permutations, repeated samples and multiple models. Report raw-format acceptance separately from normalized semantic choice. Exclude ambiguous preferences from binary correctness and use user auditions for actual taste.
+
+User approved up to roughly 10x spending headroom on 2026-10-19 when it improves experiment quality. Use this for informative model comparisons and repeated measurements, not an obligation to spend. No blanket transfer of that headroom to unbounded GPU rental; retain explicit run limits and teardown ownership.

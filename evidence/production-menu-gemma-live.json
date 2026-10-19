@@ -1,0 +1,149 @@
+{
+  "scope": "legal-menu priority following, not constraint reasoning or artistic taste",
+  "rows": [
+    {
+      "task_id": "pose-explore",
+      "request": {
+        "brief": "Before polishing, explore different silhouettes for the same character.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Render the current pose at final resolution."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three rough pose variations with different silhouettes."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Try three lighting palettes for the current pose."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_choice": "option_1",
+      "content": "{\"choice_id\":\"option_1\"}",
+      "usage": {
+        "prompt_tokens": 172,
+        "completion_tokens": 10,
+        "total_tokens": 182
+      },
+      "latency_seconds": 0.38401912502013147,
+      "cost": 1.9e-05,
+      "legal": true,
+      "priority_match": true,
+      "model": "google/gemma-4-26b-a4b-it"
+    },
+    {
+      "task_id": "motion-first",
+      "request": {
+        "brief": "Keep the camera fixed. Compare the rhythm of two dance phrases before choosing lighting.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Render two motion phrases using the same camera and neutral lighting."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Try three dramatic camera cuts on the current phrase."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Design a new lighting palette."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_choice": "option_0",
+      "content": "```json\n{\"choice_id\":\"option_0\"}\n```",
+      "usage": {
+        "prompt_tokens": 180,
+        "completion_tokens": 15,
+        "total_tokens": 195
+      },
+      "latency_seconds": 0.5437733751023188,
+      "cost": 1.575e-05,
+      "legal": false,
+      "priority_match": false,
+      "model": "google/gemma-4-26b-a4b-it"
+    },
+    {
+      "task_id": "preserve-span",
+      "request": {
+        "brief": "Keep the approved opening and ending. Revise only the awkward transition in the middle.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Regenerate the whole dance with a new motif."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Replace the opening with a larger gesture."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Rework the middle transition while preserving the approved neighboring spans."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_choice": "option_2",
+      "content": "```json\n{\"choice_id\": \"option_2\"}\n```",
+      "usage": {
+        "prompt_tokens": 183,
+        "completion_tokens": 16,
+        "total_tokens": 199
+      },
+      "latency_seconds": 0.7539058339316398,
+      "cost": 2.31e-05,
+      "legal": false,
+      "priority_match": false,
+      "model": "google/gemma-4-26b-a4b-it"
+    },
+    {
+      "task_id": "cheap-preview",
+      "request": {
+        "brief": "We have not approved the movement yet. Use the cheapest useful motion preview before spending on final output.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Render a final high-resolution sequence."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Generate a low-resolution fixed-camera preview of the movement."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Polish costume textures at full resolution."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_choice": "option_1",
+      "content": "```json\n{\"choice_id\": \"option_1\"}\n```",
+      "usage": {
+        "prompt_tokens": 184,
+        "completion_tokens": 16,
+        "total_tokens": 200
+      },
+      "latency_seconds": 0.6209898329107091,
+      "cost": 1.602e-05,
+      "legal": false,
+      "priority_match": false,
+      "model": "google/gemma-4-26b-a4b-it"
+    }
+  ]
+}
