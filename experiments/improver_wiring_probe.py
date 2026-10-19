@@ -1,4 +1,5 @@
 """Bounded live improver with a scripted solver; no real-agent improvement claim."""
+import argparse
 import json
 import os
 from pathlib import Path
@@ -9,7 +10,12 @@ from harness2.core.schedule import run_domain
 
 
 def main():
-    root=Path('runs/gemma-improver-wiring')
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--name', default='gemma-improver-wiring')
+    args=parser.parse_args()
+    if not args.name.replace('-', '').isalnum():
+        raise SystemExit('invalid run name')
+    root=Path('runs')/args.name
     root.mkdir(parents=True,exist_ok=False)
     os.environ['HARNESS2_ACTOR_API_KEY']=os.environ['OPENROUTER_API_KEY']
     adapter=ActorAdapter(root)
@@ -44,7 +50,7 @@ def main():
         report['editor_receipts']=[json.loads(p.read_text()) for p in sorted((root/'improver-receipts').glob('*.json'))]
         report['solver_verdicts']=[{'run':str(p.parent.relative_to(root/'executions')),
             'verdict':json.loads(p.read_text())} for p in sorted((root/'executions').rglob('verdict.json'))]
-        Path('evidence/improver-wiring-live.json').write_text(json.dumps(report,indent=2)+'\n')
+        (Path('evidence')/(args.name+'-live.json')).write_text(json.dumps(report,indent=2)+'\n')
         print(json.dumps(report,indent=2))
 
 if __name__=='__main__':main()

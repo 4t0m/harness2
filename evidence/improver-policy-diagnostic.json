@@ -1,0 +1,53 @@
+{
+  "scope": "one diagnostic editor call; typed policy choices plus concise mission; scripted solver; not a full recursion comparison",
+  "verdicts": {
+    "left-mirror": {
+      "valid": true,
+      "edge_gap_final": 0.11999999999999993,
+      "travel_distance": 0.3800000000000001,
+      "gaze": "screen_left",
+      "adapter_control": null,
+      "final_position": {
+        "x": 0.41999999999999993,
+        "y": 0.5
+      }
+    },
+    "heldout-diagonal": {
+      "valid": true,
+      "edge_gap_final": 0.13999999999999999,
+      "travel_distance": 0.4672481884034769,
+      "gaze": "screen_left",
+      "adapter_control": null,
+      "final_position": {
+        "x": 0.43021260191509864,
+        "y": 0.5376560767001891
+      }
+    }
+  },
+  "receipts": [
+    {
+      "label": "diagnostic",
+      "mode": "model_guidance",
+      "provider_called": true,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md"
+      ],
+      "context_sha256": "9456a712100d9a147e082da7f9e35f5f6e3b68d8adaa8bf5079b0874c1e37a88",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 358,
+        "completion_tokens": 29,
+        "total_tokens": 387
+      },
+      "latency_seconds": 2.248197207925841,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "response_content": "{\n\"coordinate_policy\": \"preserve_snapshot\",\n\"clearance_policy\": \"preserve_requested_gap\"\n}",
+      "cost_usd": 3.492e-05,
+      "cost_known": true,
+      "accepted": true,
+      "guidance_sha256": "bbfe20b66d5d08b59458d885801f49d9ce1bba17b9e0a1d136268eee3d304556"
+    }
+  ]
+}

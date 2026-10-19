@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from harness2.actor_demo import ActorAdapter, BASE_GUIDANCE, FIXED_GUIDANCE
-from harness2.actor_improver import ActorImprover, collect_context, validate_response
+from harness2.actor_improver import ActorImprover, collect_context, validate_response, validate_policies
 from harness2.actor_provider import ChatResult, ProviderIncomplete
 from harness2.core.proposer import ProposerError
 from harness2.core.schedule import run_domain
@@ -117,6 +117,27 @@ class ActorImproverTests(unittest.TestCase):
         receipt = self.receipt("c1_a1")
         self.assertEqual((receipt["finish_reason"], receipt["usage"]["total_tokens"]),
                          ("length", 32))
+
+    def test_policy_enums_compile_without_model_text(self):
+        self.assertEqual(validate_policies(json.dumps({"coordinate_policy":"preserve_snapshot",
+            "clearance_policy":"preserve_requested_gap"})), FIXED_GUIDANCE)
+        for value in [{"coordinate_policy":"<round_to_tenth|preserve_snapshot>","clearance_policy":"default_gap"},
+                      {"coordinate_policy":"preserve_snapshot","clearance_policy":"default_gap","path":"oracle.json"}]:
+            with self.assertRaises(ValueError): validate_policies(json.dumps(value))
+
+    def test_mission_is_forwarded_and_oversize_refused(self):
+        context = self.context()
+        calls = []
+        def provider(**kw):
+            calls.append(kw)
+            return response()
+        improver = self.improver(provider)
+        improver.call("Improve after observed rejection", context, "inv1.a1")
+        self.assertIn("Improve after observed rejection", calls[0]["user"])
+        self.assertIn("without Markdown", calls[0]["system"])
+        with self.assertRaises(ProposerError):
+            improver.call("x" * 20001, context, "dom1.a1")
+        self.assertEqual(len(calls), 1)
 
     def test_actual_run_domain_mock_improver_scripted_solver(self):
         prompts = []
