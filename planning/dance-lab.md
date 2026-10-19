@@ -160,3 +160,19 @@ Direct installed H3 source shows reference clips are truncated first by output f
 The first master failed exact decoded-tail equality because default lossy H264 reconstruction varied across repeated frames. Raw-filter and lossless comparisons isolated encoding as the cause. Fresh v2 uses crf0 after YUV420 conversion: all107frames decode, and frames95..106 have identical decoded hashes. No claim of RGB-source pixel identity. Failed v1 and diagnostic remain. Whole v2 preparation2.83seconds; no model inference.
 
 Video: `/Users/adom/Development/hermes-testing/runs/harness2-dance-reference-v2/reference.mp4`. Evidence: `dance-reference-v1.json`, `dance-reference-v2.json`, `dance-reference-review-v2.json`. Installed source and saved schemas support LoadVideo -> GetVideoComponents output0 (IMAGE) -> ReferenceToVideo dynamic input `ref_videos.ref_video_0`. A sibling staged node patch declares the upload filename and routing; it has NOT been uploaded, validated against a live server, or submitted. The operations chat received the artifact and exact limits with no ACK requested. A matching model architecture or saved workflow still does not prove successful reference-conditioned inference.
+
+
+## Local visual critique pilot and failure (2026-10-19)
+
+Sol prepared a bounded native Ollama image runner; parent inspected and froze six images from the existing comparison: two protected-pose frames and one clear arm-accent frame, each normal/flipped. Ground truth comes from exact protected joint equality and arm positions (sum of wrist lateral offsets1.08m original versus0.59818m edited), with visual checks. Source image hashes, model digests, full prompts, raw replies and timing are retained in `evidence/dance-vision-v1.json`.
+
+| Model | Correct /6 | Edited frame /2 | Unchanged controls /4 | Behavior |
+|---|---:|---:|---:|---|
+| Gemma E2B local |4|0|4|Answered same every time|
+| Gemma E4B local |1|1|0|Answered left every time|
+
+All12responses were strict schema-valid JSON. Neither beats the corresponding constant-answer baseline; do not interpret E2B4/6 as useful motion recognition. Native prompt counts188 each include the endpoint's reporting convention; separate vision-encoder cost is unavailable. E2B first response3.843s, subsequent0.778–0.811s;E4B first5.465s, subsequent1.003–1.013s. These tiny cached/warm samples are not service percentiles or5090 estimates.
+
+Eight diagnostic calls followed with raw receipts kept separately: both models named red/blue color cards correctly, demonstrating image dependence for simple inputs. Both gave a directionally correct width description of the normal accent in free text, but both failed the flipped version. Removing constrained JSON is not a sufficient repair. See `dance-vision-diagnostic-v1.json` and explicit parent interpretation in `dance-vision-diagnostic-review-v1.json`. No fine-tuning, Harness² adaptation, or human taste judgment occurred. All20calls local; hardware/energy cost unmeasured.
+
+Implication: keep kinematic invariants and host verification authoritative. A local visual assistant can propose descriptions/questions, but cannot currently approve even these simple motion edits unaided. Next useful comparison would separate each actor into matched crops, use semantic feature outputs before a host comparison, and evaluate on fresh poses/orientations; also compare a stronger vision model under the same images before scaling spend. Do not train on these model judgments as truth.

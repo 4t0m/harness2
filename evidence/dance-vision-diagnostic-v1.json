@@ -1,0 +1,384 @@
+{
+  "scope": "gross image dependence and free-text pose diagnosis; not reliability or taste acceptance",
+  "source_sha256": "f7a3fd7d55b97d4c870e821339260d1f72b31bd2f05525efdde8db32af377a5b",
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "modified_at": "2026-06-21T01:51:57.487036893-04:00",
+      "size": 7162405886
+    },
+    "gemma4:e4b": {
+      "name": "gemma4:e4b",
+      "digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "modified_at": "2026-06-21T00:43:17.334386392-04:00",
+      "size": 9608350718
+    }
+  },
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "case": "red",
+      "prompt": "What is the dominant color of this image? Return JSON with color.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "color"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "type": "string",
+            "enum": [
+              "red",
+              "blue",
+              "green",
+              "white",
+              "black",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "e29e9a86b57baf12e5e153c4498f8c2a6c5f881cbdf8bb5d3db7a76280853587",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:18:28.777212Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"color\": \"red\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 754970875,
+        "load_duration": 302840458,
+        "prompt_eval_count": 74,
+        "prompt_eval_duration": 338436000,
+        "eval_count": 7,
+        "eval_duration": 109196000
+      },
+      "total_duration": 754970875,
+      "load_duration": 302840458,
+      "prompt_eval_count": 74,
+      "prompt_eval_duration": 338436000,
+      "eval_count": 7,
+      "eval_duration": 109196000,
+      "color_correct": true,
+      "wall_seconds": 0.7594674589345232
+    },
+    {
+      "model": "gemma4:e2b",
+      "case": "blue",
+      "prompt": "What is the dominant color of this image? Return JSON with color.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "color"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "type": "string",
+            "enum": [
+              "red",
+              "blue",
+              "green",
+              "white",
+              "black",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "df17c2f50b573457ead1af04a1d61d7ce49382b6b4818556e5f29dff000ee1ad",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:18:29.416176Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"color\": \"blue\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 637529750,
+        "load_duration": 286364292,
+        "prompt_eval_count": 74,
+        "prompt_eval_duration": 236011000,
+        "eval_count": 7,
+        "eval_duration": 111013000
+      },
+      "total_duration": 637529750,
+      "load_duration": 286364292,
+      "prompt_eval_count": 74,
+      "prompt_eval_duration": 236011000,
+      "eval_count": 7,
+      "eval_duration": 111013000,
+      "color_correct": true,
+      "wall_seconds": 0.6385890829842538
+    },
+    {
+      "model": "gemma4:e2b",
+      "case": "normal",
+      "prompt": "Describe the arm poses of the figure on the image left and the figure on the image right. Are their hands held at a similar width from their own torsos, or does one hold them farther inward? Ignore colors and shadows. Be brief; say unclear if you cannot tell.",
+      "schema": null,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:18:31.595235Z",
+        "message": {
+          "role": "assistant",
+          "content": "**Figure on the left:** The arms are extended out to the sides, appearing relatively straight and somewhat spread apart.\n\n**Figure on the right:** The arms are bent at the elbows, and the hands appear to be held closer to the body than the figure on the left.\n\n**Comparison:** No, their hands are not held at a similar width from their torsos; one figure's arms are more spread out than the other's."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2174125166,
+        "load_duration": 282880000,
+        "prompt_eval_count": 144,
+        "prompt_eval_duration": 257908000,
+        "eval_count": 92,
+        "eval_duration": 1624936000
+      },
+      "total_duration": 2174125166,
+      "load_duration": 282880000,
+      "prompt_eval_count": 144,
+      "prompt_eval_duration": 257908000,
+      "eval_count": 92,
+      "eval_duration": 1624936000,
+      "wall_seconds": 2.1759059169562533
+    },
+    {
+      "model": "gemma4:e2b",
+      "case": "flip",
+      "prompt": "Describe the arm poses of the figure on the image left and the figure on the image right. Are their hands held at a similar width from their own torsos, or does one hold them farther inward? Ignore colors and shadows. Be brief; say unclear if you cannot tell.",
+      "schema": null,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:18:33.810892Z",
+        "message": {
+          "role": "assistant",
+          "content": "**Figure on the left:** The arms are extended out to the sides, appearing relatively straight and somewhat parallel to the torso.\n\n**Figure on the right:** The arms are bent at the elbows, and the hands appear to be held closer to the body than the figure on the left.\n\n**Comparison:** No, their hands are not held at a similar width from their own torsos; one figure's hands are farther outward than the other's."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2212906667,
+        "load_duration": 282768625,
+        "prompt_eval_count": 144,
+        "prompt_eval_duration": 260152000,
+        "eval_count": 94,
+        "eval_duration": 1661785000
+      },
+      "total_duration": 2212906667,
+      "load_duration": 282768625,
+      "prompt_eval_count": 144,
+      "prompt_eval_duration": 260152000,
+      "eval_count": 94,
+      "eval_duration": 1661785000,
+      "wall_seconds": 2.214312208001502
+    },
+    {
+      "model": "gemma4:e4b",
+      "case": "red",
+      "prompt": "What is the dominant color of this image? Return JSON with color.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "color"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "type": "string",
+            "enum": [
+              "red",
+              "blue",
+              "green",
+              "white",
+              "black",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "e29e9a86b57baf12e5e153c4498f8c2a6c5f881cbdf8bb5d3db7a76280853587",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:18:34.669784Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"color\": \"red\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 856642292,
+        "load_duration": 283771625,
+        "prompt_eval_count": 74,
+        "prompt_eval_duration": 408810000,
+        "eval_count": 7,
+        "eval_duration": 159030000
+      },
+      "total_duration": 856642292,
+      "load_duration": 283771625,
+      "prompt_eval_count": 74,
+      "prompt_eval_duration": 408810000,
+      "eval_count": 7,
+      "eval_duration": 159030000,
+      "color_correct": true,
+      "wall_seconds": 0.8576567920390517
+    },
+    {
+      "model": "gemma4:e4b",
+      "case": "blue",
+      "prompt": "What is the dominant color of this image? Return JSON with color.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "color"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "type": "string",
+            "enum": [
+              "red",
+              "blue",
+              "green",
+              "white",
+              "black",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "df17c2f50b573457ead1af04a1d61d7ce49382b6b4818556e5f29dff000ee1ad",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:18:35.464767Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"color\": \"blue\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 792500708,
+        "load_duration": 281723125,
+        "prompt_eval_count": 74,
+        "prompt_eval_duration": 348994000,
+        "eval_count": 7,
+        "eval_duration": 157795000
+      },
+      "total_duration": 792500708,
+      "load_duration": 281723125,
+      "prompt_eval_count": 74,
+      "prompt_eval_duration": 348994000,
+      "eval_count": 7,
+      "eval_duration": 157795000,
+      "color_correct": true,
+      "wall_seconds": 0.7935755000216886
+    },
+    {
+      "model": "gemma4:e4b",
+      "case": "normal",
+      "prompt": "Describe the arm poses of the figure on the image left and the figure on the image right. Are their hands held at a similar width from their own torsos, or does one hold them farther inward? Ignore colors and shadows. Be brief; say unclear if you cannot tell.",
+      "schema": null,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:18:38.690472Z",
+        "message": {
+          "role": "assistant",
+          "content": "The figure on the left has its arms extended out to the sides in an open \"T\" shape. The figure on the right has its arms bent at the elbows with the forearms held slightly away from the torso, but not as wide as the figure on the left.\n\nNo, their hands are not held at a similar width from their own torsos; the figure on the left holds them significantly wider than the figure on the right."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3221970292,
+        "load_duration": 285893917,
+        "prompt_eval_count": 144,
+        "prompt_eval_duration": 395632000,
+        "eval_count": 90,
+        "eval_duration": 2532177000
+      },
+      "total_duration": 3221970292,
+      "load_duration": 285893917,
+      "prompt_eval_count": 144,
+      "prompt_eval_duration": 395632000,
+      "eval_count": 90,
+      "eval_duration": 2532177000,
+      "wall_seconds": 3.2236932499799877
+    },
+    {
+      "model": "gemma4:e4b",
+      "case": "flip",
+      "prompt": "Describe the arm poses of the figure on the image left and the figure on the image right. Are their hands held at a similar width from their own torsos, or does one hold them farther inward? Ignore colors and shadows. Be brief; say unclear if you cannot tell.",
+      "schema": null,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 128
+      },
+      "image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:18:41.865588Z",
+        "message": {
+          "role": "assistant",
+          "content": "The figure on the left has its arms bent at the elbows with the forearms angled slightly outward. The figure on the right has its arms extended more straight down from the shoulders, with a slight bend at the elbows.\n\nRegarding hand width: The hands of the figure on the left appear to be held at a similar width from their torsos as the hands of the figure on the right."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3172205542,
+        "load_duration": 288102042,
+        "prompt_eval_count": 144,
+        "prompt_eval_duration": 489023000,
+        "eval_count": 80,
+        "eval_duration": 2386522000
+      },
+      "total_duration": 3172205542,
+      "load_duration": 288102042,
+      "prompt_eval_count": 144,
+      "prompt_eval_duration": 489023000,
+      "eval_count": 80,
+      "eval_duration": 2386522000,
+      "wall_seconds": 3.1734543750062585
+    }
+  ],
+  "max_calls": 8,
+  "api_cost_usd": null,
+  "local_hardware_cost": "unmeasured",
+  "complete": true
+}

@@ -1,0 +1,18 @@
+{
+  "scope": "parent interpretation of free-text diagnostic; not strict JSON score or human taste",
+  "color_cards": {
+    "gemma4:e2b": "2/2",
+    "gemma4:e4b": "2/2"
+  },
+  "free_text": {
+    "gemma4:e2b": {
+      "normal": "correct direction, some imprecise arm description",
+      "flip": "wrong; still says right hands inward"
+    },
+    "gemma4:e4b": {
+      "normal": "correct relative hand width, exaggerated T-pose description",
+      "flip": "wrong similarity judgment"
+    }
+  },
+  "conclusion": "Gross image dependence confirmed; forced-choice failure is not solely absence of vision. Free text helps normal orientation but is not flip-robust. Do not use as sole acceptance oracle."
+}

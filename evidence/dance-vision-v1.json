@@ -1,0 +1,1049 @@
+{
+  "scope": "small same-fixture visual geometric pilot; no taste/reliability/generalization claim",
+  "runner_sha256": "8fadaa4544c0b085af8dedbaee6baa1d7e1a661d1674b303a33bbdb60ebe681e",
+  "manifest": {
+    "status": "prepared_for_image_and_oracle_review",
+    "scope": "Local geometric vision pilot; no dance synthesis or taste assessment",
+    "source_video": "/Users/adom/Development/hermes-testing/runs/harness2-dance-model-edit-v1/comparison.mp4",
+    "source_video_sha256": "fae23a8b9cd88af9084ecdf50f18e7e89a4ee83a382e62d0ccfed727834a3d44",
+    "models": [
+      "gemma4:e2b",
+      "gemma4:e4b"
+    ],
+    "cases": [
+      {
+        "case_id": "frame05-normal",
+        "source_frame_index": 5,
+        "horizontal_flip": false,
+        "image": "images/frame05-normal.png",
+        "image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+        "image_bytes": 64313,
+        "expected_host_only": "same"
+      },
+      {
+        "case_id": "frame05-flip",
+        "source_frame_index": 5,
+        "horizontal_flip": true,
+        "image": "images/frame05-flip.png",
+        "image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+        "image_bytes": 63126,
+        "expected_host_only": "same"
+      },
+      {
+        "case_id": "frame20-normal",
+        "source_frame_index": 20,
+        "horizontal_flip": false,
+        "image": "images/frame20-normal.png",
+        "image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+        "image_bytes": 63530,
+        "expected_host_only": "right"
+      },
+      {
+        "case_id": "frame20-flip",
+        "source_frame_index": 20,
+        "horizontal_flip": true,
+        "image": "images/frame20-flip.png",
+        "image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+        "image_bytes": 62344,
+        "expected_host_only": "left"
+      },
+      {
+        "case_id": "frame35-normal",
+        "source_frame_index": 35,
+        "horizontal_flip": false,
+        "image": "images/frame35-normal.png",
+        "image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+        "image_bytes": 65719,
+        "expected_host_only": "same"
+      },
+      {
+        "case_id": "frame35-flip",
+        "source_frame_index": 35,
+        "horizontal_flip": true,
+        "image": "images/frame35-flip.png",
+        "image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+        "image_bytes": 64636,
+        "expected_host_only": "same"
+      }
+    ],
+    "order_by_model": {
+      "gemma4:e2b": [
+        "frame35-flip",
+        "frame05-flip",
+        "frame20-flip",
+        "frame05-normal",
+        "frame20-normal",
+        "frame35-normal"
+      ],
+      "gemma4:e4b": [
+        "frame35-normal",
+        "frame05-normal",
+        "frame35-flip",
+        "frame05-flip",
+        "frame20-normal",
+        "frame20-flip"
+      ]
+    },
+    "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+    "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+    "schema": {
+      "type": "object",
+      "required": [
+        "inward_hands"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "inward_hands": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "same",
+            "unclear"
+          ]
+        }
+      }
+    },
+    "options": {
+      "num_ctx": 4096,
+      "num_predict": 64,
+      "temperature": 0
+    },
+    "think": false,
+    "max_calls": 12,
+    "transport_timeout_seconds": 35,
+    "hard_deadline_seconds": 40,
+    "api_cost_usd": null,
+    "local_hardware_cost": "unmeasured"
+  },
+  "model_metadata": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "modified_at": "2026-06-21T01:51:57.487036893-04:00",
+      "size": 7162405886
+    },
+    "gemma4:e4b": {
+      "name": "gemma4:e4b",
+      "digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "modified_at": "2026-06-21T00:43:17.334386392-04:00",
+      "size": 9608350718
+    }
+  },
+  "summary": {
+    "gemma4:e2b": {
+      "total_correct": 4,
+      "total": 6,
+      "strict_valid": 6,
+      "changed_correct": 0,
+      "changed_total": 2,
+      "unchanged_correct": 4,
+      "unchanged_total": 4,
+      "answers": [
+        "same",
+        "same",
+        "same",
+        "same",
+        "same",
+        "same"
+      ],
+      "first_wall_seconds": 3.8432069590780884,
+      "subsequent_wall_range_seconds": [
+        0.7782697500661016,
+        0.810992915998213
+      ],
+      "native_prompt_counts": [
+        188,
+        188,
+        188,
+        188,
+        188,
+        188
+      ],
+      "native_output_counts": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    "gemma4:e4b": {
+      "total_correct": 1,
+      "total": 6,
+      "strict_valid": 6,
+      "changed_correct": 1,
+      "changed_total": 2,
+      "unchanged_correct": 0,
+      "unchanged_total": 4,
+      "answers": [
+        "left",
+        "left",
+        "left",
+        "left",
+        "left",
+        "left"
+      ],
+      "first_wall_seconds": 5.464743416989222,
+      "subsequent_wall_range_seconds": [
+        1.0031212499598041,
+        1.0131883330177516
+      ],
+      "native_prompt_counts": [
+        188,
+        188,
+        188,
+        188,
+        188,
+        188
+      ],
+      "native_output_counts": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ]
+    }
+  },
+  "calls": [
+    {
+      "model_requested": "gemma4:e2b",
+      "case_id": "frame35-flip",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+      "image_bytes": 64636,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:17:23.90699Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"same\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3841984583,
+        "load_duration": 3233330000,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 432294000,
+        "eval_count": 10,
+        "eval_duration": 165665000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 3841984583,
+      "load_duration": 3233330000,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 432294000,
+      "eval_count": 10,
+      "eval_duration": 165665000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "same",
+      "reason": "correct",
+      "wall_seconds": 3.8432069590780884
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "case_id": "frame05-flip",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+      "image_bytes": 63126,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:17:24.694451Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"same\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 785694875,
+        "load_duration": 290063875,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 324822000,
+        "eval_count": 10,
+        "eval_duration": 162673000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 785694875,
+      "load_duration": 290063875,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 324822000,
+      "eval_count": 10,
+      "eval_duration": 162673000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "same",
+      "reason": "correct",
+      "wall_seconds": 0.7871107920072973
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "case_id": "frame20-flip",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "image_bytes": 62344,
+      "expected_host_only": "left",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:17:25.474108Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"same\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 776847958,
+        "load_duration": 282880333,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 322443000,
+        "eval_count": 10,
+        "eval_duration": 163369000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 776847958,
+      "load_duration": 282880333,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 322443000,
+      "eval_count": 10,
+      "eval_duration": 163369000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "same",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.7782697500661016
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "case_id": "frame05-normal",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+      "image_bytes": 64313,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:17:26.286263Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"same\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 809921375,
+        "load_duration": 309503667,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 329755000,
+        "eval_count": 10,
+        "eval_duration": 162082000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 809921375,
+      "load_duration": 309503667,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 329755000,
+      "eval_count": 10,
+      "eval_duration": 162082000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "same",
+      "reason": "correct",
+      "wall_seconds": 0.810992915998213
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "case_id": "frame20-normal",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "image_bytes": 63530,
+      "expected_host_only": "right",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:17:27.088191Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"same\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 800653833,
+        "load_duration": 301707750,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 324042000,
+        "eval_count": 10,
+        "eval_duration": 166488000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 800653833,
+      "load_duration": 301707750,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 324042000,
+      "eval_count": 10,
+      "eval_duration": 166488000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "same",
+      "reason": "semantic mismatch",
+      "wall_seconds": 0.8017480830894783
+    },
+    {
+      "model_requested": "gemma4:e2b",
+      "case_id": "frame35-normal",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+      "image_bytes": 65719,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:17:27.874872Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"same\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 784032417,
+        "load_duration": 285789375,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 324127000,
+        "eval_count": 10,
+        "eval_duration": 165683000
+      },
+      "model_served": "gemma4:e2b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 784032417,
+      "load_duration": 285789375,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 324127000,
+      "eval_count": 10,
+      "eval_duration": 165683000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "same",
+      "reason": "correct",
+      "wall_seconds": 0.7860771670239046
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "case_id": "frame35-normal",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "73bb9190ae4b7b7ec26b3d8ac676c74f75e2270fba32e61c7d7b9167fb2fc950",
+      "image_bytes": 65719,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:17:33.342359Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"left\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5463200834,
+        "load_duration": 4691391542,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 529363000,
+        "eval_count": 10,
+        "eval_duration": 233487000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 5463200834,
+      "load_duration": 4691391542,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 529363000,
+      "eval_count": 10,
+      "eval_duration": 233487000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "left",
+      "reason": "semantic mismatch",
+      "wall_seconds": 5.464743416989222
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "case_id": "frame05-normal",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "ab499bc52ce8a3da0bd60d4e40856c54898f32959d48e4c01644ffa2b4f8541c",
+      "image_bytes": 64313,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:17:34.356335Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"left\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1011580417,
+        "load_duration": 292100334,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 478621000,
+        "eval_count": 10,
+        "eval_duration": 231989000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 1011580417,
+      "load_duration": 292100334,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 478621000,
+      "eval_count": 10,
+      "eval_duration": 231989000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "left",
+      "reason": "semantic mismatch",
+      "wall_seconds": 1.0131883330177516
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "case_id": "frame35-flip",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "9c1d0f1d287c7b16af149855876f9d705ea9007fcf8740f133fb611b00104267",
+      "image_bytes": 64636,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:17:35.365704Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"left\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1005287625,
+        "load_duration": 286463042,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 476942000,
+        "eval_count": 10,
+        "eval_duration": 233436000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 1005287625,
+      "load_duration": 286463042,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 476942000,
+      "eval_count": 10,
+      "eval_duration": 233436000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "left",
+      "reason": "semantic mismatch",
+      "wall_seconds": 1.007590707973577
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "case_id": "frame05-flip",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "c12545043766629ac3e5aa768368d5c460980f7753432c43004ccc663d84d205",
+      "image_bytes": 63126,
+      "expected_host_only": "same",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:17:36.377163Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"left\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1004829667,
+        "load_duration": 287400875,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 472787000,
+        "eval_count": 10,
+        "eval_duration": 235571000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 1004829667,
+      "load_duration": 287400875,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 472787000,
+      "eval_count": 10,
+      "eval_duration": 235571000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "left",
+      "reason": "semantic mismatch",
+      "wall_seconds": 1.0105174999916926
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "case_id": "frame20-normal",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "ebb4223dcff241e0d1a1b8d136d34e1687a6936610c147af7ffac48bf2311ef4",
+      "image_bytes": 63530,
+      "expected_host_only": "right",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:17:37.382041Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"left\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1001136500,
+        "load_duration": 284378125,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 473483000,
+        "eval_count": 10,
+        "eval_duration": 233907000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 1001136500,
+      "load_duration": 284378125,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 473483000,
+      "eval_count": 10,
+      "eval_duration": 233907000,
+      "strict_json": true,
+      "semantic_correct": false,
+      "answer": "left",
+      "reason": "semantic mismatch",
+      "wall_seconds": 1.0031212499598041
+    },
+    {
+      "model_requested": "gemma4:e4b",
+      "case_id": "frame20-flip",
+      "system_prompt": "Compare the two stick figures geometrically. Which figure's hands are closer to that figure's own torso: the figure on the image's left, the figure on the image's right, both about the same, or unclear? Ignore color, absolute screen position, and artistic appeal. Return exactly one JSON object with inward_hands set to left, right, same, or unclear.",
+      "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "user_prompt": "Inspect this single image. Compare each figure's hands with its own torso.",
+      "image_sha256": "2995e08ddcdd429acc889824c02ebf6b7624730a065b95fdb6d94d189652b3d6",
+      "image_bytes": 62344,
+      "expected_host_only": "left",
+      "request_options": {
+        "num_ctx": 4096,
+        "num_predict": 64,
+        "temperature": 0
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "inward_hands"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "inward_hands": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "same",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "think": false,
+      "transport_timeout_seconds": 35,
+      "hard_deadline_seconds": 40,
+      "api_cost_usd": null,
+      "local_hardware_cost": "unmeasured",
+      "raw_response": {
+        "model": "gemma4:e4b",
+        "created_at": "2026-10-19T05:17:38.391243Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"inward_hands\": \"left\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1004468333,
+        "load_duration": 282014917,
+        "prompt_eval_count": 188,
+        "prompt_eval_duration": 479129000,
+        "eval_count": 10,
+        "eval_duration": 234368000
+      },
+      "model_served": "gemma4:e4b",
+      "done_reason": "stop",
+      "thinking_present": false,
+      "total_duration": 1004468333,
+      "load_duration": 282014917,
+      "prompt_eval_count": 188,
+      "prompt_eval_duration": 479129000,
+      "eval_count": 10,
+      "eval_duration": 234368000,
+      "strict_json": true,
+      "semantic_correct": true,
+      "answer": "left",
+      "reason": "correct",
+      "wall_seconds": 1.0079006250016391
+    }
+  ],
+  "oracle_evidence": {
+    "video_to_source_frame_multiplier": 2,
+    "protected_source_frames": [
+      10,
+      70
+    ],
+    "protected_joint_equality": true,
+    "accent_source_frame": 40,
+    "sum_lateral_wrist_distances_from_pelvis_m": [
+      1.08,
+      0.5981762319553642
+    ],
+    "independent_visual_review": [
+      "source video frame20",
+      "encoded frame20flip",
+      "encoded frame35normal"
+    ]
+  },
+  "baseline_warning": "Always-same scores4/6; always-left1/6. Neither model exceeds its constant answer baseline.",
+  "token_boundary": "Counts are native Ollama reported prompt tokens; separate visual-encoder cost is not provided."
+}

@@ -136,3 +136,8 @@ The operations handoff and direct saved-schema inspection establish MiniMax H3's
 ## H3-oriented RGB reference prepared
 
 `dance-reference-v2.json` verifies a single-actor107frame24fps clip:96motion display samples plus11explicit final-pose hold frames. Installed node preprocessing would trim96to90; it retains107with an output limit of at least107. Lossless encoding preserves the repeated tail exactly. Original motion remains unchanged; linear display resampling introduces measured maximum1.1164mm segment drift. Eleven resampler/motion tests pass. See dance-lab.md for media and failed v1 evidence. This advances preparation only: no live H3 validation, model loading or conditioned generation has run.
+
+
+## Small-model visual verification limit
+
+The local Gemma vision pilot exposes a new boundary: E2B returned same for all6pose comparisons (4/6due to unchanged controls), and E4B returned left for all6(1/6). AllJSONwasvalid. Both pass red/blue image diagnostics, yet free-text pose comparisons still fail when flipped. These models have not qualified as visual acceptance judges. Twenty local calls total, no hosted fees; raw responses and native prompt counts188for main comparisons retained. Details and baseline warnings in dance-lab.md. Use deterministic joint/protection checks for acceptance and treat model visual descriptions as unverified assistance.
