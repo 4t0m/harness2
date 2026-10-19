@@ -23,6 +23,24 @@ class ProviderError(Exception):
     """A safe, credential-free provider error."""
 
 
+class ProviderIncomplete(ProviderError):
+    """A valid response with truncated or absent answer content.
+
+    Raw data is exposed only when the caller requested ``include_raw``.
+    """
+
+    def __init__(self, status: str, finish_reason: str, model: str,
+                 usage: dict[str, int] | None, latency_seconds: float,
+                 raw_response: dict[str, Any] | None):
+        super().__init__(f"provider {status}")
+        self.status = status
+        self.finish_reason = finish_reason
+        self.model = model
+        self.usage = usage
+        self.latency_seconds = latency_seconds
+        self.raw_response = raw_response
+
+
 @dataclass(frozen=True)
 class ChatResult:
     content: str
@@ -80,15 +98,16 @@ def _parse_response(data: bytes, *, include_raw: bool, latency: float) -> ChatRe
         raise ProviderError("malformed provider response") from None
     if not isinstance(value, dict):
         raise ProviderError("malformed provider response")
+    if "error" in value:
+        raise ProviderError("provider error response")
     choices = value.get("choices")
     if not isinstance(choices, list) or len(choices) != 1 or not isinstance(choices[0], dict):
         raise ProviderError("malformed provider response")
     choice = choices[0]
     message = choice.get("message")
-    content = message.get("content") if isinstance(message, dict) else None
     finish_reason = choice.get("finish_reason")
     model = value.get("model")
-    if (not isinstance(content, str) or not isinstance(finish_reason, str)
+    if (not isinstance(message, dict) or not isinstance(finish_reason, str)
             or not finish_reason or not isinstance(model, str) or not model):
         raise ProviderError("malformed provider response")
     usage = value.get("usage")
@@ -99,6 +118,13 @@ def _parse_response(data: bytes, *, include_raw: bool, latency: float) -> ChatRe
         ):
             raise ProviderError("malformed provider response")
         usage = {k: usage[k] for k in ("prompt_tokens", "completion_tokens", "total_tokens")}
+    content = message.get("content")
+    if content is not None and not isinstance(content, str):
+        raise ProviderError("malformed provider response")
+    if finish_reason == "length" or not content:
+        status = "truncated completion" if finish_reason == "length" else "missing content"
+        raise ProviderIncomplete(status, finish_reason, model, usage, latency,
+                                 value if include_raw else None)
     return ChatResult(content, finish_reason, usage, latency, model, value if include_raw else None)
 
 

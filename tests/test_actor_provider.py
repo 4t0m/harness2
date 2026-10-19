@@ -4,7 +4,9 @@ import json
 import unittest
 from unittest.mock import patch
 
-from harness2.actor_provider import MAX_RESPONSE_BYTES, ProviderError, _NoRedirect, chat_completion
+from harness2.actor_provider import (
+    MAX_RESPONSE_BYTES, ProviderError, ProviderIncomplete, _NoRedirect, chat_completion,
+)
 
 
 def response(**changes):
@@ -90,6 +92,45 @@ class ActorProviderTest(unittest.TestCase):
                                 user="u", api_key="caller-secret", transport=transport)
             self.assertIn(expected, str(caught.exception))
             self.assertNotIn("caller-secret", str(caught.exception))
+
+    def test_reasoning_only_length_is_incomplete_with_opt_in_raw(self):
+        body = response(choices=[{"message": {"role": "assistant", "content": None,
+                                                "reasoning": "private reasoning"},
+                                  "finish_reason": "length"}],
+                        usage={"prompt_tokens": 110, "completion_tokens": 512,
+                               "total_tokens": 622})
+        with self.assertRaises(ProviderIncomplete) as caught:
+            chat_completion(base_url="https://provider.example/v1", model="m", system="s",
+                            user="u", include_raw=True, transport=lambda *_: body)
+        exc = caught.exception
+        self.assertEqual(exc.status, "truncated completion")
+        self.assertEqual(exc.finish_reason, "length")
+        self.assertEqual(exc.model, "served-model")
+        self.assertEqual(exc.usage["completion_tokens"], 512)
+        self.assertEqual(exc.raw_response["choices"][0]["message"]["content"], None)
+        self.assertNotIn("private reasoning", str(exc))
+
+    def test_partial_length_and_missing_content_are_not_success(self):
+        for content, finish, status in (("partial JSON", "length", "truncated completion"),
+                                        (None, "stop", "missing content"),
+                                        ("", "stop", "missing content")):
+            body = response(choices=[{"message": {"role": "assistant", "content": content},
+                                      "finish_reason": finish}])
+            with self.subTest(content=content, finish=finish), self.assertRaises(
+                ProviderIncomplete
+            ) as caught:
+                chat_completion(base_url="https://provider.example/v1", model="m", system="s",
+                                user="u", transport=lambda *_: body)
+            self.assertEqual(caught.exception.status, status)
+            self.assertIsNone(caught.exception.raw_response)
+
+    def test_provider_error_envelope_is_distinct_and_redacted(self):
+        body = b'{"error":{"message":"caller-secret refused"}}'
+        with self.assertRaises(ProviderError) as caught:
+            chat_completion(base_url="https://provider.example/v1", model="m", system="s",
+                            user="u", api_key="caller-secret", transport=lambda *_: body)
+        self.assertNotIsInstance(caught.exception, ProviderIncomplete)
+        self.assertEqual(str(caught.exception), "provider error response")
 
     def test_url_and_limits_reject_unsafe_requests_before_transport(self):
         bad_urls = ["http://provider.example/v1", "https://user:pass@provider.example/v1",

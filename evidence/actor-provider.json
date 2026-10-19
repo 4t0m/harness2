@@ -1,5 +1,5 @@
 {
-  "kind": "offline_transport_contract_check",
+  "kind": "transport_contract_check_and_bounded_live_diagnostic",
   "scope": "single OpenAI-compatible chat-completions request",
   "implementation": "harness2/actor_provider.py",
   "test_module": "tests.test_actor_provider",
@@ -15,14 +15,47 @@
     "validated content, finish reason, usage, returned model and latency",
     "raw response opt-in only",
     "malformed, duplicate-key, nonfinite and oversized responses rejected",
+    "reasoning-only and partial length responses classified as incomplete",
+    "null or empty answer content classified as missing content",
+    "provider error envelope classified separately without echoing detail",
     "timeout and transport errors redact exception detail",
     "unsafe URLs and redirects refused"
   ],
+  "live_diagnostic": {
+    "date": "2026-10-18",
+    "route": "https://openrouter.ai/api/v1",
+    "requested_model": "qwen/qwen3.5-9b",
+    "request_count": 2,
+    "max_output_tokens_each": 512,
+    "socket_timeout_seconds": 25,
+    "outer_alarm_seconds": 90,
+    "raw_response_paths": [
+      "runs/openrouter-smoke/diagnostic-qwen-1.json",
+      "runs/openrouter-smoke/diagnostic-qwen-2.json"
+    ],
+    "first": {
+      "parser_outcome": "success",
+      "finish_reason": "stop",
+      "content_type": "string",
+      "completion_tokens": 455,
+      "reasoning_tokens": 376
+    },
+    "second": {
+      "parser_outcome_before_fix": "malformed provider response",
+      "parser_outcome_after_fix": "truncated completion",
+      "finish_reason": "length",
+      "content_type": "null",
+      "completion_tokens": 512,
+      "reasoning_tokens": 512
+    },
+    "reported_cost_usd_total": 0.00016705,
+    "original_failed_response_retained": false
+  },
   "claims": {
     "local_tests_passed": true,
-    "paid_inference_performed": false,
-    "live_endpoint_compatibility_verified": false,
-    "model_trial": false,
+    "paid_inference_performed": true,
+    "live_endpoint_compatibility_verified": "partial for this route and synthetic request",
+    "comparative_model_trial": false,
     "actor_quality_evaluated": false
   }
 }
