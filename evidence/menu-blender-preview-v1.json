@@ -1,0 +1,201 @@
+{
+  "scope": "model-selected procedural Blender gesture; not dance or H3 generation",
+  "request": {
+    "brief": "Greet an arriving viewer with a visible hand wave. Keep a fixed front camera.",
+    "legal_options": [
+      {
+        "choice_id": "option_0",
+        "operation": "dispatch",
+        "description": "Nod the head in acknowledgment."
+      },
+      {
+        "choice_id": "option_1",
+        "operation": "dispatch",
+        "description": "Raise and wave a hand to greet the viewer."
+      },
+      {
+        "choice_id": "option_2",
+        "operation": "dispatch",
+        "description": "Point outward toward something beside the character."
+      }
+    ],
+    "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+  },
+  "external_generation_service": false,
+  "content": "```json\n{\"choice_id\": \"option_1\"}\n```",
+  "usage": {
+    "prompt_tokens": 173,
+    "completion_tokens": 16,
+    "total_tokens": 189
+  },
+  "latency_seconds": 0.7909690419910476,
+  "cost": 2.053e-05,
+  "strict_valid": false,
+  "format_repaired": true,
+  "accepted": true,
+  "selected_action": "wave",
+  "render_status": "completed",
+  "output_dir": "runs/harness2-menu-preview-v1",
+  "artifact_hashes": {
+    "avatar.blend": "85975be49a7fd4c7079501cdce94a27f271b4ccb7d9c71063911e35828da58c4",
+    "scene-report.json": "87cb886bbe632c0853912ece4246ddb08e4a575a2442e80416b592a274c0658b",
+    "frame_001.png": "9f32c19c0d40c21e53f631acc53b8cf128d87204bbca79a28a43acccd8f1be79",
+    "frame_024.png": "dd80dff7ee7e874a49bf50879ca113690407b3c26a4443aef26a736fc1de668b",
+    "frame_048.png": "d17e5efedc666a0f246eeb32e593207dfec7bc26cba63dbe7ed76308b8740d0c"
+  },
+  "decoded_images": [
+    {
+      "name": "frame_001.png",
+      "size": [
+        640,
+        640
+      ],
+      "extrema": [
+        [
+          0,
+          225
+        ],
+        [
+          30,
+          224
+        ],
+        [
+          36,
+          225
+        ]
+      ]
+    },
+    {
+      "name": "frame_024.png",
+      "size": [
+        640,
+        640
+      ],
+      "extrema": [
+        [
+          0,
+          225
+        ],
+        [
+          30,
+          224
+        ],
+        [
+          36,
+          225
+        ]
+      ]
+    },
+    {
+      "name": "frame_048.png",
+      "size": [
+        640,
+        640
+      ],
+      "extrema": [
+        [
+          0,
+          225
+        ],
+        [
+          30,
+          224
+        ],
+        [
+          36,
+          225
+        ]
+      ]
+    }
+  ],
+  "evaluated_transforms": {
+    "1": {
+      "head_pivot": {
+        "location": [
+          0.0,
+          0.0,
+          2.26
+        ],
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "right_shoulder": {
+        "location": [
+          -0.78,
+          0.0,
+          1.99
+        ],
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      }
+    },
+    "24": {
+      "head_pivot": {
+        "location": [
+          0.0,
+          0.0,
+          2.26
+        ],
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "right_shoulder": {
+        "location": [
+          -0.78,
+          0.0,
+          1.99
+        ],
+        "rotation_euler": [
+          -0.0,
+          2.72,
+          -0.18
+        ]
+      }
+    },
+    "48": {
+      "head_pivot": {
+        "location": [
+          0.0,
+          0.0,
+          2.26
+        ],
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "right_shoulder": {
+        "location": [
+          -0.78,
+          0.0,
+          1.99
+        ],
+        "rotation_euler": [
+          -0.0,
+          2.65,
+          -0.18
+        ]
+      }
+    }
+  },
+  "gesture_matches_brief": true,
+  "visual_review": {
+    "frames_inspected": [
+      1,
+      24
+    ],
+    "finding": "Arm lowered at frame 1 and raised beside head at frame 24; avatar fully visible with consistent front framing.",
+    "limits": "Still inspection does not establish smooth waving motion, physical plausibility, or artistic quality."
+  },
+  "verified": true
+}
