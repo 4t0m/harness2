@@ -47,3 +47,7 @@ Three-beat scene score: CPU contract tests plus one live Gemma proposal accepted
 Model exploration now distinguishes compact reaction selection, slower scene direction and creative production management. See model-task-portfolio.md. User particularly wants long-context MoE vs rolling-context Gemma behavior; exact second checkpoint still needs identification. Qwen3.8-27B dense and Qwen3.6-35B-A3B MoE are current comparison candidates, not renamed earlier Qwen3.5 results.
 
 RunPod owner supplied historical setup guidance only: no verified LLM endpoint/template and no transferable Elysium spending envelope. No pod created. Remain on cheap OpenRouter until a deployment trial has a current quote and explicit inclusive cap.
+
+Renamed/reordered heldouts: six further live Gemma 26B fixed-harness proposals accepted, including opposite-side distractors and a Euclidean-distance case. Evidence: actor-holdout-gemma.json; independent CPU distance check validates frozen expected targets. No avatar execution and no adaptation benefit claimed. Browser baseline remains rendered; live bridge test still pending.
+
+User clarified rolling context referred to transcription audio windows. Google's audio guide documents 30-second audio clips for E2B/E4B/12B, separate from total token context; 26B/31B do not natively take audio. This makes audio chunking a better explanation than the earlier speculative RecurrentGemma identification. Exact earlier transcription checkpoint is unverified. Source: https://ai.google.dev/gemma/docs/capabilities/audio

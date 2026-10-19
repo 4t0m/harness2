@@ -1,0 +1,179 @@
+{
+  "scope": "fixed-harness heldout selection; no adaptation or execution",
+  "trials": [
+    {
+      "case": 0,
+      "runtime_executed": false,
+      "model": "google/gemma-4-26b-a4b-it",
+      "content": "{\"scene_revision\": \"heldout-0\", \"actor_id\": \"amber\", \"target_id\": \"near\", \"action\": \"look_at\"}",
+      "usage": {
+        "prompt_tokens": 262,
+        "completion_tokens": 36,
+        "total_tokens": 298
+      },
+      "latency_seconds": 0.9157529580406845,
+      "cost": 2.76e-05,
+      "verdict": {
+        "accepted": true,
+        "reason": null,
+        "plan": {
+          "action": "look_at",
+          "actor_id": "amber",
+          "target_id": "near",
+          "scene_revision": "heldout-0",
+          "execution": "planning_only",
+          "screen_gaze": "screen_right",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_left",
+          "runtime_status": "supported",
+          "adapter_control": "look_right"
+        }
+      }
+    },
+    {
+      "case": 1,
+      "runtime_executed": false,
+      "model": "google/gemma-4-26b-a4b-it",
+      "content": "{\"scene_revision\": \"heldout-1\", \"actor_id\": \"teal\", \"target_id\": \"near\", \"action\": \"look_at\"}",
+      "usage": {
+        "prompt_tokens": 262,
+        "completion_tokens": 36,
+        "total_tokens": 298
+      },
+      "latency_seconds": 1.214050583075732,
+      "cost": 2.76e-05,
+      "verdict": {
+        "accepted": true,
+        "reason": null,
+        "plan": {
+          "action": "look_at",
+          "actor_id": "teal",
+          "target_id": "near",
+          "scene_revision": "heldout-1",
+          "execution": "planning_only",
+          "screen_gaze": "screen_left",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_right",
+          "runtime_status": "unsupported",
+          "adapter_control": null
+        }
+      }
+    },
+    {
+      "case": 2,
+      "runtime_executed": false,
+      "model": "google/gemma-4-26b-a4b-it",
+      "content": "{\"scene_revision\": \"heldout-2\", \"actor_id\": \"u7\", \"target_id\": \"z4\", \"action\": \"look_at\"}",
+      "usage": {
+        "prompt_tokens": 269,
+        "completion_tokens": 38,
+        "total_tokens": 307
+      },
+      "latency_seconds": 1.110391000052914,
+      "cost": 5.017e-05,
+      "verdict": {
+        "accepted": true,
+        "reason": null,
+        "plan": {
+          "action": "look_at",
+          "actor_id": "u7",
+          "target_id": "z4",
+          "scene_revision": "heldout-2",
+          "execution": "planning_only",
+          "screen_gaze": "screen_right",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_left",
+          "runtime_status": "supported",
+          "adapter_control": "look_right"
+        }
+      }
+    },
+    {
+      "case": 3,
+      "runtime_executed": false,
+      "model": "google/gemma-4-26b-a4b-it",
+      "content": "{\"scene_revision\": \"heldout-3\", \"actor_id\": \"u7\", \"target_id\": \"z4\", \"action\": \"look_at\"}",
+      "usage": {
+        "prompt_tokens": 269,
+        "completion_tokens": 38,
+        "total_tokens": 307
+      },
+      "latency_seconds": 2.0192873330088332,
+      "cost": 5.017e-05,
+      "verdict": {
+        "accepted": true,
+        "reason": null,
+        "plan": {
+          "action": "look_at",
+          "actor_id": "u7",
+          "target_id": "z4",
+          "scene_revision": "heldout-3",
+          "execution": "planning_only",
+          "screen_gaze": "screen_right",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_left",
+          "runtime_status": "supported",
+          "adapter_control": "look_right"
+        }
+      }
+    },
+    {
+      "case": 4,
+      "runtime_executed": false,
+      "model": "google/gemma-4-26b-a4b-it",
+      "content": "{\"scene_revision\": \"heldout-4\", \"actor_id\": \"nova\", \"target_id\": \"west\", \"action\": \"look_at\"}",
+      "usage": {
+        "prompt_tokens": 264,
+        "completion_tokens": 36,
+        "total_tokens": 300
+      },
+      "latency_seconds": 0.7449369590030983,
+      "cost": 3.492e-05,
+      "verdict": {
+        "accepted": true,
+        "reason": null,
+        "plan": {
+          "action": "look_at",
+          "actor_id": "nova",
+          "target_id": "west",
+          "scene_revision": "heldout-4",
+          "execution": "planning_only",
+          "screen_gaze": "screen_left",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_right",
+          "runtime_status": "unsupported",
+          "adapter_control": null
+        }
+      }
+    },
+    {
+      "case": 5,
+      "runtime_executed": false,
+      "model": "google/gemma-4-26b-a4b-it",
+      "content": "{\"scene_revision\": \"heldout-5\", \"actor_id\": \"lark\", \"target_id\": \"level\", \"action\": \"look_at\"}",
+      "usage": {
+        "prompt_tokens": 263,
+        "completion_tokens": 37,
+        "total_tokens": 300
+      },
+      "latency_seconds": 1.0455047499854118,
+      "cost": 3.74e-05,
+      "verdict": {
+        "accepted": true,
+        "reason": null,
+        "plan": {
+          "action": "look_at",
+          "actor_id": "lark",
+          "target_id": "level",
+          "scene_revision": "heldout-5",
+          "execution": "planning_only",
+          "screen_gaze": "screen_right",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_left",
+          "runtime_status": "supported",
+          "adapter_control": "look_right"
+        }
+      }
+    }
+  ]
+}
