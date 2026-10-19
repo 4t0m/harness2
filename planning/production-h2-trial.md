@@ -19,3 +19,13 @@ Runner prepared: experiments/production_h2_probe.py. Global hard cap 24 provider
 Combination evaluation: fixed first pass 1/4; fixed with one correction 1/4; the condition labelled adapted 2/4. **The last condition used unchanged guidance and is a repeat, not an adaptation gain.** In particular, exact retry-cap feedback did not help failures involving useful alternative work or retry ancestry because those cases received generic feedback. Do not generalize the prior 4/4 near-transfer result to these combinations.
 
 A syntax-only offline follow-up confirmed all three editor proposals become valid after exact-single-fence removal and a host-added final newline. Parser updated and tested; no fresh provider loop yet. Preserved both failed fence-only replay and successful canonical-format replay. Future trials must retain the changed-guidance flag and editor receipts before interpreting any solver differences.
+
+## Fresh canonical-format run (v2)
+
+Primary receipt: evidence/production-h2-gemma-v2.json. All three editor proposals accepted; guidance_changed=true. Actual model solver and editor ran through run_domain. Development base failed, domain/invariant variants failed, composed candidate passed. The composed guidance largely restates existing rules; it does not introduce a new action-checking procedure.
+
+On the same frozen combination suite: fixed first pass 1/4; fixed plus one correction 2/4; adapted first pass 1/4. Adapted fixed the alternative-work case but regressed the approval/block case. Therefore no observed aggregate gain. These cases remain excluded from the editor, but after v1/v2 analysis they are a reused evaluation suite, not new untouched tests for future interventions. Do not tune to them and then call them held out.
+
+18 calls; 18,890 input tokens, 707 output tokens, provider-reported $0.001953208. No external production jobs. Scripted k=1 selection and NO_ENTRY experience remain limitations. The development pass cannot be treated as evidence of cross-case improvement.
+
+Next decision: stop repeating this single-development-case setup. Compare richer development coverage or a host-derived action menu. An action menu is a different task contract: trusted code enumerates legal actions and the model chooses using creative priorities, deadlines or expected value. It must not be marketed as learned constraint reasoning or as a fair accuracy gain over the raw-ledger task. It may be the more useful actual production architecture for small/local models. Keep host execution checks after selection and recheck state revision before dispatch.

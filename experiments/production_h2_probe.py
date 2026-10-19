@@ -1,4 +1,5 @@
 """Small live Harness² production trial with evaluation isolated from editor."""
+import argparse
 import json
 import os
 from pathlib import Path
@@ -11,8 +12,13 @@ from experiments.production_holdouts import fixtures, PUBLIC_RULE
 
 
 def main():
-    root = Path('runs/production-h2-gemma-v1')
-    output = Path('evidence/production-h2-gemma-v1.json')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--name', default='production-h2-gemma-v1')
+    args = parser.parse_args()
+    if not args.name.replace('-', '').isalnum():
+        raise SystemExit('invalid run name')
+    root = Path('runs') / args.name
+    output = Path('evidence') / (args.name + '.json')
     if root.exists() or output.exists():
         raise SystemExit('refusing to overwrite prior run')
     root.mkdir(parents=True)
