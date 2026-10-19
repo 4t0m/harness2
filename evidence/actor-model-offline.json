@@ -1,0 +1,288 @@
+{
+  "scope": "Offline mock chat-completions solver and scripted Harness2 improver; no API call or model learning",
+  "provider": "injectable mock",
+  "max_attempts": 2,
+  "cases": {
+    "first_pass": {
+      "verdict": {
+        "status": "first_pass",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999993,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.41999999999999993,
+            "y": 0.5
+          }
+        },
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"aya\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.01,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999993,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.41999999999999993,
+              "y": 0.5
+            }
+          }
+        }
+      ]
+    },
+    "recovered": {
+      "verdict": {
+        "status": "recovered",
+        "valid": true,
+        "reason": null,
+        "plan": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999993,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.41999999999999993,
+            "y": 0.5
+          }
+        },
+        "attempts": 2
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"unknown\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.01,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": false,
+            "reason": "actor: scene or requested action changed"
+          }
+        },
+        {
+          "attempt": 2,
+          "raw_content": "{\"actor\": {\"id\": \"aya\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.01,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999993,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.41999999999999993,
+              "y": 0.5
+            }
+          }
+        }
+      ]
+    },
+    "repeat_invalid": {
+      "verdict": {
+        "status": "repeat_invalid",
+        "valid": false,
+        "reason": "actor: scene or requested action changed",
+        "plan": null,
+        "attempts": 2
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"unknown\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.01,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": false,
+            "reason": "actor: scene or requested action changed"
+          }
+        },
+        {
+          "attempt": 2,
+          "raw_content": "{\"actor\": {\"id\": \"unknown\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.01,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": false,
+            "reason": "actor: scene or requested action changed"
+          }
+        }
+      ]
+    },
+    "exhausted": {
+      "verdict": {
+        "status": "exhausted",
+        "valid": false,
+        "reason": "proposal fields differ from task contract",
+        "plan": null,
+        "attempts": 2
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "raw_content": "{\"actor\": {\"id\": \"unknown\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.01,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": false,
+            "reason": "actor: scene or requested action changed"
+          }
+        },
+        {
+          "attempt": 2,
+          "raw_content": "{\"bad\": \"schema\"}",
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.01,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": false,
+            "reason": "proposal fields differ from task contract"
+          }
+        }
+      ]
+    },
+    "truncated": {
+      "verdict": {
+        "status": "truncated",
+        "valid": false,
+        "reason": "provider truncated completion",
+        "plan": null,
+        "attempts": 1
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "provider_incomplete": "truncated completion",
+          "finish_reason": "length",
+          "usage": {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30
+          },
+          "latency_seconds": 0.02,
+          "served_model": "mock-model",
+          "host_verdict": {
+            "valid": false,
+            "reason": "provider truncated completion"
+          }
+        }
+      ]
+    }
+  },
+  "run_domain": {
+    "done": 2,
+    "failed": 0,
+    "tasks": [
+      {
+        "task": "left-mirror",
+        "base": {
+          "status": "exhausted",
+          "valid": false,
+          "reason": "stop_gap: scene or requested action changed",
+          "plan": null,
+          "attempts": 1
+        },
+        "chosen": {
+          "status": "first_pass",
+          "valid": true,
+          "reason": null,
+          "plan": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999993,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_left",
+            "adapter_control": null,
+            "final_position": {
+              "x": 0.41999999999999993,
+              "y": 0.5
+            }
+          },
+          "attempts": 1
+        },
+        "chosen_label": "c1"
+      },
+      {
+        "task": "right-mirror",
+        "base": {
+          "status": "exhausted",
+          "valid": false,
+          "reason": "stop_gap: scene or requested action changed",
+          "plan": null,
+          "attempts": 1
+        },
+        "chosen": {
+          "status": "first_pass",
+          "valid": true,
+          "reason": null,
+          "plan": {
+            "valid": true,
+            "edge_gap_final": 0.11999999999999998,
+            "travel_distance": 0.3800000000000001,
+            "gaze": "screen_right",
+            "adapter_control": "look_right",
+            "final_position": {
+              "x": 0.5800000000000001,
+              "y": 0.5
+            }
+          },
+          "attempts": 1
+        },
+        "chosen_label": "c1"
+      }
+    ],
+    "editor_calls": 8,
+    "execution_count": 8
+  }
+}
