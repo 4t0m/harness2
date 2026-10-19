@@ -1,0 +1,50 @@
+{
+  "scope": "offline replay, no model retry; heldout results not supplied to editor",
+  "rows": [
+    {
+      "label": "c1.a1",
+      "format_repaired": true,
+      "guidance": "Plan a target-relative actor approach from the scene snapshot.\ncoordinate_policy: round_to_tenth\nclearance_policy: default_gap\nReturn a JSON proposal; the host computes geometry and validates it.\n",
+      "verdicts": {
+        "left-mirror": {
+          "valid": false,
+          "reason": "stop_gap: scene or requested action changed"
+        },
+        "heldout-diagonal": {
+          "valid": false,
+          "reason": "actor: scene or requested action changed"
+        }
+      }
+    },
+    {
+      "label": "dom1.a1",
+      "format_repaired": true,
+      "guidance": "Plan a target-relative actor approach from the scene snapshot.\ncoordinate_policy: round_to_tenth\nclearance_policy: default_gap\nReturn a JSON proposal; the host computes geometry and validates it.\n",
+      "verdicts": {
+        "left-mirror": {
+          "valid": false,
+          "reason": "stop_gap: scene or requested action changed"
+        },
+        "heldout-diagonal": {
+          "valid": false,
+          "reason": "actor: scene or requested action changed"
+        }
+      }
+    },
+    {
+      "label": "inv1.a1",
+      "format_repaired": true,
+      "guidance": "Plan a target-relative actor approach from the scene snapshot.\ncoordinate_policy: round_to_tenth\nclearance_policy: default_gap\nReturn a JSON proposal; the host computes geometry and validates it.\n",
+      "verdicts": {
+        "left-mirror": {
+          "valid": false,
+          "reason": "stop_gap: scene or requested action changed"
+        },
+        "heldout-diagonal": {
+          "valid": false,
+          "reason": "actor: scene or requested action changed"
+        }
+      }
+    }
+  ]
+}

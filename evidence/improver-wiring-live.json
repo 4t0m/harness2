@@ -1,0 +1,163 @@
+{
+  "scope": "live model guidance edits within actual Harness2; scripted solver; deliberately planted policy fault",
+  "limits": [
+    "Four possible policy combinations only",
+    "Scripted selection and NO_ENTRY memory",
+    "Not evidence of real solver improvement or general creative quality"
+  ],
+  "heldout_used_for_editing": false,
+  "run_domain": {
+    "domain": "actor-planning",
+    "n_tasks": 1,
+    "seed": null,
+    "done": 1,
+    "failed": 0,
+    "tasks": [
+      {
+        "task": "left-mirror",
+        "status": "ok",
+        "library_entries_before": {
+          "seq": 0
+        }
+      }
+    ]
+  },
+  "selection": {
+    "ok": true,
+    "chosen_label": "c1"
+  },
+  "selected_guidance": "Plan a target-relative actor approach from the scene snapshot.\ncoordinate_policy: round_to_tenth\nclearance_policy: default_gap\nReturn a JSON proposal; the host computes geometry and validates it.\n",
+  "heldout": {
+    "base": {
+      "valid": false,
+      "reason": "actor: scene or requested action changed"
+    },
+    "adapted": {
+      "valid": false,
+      "reason": "actor: scene or requested action changed"
+    }
+  },
+  "provider_calls": 3,
+  "editor_receipts": [
+    {
+      "label": "experience.seq1",
+      "mode": "scripted_experience",
+      "provider_called": false
+    },
+    {
+      "label": "c1.a1",
+      "mode": "model_guidance",
+      "provider_called": true,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md",
+        "decisions/dom1.md",
+        "decisions/inv1.md"
+      ],
+      "context_sha256": "e4634f83f9e9782fe8687855b654e5d1ce2750ca1a73d1cfd2a256c20ebf0474",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 400,
+        "completion_tokens": 63,
+        "total_tokens": 463
+      },
+      "latency_seconds": 0.8972102910047397,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "response_content": "```json\n{\n  \"systemprompt\": \"Plan a target-relative actor approach from the scene snapshot.\\ncoordinate_policy: round_to_tenth\\nclearance_policy: default_gap\\nReturn a JSON proposal; the host computes geometry and validates it.\"\n}\n```",
+      "cost_usd": 3.066e-05,
+      "cost_known": true,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "label": "dom1.a1",
+      "mode": "model_guidance",
+      "provider_called": true,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md"
+      ],
+      "context_sha256": "dd1319eb54897d2ea27c396d6348e82f438022784e897974ba4ac6a2549e5cc8",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 354,
+        "completion_tokens": 63,
+        "total_tokens": 417
+      },
+      "latency_seconds": 1.4451772079337388,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "response_content": "```json\n{\n  \"systemprompt\": \"Plan a target-relative actor approach from the scene snapshot.\\ncoordinate_policy: round_to_tenth\\nclearance_policy: default_gap\\nReturn a JSON proposal; the host computes geometry and validates it.\"\n}\n```",
+      "cost_usd": 2.8728e-05,
+      "cost_known": true,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "label": "inv1.a1",
+      "mode": "model_guidance",
+      "provider_called": true,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md"
+      ],
+      "context_sha256": "dd1319eb54897d2ea27c396d6348e82f438022784e897974ba4ac6a2549e5cc8",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 355,
+        "completion_tokens": 63,
+        "total_tokens": 418
+      },
+      "latency_seconds": 1.329473709105514,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "response_content": "```json\n{\n  \"systemprompt\": \"Plan a target-relative actor approach from the scene snapshot.\\ncoordinate_policy: round_to_tenth\\nclearance_policy: default_gap\\nReturn a JSON proposal; the host computes geometry and validates it.\"\n}\n```",
+      "cost_usd": 4.209e-05,
+      "cost_known": true,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ],
+  "solver_verdicts": [
+    {
+      "run": "actor_demo-oc-agg1/left-mirror/base1",
+      "verdict": {
+        "valid": false,
+        "reason": "stop_gap: scene or requested action changed"
+      }
+    },
+    {
+      "run": "actor_demo-oc-seq1/left-mirror/c1",
+      "verdict": {
+        "valid": false,
+        "reason": "stop_gap: scene or requested action changed"
+      }
+    },
+    {
+      "run": "actor_demo-oc-seq1/left-mirror/dom1",
+      "verdict": {
+        "valid": false,
+        "reason": "stop_gap: scene or requested action changed"
+      }
+    },
+    {
+      "run": "actor_demo-oc-seq1/left-mirror/inv1",
+      "verdict": {
+        "valid": false,
+        "reason": "stop_gap: scene or requested action changed"
+      }
+    },
+    {
+      "run": "heldout-adapted",
+      "verdict": {
+        "valid": false,
+        "reason": "actor: scene or requested action changed"
+      }
+    },
+    {
+      "run": "heldout-base",
+      "verdict": {
+        "valid": false,
+        "reason": "actor: scene or requested action changed"
+      }
+    }
+  ]
+}
