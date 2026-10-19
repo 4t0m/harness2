@@ -1,0 +1,66 @@
+{
+  "scope": "static saved-schema and source wiring checks; not live validation or submission",
+  "checks": {
+    "new_ids_unused": true,
+    "loader_output_video": true,
+    "converter_input_video": true,
+    "converter_output_image": true,
+    "ref_template_image": true,
+    "ref_prefix": true,
+    "existing_ref_image_size_match": true
+  },
+  "sources": {
+    "/Users/adom/ComfyUI-h3/comfy_extras/nodes_video.py": "42fe90dee5731374754299244c6fea979fb99afd10e43ed1fb5c0dc1b5e0e15d",
+    "/Users/adom/ComfyUI-h3/comfy_extras/nodes_minimax_h3.py": "0570b1cbf3dce6177e4fbfc712332bb3bac36b2189146b4c2142af97fda09d3c",
+    "/Users/adom/ComfyUI-h3/comfy_api/latest/_io.py": "495aefa059aad4eed4181aa7fbb415679d3f269651e9fc6f542bdac1b99dd40f",
+    "/Users/adom/ComfyUI-h3-setup/object_info.json": "1560f2a8b9c59be36f0f00ceb50c0afb9da61023e3c962d02229e46a5de85c2e",
+    "/Users/adom/ComfyUI-h3-setup/demo_api.json": "cebf4c0779275fd2379c4d4f095b5055bb6fc87f8a3728c9e9070558dd1609b9"
+  },
+  "selected_nodes": {
+    "LoadVideo": {
+      "input": {
+        "required": {
+          "file": [
+            "COMBO",
+            {
+              "multiselect": false,
+              "options": [],
+              "video_upload": true
+            }
+          ]
+        }
+      },
+      "output": [
+        "VIDEO"
+      ],
+      "python_module": "comfy_extras.nodes_video"
+    },
+    "GetVideoComponents": {
+      "input": {
+        "required": {
+          "video": [
+            "VIDEO",
+            {
+              "tooltip": "The video to extract components from."
+            }
+          ]
+        }
+      },
+      "output": [
+        "IMAGE",
+        "AUDIO",
+        "FLOAT",
+        "COMBO",
+        "COMBO"
+      ],
+      "python_module": "comfy_extras.nodes_video"
+    }
+  },
+  "unverified": [
+    "upload filename exists on server",
+    "current runtime schema",
+    "complete graph validation",
+    "checkpoint reference conditioning",
+    "decoded generated output"
+  ]
+}
