@@ -1,0 +1,32 @@
+{
+  "scope": "replay of accepted Gemma intent through trusted flat-avatar bridge; no new provider call",
+  "trials": [
+    {
+      "source": "receipt.json",
+      "status": "worker_error",
+      "action": "look_right",
+      "hold_seconds": 3,
+      "delivery_confirmed": false,
+      "readback_ok": false,
+      "cleanup_confirmed": false,
+      "error_type": "URLError"
+    },
+    {
+      "source": "receipt-restored.json",
+      "status": "finished",
+      "action": "look_right",
+      "hold_seconds": 3,
+      "delivery_confirmed": true,
+      "readback_ok": true,
+      "cleanup_confirmed": true,
+      "error_type": null
+    }
+  ],
+  "visual_assessment": {
+    "avatar_rendered": true,
+    "action_screenshot_within_hold": true,
+    "requested_gaze_change_independently_confirmed": false,
+    "note": "Action screenshot timestamp 03:48:21 UTC within control03:48:20.558 to cleanup03:48:23.566. Idle movement and small gaze delta prevent a firm visual verdict. Local screenshots retained outside public evidence."
+  },
+  "provider_calls_this_trial": 0
+}
