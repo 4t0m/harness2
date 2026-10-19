@@ -1,0 +1,335 @@
+{
+  "scope": "CPU-only scripted policy and deterministic editor; no model learning or renderer",
+  "harness2_run_domain": {
+    "domain": "actor-planning",
+    "n_tasks": 2,
+    "seed": null,
+    "done": 2,
+    "failed": 0,
+    "tasks": [
+      {
+        "task": "left-mirror",
+        "status": "ok",
+        "library_entries_before": {
+          "seq": 0
+        }
+      },
+      {
+        "task": "right-mirror",
+        "status": "ok",
+        "library_entries_before": {
+          "seq": 0
+        }
+      }
+    ]
+  },
+  "train": [
+    {
+      "task": "left-mirror",
+      "base": {
+        "proposal": {
+          "actor": {
+            "id": "aya",
+            "radius": 0.05,
+            "x": 0.8,
+            "y": 0.5
+          },
+          "context": "guide",
+          "facing": "toward_camera",
+          "intensity": "subtle",
+          "stop_gap": 0.08,
+          "target": {
+            "id": "ren",
+            "radius": 0.05,
+            "x": 0.2,
+            "y": 0.5
+          }
+        },
+        "host_verdict": {
+          "valid": false,
+          "reason": "stop_gap: scene or requested action changed"
+        }
+      },
+      "adapted": {
+        "proposal": {
+          "actor": {
+            "id": "aya",
+            "radius": 0.05,
+            "x": 0.8,
+            "y": 0.5
+          },
+          "context": "guide",
+          "facing": "toward_camera",
+          "intensity": "subtle",
+          "stop_gap": 0.12,
+          "target": {
+            "id": "ren",
+            "radius": 0.05,
+            "x": 0.2,
+            "y": 0.5
+          }
+        },
+        "host_verdict": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999993,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_left",
+          "adapter_control": null,
+          "final_position": {
+            "x": 0.41999999999999993,
+            "y": 0.5
+          }
+        }
+      },
+      "recursion": {
+        "stages": [
+          {
+            "label": "inv1",
+            "dim": "INV",
+            "fell_back": false,
+            "kept_base": false,
+            "attempts": 1,
+            "usd": 0.0,
+            "cached": false,
+            "notes": "Preserve scene coordinates and requested clearance.",
+            "error": ""
+          },
+          {
+            "label": "dom1",
+            "dim": "DOM",
+            "fell_back": false,
+            "kept_base": false,
+            "attempts": 1,
+            "usd": 0.0,
+            "cached": false,
+            "notes": "Preserve scene coordinates and requested clearance.",
+            "error": ""
+          },
+          {
+            "label": "c1",
+            "dim": "COMPOSE",
+            "fell_back": false,
+            "kept_base": false,
+            "attempts": 1,
+            "usd": 0.0,
+            "cached": false,
+            "notes": "Preserve scene coordinates and requested clearance.",
+            "error": ""
+          }
+        ],
+        "ledger": {
+          "mode": "seq",
+          "task_id": "left-mirror",
+          "k": 1,
+          "R": 4,
+          "expected_R": 4,
+          "P": 3,
+          "session_attempts": 3,
+          "expected_P": 3,
+          "usd": 0.0,
+          "rollout_usd": 0.0,
+          "session_usd": 0.0,
+          "rollouts": [
+            "base1",
+            "inv1",
+            "dom1",
+            "c1"
+          ],
+          "sessions": [
+            "inv1",
+            "dom1",
+            "c1"
+          ]
+        },
+        "selection": {
+          "chosen_label": "c1",
+          "ok": true
+        }
+      }
+    },
+    {
+      "task": "right-mirror",
+      "base": {
+        "proposal": {
+          "actor": {
+            "id": "ren",
+            "radius": 0.05,
+            "x": 0.2,
+            "y": 0.5
+          },
+          "context": "guide",
+          "facing": "away_from_camera",
+          "intensity": "subtle",
+          "stop_gap": 0.08,
+          "target": {
+            "id": "aya",
+            "radius": 0.05,
+            "x": 0.8,
+            "y": 0.5
+          }
+        },
+        "host_verdict": {
+          "valid": false,
+          "reason": "stop_gap: scene or requested action changed"
+        }
+      },
+      "adapted": {
+        "proposal": {
+          "actor": {
+            "id": "ren",
+            "radius": 0.05,
+            "x": 0.2,
+            "y": 0.5
+          },
+          "context": "guide",
+          "facing": "away_from_camera",
+          "intensity": "subtle",
+          "stop_gap": 0.12,
+          "target": {
+            "id": "aya",
+            "radius": 0.05,
+            "x": 0.8,
+            "y": 0.5
+          }
+        },
+        "host_verdict": {
+          "valid": true,
+          "edge_gap_final": 0.11999999999999998,
+          "travel_distance": 0.3800000000000001,
+          "gaze": "screen_right",
+          "adapter_control": "look_right",
+          "final_position": {
+            "x": 0.5800000000000001,
+            "y": 0.5
+          }
+        }
+      },
+      "recursion": {
+        "stages": [
+          {
+            "label": "inv1",
+            "dim": "INV",
+            "fell_back": false,
+            "kept_base": false,
+            "attempts": 1,
+            "usd": 0.0,
+            "cached": false,
+            "notes": "Preserve scene coordinates and requested clearance.",
+            "error": ""
+          },
+          {
+            "label": "dom1",
+            "dim": "DOM",
+            "fell_back": false,
+            "kept_base": false,
+            "attempts": 1,
+            "usd": 0.0,
+            "cached": false,
+            "notes": "Preserve scene coordinates and requested clearance.",
+            "error": ""
+          },
+          {
+            "label": "c1",
+            "dim": "COMPOSE",
+            "fell_back": false,
+            "kept_base": false,
+            "attempts": 1,
+            "usd": 0.0,
+            "cached": false,
+            "notes": "Preserve scene coordinates and requested clearance.",
+            "error": ""
+          }
+        ],
+        "ledger": {
+          "mode": "seq",
+          "task_id": "right-mirror",
+          "k": 1,
+          "R": 4,
+          "expected_R": 4,
+          "P": 3,
+          "session_attempts": 3,
+          "expected_P": 3,
+          "usd": 0.0,
+          "rollout_usd": 0.0,
+          "session_usd": 0.0,
+          "rollouts": [
+            "base1",
+            "inv1",
+            "dom1",
+            "c1"
+          ],
+          "sessions": [
+            "inv1",
+            "dom1",
+            "c1"
+          ]
+        },
+        "selection": {
+          "chosen_label": "c1",
+          "ok": true
+        }
+      }
+    }
+  ],
+  "heldout": {
+    "task": "heldout-diagonal",
+    "adaptation_used_this_task": false,
+    "base": {
+      "proposal": {
+        "actor": {
+          "id": "mira",
+          "radius": 0.04,
+          "x": 0.8,
+          "y": 0.3
+        },
+        "context": "greeting",
+        "facing": "toward_camera",
+        "intensity": "normal",
+        "stop_gap": 0.08,
+        "target": {
+          "id": "sora",
+          "radius": 0.06,
+          "x": 0.2,
+          "y": 0.7
+        }
+      },
+      "host_verdict": {
+        "valid": false,
+        "reason": "actor: scene or requested action changed"
+      }
+    },
+    "adapted": {
+      "proposal": {
+        "actor": {
+          "id": "mira",
+          "radius": 0.04,
+          "x": 0.82,
+          "y": 0.28
+        },
+        "context": "greeting",
+        "facing": "toward_camera",
+        "intensity": "normal",
+        "stop_gap": 0.14,
+        "target": {
+          "id": "sora",
+          "radius": 0.06,
+          "x": 0.23,
+          "y": 0.67
+        }
+      },
+      "host_verdict": {
+        "valid": true,
+        "edge_gap_final": 0.13999999999999999,
+        "travel_distance": 0.4672481884034769,
+        "gaze": "screen_left",
+        "adapter_control": null,
+        "final_position": {
+          "x": 0.43021260191509864,
+          "y": 0.5376560767001891
+        }
+      }
+    }
+  },
+  "execution_count": 10,
+  "editor_calls": 8
+}
