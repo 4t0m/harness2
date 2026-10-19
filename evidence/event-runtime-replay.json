@@ -1,0 +1,58 @@
+{
+  "now_ms": 1450,
+  "revision": 5,
+  "pending": [],
+  "active": null,
+  "commands": [
+    {
+      "at_ms": 100,
+      "action": "nod",
+      "request_id": 1
+    },
+    {
+      "at_ms": 140,
+      "action": "neutral",
+      "reason": "interrupted",
+      "cancelled_request": 1
+    },
+    {
+      "at_ms": 450,
+      "action": "listen",
+      "request_id": 4
+    },
+    {
+      "at_ms": 1450,
+      "action": "neutral",
+      "reason": "lease_expired",
+      "cancelled_request": 4
+    }
+  ],
+  "verdicts": [
+    {
+      "request_id": 1,
+      "at_ms": 100,
+      "status": "applied"
+    },
+    {
+      "request_id": 1,
+      "at_ms": 150,
+      "status": "stale_or_duplicate"
+    },
+    {
+      "request_id": 2,
+      "at_ms": 301,
+      "status": "expired"
+    },
+    {
+      "request_id": 3,
+      "at_ms": 420,
+      "status": "stale_or_duplicate"
+    },
+    {
+      "request_id": 4,
+      "at_ms": 450,
+      "status": "applied"
+    }
+  ],
+  "live_execution": false
+}
