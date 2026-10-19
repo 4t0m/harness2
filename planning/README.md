@@ -2,6 +2,10 @@
 
 This fork is our independent planning and experiment workspace for Google Research Harness². The existing Hermes lab continues its integrations and avatar work. Begin here, then read task-candidates.md and experiment-plan.md.
 
+## Current capability status
+
+Read [capability-status.md](capability-status.md) for the verified current state and unfinished milestones. Historical checkpoints below and in active-goal.md are not current deployment guarantees.
+
 ## Established setup
 
 - Upstream: https://github.com/google-research/harness2

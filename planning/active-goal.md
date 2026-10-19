@@ -1,5 +1,7 @@
 # Active sustained exploration
 
+Current verified overview: [capability-status.md](capability-status.md). Checkpoints below are chronological history; later receipts supersede earlier unfinished-status statements.
+
 User authorized continued exploration, multiple experiment rounds, notes in this fork, and eventual RunPod use once prepared. Sol/Luna do most implementation and experiments; Astra is reserved for tasks that benefit from it. Keep independent owners and no-ack-needed coordination.
 
 ## Current work
