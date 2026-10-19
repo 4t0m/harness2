@@ -1,0 +1,98 @@
+{
+  "scope": "model relative intent applied to an existing offline VRM clip",
+  "brief": "Say farewell with a goodbye wave. Stand to the right of the anchor.",
+  "anchor_x": 0.1,
+  "offset": 0.25,
+  "visible_anchor": false,
+  "inference_location": "local Ollama",
+  "content": "{\"gesture\": \"wave_goodbye\", \"side\": \"right\"}",
+  "format_repaired": false,
+  "usage": {
+    "prompt_tokens": 52,
+    "completion_tokens": 15,
+    "total_tokens": 67
+  },
+  "model": "hermes-lab-qwen30:latest",
+  "latency_seconds": 4.734265417093411,
+  "cost": null,
+  "command": {
+    "gesture": "wave_goodbye",
+    "x_position": 0.35
+  },
+  "renderer": {
+    "status": "completed",
+    "output_dir": "/Users/adom/Development/hermes-testing/runs/round6/eidoverse-harness2-local-qwen30-v1",
+    "receipt_path": "/Users/adom/Development/hermes-testing/runs/round6/eidoverse-harness2-local-qwen30-v1/receipt.json",
+    "state_path": "/Users/adom/Development/hermes-testing/runs/round6/eidoverse-harness2-local-qwen30-v1/state.json",
+    "video_path": "/Users/adom/Development/hermes-testing/runs/round6/eidoverse-harness2-local-qwen30-v1/avatar_probe.mp4",
+    "preview_paths": [
+      "/Users/adom/Development/hermes-testing/runs/round6/eidoverse-harness2-local-qwen30-v1/avatar_probe_probe1.png",
+      "/Users/adom/Development/hermes-testing/runs/round6/eidoverse-harness2-local-qwen30-v1/avatar_probe_probe2.png",
+      "/Users/adom/Development/hermes-testing/runs/round6/eidoverse-harness2-local-qwen30-v1/avatar_probe_probe3.png"
+    ]
+  },
+  "receipt": {
+    "status": "completed",
+    "scope": "offline 12-frame VRM render; no live session or speech",
+    "source_commit": "9acc1528b2febac11338107645ef500a95985ca5",
+    "command": {
+      "gesture": "wave_goodbye",
+      "position": [
+        0.35,
+        0,
+        0
+      ]
+    },
+    "state": {
+      "accepted": {
+        "gesture": "wave_goodbye",
+        "position": [
+          0.35,
+          0,
+          0
+        ]
+      },
+      "frameIndex": 11,
+      "timeSeconds": 0.7333333333333333,
+      "rootPosition": [
+        0.35,
+        0,
+        0
+      ],
+      "initialRightUpperArm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "rightUpperArm": [
+        -0.5618763554658559,
+        0.06390868331923062,
+        0.15852488179118995,
+        0.8093704363379592
+      ]
+    },
+    "video": {
+      "width": 640,
+      "height": 360,
+      "frames": 12
+    },
+    "arm_quaternion_dot_abs": 0.8093704363379592,
+    "hardware": "Apple M2 Max WebGPU",
+    "files_sha256": {
+      "command.json": "1d36c936056062479b3734967abdfc25d3122d7ad477109e11fbeb357fe8e5b5",
+      "scene.js": "c53c6b65c23a90ba0011d9f130b45a0d490fc11d0a838b0b38f5643edfbdbb65",
+      "scene.json": "9f5178f01c3f2c84efee398690f06f2c42134137e32336af087ec653c6de3a8e",
+      "state.json": "bd8e57cb4fa952aed36950be32f2d0acb36ec57a635379035455b969e4291054",
+      "avatar_probe.mp4": "4dea698e1e3ad85177d4133dcc2811f3fdeedc4e0e0fd71292d59c9409089123",
+      "avatar_probe_probe1.png": "c572219a5572d0fb91bda98d22ce62cbb2dd09950562371c31c2510bcaff94d3",
+      "avatar_probe_probe2.png": "85d3bd4312ddf6bcfd58feaf5c5a50ae9dbeeae4a239a2198d442f2bb99db065",
+      "avatar_probe_probe3.png": "d9a4029cd2482571ba70c839635d956a369066fdbcb7877fa7a90dd0f9619b94",
+      "avatar_probe.audit.json": "b9f5bd230fab6aec6cc90212b99f27203b70e62f773d91ed70376209302d1971",
+      "avatar_probe.audit.txt": "4847150879c1a3b059484156d14435fefabe49558d34dd195807e72eac7841f8",
+      "render.log": "fe43f55cbe7fef2ba83cc21eed0c81a64ef3584b3b976f8f36399901e7cb7953"
+    }
+  },
+  "complete": true,
+  "visual_review": "Final rendered still inspected: character visible with raised arm to right of frame center; conceptual anchor verified by root state, not a visible marker."
+}

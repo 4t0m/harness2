@@ -1,0 +1,200 @@
+{
+  "scope": "local Mac inference on existing model; no avatar dispatch",
+  "requested_model": "hermes-lab-qwen3-8b:latest",
+  "options": {
+    "num_ctx": 2048,
+    "num_predict": 96,
+    "temperature": 0
+  },
+  "think": false,
+  "rows": [
+    {
+      "task_id": "contact-repair",
+      "request": {
+        "brief": "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Regenerate all eight beats with stronger foot planting."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Hide the sliding with a camera cut during beats 5\u20136."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Render the approved full sequence at final quality."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_2",
+      "content": "{\"choice_id\":\"option_2\"}",
+      "thinking": null,
+      "served_model": "hermes-lab-qwen3-8b:latest",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 4165970250,
+      "load_duration": 3475004167,
+      "prompt_eval_count": 273,
+      "prompt_eval_duration": 512917000,
+      "eval_count": 9,
+      "eval_duration": 174750000,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_match": true,
+      "decode_tokens_per_second": 51.502145922746784,
+      "prompt_tokens_per_second": 532.2498571893699,
+      "wall_seconds": 4.180583499954082
+    },
+    {
+      "task_id": "appearance-lock",
+      "request": {
+        "brief": "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Make three facial expression variants with the same pose, costume, lighting and framing."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three expression variants with different camera angles to clarify emotion."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Make three expression variants with revised hair silhouettes and matching lighting."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Make three full-body pose variants with the same face and costume."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_0",
+      "content": "{\"choice_id\":\"option_0\"}",
+      "thinking": null,
+      "served_model": "hermes-lab-qwen3-8b:latest",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 698300750,
+      "load_duration": 116793042,
+      "prompt_eval_count": 235,
+      "prompt_eval_duration": 401109000,
+      "eval_count": 9,
+      "eval_duration": 174781000,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_match": true,
+      "decode_tokens_per_second": 51.49301125408368,
+      "prompt_tokens_per_second": 585.8756597333892,
+      "wall_seconds": 0.7029687080066651
+    },
+    {
+      "task_id": "budget-preview",
+      "request": {
+        "brief": "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_3",
+      "content": "{\"choice_id\":\"option_0\"}",
+      "thinking": null,
+      "served_model": "hermes-lab-qwen3-8b:latest",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 753928250,
+      "load_duration": 116347209,
+      "prompt_eval_count": 271,
+      "prompt_eval_duration": 460033000,
+      "eval_count": 9,
+      "eval_duration": 172431000,
+      "strict_match": false,
+      "format_changed": false,
+      "repaired_match": false,
+      "decode_tokens_per_second": 52.1947909598622,
+      "prompt_tokens_per_second": 589.0881741092486,
+      "wall_seconds": 0.7553002499043941
+    },
+    {
+      "task_id": "taste-uncertain",
+      "request": {
+        "brief": "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Commit the variant with the lower foot-sliding score as the most appealing."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Present the two existing fixed-camera previews in a blind comparison with both/neither choices."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Generate four more variants to improve the chance of finding a favorite."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Ask a text model to select the more compelling variant using only filenames."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_1",
+      "content": "{\"choice_id\":\"option_1\"}",
+      "thinking": null,
+      "served_model": "hermes-lab-qwen3-8b:latest",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 1254706708,
+      "load_duration": 112184375,
+      "prompt_eval_count": 250,
+      "prompt_eval_duration": 844899000,
+      "eval_count": 9,
+      "eval_duration": 292588000,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_match": true,
+      "decode_tokens_per_second": 30.75997648570686,
+      "prompt_tokens_per_second": 295.89335530045605,
+      "wall_seconds": 1.2569265420315787
+    }
+  ]
+}

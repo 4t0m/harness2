@@ -39,3 +39,7 @@ User allows roughly10× additional spending when it improves experiments. Spend 
 ## Humanoid VRM integration update
 
 `vrm-intent-live.json` now verifies a Harness²-side model farewell/right-side intent through the existing Hermes/Eidoverse VRM tool: host-derived x=0.35, matching root readback, animated right-arm state,12-frame video and visual raised-arm inspection. Runtime is the existing isolated Deno under Hermes runs/round6, not PATH. This advances humanoid rig execution; it does not establish a persistent session or dance capability. See vrm-relative-intent.md.
+
+## Local inference update
+
+Ollama on the Mac is now live-verified. Installed older Qwen3 8B and30B-A3B Instruct Q4_K_M completed native menu trials (3/4 and4/4). The30B model also completed the actual relative-intent VRM render through the existing provider interface. See local-serving-checkpoint.md for first-load/warm timings, generation settings and exact identity limits. This qualifies a local Mac route, not dual5090 or RunPod serving. No new model was downloaded.

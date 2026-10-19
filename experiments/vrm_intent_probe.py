@@ -1,4 +1,5 @@
 """Model intent -> host relative placement -> existing trusted VRM renderer."""
+import argparse
 import hashlib
 import json
 import os
@@ -11,20 +12,22 @@ from experiments.creative_retry_probe import normalize_single_json_fence
 
 
 def main():
-    evidence=Path('evidence/vrm-intent-live.json')
+    parser=argparse.ArgumentParser();parser.add_argument('--local-qwen30',action='store_true');args=parser.parse_args()
+    evidence=Path('evidence/vrm-intent-local-qwen30.json' if args.local_qwen30 else 'evidence/vrm-intent-live.json')
     lab=Path('/Users/adom/Development/hermes-testing')
-    relative='runs/round6/eidoverse-harness2-relative-v1'
+    relative='runs/round6/eidoverse-harness2-local-qwen30-v1' if args.local_qwen30 else 'runs/round6/eidoverse-harness2-relative-v1'
     if evidence.exists() or (lab/relative).exists():raise SystemExit('refusing overwrite')
     report={'scope':'model relative intent applied to an existing offline VRM clip',
             'brief':'Say farewell with a goodbye wave. Stand to the right of the anchor.',
-            'anchor_x':0.1,'offset':0.25,'visible_anchor':False}
+            'anchor_x':0.1,'offset':0.25,'visible_anchor':False,'inference_location':'local Ollama' if args.local_qwen30 else 'OpenRouter'}
     def save():evidence.write_text(json.dumps(report,indent=2)+'\n')
     def deadline(*_):raise TimeoutError('provider deadline')
     signal.signal(signal.SIGALRM,deadline)
     try:
         signal.alarm(30)
-        r=chat_completion(base_url='https://openrouter.ai/api/v1',model='google/gemma-4-26b-a4b-it',
-            api_key=os.environ['OPENROUTER_API_KEY'],system='Return only JSON with gesture (salute or wave_goodbye) and side (left or right). No other keys.',
+        r=chat_completion(base_url='http://127.0.0.1:11434/v1' if args.local_qwen30 else 'https://openrouter.ai/api/v1',
+            model='hermes-lab-qwen30:latest' if args.local_qwen30 else 'google/gemma-4-26b-a4b-it',
+            api_key='' if args.local_qwen30 else os.environ['OPENROUTER_API_KEY'],system='Return only JSON with gesture (salute or wave_goodbye) and side (left or right). No other keys.',
             user=report['brief'],timeout=20,max_output_tokens=128,include_raw=True)
         signal.alarm(0)
         text,changed=normalize_single_json_fence(r.content)
