@@ -1,0 +1,60 @@
+{
+  "scope": "Independent saved-evidence replay for two finite local loopback viewer sessions. Browser and API GETs are mixed in server sample logs; their count does not prove a render frame rate. The visible technical readback and stopped state were captured, but pixel-level movement quality was not assessed. Direct and stop were exercised through the API trial; only end-session shutdown was tested from the browser UI.",
+  "runs": [
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "server_evidence_sha256": "d1af627a3c9e7c508afbd26814241f3e9a4a1a0fc64d54f5cbe1909d63a691c6",
+      "trial_evidence_sha256": "0d369fefabe941916da81d9bb74c98c71467f4b006d98e058aa589525fd01184",
+      "ui_ax_sha256": "60137ed8eccd60eeffc1dd6712b96e96ef154eb9b1908e8755ff34e0b8811137",
+      "source_hashes_checked": 8,
+      "provider_calls": 3,
+      "raw_briefs_correct": 3,
+      "logged_samples_reconstructed": 1248,
+      "sample_phases": {
+        "idle": 462,
+        "playing": 123,
+        "holding_end": 0,
+        "frozen": 663
+      },
+      "replacement_boundary_from_initial_ms": 4000,
+      "stop_after_replacement_ms": 1250,
+      "third_provider_straddled_stop": true,
+      "stale_delivery_after_stop_ms": 1100,
+      "ui_readback_now_ms": 52819,
+      "ui_readback_matches_frozen_source": true,
+      "termination_reason": "user_shutdown",
+      "worker_drained": true,
+      "input_tokens": 628,
+      "output_tokens": 86
+    },
+    {
+      "model": "gemma4:e2b",
+      "server_evidence_sha256": "c1986f4315f57243775aa87882d58074d09b8e83595fcf71a0c063a0a33e917e",
+      "trial_evidence_sha256": "a7c9c3496d80f88f962d5d5f286fda90c5d3bbdb0164ce16fb56f096e8dd4c7b",
+      "ui_ax_sha256": "886040c46cdd5ca7ee6acba4fa012bc7425169af979f96a6bfb2bd2211da108e",
+      "source_hashes_checked": 8,
+      "provider_calls": 3,
+      "raw_briefs_correct": 3,
+      "logged_samples_reconstructed": 629,
+      "sample_phases": {
+        "idle": 230,
+        "playing": 119,
+        "holding_end": 0,
+        "frozen": 280
+      },
+      "replacement_boundary_from_initial_ms": 4000,
+      "stop_after_replacement_ms": 1193,
+      "third_provider_straddled_stop": true,
+      "stale_delivery_after_stop_ms": 1068,
+      "ui_readback_now_ms": 35283,
+      "ui_readback_matches_frozen_source": true,
+      "termination_reason": "user_shutdown",
+      "worker_drained": true,
+      "input_tokens": 628,
+      "output_tokens": 71
+    }
+  ],
+  "provider_calls": 6,
+  "logged_samples_reconstructed": 1877,
+  "complete": true
+}

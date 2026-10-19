@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "server_sha256": "c1986f4315f57243775aa87882d58074d09b8e83595fcf71a0c063a0a33e917e",
+  "trial_sha256": "a7c9c3496d80f88f962d5d5f286fda90c5d3bbdb0164ce16fb56f096e8dd4c7b",
+  "checker_sha256": "f592d3e8ffedc0dfb7a733dd4f4bcf21ea5abd834d9729572e906be17dc6ef77",
+  "samples_checked": 629,
+  "served_samples_total": 629,
+  "phases": {
+    "idle": 230,
+    "playing": 119,
+    "frozen": 280,
+    "holding_end": 0
+  },
+  "brief_correct": [
+    true,
+    true,
+    true
+  ],
+  "provider_calls": 3,
+  "model": "gemma4:e2b",
+  "replacement_boundary_ms": 4000,
+  "stop_relative_ms": 5193,
+  "late_delivery_after_stop_ms": 1068,
+  "native_input_tokens": [
+    210,
+    210,
+    208
+  ],
+  "native_output_tokens": [
+    24,
+    23,
+    24
+  ],
+  "provider_seconds": [
+    3.311,
+    0.906,
+    0.9
+  ],
+  "prepare_seconds": [
+    0.296,
+    0.297,
+    0.299
+  ],
+  "scope": "Raw response, compiler, served-pose hash and lifecycle replay; browser visibility requires separate UI evidence."
+}

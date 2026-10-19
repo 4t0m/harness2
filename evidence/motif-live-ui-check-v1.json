@@ -1,0 +1,52 @@
+{
+  "complete": true,
+  "checker_sha256": "cc192f1b2862eac24fccc8d4ad5e198531ae2ce7948754c2542edbc5e5d4af50",
+  "sessions": [
+    {
+      "session": "qwen",
+      "server_sha256": "d1af627a3c9e7c508afbd26814241f3e9a4a1a0fc64d54f5cbe1909d63a691c6",
+      "visible_readback_matches_source": true,
+      "listener_connect_result": 61,
+      "worker_drained": true,
+      "provider_calls": 3
+    },
+    {
+      "session": "e2b",
+      "server_sha256": "c1986f4315f57243775aa87882d58074d09b8e83595fcf71a0c063a0a33e917e",
+      "visible_readback_matches_source": true,
+      "listener_connect_result": 61,
+      "worker_drained": true,
+      "provider_calls": 3
+    },
+    {
+      "session": "ui",
+      "server_sha256": "0eb84d94d97f21cf318292160955a841be1dc23bbd0620147f34b51c0f374bd3",
+      "visible_readback_matches_source": true,
+      "listener_connect_result": 61,
+      "worker_drained": true,
+      "provider_calls": 1,
+      "samples_checked": 378,
+      "native_input_tokens": 207,
+      "native_output_tokens": 28,
+      "brief_correct": true
+    }
+  ],
+  "ui_artifacts": {
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/e2b-frozen-ax.txt": "886040c46cdd5ca7ee6acba4fa012bc7425169af979f96a6bfb2bd2211da108e",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/e2b-frozen.png": "70918610325e8d745eae44ead8d37c7aaacf1b86a2cb0228ba818f95fd63cb12",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/e2b-live-ax.txt": "e5c4646c347feb0cd3855b59f80ac298350c544ec045fa4535f2bb3dca2fc4bd",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/e2b-live.png": "9423f6a2a4ab764a05ae0398a9cbd67abd0acbf546844ec79632221cae95b61c",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/e2b-shutdown-ax.txt": "8a81c421fd5dbca104803dfcc28f92b4df79b1062935aa1c32a9ba576e5365fa",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/qwen-frozen-ax.txt": "60137ed8eccd60eeffc1dd6712b96e96ef154eb9b1908e8755ff34e0b8811137",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/qwen-frozen-full.png": "77a132ac5a3f03049c8608c993bb1001b02e8546e65d8ec0da1d9d0bdebf2b37",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/qwen-frozen.png": "64d3def0ef84ef21b243cd717b46e6310f7ebb11d95da6070380191ca84b6638",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/qwen-live.png": "d567737284d0dbaa595c9217ade182dcec6b5f3bae10538a50e180b40f190e3f",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/qwen-shutdown-ax.txt": "786206cf4735c468b8ac7d092ad1879711c128eb237edcd0091eb08bc32da516",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/ui-direct-ax.txt": "cb6c52f8730d5e81fc344c217e2054dfee7288ae76173df390e922accdbdb669",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/ui-frozen-ax.txt": "794a687221a3eb75492aa4dd96e9bb7749469907605c5bd770671ea29c540800",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/ui-playing.png": "57be7d74d3c9b529d1e93ce682902b8235d35f164b242de473cafc8113a697ad",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/ui-shutdown-ax.txt": "0cde5f957fca7e5e9315fa9815699740726abc03b96fb993ae9141fc8738bbbe",
+    "/Users/adom/Development/hermes-testing/runs/harness2-motif-live-v1/ui-stop-ax.txt": "32e4c49b42c8ba3c308fdec1a796103ce5f440ca3bd79fdcdbc3c4b95ae62965"
+  },
+  "scope": "Actual browser screenshots and visible AX readbacks captured through CUA. Matched trials use timed HTTP direction/stop; third session submits direction, stop and shutdown through page buttons. Snapshot evidence does not measure continuous displayed frame rate."
+}

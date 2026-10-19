@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "server_sha256": "d1af627a3c9e7c508afbd26814241f3e9a4a1a0fc64d54f5cbe1909d63a691c6",
+  "trial_sha256": "0d369fefabe941916da81d9bb74c98c71467f4b006d98e058aa589525fd01184",
+  "checker_sha256": "f592d3e8ffedc0dfb7a733dd4f4bcf21ea5abd834d9729572e906be17dc6ef77",
+  "samples_checked": 1248,
+  "served_samples_total": 1248,
+  "phases": {
+    "idle": 462,
+    "playing": 123,
+    "frozen": 663,
+    "holding_end": 0
+  },
+  "brief_correct": [
+    true,
+    true,
+    true
+  ],
+  "provider_calls": 3,
+  "model": "hermes-lab-qwen3-8b:latest",
+  "replacement_boundary_ms": 4000,
+  "stop_relative_ms": 5250,
+  "late_delivery_after_stop_ms": 1100,
+  "native_input_tokens": [
+    210,
+    210,
+    208
+  ],
+  "native_output_tokens": [
+    29,
+    28,
+    29
+  ],
+  "provider_seconds": [
+    2.241,
+    0.904,
+    0.931
+  ],
+  "prepare_seconds": [
+    0.284,
+    0.296,
+    0.3
+  ],
+  "scope": "Raw response, compiler, served-pose hash and lifecycle replay; browser visibility requires separate UI evidence."
+}
