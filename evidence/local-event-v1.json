@@ -1,0 +1,245 @@
+{
+  "scope": "real local inference with actual timed interruption; CPU reference runtime, no live avatar",
+  "decision_budget_ms": 5000,
+  "interrupt_after_ms": 100,
+  "rows": [
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "calls": [
+        {
+          "phase": "listening",
+          "expected_action": "listen",
+          "semantic_match": true,
+          "arrival_ms": 1609,
+          "request_deadline_ms": 6336,
+          "status": "applied",
+          "result": {
+            "content": "{\"action\": \"listen\"}",
+            "done_reason": "stop",
+            "wall_ms": 271,
+            "load_duration": 117465542,
+            "prompt_eval_count": 71,
+            "eval_count": 7,
+            "prompt_eval_duration": 21593000,
+            "eval_duration": 129620000
+          }
+        },
+        {
+          "phase": "interrupted",
+          "expected_action": "nod",
+          "semantic_match": true,
+          "arrival_ms": 1942,
+          "request_deadline_ms": 6609,
+          "status": "stale_or_duplicate",
+          "result": {
+            "content": "{\"action\": \"nod\"}",
+            "done_reason": "stop",
+            "wall_ms": 333,
+            "load_duration": 112569042,
+            "prompt_eval_count": 70,
+            "eval_count": 7,
+            "prompt_eval_duration": 82714000,
+            "eval_duration": 135148000
+          }
+        },
+        {
+          "phase": "fresh",
+          "expected_action": "neutral",
+          "semantic_match": true,
+          "arrival_ms": 2280,
+          "request_deadline_ms": 6942,
+          "status": "applied",
+          "result": {
+            "content": "{\"action\": \"neutral\"}",
+            "done_reason": "stop",
+            "wall_ms": 338,
+            "load_duration": 115068417,
+            "prompt_eval_count": 78,
+            "eval_count": 7,
+            "prompt_eval_duration": 84417000,
+            "eval_duration": 135201000
+          }
+        }
+      ],
+      "warmup": {
+        "content": "{\"action\": \"listen\"}",
+        "done_reason": "stop",
+        "wall_ms": 1336,
+        "load_duration": 1002414083,
+        "prompt_eval_count": 71,
+        "eval_count": 7,
+        "prompt_eval_duration": 187667000,
+        "eval_duration": 132359000
+      },
+      "snapshot": {
+        "now_ms": 2280,
+        "revision": 4,
+        "pending": [],
+        "active": null,
+        "commands": [
+          {
+            "at_ms": 1609,
+            "action": "listen",
+            "request_id": 1
+          },
+          {
+            "at_ms": 1712,
+            "action": "neutral",
+            "reason": "interrupted",
+            "cancelled_request": 1
+          },
+          {
+            "at_ms": 2280,
+            "action": "neutral",
+            "request_id": 3
+          }
+        ],
+        "verdicts": [
+          {
+            "request_id": 1,
+            "at_ms": 1609,
+            "status": "applied"
+          },
+          {
+            "request_id": 2,
+            "at_ms": 1942,
+            "status": "stale_or_duplicate"
+          },
+          {
+            "request_id": 3,
+            "at_ms": 2280,
+            "status": "applied"
+          }
+        ],
+        "live_execution": false
+      },
+      "pass": true,
+      "latency_thresholds": {
+        "250": 0,
+        "500": 3,
+        "1000": 3,
+        "2000": 3,
+        "5000": 3
+      }
+    },
+    {
+      "model": "hermes-lab-qwen30:latest",
+      "calls": [
+        {
+          "phase": "listening",
+          "expected_action": "listen",
+          "semantic_match": true,
+          "arrival_ms": 2955,
+          "request_deadline_ms": 7705,
+          "status": "applied",
+          "result": {
+            "content": "{\"action\": \"listen\"}",
+            "done_reason": "stop",
+            "wall_ms": 249,
+            "load_duration": 124056625,
+            "prompt_eval_count": 63,
+            "eval_count": 7,
+            "prompt_eval_duration": 16184999,
+            "eval_duration": 94078000
+          }
+        },
+        {
+          "phase": "interrupted",
+          "expected_action": "nod",
+          "semantic_match": true,
+          "arrival_ms": 3277,
+          "request_deadline_ms": 7956,
+          "status": "stale_or_duplicate",
+          "result": {
+            "content": "{\"action\": \"nod\"}",
+            "done_reason": "stop",
+            "wall_ms": 322,
+            "load_duration": 117122417,
+            "prompt_eval_count": 62,
+            "eval_count": 7,
+            "prompt_eval_duration": 93258000,
+            "eval_duration": 97878000
+          }
+        },
+        {
+          "phase": "fresh",
+          "expected_action": "neutral",
+          "semantic_match": true,
+          "arrival_ms": 3620,
+          "request_deadline_ms": 8278,
+          "status": "applied",
+          "result": {
+            "content": "{\"action\": \"neutral\"}",
+            "done_reason": "stop",
+            "wall_ms": 342,
+            "load_duration": 115975208,
+            "prompt_eval_count": 70,
+            "eval_count": 7,
+            "prompt_eval_duration": 116032000,
+            "eval_duration": 96441000
+          }
+        }
+      ],
+      "warmup": {
+        "content": "{\"action\": \"listen\"}",
+        "done_reason": "stop",
+        "wall_ms": 2705,
+        "load_duration": 2184486250,
+        "prompt_eval_count": 63,
+        "eval_count": 7,
+        "prompt_eval_duration": 384907000,
+        "eval_duration": 120583000
+      },
+      "snapshot": {
+        "now_ms": 3620,
+        "revision": 4,
+        "pending": [],
+        "active": null,
+        "commands": [
+          {
+            "at_ms": 2955,
+            "action": "listen",
+            "request_id": 1
+          },
+          {
+            "at_ms": 3056,
+            "action": "neutral",
+            "reason": "interrupted",
+            "cancelled_request": 1
+          },
+          {
+            "at_ms": 3620,
+            "action": "neutral",
+            "request_id": 3
+          }
+        ],
+        "verdicts": [
+          {
+            "request_id": 1,
+            "at_ms": 2955,
+            "status": "applied"
+          },
+          {
+            "request_id": 2,
+            "at_ms": 3277,
+            "status": "stale_or_duplicate"
+          },
+          {
+            "request_id": 3,
+            "at_ms": 3620,
+            "status": "applied"
+          }
+        ],
+        "live_execution": false
+      },
+      "pass": true,
+      "latency_thresholds": {
+        "250": 1,
+        "500": 3,
+        "1000": 3,
+        "2000": 3,
+        "5000": 3
+      }
+    }
+  ]
+}

@@ -53,3 +53,13 @@ All six heldouts passed first try with fixed guidance and again with the selecte
 The 16 local calls used 225–352 input tokens, with median end-to-end latency 0.881 seconds (range 0.346–4.212 seconds, including initial loading). The three hosted edits reported $0.002094 total. Local energy and hardware costs were not measured. The local model is older Qwen3 8B, not the incoming Qwen generation.
 
 The new adapter checks semantic correctness separately from formatting, supports exact single-fence repair as an optional axis, and preserves call caps and receipts. Ten relevant adapter/fixture tests passed. Next useful test: multi-step state changes and harder combined constraints, frozen before tuning; do not reuse these six cases as unseen evaluation. The inherited editor prompt still contains production-dispatch wording, which should be made domain-specific before interpreting further adaptation comparisons.
+
+## Local event timing and stale-response rejection (2026-10-19)
+
+`experiments/local_event_probe.py` and `evidence/local-event-v1.json` exercise real native Ollama inference against the CPU EventRuntime. Each model handles listen, interrupted acknowledgement, then a fresh neutral instruction. A real host timer interrupts 100 ms after launching the acknowledgement request; its eventual response is rejected by request identity. These are model decisions plus runtime state transitions, not a rendered avatar or an actual Harness² refinement run.
+
+Both Qwen3 8B and Qwen3 30B-A3B chose all three expected actions, emitted strict JSON, rejected the interrupted response, and ended neutral. Warm 8B responses took 271/333/338 ms; warm 30B-A3B responses took 249/322/342 ms. Warmup calls took 1.336 and 2.705 seconds respectively. Inputs were 70–78 tokens for 8B and 62–70 for 30B-A3B; outputs were seven tokens each. Six observations do not establish a latency percentile or sustained service capacity.
+
+The real acceptance deadline was five seconds. The 250/500/1000/2000/5000-ms counts in the receipt are retrospective comparisons of measured call durations, not independently executed deadline trials. Thread scheduling and delivery add a small overhead beyond call timing. No API fee was incurred; energy and hardware cost remain unmeasured. Thirteen relevant runtime/adapter/fixture tests passed.
+
+Next integration: connect model-generated, validated gesture intent to the existing offline VRM external-event renderer, preserving immediate host cancellation and preventing delayed completions from restarting motion. Keep that distinct from a persistent viewer and from movement-path planning.
