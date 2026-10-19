@@ -1,0 +1,8 @@
+{
+  "scope": "parent visual spot-check after complete stream decoding",
+  "video_sha256": "74b4c007fde804d6101e00e09b8b95241338ba860d73ee2599105380ed57bd96",
+  "inspected_decoded_frame": 48,
+  "observation": "Single cyan technical figure fully visible, inward/downward arms, fixed ground and background. No artistry or full-motion acceptance.",
+  "automated_checks": "All107frames decoded; projected geometry bounds checked on96motion frames;12decoded final frames identical.",
+  "prepared_not_submitted": true
+}

@@ -1,0 +1,184 @@
+{
+  "scope": "prepared RGB reference; no H3 inference or compatibility acceptance",
+  "sources": {
+    "harness2/motion_reference.py": "8a4e7fc0632fad555a405b5206b46e123222772b991f9aaff7d9aeb689ff9e32",
+    "experiments/dance_reference_render.py": "6980539add3473aaf5eafd78d086579d5208492529fac8f788f68274c2041757",
+    "experiments/dance_reference_probe.py": "4074bc9209b56a6aed569b4fe1c10e613895e7eda9b8a5ffef41e48adaa9325f"
+  },
+  "source_tracks_sha256": "6a270b71f50fb9c2b3c5de1dae9467edd4a8ad4012ba1bbb9aed67a121e563cf",
+  "samples_sha256": "4a9906fe73ced48d53334217e20dd67e38310254314445d1594905552a28d67c",
+  "resampling": {
+    "kind": "render_only_linear_resample",
+    "scope": "Display samples only; no contact, segment-rig validity, biomechanics, or style claim.",
+    "source_canonical_sha256": "2b17d4f9b9b476940ec9fbd35b589cd0b5b4e2947761bbb443b92865f8ce3174",
+    "source": {
+      "fps": 20,
+      "frame_count": 81,
+      "endpoint_inclusive": true,
+      "duration_seconds": 4.0
+    },
+    "render": {
+      "fps": 24,
+      "frame_count": 96,
+      "endpoint_inclusive": false,
+      "duration_seconds": 4.0
+    },
+    "coordinate_system": "world x=lateral, y=forward, z=up; ground z=0",
+    "bone_edges": [
+      [
+        "left_hip",
+        "left_knee"
+      ],
+      [
+        "left_knee",
+        "left_ankle"
+      ],
+      [
+        "right_hip",
+        "right_knee"
+      ],
+      [
+        "right_knee",
+        "right_ankle"
+      ],
+      [
+        "left_shoulder",
+        "left_elbow"
+      ],
+      [
+        "left_elbow",
+        "left_wrist"
+      ],
+      [
+        "right_shoulder",
+        "right_elbow"
+      ],
+      [
+        "right_elbow",
+        "right_wrist"
+      ],
+      [
+        "left_hip",
+        "right_hip"
+      ],
+      [
+        "left_shoulder",
+        "right_shoulder"
+      ],
+      [
+        "pelvis",
+        "left_hip"
+      ],
+      [
+        "pelvis",
+        "right_hip"
+      ],
+      [
+        "pelvis",
+        "spine"
+      ],
+      [
+        "spine",
+        "neck"
+      ],
+      [
+        "neck",
+        "head"
+      ],
+      [
+        "left_shoulder",
+        "spine"
+      ],
+      [
+        "right_shoulder",
+        "spine"
+      ],
+      [
+        "left_ankle",
+        "left_foot"
+      ],
+      [
+        "right_ankle",
+        "right_foot"
+      ]
+    ],
+    "segment_lengths_m_source_targets": {
+      "left_hip:left_knee": 0.46,
+      "left_knee:left_ankle": 0.46,
+      "right_hip:right_knee": 0.46,
+      "right_knee:right_ankle": 0.46,
+      "left_shoulder:left_elbow": 0.3,
+      "left_elbow:left_wrist": 0.28,
+      "right_shoulder:right_elbow": 0.3,
+      "right_elbow:right_wrist": 0.28,
+      "left_ankle:left_foot": 0.10307764064044153,
+      "right_ankle:right_foot": 0.10307764064044153,
+      "left_hip:right_hip": 0.26,
+      "left_shoulder:right_shoulder": 0.44,
+      "pelvis:left_hip": 0.13601470508735444,
+      "pelvis:right_hip": 0.13601470508735444,
+      "pelvis:spine": 0.36,
+      "spine:neck": 0.25,
+      "neck:head": 0.17,
+      "left_shoulder:spine": 0.26627053911388693,
+      "right_shoulder:spine": 0.26627053911388693
+    },
+    "measurements": {
+      "max_segment_length_deviation_from_source_m": 0.0011164060645521556,
+      "exact_source_coincidence_preserved": true,
+      "source_coincidence_render_indices": [
+        0,
+        6,
+        12,
+        18,
+        24,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66,
+        72,
+        78,
+        84,
+        90
+      ],
+      "source_unchanged": true
+    }
+  },
+  "render": {
+    "scope": "single technical proxy actor; render reference only",
+    "frame_count": 96,
+    "fps": 24,
+    "duration_seconds": 4.0,
+    "width": 512,
+    "height": 320,
+    "camera": {
+      "type": "orthographic",
+      "location_m": [
+        2.2,
+        -6,
+        2.5
+      ],
+      "target_m": [
+        0,
+        0,
+        0.9
+      ],
+      "ortho_scale": 3.5,
+      "fixed": true
+    },
+    "normalized_actor_bounds_all_frames": {
+      "min_x": 0.3322766125202179,
+      "max_x": 0.6694002747535706,
+      "min_y": 0.10244835168123245,
+      "max_y": 0.9352298974990845
+    },
+    "minimum_allowed_margin": 0.03
+  },
+  "complete": false,
+  "error_type": "ValueError",
+  "error": "decoded final hold changed",
+  "wall_seconds": 2.859478499973193
+}
