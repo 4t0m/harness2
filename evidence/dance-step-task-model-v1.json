@@ -1,0 +1,2017 @@
+{
+  "scope": "New structured step tasks with explicit approved constraints. Any satisfying plan accepted. Model does not extract authoritative constraints from prose. Fixed first pass versus one host-feedback repair; not H2 learning or live avatar execution.",
+  "sources": {
+    "harness2/dance_step_task.py": "7a7a4fad5b34bc7239b6553870e1b8c49a8af0798679009a1242b7f7ba894f86",
+    "harness2/dance_steps.py": "686c023970f231d3d8a8f1fa98dfb6715c1e04746df9dcd22f750e63c96b79b1",
+    "harness2/dance_motion.py": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+    "experiments/dance_step_task_cases.py": "aef4e5d1f795135772d31f2fc27d9950e13065f8aa07513e97134a85b9f42cf6",
+    "experiments/dance_step_task_probe.py": "786f54b7735ba1fd88bade746ada8e80914f73c21fada06e7cd1254b263890c8",
+    "experiments/dance_steps_contract_probe.py": "84db4cc5c4f9219cc8ec62d3541e0941a0865f0df4e67cf81541cae625417328",
+    "harness2/bounded_json_http.py": "3a1c70854836ae77d437e9fae2f9278924be9b08e4a172d91e15952f10348990"
+  },
+  "cases": [
+    {
+      "id": "offset_return_to_mark_with_endpoint_direction",
+      "family": "nonzero_start_and_opposite_directions",
+      "feasible": true,
+      "task": {
+        "id": "offset_return_to_mark_with_endpoint_direction",
+        "start_x_mm": -200,
+        "target_x_mm": 200,
+        "root_bounds_mm": [
+          -400,
+          400
+        ],
+        "required_moves": {
+          "0": "step_right",
+          "3": "step_right"
+        },
+        "required_variations": {
+          "1": "clear"
+        }
+      },
+      "request": "The root begins at x=-200 mm and must finish at x=200 mm. Keep the pelvis within [-400, 400] mm throughout. The first and fourth moves go right; the second move uses a clear accent. Choose the other details so the endpoint is reached."
+    },
+    {
+      "id": "narrow_lane_turnaround_route",
+      "family": "constrained_intermediate_lane",
+      "feasible": true,
+      "task": {
+        "id": "narrow_lane_turnaround_route",
+        "start_x_mm": 0,
+        "target_x_mm": 0,
+        "root_bounds_mm": [
+          -200,
+          200
+        ],
+        "required_moves": {
+          "0": "step_right",
+          "1": "step_left",
+          "2": "step_left",
+          "3": "step_right"
+        },
+        "required_variations": {}
+      },
+      "request": "Starting at the center, finish at the center without letting the pelvis leave the -200 to 200 mm lane. Go right, immediately return left, then take another left step and finish with a right step."
+    },
+    {
+      "id": "walk_back_from_positive_offset",
+      "family": "nonzero_start_and_per_slot_accents",
+      "feasible": true,
+      "task": {
+        "id": "walk_back_from_positive_offset",
+        "start_x_mm": 400,
+        "target_x_mm": 0,
+        "root_bounds_mm": [
+          -400,
+          400
+        ],
+        "required_moves": {
+          "0": "step_left",
+          "2": "step_left"
+        },
+        "required_variations": {
+          "0": "soft",
+          "3": "clear"
+        }
+      },
+      "request": "From x=400 mm, return to x=0 while staying between -400 and 400 mm. Step left on the first and third moves; accent the opening softly and the last move clearly."
+    },
+    {
+      "id": "corrected_exit_direction_and_accent",
+      "family": "final_correction",
+      "feasible": true,
+      "task": {
+        "id": "corrected_exit_direction_and_accent",
+        "start_x_mm": 0,
+        "target_x_mm": 0,
+        "root_bounds_mm": [
+          -400,
+          400
+        ],
+        "required_moves": {
+          "0": "step_left",
+          "3": "step_right"
+        },
+        "required_variations": {
+          "0": "soft",
+          "3": "clear"
+        }
+      },
+      "request": "Draft: start with a right step and finish left. Correction: the opening is left and soft, and the final step is right with a clear accent. Return to x=0 from x=0, keeping the pelvis within -400 to 400 mm; choose the two middle steps to make that work."
+    },
+    {
+      "id": "cross_to_positive_side_then_recover",
+      "family": "offset_path_with_internal_requirement",
+      "feasible": true,
+      "task": {
+        "id": "cross_to_positive_side_then_recover",
+        "start_x_mm": -400,
+        "target_x_mm": 0,
+        "root_bounds_mm": [
+          -400,
+          400
+        ],
+        "required_moves": {
+          "0": "step_right",
+          "3": "step_left"
+        },
+        "required_variations": {
+          "1": "clear"
+        }
+      },
+      "request": "Begin at -400 mm and end at the center, never crossing outside the -400 to 400 mm root lane. The opening move goes right, the last move goes left, and move two has a clear accent."
+    },
+    {
+      "id": "alternating_return_with_soft_third",
+      "family": "repeated_opposite_directions",
+      "feasible": true,
+      "task": {
+        "id": "alternating_return_with_soft_third",
+        "start_x_mm": 200,
+        "target_x_mm": -200,
+        "root_bounds_mm": [
+          -400,
+          400
+        ],
+        "required_moves": {
+          "0": "step_left",
+          "2": "step_right",
+          "3": "step_left"
+        },
+        "required_variations": {
+          "2": "soft"
+        }
+      },
+      "request": "Start at 200 mm and end at -200 mm, staying inside [-400, 400] mm. Use left, right, left for moves one, three, and four; make the third move soft. Fill the remaining direction to hit the endpoint."
+    },
+    {
+      "id": "accented_middle_crossing_in_tight_lane",
+      "family": "lane_forces_order",
+      "feasible": true,
+      "task": {
+        "id": "accented_middle_crossing_in_tight_lane",
+        "start_x_mm": 0,
+        "target_x_mm": 0,
+        "root_bounds_mm": [
+          -200,
+          200
+        ],
+        "required_moves": {
+          "0": "step_right",
+          "3": "step_left"
+        },
+        "required_variations": {
+          "1": "clear",
+          "2": "clear"
+        }
+      },
+      "request": "From center, return to center within the narrow -200 to 200 mm lane. The first step is right and the fourth is left. Make both middle accents clear; select their order so the root stays in the lane."
+    },
+    {
+      "id": "finish_beyond_start_after_left_detour",
+      "family": "nonzero_start_with_detour",
+      "feasible": true,
+      "task": {
+        "id": "finish_beyond_start_after_left_detour",
+        "start_x_mm": -200,
+        "target_x_mm": 200,
+        "root_bounds_mm": [
+          -400,
+          400
+        ],
+        "required_moves": {
+          "1": "step_left",
+          "3": "step_right"
+        },
+        "required_variations": {
+          "0": "soft",
+          "2": "soft"
+        }
+      },
+      "request": "Begin at -200 mm and finish at +200 mm, with the pelvis always inside [-400, 400] mm. Take a left step second and a right step fourth; make moves one and three soft."
+    },
+    {
+      "id": "half_step_target_parity_mismatch",
+      "family": "impossible_target_parity",
+      "feasible": false,
+      "task": {
+        "id": "half_step_target_parity_mismatch",
+        "start_x_mm": 0,
+        "target_x_mm": 200,
+        "root_bounds_mm": [
+          -400,
+          400
+        ],
+        "required_moves": {},
+        "required_variations": {}
+      },
+      "request": "Starting at 0 mm, reach exactly 200 mm in four moves of 200 mm each, with the root kept between -400 and 400 mm. Any left/right sequence is allowed."
+    },
+    {
+      "id": "requested_endpoint_outside_lane",
+      "family": "impossible_out_of_bounds_target",
+      "feasible": false,
+      "task": {
+        "id": "requested_endpoint_outside_lane",
+        "start_x_mm": 0,
+        "target_x_mm": 800,
+        "root_bounds_mm": [
+          -600,
+          600
+        ],
+        "required_moves": {},
+        "required_variations": {}
+      },
+      "request": "From 0 mm, finish at +800 mm after four steps while the pelvis remains in the lane from -600 to +600 mm. No move directions are preselected."
+    },
+    {
+      "id": "forced_rightward_pair_exceeds_lane",
+      "family": "impossible_forced_directions_conflict_with_lane",
+      "feasible": false,
+      "task": {
+        "id": "forced_rightward_pair_exceeds_lane",
+        "start_x_mm": 0,
+        "target_x_mm": 0,
+        "root_bounds_mm": [
+          0,
+          200
+        ],
+        "required_moves": {
+          "0": "step_right",
+          "1": "step_right"
+        },
+        "required_variations": {}
+      },
+      "request": "Start and finish at 0 mm, keeping the pelvis in the lane [0, 200] mm. The first two moves must both go right; choose either direction for moves three and four."
+    },
+    {
+      "id": "all_directions_force_wrong_endpoint",
+      "family": "impossible_fully_specified_endpoint_conflict",
+      "feasible": false,
+      "task": {
+        "id": "all_directions_force_wrong_endpoint",
+        "start_x_mm": 0,
+        "target_x_mm": 400,
+        "root_bounds_mm": [
+          -800,
+          800
+        ],
+        "required_moves": {
+          "0": "step_left",
+          "1": "step_right",
+          "2": "step_left",
+          "3": "step_right"
+        },
+        "required_variations": {
+          "0": "soft",
+          "1": "clear",
+          "2": "soft",
+          "3": "clear"
+        }
+      },
+      "request": "From 0 mm, end at +400 mm inside the -800 to 800 mm lane. The complete sequence is fixed: left-soft, right-clear, left-soft, right-clear."
+    }
+  ],
+  "preflight": [
+    {
+      "id": "offset_return_to_mark_with_endpoint_direction",
+      "supported": true,
+      "feasible_plan_count": 16,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "narrow_lane_turnaround_route",
+      "supported": true,
+      "feasible_plan_count": 16,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "walk_back_from_positive_offset",
+      "supported": true,
+      "feasible_plan_count": 8,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "corrected_exit_direction_and_accent",
+      "supported": true,
+      "feasible_plan_count": 8,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "cross_to_positive_side_then_recover",
+      "supported": true,
+      "feasible_plan_count": 8,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "alternating_return_with_soft_third",
+      "supported": true,
+      "feasible_plan_count": 8,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "accented_middle_crossing_in_tight_lane",
+      "supported": true,
+      "feasible_plan_count": 4,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "finish_beyond_start_after_left_detour",
+      "supported": true,
+      "feasible_plan_count": 4,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "half_step_target_parity_mismatch",
+      "supported": false,
+      "feasible_plan_count": 0,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "requested_endpoint_outside_lane",
+      "supported": false,
+      "feasible_plan_count": 0,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "forced_rightward_pair_exceeds_lane",
+      "supported": false,
+      "feasible_plan_count": 0,
+      "provider_calls_if_unsupported": 0
+    },
+    {
+      "id": "all_directions_force_wrong_endpoint",
+      "supported": false,
+      "feasible_plan_count": 0,
+      "provider_calls_if_unsupported": 0
+    }
+  ],
+  "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only.",
+  "schema": {
+    "type": "object",
+    "required": [
+      "moves"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "moves": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "enum": [
+              "step_left",
+              "step_right",
+              "soft",
+              "clear"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "size": 7162405886
+    },
+    "hermes-lab-qwen3-8b:latest": {
+      "name": "hermes-lab-qwen3-8b:latest",
+      "digest": "ce2f25b8da1b2f736433c5d436bb28c61751bcc4710c6f13697e05170b685552",
+      "size": 5225388180
+    }
+  },
+  "max_calls": 32,
+  "max_seconds_per_call": 20,
+  "max_output_tokens": 128,
+  "paid_provider_calls": 0,
+  "repair_policy": "One attempt after compiler/task rejection; feedback reports violated public constraint only, never an enumerated solution. No call for preflight infeasible tasks.",
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "offset_return_to_mark_with_endpoint_direction",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"The root begins at x=-200 mm and must finish at x=200 mm. Keep the pelvis within [-400, 400] mm throughout. The first and fourth moves go right; the second move uses a clear accent. Choose the other details so the endpoint is reached.\", \"task\": {\"id\": \"offset_return_to_mark_with_endpoint_direction\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_right\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        }
+      ],
+      "input_text_characters": 1428,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:02.003485Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3871376875,
+        "load_duration": 2996645166,
+        "prompt_eval_count": 395,
+        "prompt_eval_duration": 279647000,
+        "eval_count": 38,
+        "eval_duration": 589093000
+      },
+      "total_duration": 3871376875,
+      "load_duration": 2996645166,
+      "prompt_eval_count": 395,
+      "prompt_eval_duration": 279647000,
+      "eval_count": 38,
+      "eval_duration": 589093000,
+      "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root 600 mm differs from target 200 mm",
+      "wall_seconds": 3.9410787500673905
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "offset_return_to_mark_with_endpoint_direction",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"The root begins at x=-200 mm and must finish at x=200 mm. Keep the pelvis within [-400, 400] mm throughout. The first and fourth moves go right; the second move uses a clear accent. Choose the other details so the endpoint is reached.\", \"task\": {\"id\": \"offset_return_to_mark_with_endpoint_direction\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_right\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: final root 600 mm differs from target 200 mm. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1671,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:03.103789Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_left\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1017096667,
+        "load_duration": 301215292,
+        "prompt_eval_count": 478,
+        "prompt_eval_duration": 109981000,
+        "eval_count": 38,
+        "eval_duration": 602210000
+      },
+      "total_duration": 1017096667,
+      "load_duration": 301215292,
+      "prompt_eval_count": 478,
+      "prompt_eval_duration": 109981000,
+      "eval_count": 38,
+      "eval_duration": 602210000,
+      "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_left\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 3 violates requirement",
+      "wall_seconds": 1.097861250047572
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "narrow_lane_turnaround_route",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Starting at the center, finish at the center without letting the pelvis leave the -200 to 200 mm lane. Go right, immediately return left, then take another left step and finish with a right step.\", \"task\": {\"id\": \"narrow_lane_turnaround_route\", \"required_moves\": {\"0\": \"step_right\", \"1\": \"step_left\", \"2\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {}, \"root_bounds_mm\": [-200, 200], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1391,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:04.31579Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1132128375,
+        "load_duration": 301542458,
+        "prompt_eval_count": 379,
+        "prompt_eval_duration": 238648000,
+        "eval_count": 38,
+        "eval_duration": 588312000
+      },
+      "total_duration": 1132128375,
+      "load_duration": 301542458,
+      "prompt_eval_count": 379,
+      "prompt_eval_duration": 238648000,
+      "eval_count": 38,
+      "eval_duration": 588312000,
+      "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}",
+      "accepted": true,
+      "receipt": {
+        "task_sha256": "76f8901458afa97ae35f34c3276eae5071aa7c1a0ea29f8241aa640fef896b2f",
+        "local_sequence_sha256": "609d9789929b29dd65625ac0f6a3b4e25a19e8172a74bd4732d47cf914f5a129",
+        "checks": {
+          "world_root_min_x_mm": -200.0,
+          "world_root_max_x_mm": 200.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      },
+      "placement": {
+        "world_start_x_mm": 0,
+        "world_final_x_mm": 0
+      },
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "wall_seconds": 1.2167082090163603
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "walk_back_from_positive_offset",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From x=400 mm, return to x=0 while staying between -400 and 400 mm. Step left on the first and third moves; accent the opening softly and the last move clearly.\", \"task\": {\"id\": \"walk_back_from_positive_offset\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_left\"}, \"required_variations\": {\"0\": \"soft\", \"3\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 400, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1347,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:05.536819Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1136487666,
+        "load_duration": 306139875,
+        "prompt_eval_count": 377,
+        "prompt_eval_duration": 238126000,
+        "eval_count": 38,
+        "eval_duration": 588790000
+      },
+      "total_duration": 1136487666,
+      "load_duration": 306139875,
+      "prompt_eval_count": 377,
+      "prompt_eval_duration": 238126000,
+      "eval_count": 38,
+      "eval_duration": 588790000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"soft\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "variation slot 3 violates requirement",
+      "wall_seconds": 1.212784625007771
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "walk_back_from_positive_offset",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From x=400 mm, return to x=0 while staying between -400 and 400 mm. Step left on the first and third moves; accent the opening softly and the last move clearly.\", \"task\": {\"id\": \"walk_back_from_positive_offset\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_left\"}, \"required_variations\": {\"0\": \"soft\", \"3\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 400, \"target_x_mm\": 0}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"soft\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: variation slot 3 violates requirement. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1581,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:06.634414Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1018998958,
+        "load_duration": 301899833,
+        "prompt_eval_count": 451,
+        "prompt_eval_duration": 107597000,
+        "eval_count": 38,
+        "eval_duration": 606057000
+      },
+      "total_duration": 1018998958,
+      "load_duration": 301899833,
+      "prompt_eval_count": 451,
+      "prompt_eval_duration": 107597000,
+      "eval_count": 38,
+      "eval_duration": 606057000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root 400 mm differs from target 0 mm",
+      "wall_seconds": 1.0915766670368612
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "corrected_exit_direction_and_accent",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Draft: start with a right step and finish left. Correction: the opening is left and soft, and the final step is right with a clear accent. Return to x=0 from x=0, keeping the pelvis within -400 to 400 mm; choose the two middle steps to make that work.\", \"task\": {\"id\": \"corrected_exit_direction_and_accent\", \"required_moves\": {\"0\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {\"0\": \"soft\", \"3\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1442,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:07.843446Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1141137875,
+        "load_duration": 289812167,
+        "prompt_eval_count": 395,
+        "prompt_eval_duration": 255097000,
+        "eval_count": 38,
+        "eval_duration": 592861000
+      },
+      "total_duration": 1141137875,
+      "load_duration": 289812167,
+      "prompt_eval_count": 395,
+      "prompt_eval_duration": 255097000,
+      "eval_count": 38,
+      "eval_duration": 592861000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}",
+      "accepted": true,
+      "receipt": {
+        "task_sha256": "ff865232c9b1e693e74b06ff3d04251375149558d744b89d95330f4f9ffbc878",
+        "local_sequence_sha256": "f88f0bfa8a2b8b489446b4841a49a56d948ba6e461749da7dfb68520e95be961",
+        "checks": {
+          "world_root_min_x_mm": -200.0,
+          "world_root_max_x_mm": 0.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      },
+      "placement": {
+        "world_start_x_mm": 0,
+        "world_final_x_mm": 0
+      },
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "wall_seconds": 1.2206207499839365
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "cross_to_positive_side_then_recover",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -400 mm and end at the center, never crossing outside the -400 to 400 mm root lane. The opening move goes right, the last move goes left, and move two has a clear accent.\", \"task\": {\"id\": \"cross_to_positive_side_then_recover\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -400, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1360,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:09.056889Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1127967416,
+        "load_duration": 294303375,
+        "prompt_eval_count": 377,
+        "prompt_eval_duration": 238604000,
+        "eval_count": 38,
+        "eval_duration": 592219000
+      },
+      "total_duration": 1127967416,
+      "load_duration": 294303375,
+      "prompt_eval_count": 377,
+      "prompt_eval_duration": 238604000,
+      "eval_count": 38,
+      "eval_duration": 592219000,
+      "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root -400 mm differs from target 0 mm",
+      "wall_seconds": 1.2025183330988511
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "cross_to_positive_side_then_recover",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -400 mm and end at the center, never crossing outside the -400 to 400 mm root lane. The opening move goes right, the last move goes left, and move two has a clear accent.\", \"task\": {\"id\": \"cross_to_positive_side_then_recover\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -400, \"target_x_mm\": 0}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_left\", \"clear\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: final root -400 mm differs from target 0 mm. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1600,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:10.186197Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1048422708,
+        "load_duration": 342493791,
+        "prompt_eval_count": 458,
+        "prompt_eval_duration": 108489000,
+        "eval_count": 38,
+        "eval_duration": 594267000
+      },
+      "total_duration": 1048422708,
+      "load_duration": 342493791,
+      "prompt_eval_count": 458,
+      "prompt_eval_duration": 108489000,
+      "eval_count": 38,
+      "eval_duration": 594267000,
+      "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root -400 mm differs from target 0 mm",
+      "wall_seconds": 1.1347287079552189
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_return_with_soft_third",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Start at 200 mm and end at -200 mm, staying inside [-400, 400] mm. Use left, right, left for moves one, three, and four; make the third move soft. Fill the remaining direction to hit the endpoint.\", \"task\": {\"id\": \"alternating_return_with_soft_third\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 200, \"target_x_mm\": -200}}"
+        }
+      ],
+      "input_text_characters": 1395,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:11.438129Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1163335167,
+        "load_duration": 314593834,
+        "prompt_eval_count": 396,
+        "prompt_eval_duration": 255196000,
+        "eval_count": 38,
+        "eval_duration": 589787000
+      },
+      "total_duration": 1163335167,
+      "load_duration": 314593834,
+      "prompt_eval_count": 396,
+      "prompt_eval_duration": 255196000,
+      "eval_count": 38,
+      "eval_duration": 589787000,
+      "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 2 violates requirement",
+      "wall_seconds": 1.2376567499013618
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_return_with_soft_third",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Start at 200 mm and end at -200 mm, staying inside [-400, 400] mm. Use left, right, left for moves one, three, and four; make the third move soft. Fill the remaining direction to hit the endpoint.\", \"task\": {\"id\": \"alternating_return_with_soft_third\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 200, \"target_x_mm\": -200}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: move slot 2 violates requirement. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1624,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:12.512776Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1006647667,
+        "load_duration": 299783417,
+        "prompt_eval_count": 470,
+        "prompt_eval_duration": 108926000,
+        "eval_count": 38,
+        "eval_duration": 594316000
+      },
+      "total_duration": 1006647667,
+      "load_duration": 299783417,
+      "prompt_eval_count": 470,
+      "prompt_eval_duration": 108926000,
+      "eval_count": 38,
+      "eval_duration": 594316000,
+      "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 2 violates requirement",
+      "wall_seconds": 1.0978432080009952
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "accented_middle_crossing_in_tight_lane",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From center, return to center within the narrow -200 to 200 mm lane. The first step is right and the fourth is left. Make both middle accents clear; select their order so the root stays in the lane.\", \"task\": {\"id\": \"accented_middle_crossing_in_tight_lane\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\", \"2\": \"clear\"}, \"root_bounds_mm\": [-200, 200], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1393,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:13.770944Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_right\", \"clear\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1147997167,
+        "load_duration": 312418084,
+        "prompt_eval_count": 381,
+        "prompt_eval_duration": 241011000,
+        "eval_count": 38,
+        "eval_duration": 590324000
+      },
+      "total_duration": 1147997167,
+      "load_duration": 312418084,
+      "prompt_eval_count": 381,
+      "prompt_eval_duration": 241011000,
+      "eval_count": 38,
+      "eval_duration": 590324000,
+      "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_right\", \"clear\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root 400 mm differs from target 0 mm",
+      "wall_seconds": 1.2388492500176653
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "accented_middle_crossing_in_tight_lane",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From center, return to center within the narrow -200 to 200 mm lane. The first step is right and the fourth is left. Make both middle accents clear; select their order so the root stays in the lane.\", \"task\": {\"id\": \"accented_middle_crossing_in_tight_lane\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\", \"2\": \"clear\"}, \"root_bounds_mm\": [-200, 200], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_right\", \"clear\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: final root 400 mm differs from target 0 mm. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1635,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:14.860628Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1010595250,
+        "load_duration": 296406542,
+        "prompt_eval_count": 462,
+        "prompt_eval_duration": 109526000,
+        "eval_count": 38,
+        "eval_duration": 601445000
+      },
+      "total_duration": 1010595250,
+      "load_duration": 296406542,
+      "prompt_eval_count": 462,
+      "prompt_eval_duration": 109526000,
+      "eval_count": 38,
+      "eval_duration": 601445000,
+      "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 3 violates requirement",
+      "wall_seconds": 1.086166667053476
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "finish_beyond_start_after_left_detour",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -200 mm and finish at +200 mm, with the pelvis always inside [-400, 400] mm. Take a left step second and a right step fourth; make moves one and three soft.\", \"task\": {\"id\": \"finish_beyond_start_after_left_detour\", \"required_moves\": {\"1\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {\"0\": \"soft\", \"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        }
+      ],
+      "input_text_characters": 1362,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:16.078805Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1138053958,
+        "load_duration": 301344041,
+        "prompt_eval_count": 387,
+        "prompt_eval_duration": 239557000,
+        "eval_count": 38,
+        "eval_duration": 593587000
+      },
+      "total_duration": 1138053958,
+      "load_duration": 301344041,
+      "prompt_eval_count": 387,
+      "prompt_eval_duration": 239557000,
+      "eval_count": 38,
+      "eval_duration": 593587000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 1 violates requirement",
+      "wall_seconds": 1.218253375031054
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "finish_beyond_start_after_left_detour",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -200 mm and finish at +200 mm, with the pelvis always inside [-400, 400] mm. Take a left step second and a right step fourth; make moves one and three soft.\", \"task\": {\"id\": \"finish_beyond_start_after_left_detour\", \"required_moves\": {\"1\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {\"0\": \"soft\", \"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: move slot 1 violates requirement. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1591,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:50:17.176593Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1017344459,
+        "load_duration": 304045792,
+        "prompt_eval_count": 461,
+        "prompt_eval_duration": 108806000,
+        "eval_count": 38,
+        "eval_duration": 601517000
+      },
+      "total_duration": 1017344459,
+      "load_duration": 304045792,
+      "prompt_eval_count": 461,
+      "prompt_eval_duration": 108806000,
+      "eval_count": 38,
+      "eval_duration": 601517000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"clear\"]]}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 1 violates requirement",
+      "wall_seconds": 1.0948845410021022
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "finish_beyond_start_after_left_detour",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -200 mm and finish at +200 mm, with the pelvis always inside [-400, 400] mm. Take a left step second and a right step fourth; make moves one and three soft.\", \"task\": {\"id\": \"finish_beyond_start_after_left_detour\", \"required_moves\": {\"1\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {\"0\": \"soft\", \"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        }
+      ],
+      "input_text_characters": 1362,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:19.954602Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2697053083,
+        "load_duration": 1207752041,
+        "prompt_eval_count": 367,
+        "prompt_eval_duration": 644131000,
+        "eval_count": 42,
+        "eval_duration": 841061000
+      },
+      "total_duration": 2697053083,
+      "load_duration": 1207752041,
+      "prompt_eval_count": 367,
+      "prompt_eval_duration": 644131000,
+      "eval_count": 42,
+      "eval_duration": 841061000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "variation slot 0 violates requirement",
+      "wall_seconds": 2.77857933298219
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "finish_beyond_start_after_left_detour",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -200 mm and finish at +200 mm, with the pelvis always inside [-400, 400] mm. Take a left step second and a right step fourth; make moves one and three soft.\", \"task\": {\"id\": \"finish_beyond_start_after_left_detour\", \"required_moves\": {\"1\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {\"0\": \"soft\", \"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: variation slot 0 violates requirement. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1620,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:21.468167Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1429652834,
+        "load_duration": 123649125,
+        "prompt_eval_count": 444,
+        "prompt_eval_duration": 188051000,
+        "eval_count": 42,
+        "eval_duration": 1115263000
+      },
+      "total_duration": 1429652834,
+      "load_duration": 123649125,
+      "prompt_eval_count": 444,
+      "prompt_eval_duration": 188051000,
+      "eval_count": 42,
+      "eval_duration": 1115263000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "variation slot 2 violates requirement",
+      "wall_seconds": 1.5129525000229478
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "accented_middle_crossing_in_tight_lane",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From center, return to center within the narrow -200 to 200 mm lane. The first step is right and the fourth is left. Make both middle accents clear; select their order so the root stays in the lane.\", \"task\": {\"id\": \"accented_middle_crossing_in_tight_lane\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\", \"2\": \"clear\"}, \"root_bounds_mm\": [-200, 200], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1393,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:23.272851Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1718036542,
+        "load_duration": 134811000,
+        "prompt_eval_count": 361,
+        "prompt_eval_duration": 388412000,
+        "eval_count": 42,
+        "eval_duration": 1188344000
+      },
+      "total_duration": 1718036542,
+      "load_duration": 134811000,
+      "prompt_eval_count": 361,
+      "prompt_eval_duration": 388412000,
+      "eval_count": 42,
+      "eval_duration": 1188344000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "root leaves lane at frame 21",
+      "wall_seconds": 1.797458125045523
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "accented_middle_crossing_in_tight_lane",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From center, return to center within the narrow -200 to 200 mm lane. The first step is right and the fourth is left. Make both middle accents clear; select their order so the root stays in the lane.\", \"task\": {\"id\": \"accented_middle_crossing_in_tight_lane\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\", \"2\": \"clear\"}, \"root_bounds_mm\": [-200, 200], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: root leaves lane at frame 21. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1642,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:24.913544Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1561472666,
+        "load_duration": 128820166,
+        "prompt_eval_count": 440,
+        "prompt_eval_duration": 232948000,
+        "eval_count": 42,
+        "eval_duration": 1196954000
+      },
+      "total_duration": 1561472666,
+      "load_duration": 128820166,
+      "prompt_eval_count": 440,
+      "prompt_eval_duration": 232948000,
+      "eval_count": 42,
+      "eval_duration": 1196954000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_left\", \"soft\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "root leaves lane at frame 21",
+      "wall_seconds": 1.6420877079945058
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_return_with_soft_third",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Start at 200 mm and end at -200 mm, staying inside [-400, 400] mm. Use left, right, left for moves one, three, and four; make the third move soft. Fill the remaining direction to hit the endpoint.\", \"task\": {\"id\": \"alternating_return_with_soft_third\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 200, \"target_x_mm\": -200}}"
+        }
+      ],
+      "input_text_characters": 1395,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:26.6857Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1687460209,
+        "load_duration": 137523542,
+        "prompt_eval_count": 374,
+        "prompt_eval_duration": 377134000,
+        "eval_count": 42,
+        "eval_duration": 1166559000
+      },
+      "total_duration": 1687460209,
+      "load_duration": 137523542,
+      "prompt_eval_count": 374,
+      "prompt_eval_duration": 377134000,
+      "eval_count": 42,
+      "eval_duration": 1166559000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 2 violates requirement",
+      "wall_seconds": 1.7683418330270797
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_return_with_soft_third",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Start at 200 mm and end at -200 mm, staying inside [-400, 400] mm. Use left, right, left for moves one, three, and four; make the third move soft. Fill the remaining direction to hit the endpoint.\", \"task\": {\"id\": \"alternating_return_with_soft_third\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"2\": \"soft\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 200, \"target_x_mm\": -200}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: move slot 2 violates requirement. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1648,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:28.375681Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1609653042,
+        "load_duration": 122526875,
+        "prompt_eval_count": 451,
+        "prompt_eval_duration": 241141000,
+        "eval_count": 42,
+        "eval_duration": 1243033000
+      },
+      "total_duration": 1609653042,
+      "load_duration": 122526875,
+      "prompt_eval_count": 451,
+      "prompt_eval_duration": 241141000,
+      "eval_count": 42,
+      "eval_duration": 1243033000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "move slot 2 violates requirement",
+      "wall_seconds": 1.6859264170052484
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "cross_to_positive_side_then_recover",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -400 mm and end at the center, never crossing outside the -400 to 400 mm root lane. The opening move goes right, the last move goes left, and move two has a clear accent.\", \"task\": {\"id\": \"cross_to_positive_side_then_recover\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -400, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1360,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:30.137845Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1680447792,
+        "load_duration": 123222042,
+        "prompt_eval_count": 356,
+        "prompt_eval_duration": 387300000,
+        "eval_count": 42,
+        "eval_duration": 1162421000
+      },
+      "total_duration": 1680447792,
+      "load_duration": 123222042,
+      "prompt_eval_count": 356,
+      "prompt_eval_duration": 387300000,
+      "eval_count": 42,
+      "eval_duration": 1162421000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root -400 mm differs from target 0 mm",
+      "wall_seconds": 1.761453624931164
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "cross_to_positive_side_then_recover",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Begin at -400 mm and end at the center, never crossing outside the -400 to 400 mm root lane. The opening move goes right, the last move goes left, and move two has a clear accent.\", \"task\": {\"id\": \"cross_to_positive_side_then_recover\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_left\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -400, \"target_x_mm\": 0}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: final root -400 mm differs from target 0 mm. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1623,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:31.898343Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1681436875,
+        "load_duration": 127301375,
+        "prompt_eval_count": 440,
+        "prompt_eval_duration": 309917000,
+        "eval_count": 42,
+        "eval_duration": 1241286000
+      },
+      "total_duration": 1681436875,
+      "load_duration": 127301375,
+      "prompt_eval_count": 440,
+      "prompt_eval_duration": 309917000,
+      "eval_count": 42,
+      "eval_duration": 1241286000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root -400 mm differs from target 0 mm",
+      "wall_seconds": 1.7595819580601528
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "corrected_exit_direction_and_accent",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Draft: start with a right step and finish left. Correction: the opening is left and soft, and the final step is right with a clear accent. Return to x=0 from x=0, keeping the pelvis within -400 to 400 mm; choose the two middle steps to make that work.\", \"task\": {\"id\": \"corrected_exit_direction_and_accent\", \"required_moves\": {\"0\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {\"0\": \"soft\", \"3\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1442,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:33.719571Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1738066750,
+        "load_duration": 130804416,
+        "prompt_eval_count": 377,
+        "prompt_eval_duration": 433084000,
+        "eval_count": 42,
+        "eval_duration": 1170030000
+      },
+      "total_duration": 1738066750,
+      "load_duration": 130804416,
+      "prompt_eval_count": 377,
+      "prompt_eval_duration": 433084000,
+      "eval_count": 42,
+      "eval_duration": 1170030000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "accepted": true,
+      "receipt": {
+        "task_sha256": "ff865232c9b1e693e74b06ff3d04251375149558d744b89d95330f4f9ffbc878",
+        "local_sequence_sha256": "144d0f051446e971e81406de2e1a8c680d2767a3ede480538c681dce3a40e2d5",
+        "checks": {
+          "world_root_min_x_mm": -400.0,
+          "world_root_max_x_mm": 0.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      },
+      "placement": {
+        "world_start_x_mm": 0,
+        "world_final_x_mm": 0
+      },
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "wall_seconds": 1.825648874975741
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "walk_back_from_positive_offset",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From x=400 mm, return to x=0 while staying between -400 and 400 mm. Step left on the first and third moves; accent the opening softly and the last move clearly.\", \"task\": {\"id\": \"walk_back_from_positive_offset\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_left\"}, \"required_variations\": {\"0\": \"soft\", \"3\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 400, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1347,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:35.49635Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1687841042,
+        "load_duration": 134183333,
+        "prompt_eval_count": 356,
+        "prompt_eval_duration": 371385000,
+        "eval_count": 42,
+        "eval_duration": 1179484000
+      },
+      "total_duration": 1687841042,
+      "load_duration": 134183333,
+      "prompt_eval_count": 356,
+      "prompt_eval_duration": 371385000,
+      "eval_count": 42,
+      "eval_duration": 1179484000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root -400 mm differs from target 0 mm",
+      "wall_seconds": 1.7648178749950603
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "walk_back_from_positive_offset",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"From x=400 mm, return to x=0 while staying between -400 and 400 mm. Step left on the first and third moves; accent the opening softly and the last move clearly.\", \"task\": {\"id\": \"walk_back_from_positive_offset\", \"required_moves\": {\"0\": \"step_left\", \"2\": \"step_left\"}, \"required_variations\": {\"0\": \"soft\", \"3\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": 400, \"target_x_mm\": 0}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: final root -400 mm differs from target 0 mm. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1608,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:37.232161Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1655498083,
+        "load_duration": 131830083,
+        "prompt_eval_count": 440,
+        "prompt_eval_duration": 308308000,
+        "eval_count": 42,
+        "eval_duration": 1211963000
+      },
+      "total_duration": 1655498083,
+      "load_duration": 131830083,
+      "prompt_eval_count": 440,
+      "prompt_eval_duration": 308308000,
+      "eval_count": 42,
+      "eval_duration": 1211963000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"clear\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root -400 mm differs from target 0 mm",
+      "wall_seconds": 1.7404179589357227
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "narrow_lane_turnaround_route",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"Starting at the center, finish at the center without letting the pelvis leave the -200 to 200 mm lane. Go right, immediately return left, then take another left step and finish with a right step.\", \"task\": {\"id\": \"narrow_lane_turnaround_route\", \"required_moves\": {\"0\": \"step_right\", \"1\": \"step_left\", \"2\": \"step_left\", \"3\": \"step_right\"}, \"required_variations\": {}, \"root_bounds_mm\": [-200, 200], \"start_x_mm\": 0, \"target_x_mm\": 0}}"
+        }
+      ],
+      "input_text_characters": 1391,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:39.039146Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1705043583,
+        "load_duration": 134709083,
+        "prompt_eval_count": 359,
+        "prompt_eval_duration": 380518000,
+        "eval_count": 42,
+        "eval_duration": 1183174000
+      },
+      "total_duration": 1705043583,
+      "load_duration": 134709083,
+      "prompt_eval_count": 359,
+      "prompt_eval_duration": 380518000,
+      "eval_count": 42,
+      "eval_duration": 1183174000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "accepted": true,
+      "receipt": {
+        "task_sha256": "76f8901458afa97ae35f34c3276eae5071aa7c1a0ea29f8241aa640fef896b2f",
+        "local_sequence_sha256": "609d9789929b29dd65625ac0f6a3b4e25a19e8172a74bd4732d47cf914f5a129",
+        "checks": {
+          "world_root_min_x_mm": -200.0,
+          "world_root_max_x_mm": 200.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      },
+      "placement": {
+        "world_start_x_mm": 0,
+        "world_final_x_mm": 0
+      },
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "wall_seconds": 1.8058979579946026
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "offset_return_to_mark_with_endpoint_direction",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"The root begins at x=-200 mm and must finish at x=200 mm. Keep the pelvis within [-400, 400] mm throughout. The first and fourth moves go right; the second move uses a clear accent. Choose the other details so the endpoint is reached.\", \"task\": {\"id\": \"offset_return_to_mark_with_endpoint_direction\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_right\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        }
+      ],
+      "input_text_characters": 1428,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:40.842969Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1712015459,
+        "load_duration": 136163875,
+        "prompt_eval_count": 373,
+        "prompt_eval_duration": 375928000,
+        "eval_count": 42,
+        "eval_duration": 1196971000
+      },
+      "total_duration": 1712015459,
+      "load_duration": 136163875,
+      "prompt_eval_count": 373,
+      "prompt_eval_duration": 375928000,
+      "eval_count": 42,
+      "eval_duration": 1196971000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}",
+      "accepted": false,
+      "error_type": "ValueError",
+      "reason": "final root 600 mm differs from target 200 mm",
+      "wall_seconds": 1.7907517909770831
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "offset_return_to_mark_with_endpoint_direction",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. The approved task uses integer millimetres in world x. Each step_left changes x by -200 mm and step_right by +200 mm. Start at start_x_mm and finish at target_x_mm. Keep the root within the inclusive root_bounds_mm throughout. required_moves and required_variations map zero-based slot strings to required identifiers. Empty maps leave those choices free. All task fields are authoritative. Do not emit coordinates; output the four move/variation pairs only."
+        },
+        {
+          "role": "user",
+          "content": "{\"request\": \"The root begins at x=-200 mm and must finish at x=200 mm. Keep the pelvis within [-400, 400] mm throughout. The first and fourth moves go right; the second move uses a clear accent. Choose the other details so the endpoint is reached.\", \"task\": {\"id\": \"offset_return_to_mark_with_endpoint_direction\", \"required_moves\": {\"0\": \"step_right\", \"3\": \"step_right\"}, \"required_variations\": {\"1\": \"clear\"}, \"root_bounds_mm\": [-400, 400], \"start_x_mm\": -200, \"target_x_mm\": 200}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Host rejected the plan: final root 600 mm differs from target 200 mm. Re-read the approved task and return a corrected four-pair plan."
+        }
+      ],
+      "input_text_characters": 1694,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:50:42.566019Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1642133333,
+        "load_duration": 131662541,
+        "prompt_eval_count": 459,
+        "prompt_eval_duration": 305594000,
+        "eval_count": 42,
+        "eval_duration": 1201844000
+      },
+      "total_duration": 1642133333,
+      "load_duration": 131662541,
+      "prompt_eval_count": 459,
+      "prompt_eval_duration": 305594000,
+      "eval_count": 42,
+      "eval_duration": 1201844000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}",
+      "accepted": true,
+      "receipt": {
+        "task_sha256": "574480b533142c3f0e03a8197d2ae5faec5b6586e428f15dd5292c6aea12fa23",
+        "local_sequence_sha256": "cb30d31758de8697c26335183820a20a9aba44339f848860b59a181d2c20df59",
+        "checks": {
+          "world_root_min_x_mm": -200.0,
+          "world_root_max_x_mm": 200.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      },
+      "placement": {
+        "world_start_x_mm": -200,
+        "world_final_x_mm": 200
+      },
+      "moves": [
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "wall_seconds": 1.7309856250649318
+    }
+  ],
+  "results": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "offset_return_to_mark_with_endpoint_direction",
+      "call_indices": [
+        0,
+        1
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "narrow_lane_turnaround_route",
+      "call_indices": [
+        2
+      ],
+      "first_accepted": true,
+      "final_accepted": true
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "walk_back_from_positive_offset",
+      "call_indices": [
+        3,
+        4
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "corrected_exit_direction_and_accent",
+      "call_indices": [
+        5
+      ],
+      "first_accepted": true,
+      "final_accepted": true
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "cross_to_positive_side_then_recover",
+      "call_indices": [
+        6,
+        7
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_return_with_soft_third",
+      "call_indices": [
+        8,
+        9
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "accented_middle_crossing_in_tight_lane",
+      "call_indices": [
+        10,
+        11
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "finish_beyond_start_after_left_detour",
+      "call_indices": [
+        12,
+        13
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "finish_beyond_start_after_left_detour",
+      "call_indices": [
+        14,
+        15
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "accented_middle_crossing_in_tight_lane",
+      "call_indices": [
+        16,
+        17
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_return_with_soft_third",
+      "call_indices": [
+        18,
+        19
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "cross_to_positive_side_then_recover",
+      "call_indices": [
+        20,
+        21
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "corrected_exit_direction_and_accent",
+      "call_indices": [
+        22
+      ],
+      "first_accepted": true,
+      "final_accepted": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "walk_back_from_positive_offset",
+      "call_indices": [
+        23,
+        24
+      ],
+      "first_accepted": false,
+      "final_accepted": false
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "narrow_lane_turnaround_route",
+      "call_indices": [
+        25
+      ],
+      "first_accepted": true,
+      "final_accepted": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "offset_return_to_mark_with_endpoint_direction",
+      "call_indices": [
+        26,
+        27
+      ],
+      "first_accepted": false,
+      "final_accepted": true
+    }
+  ],
+  "complete": true
+}

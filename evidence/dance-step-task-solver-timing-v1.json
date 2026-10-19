@@ -1,0 +1,77 @@
+{
+  "scope": "Single CPU observation, no model calls; exact bounded task domain only. Import/startup excluded.",
+  "rows": [
+    {
+      "case_id": "offset_return_to_mark_with_endpoint_direction",
+      "supported": true,
+      "enumeration_seconds": 0.00011675001587718725,
+      "search_and_compile_seconds": 0.01357583305798471
+    },
+    {
+      "case_id": "narrow_lane_turnaround_route",
+      "supported": true,
+      "enumeration_seconds": 9.258300997316837e-05,
+      "search_and_compile_seconds": 0.013328875065781176
+    },
+    {
+      "case_id": "walk_back_from_positive_offset",
+      "supported": true,
+      "enumeration_seconds": 8.7916967459023e-05,
+      "search_and_compile_seconds": 0.0122893329244107
+    },
+    {
+      "case_id": "corrected_exit_direction_and_accent",
+      "supported": true,
+      "enumeration_seconds": 0.00010345806367695332,
+      "search_and_compile_seconds": 0.012321625021286309
+    },
+    {
+      "case_id": "cross_to_positive_side_then_recover",
+      "supported": true,
+      "enumeration_seconds": 7.199996616691351e-05,
+      "search_and_compile_seconds": 0.01225541706662625
+    },
+    {
+      "case_id": "alternating_return_with_soft_third",
+      "supported": true,
+      "enumeration_seconds": 8.895795326679945e-05,
+      "search_and_compile_seconds": 0.012535042013041675
+    },
+    {
+      "case_id": "accented_middle_crossing_in_tight_lane",
+      "supported": true,
+      "enumeration_seconds": 9.87079693004489e-05,
+      "search_and_compile_seconds": 0.012223249999806285
+    },
+    {
+      "case_id": "finish_beyond_start_after_left_detour",
+      "supported": true,
+      "enumeration_seconds": 8.170900400727987e-05,
+      "search_and_compile_seconds": 0.012161583988927305
+    },
+    {
+      "case_id": "half_step_target_parity_mismatch",
+      "supported": false,
+      "enumeration_seconds": 1.7832964658737183e-05,
+      "search_and_compile_seconds": 1.8124934285879135e-05
+    },
+    {
+      "case_id": "requested_endpoint_outside_lane",
+      "supported": false,
+      "enumeration_seconds": 1.2916047126054764e-05,
+      "search_and_compile_seconds": 1.3083103112876415e-05
+    },
+    {
+      "case_id": "forced_rightward_pair_exceeds_lane",
+      "supported": false,
+      "enumeration_seconds": 2.9916991479694843e-05,
+      "search_and_compile_seconds": 3.0082999728620052e-05
+    },
+    {
+      "case_id": "all_directions_force_wrong_endpoint",
+      "supported": false,
+      "enumeration_seconds": 5.679205060005188e-05,
+      "search_and_compile_seconds": 5.6875054724514484e-05
+    }
+  ]
+}

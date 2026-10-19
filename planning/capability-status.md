@@ -184,3 +184,7 @@ On twelve new within-library briefs, E2B full/patch/fresh-fallback scores9/12,9/
 ## Stepping motion and small-model tool wording
 
 A separate side-step compiler now converts four direction/accent pairs into81samples with fixed0.20metre travel, foot-contact checks and full segment validation. All256legal plans compile;13relevant tests pass. Initial wording produced0/4E2B and1/4Qwen correct plans; a reused-case prompt/schema diagnostic reaches4/4each with explicit identifiers.32localcalls; no hosted charges, heldout gain or H2 learning claimed. Actual Blender readback and a four-second proxy video are verified. Weight transfer and smooth landing velocity remain missing physical refinements. See [dance-stepping-pilot.md](dance-stepping-pilot.md) for evidence, initial context and timing.
+
+## Host-checked world-position step tasks
+
+New structured constraints accept any valid route, check world-space root lanes and endpoints, and reject infeasible requests before inference. Eight fresh feasible briefs: E2B 2/8 first and after correction; Qwen 2/8 first, 3/8 after correction. All 28 local replies replay; four impossible tasks use zero provider calls. A separate bounded deterministic search actually compiles valid plans for all eight supported cases. This exposes a useful division of work: trusted route solving, model expression/preferences. It is not a model-learning gain or natural-language constraint-extraction result. See [dance-step-tasks.md](dance-step-tasks.md).
