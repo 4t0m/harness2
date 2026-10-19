@@ -1,0 +1,481 @@
+{
+  "scope": "Saved local MiniMax H3 schema and workflow inspection; not live runtime or reference acceptance",
+  "observed_on": "2026-10-19",
+  "sources": {
+    "object_info.json": {
+      "path": "/Users/adom/ComfyUI-h3-setup/object_info.json",
+      "sha256": "1560f2a8b9c59be36f0f00ceb50c0afb9da61023e3c962d02229e46a5de85c2e"
+    },
+    "demo_api.json": {
+      "path": "/Users/adom/ComfyUI-h3-setup/demo_api.json",
+      "sha256": "cebf4c0779275fd2379c4d4f095b5055bb6fc87f8a3728c9e9070558dd1609b9"
+    },
+    "clip2s_api.json": {
+      "path": "/Users/adom/ComfyUI-h3-setup/clip2s_api.json",
+      "sha256": "7d8f966c55ae10bd5efb28f6edcf4c57a353ebc8ab85957c730430f97fe342db"
+    }
+  },
+  "node_inputs": {
+    "MiniMaxH3ImageToVideo": {
+      "required": {
+        "clip": [
+          "CLIP",
+          {}
+        ],
+        "vae": [
+          "VAE",
+          {}
+        ],
+        "prompt": [
+          "STRING",
+          {
+            "multiline": true,
+            "dynamicPrompts": true
+          }
+        ],
+        "width": [
+          "INT",
+          {
+            "default": 1344,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "height": [
+          "INT",
+          {
+            "default": 768,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "length": [
+          "INT",
+          {
+            "tooltip": "Frame count at 24 fps, snapped up to the model's 17k+5 grid (124 = ~5s; trained range is ~124-362, longer is untested)",
+            "default": 124,
+            "min": 5,
+            "max": 3600,
+            "step": 17
+          }
+        ]
+      },
+      "optional": {
+        "first_frame": [
+          "IMAGE",
+          {}
+        ],
+        "last_frame": [
+          "IMAGE",
+          {}
+        ]
+      }
+    },
+    "MiniMaxH3ReferenceToVideo": {
+      "required": {
+        "clip": [
+          "CLIP",
+          {}
+        ],
+        "vae": [
+          "VAE",
+          {}
+        ],
+        "audio_vae": [
+          "VAE",
+          {}
+        ],
+        "prompt": [
+          "STRING",
+          {
+            "multiline": true,
+            "dynamicPrompts": true
+          }
+        ],
+        "width": [
+          "INT",
+          {
+            "default": 1344,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "height": [
+          "INT",
+          {
+            "default": 768,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "length": [
+          "INT",
+          {
+            "tooltip": "Frame count at 24 fps, (124 = ~5s, trained range is ~124-362)",
+            "default": 124,
+            "min": 5,
+            "max": 3600,
+            "step": 17
+          }
+        ],
+        "ref_image_size": [
+          "COMBO",
+          {
+            "tooltip": "Reference image sizing. 'match' scales each ref (down only, keeping aspect) to the generation's pixel area; 'max' uses the reference pipeline's 2048px short edge for best identity fidelity. Reference tokens ride through every sampling step, so 'max' can be several times slower.",
+            "default": "match",
+            "multiselect": false,
+            "options": [
+              "match",
+              "max"
+            ]
+          }
+        ]
+      },
+      "optional": {
+        "ref_images": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "template": {
+              "input": {
+                "required": {
+                  "ref_image": [
+                    "IMAGE",
+                    {
+                      "tooltip": "Reference image (downscaled to 2048 short edge if larger, never upscaled)"
+                    }
+                  ]
+                }
+              },
+              "prefix": "ref_image_",
+              "min": 0,
+              "max": 9
+            }
+          }
+        ],
+        "ref_videos": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "template": {
+              "input": {
+                "required": {
+                  "ref_video": [
+                    "IMAGE",
+                    {
+                      "tooltip": "Reference video frames at 24 fps (2-15s)"
+                    }
+                  ]
+                }
+              },
+              "prefix": "ref_video_",
+              "min": 0,
+              "max": 3
+            }
+          }
+        ],
+        "ref_video_audios": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "template": {
+              "input": {
+                "required": {
+                  "ref_video_audio": [
+                    "AUDIO",
+                    {
+                      "tooltip": "Soundtrack of the same-numbered reference video"
+                    }
+                  ]
+                }
+              },
+              "prefix": "ref_video_audio_",
+              "min": 0,
+              "max": 3
+            }
+          }
+        ],
+        "ref_audios": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "template": {
+              "input": {
+                "required": {
+                  "ref_audio": [
+                    "AUDIO",
+                    {
+                      "tooltip": "Standalone reference audio"
+                    }
+                  ]
+                }
+              },
+              "prefix": "ref_audio_",
+              "min": 0,
+              "max": 3
+            }
+          }
+        ]
+      }
+    },
+    "MiniMaxH3AddGuide": {
+      "required": {
+        "positive": [
+          "CONDITIONING",
+          {}
+        ],
+        "latent": [
+          "LATENT",
+          {}
+        ],
+        "frame_idx": [
+          "INT",
+          {
+            "tooltip": "Frame index to anchor the image or the clip's first frame at. Negative values are counted from the end of the video.",
+            "default": 0,
+            "min": -9999,
+            "max": 9999
+          }
+        ]
+      },
+      "optional": {
+        "vae": [
+          "VAE",
+          {
+            "tooltip": "Video VAE, needed when an image is connected."
+          }
+        ],
+        "audio_vae": [
+          "VAE",
+          {
+            "tooltip": "Audio VAE, needed when an audio is connected."
+          }
+        ],
+        "image": [
+          "IMAGE",
+          {
+            "tooltip": "Image or video frames to anchor. Multi-frame batches are anchored as a clip and cropped down to the model's valid clip lengths: 5, 22, 39... (17k + 5) frames. Batches shorter than 5 frames use only the first image."
+          }
+        ],
+        "audio": [
+          "AUDIO",
+          {
+            "tooltip": "Soundtrack to anchor starting at the same frame index, cropped to the video's remaining duration."
+          }
+        ]
+      }
+    }
+  },
+  "workflow_nodes": {
+    "demo_api.json": {
+      "104": {
+        "class_type": "MiniMaxH3ImageToVideo",
+        "inputs": {
+          "clip": [
+            "13",
+            0
+          ],
+          "vae": [
+            "11",
+            0
+          ],
+          "prompt": [
+            "144",
+            0
+          ],
+          "width": [
+            "115",
+            0
+          ],
+          "height": [
+            "115",
+            1
+          ],
+          "length": [
+            "107",
+            1
+          ]
+        }
+      },
+      "145": {
+        "class_type": "PrimitiveBoolean",
+        "inputs": {
+          "value": false
+        }
+      },
+      "146": {
+        "class_type": "ComfySwitchNode",
+        "inputs": {
+          "switch": [
+            "145",
+            0
+          ],
+          "on_false": [
+            "104",
+            0
+          ],
+          "on_true": [
+            "148",
+            0
+          ]
+        }
+      },
+      "147": {
+        "class_type": "ComfySwitchNode",
+        "inputs": {
+          "switch": [
+            "145",
+            0
+          ],
+          "on_false": [
+            "104",
+            1
+          ],
+          "on_true": [
+            "148",
+            1
+          ]
+        }
+      },
+      "148": {
+        "class_type": "MiniMaxH3ReferenceToVideo",
+        "inputs": {
+          "clip": [
+            "13",
+            0
+          ],
+          "vae": [
+            "11",
+            0
+          ],
+          "audio_vae": [
+            "24",
+            0
+          ],
+          "prompt": [
+            "144",
+            0
+          ],
+          "width": [
+            "115",
+            0
+          ],
+          "height": [
+            "115",
+            1
+          ],
+          "length": [
+            "107",
+            1
+          ],
+          "ref_image_size": "match"
+        }
+      }
+    },
+    "clip2s_api.json": {
+      "104": {
+        "class_type": "MiniMaxH3ImageToVideo",
+        "inputs": {
+          "clip": [
+            "13",
+            0
+          ],
+          "vae": [
+            "11",
+            0
+          ],
+          "prompt": [
+            "144",
+            0
+          ],
+          "width": [
+            "115",
+            0
+          ],
+          "height": [
+            "115",
+            1
+          ],
+          "length": [
+            "107",
+            1
+          ]
+        }
+      },
+      "145": {
+        "class_type": "PrimitiveBoolean",
+        "inputs": {
+          "value": false
+        }
+      },
+      "146": {
+        "class_type": "ComfySwitchNode",
+        "inputs": {
+          "switch": [
+            "145",
+            0
+          ],
+          "on_false": [
+            "104",
+            0
+          ],
+          "on_true": [
+            "148",
+            0
+          ]
+        }
+      },
+      "147": {
+        "class_type": "ComfySwitchNode",
+        "inputs": {
+          "switch": [
+            "145",
+            0
+          ],
+          "on_false": [
+            "104",
+            1
+          ],
+          "on_true": [
+            "148",
+            1
+          ]
+        }
+      },
+      "148": {
+        "class_type": "MiniMaxH3ReferenceToVideo",
+        "inputs": {
+          "clip": [
+            "13",
+            0
+          ],
+          "vae": [
+            "11",
+            0
+          ],
+          "audio_vae": [
+            "24",
+            0
+          ],
+          "prompt": [
+            "144",
+            0
+          ],
+          "width": [
+            "115",
+            0
+          ],
+          "height": [
+            "115",
+            1
+          ],
+          "length": [
+            "107",
+            1
+          ],
+          "ref_image_size": "match"
+        }
+      }
+    }
+  }
+}

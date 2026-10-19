@@ -124,3 +124,10 @@ Review found the first prototype's foot marker stayed at fixed height during ank
 ## Model-selected motion edit
 
 `dance-model-edit-v1.json` records a successful first-try local Gemma E2B selection of a pronounced arm accent. Trusted code edited only39middle frames' elbows/wrists, preserved every other joint and the first/last two beats exactly, and rendered a four-second comparison. The effect is an inward/downward arm pulse; taste remains unjudged. See dance-lab.md for input tokens, load/evaluation times, hashes and media. A subsequent contract review identified mutable timing metadata as a potential span shift; the editor now requires the prototype's exact authoritative timing before accepting a source.
+
+
+## Portable motion and H3 contract checkpoint (2026-10-19)
+
+The original/edited motion now has an independently checked reference bundle (hashes, protected spans, real video metadata) and an animated GLB scene. A fresh Blender import reproduces all81samples with maximum endpoint error2.5278e-7m. The first failed37-animation export is retained; the corrected artifact has one animation. See `motion-bundle-v1.json`, `dance-gltf-v1/v2/v3.json` and dance-lab.md. This is proxy geometry, not a skinned avatar or H3-accepted input.
+
+The operations handoff and direct saved-schema inspection establish MiniMax H3's reference IMAGE/frame-batch interface. Saved reference-video guidance is24fps/2–15seconds; current saved workflows route to ImageToVideo with no reference/first/last input wired. `h3-saved-input-contract-v1.json` records filtered primary evidence and hashes. Next useful boundary is a single-actor24fps RGB reference plus verified checkpoint/loader wiring, followed by actual generated-output inspection. The10fps comparison and GLB cannot currently be claimed as H3-compatible inputs. No paid provider call or H3 GPU inference ran for this checkpoint.

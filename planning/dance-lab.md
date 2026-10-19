@@ -124,4 +124,26 @@ Media: `/Users/adom/Development/hermes-testing/runs/harness2-dance-model-edit-v1
 
 Timing hardening: a deterministic review showed altered BPM could shift edits into protected frames even while the general geometry validator passed. The edit tool now rejects missing, boolean or nonmatching BPM/FPS/beat-count/duration metadata and computes bounds from authoritative timing constants. Thirteen edit/motion tests passed. Saved valid-input source/result hashes reproduce exactly after hardening; the render receipt retains the pre-hardening source file hash rather than being rewritten to imply a new render. Investigation: `2026-10-19-dance-edit-timing.md`.
 
-The established operations chat was asked for the exact H3 backend/workflow and verified pose/animation-reference input contracts. No GPU work was requested. Treat an H3-compatible export as unverified until a substantive reply and actual interface test exist.
+The operations chat returned the MiniMax H3 setup locations. Parent independently inspected the saved node schemas and both API graphs; details and boundaries follow. No GPU work or H3 submission was performed.
+
+
+## Portable reference bundle and animated scene (2026-10-19)
+
+Sol added `harness2/motion_bundle.py`: copies immutable original/edited tracks and the comparison video into a fresh folder, records hashes, coordinates and timing, then independently verifies protected motion and decoded video metadata. Four focused bundle tests cover tampering, corrupted motion, wrong stream metadata and mismatched originals. The actual saved bundle passed its verifier: `/Users/adom/Development/hermes-testing/runs/harness2-motion-bundle-v1/manifest.json`; receipt `evidence/motion-bundle-v1.json`. This is a portable technical reference pack, not an H3-specific pack.
+
+Parent exported the edited motion as animated GLB proxy meshes (18 joint markers and19bone cylinders). Initial v1 split the scene into37animations; the imported wrist remained static and positional checks failed by0.27069m. An explicit exporter flag now produces one scene animation. A fresh Blender import reproduced all81samples, with max joint error6.0064e-8m and bone endpoint error2.5278e-7m against original JSON precision. Export/import took1.49seconds. V3 is current; v1 and v2 receipts remain for diagnosis.
+
+Artifact: `/Users/adom/Development/hermes-testing/runs/harness2-dance-gltf-v3/edited-motion.glb` (219020bytes,45animation channels). This proves sampled motion survives the format boundary. It is not an armature/skinned character, VRM, full interpolation check, or accepted H3 input. No model call or expensive render was needed this round.
+
+## Actual H3 reference contract and next bridge
+
+Here H3 is **MiniMax H3**, not Hunyuan. `evidence/h3-saved-input-contract-v1.json` preserves a filtered, hashed extract from `/Users/adom/ComfyUI-h3-setup/object_info.json`, `demo_api.json` and `clip2s_api.json`. These are saved contracts, not a live readiness check.
+
+- ImageToVideo accepts optional first/last IMAGE frames. Width/height step32; its saved tooltip declares24fps and a17k+5 output-frame grid.
+- ReferenceToVideo declares up to9reference images and3reference video frame batches. Video tooltip requires24fps and2–15seconds. Audio may accompany same-numbered clips. This is an IMAGE batch interface, not a GLB or joint-track importer.
+- AddGuide declares image/clip anchoring with valid clip-length cropping, but is not wired in either saved API graph.
+- Both saved workflows set USE R2V false, select ImageToVideo, and have neither first/last frames nor reference inputs wired. They therefore do not prove any conditioning handoff.
+
+Next bounded test: create a single-actor RGB reference at24fps with explicit camera, coordinate and source-track manifest; preserve the unmodified tracks separately. Verify the intended reference checkpoint and a frame-loader-to-ReferenceToVideo connection before one short GPU generation. The present10fps side-by-side comparison is an audition aid, not this input. A successful load/submission must be followed by decoded generated output and a motion-fidelity comparison. No verified skeleton/pose-map/VRM/GLB ingestion path is established by these schemas.
+
+Do not launch heavy Mac inference merely to test wiring. Preparing the RGB artifact and validating saved graph structure can stay local and cheap; actual model/checkpoint acceptance remains a separate bounded GPU experiment.
