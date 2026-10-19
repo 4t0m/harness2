@@ -1,0 +1,43 @@
+{
+  "scope": "Two live OpenRouter smoke requests; synthetic actor JSON copy, not model-driven Harness2 adaptation or rendered avatar control",
+  "max_output_tokens_per_request": 512,
+  "outer_deadline_seconds": 90,
+  "cases": [
+    {
+      "requested_model": "qwen/qwen3.5-9b",
+      "scope": "live provider proposal smoke; not Harness2 refinement or avatar playback",
+      "error_type": "ProviderError",
+      "error": "malformed provider response"
+    },
+    {
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "scope": "live provider proposal smoke; not Harness2 refinement or avatar playback",
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "latency_seconds": 1.140167124918662,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 149,
+        "completion_tokens": 102,
+        "total_tokens": 251
+      },
+      "content": "{\"actor\": {\"id\": \"aya\", \"x\": 0.8, \"y\": 0.5, \"radius\": 0.05}, \"target\": {\"id\": \"ren\", \"x\": 0.2, \"y\": 0.5, \"radius\": 0.05}, \"context\": \"guide\", \"intensity\": \"subtle\", \"facing\": \"toward_camera\", \"stop_gap\": 0.12}",
+      "reported_cost": 4.503e-05,
+      "verdict": {
+        "valid": true,
+        "edge_gap_final": 0.11999999999999993,
+        "travel_distance": 0.3800000000000001,
+        "gaze": "screen_left",
+        "adapter_control": null,
+        "final_position": {
+          "x": 0.41999999999999993,
+          "y": 0.5
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Original malformed Qwen raw response was not retained; investigation required.",
+    "Reported cost is only available for the successful Gemma request; batch total is unknown.",
+    "One exact-copy fixture does not demonstrate general task reliability."
+  ]
+}
