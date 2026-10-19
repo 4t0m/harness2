@@ -31,6 +31,7 @@ SOURCE_FILES = (
     "harness2/motif_viewer.py", "harness2/dance_motif_runtime.py",
     "harness2/dance_motif_score.py", "harness2/dance_phrases.py",
     "harness2/dance_motion.py", "harness2/bounded_json_http.py",
+    "harness2/dance_motif_recovery.py",
     "experiments/dance_motif_probe.py",
 )
 
@@ -208,9 +209,11 @@ class MotifViewer:
                     code, value = viewer.direct(payload["brief"])
                 elif self.path == "/stop" and payload == {}:
                     code, value = viewer.stop()
+                elif self.path == "/recover" and payload == {}:
+                    code, value = viewer.recover()
                 elif self.path == "/shutdown" and payload == {}:
                     code, value = viewer.shutdown()
-                elif self.path in ("/stop", "/shutdown"):
+                elif self.path in ("/stop", "/recover", "/shutdown"):
                     code, value = 400, {"error": "empty_object_required"}
                 else:
                     code, value = 404, {"error": "not_found"}
@@ -256,6 +259,8 @@ class MotifViewer:
                     "at_ms": at_ms, "status": sample["status"],
                     "source_frame_index": sample["source_frame_index"],
                     "score_sha256": sample["score_sha256"],
+                    "recovery_sha256": sample.get("recovery_sha256"),
+                    "recovery_epoch_ms": sample.get("recovery_epoch_ms"),
                     "frame_sha256": _sha(json.dumps(sample["frame"], sort_keys=True,
                                                    separators=(",", ":")).encode("utf-8")),
                 })
@@ -289,7 +294,10 @@ class MotifViewer:
             if len(self._report["calls"]) >= MAX_CALLS:
                 return 429, {"error": "call_cap_reached"}
             at = self._now()
-            request = self._runtime.request(at, 5000)
+            try:
+                request = self._runtime.request(at, 5000)
+            except ValueError:
+                return 409, {"error": "recovery_in_progress"}
             row = {"request_id": request["request_id"], "request_at_ms": at,
                    "brief": brief, "system": SYSTEMS["compact"],
                    "provider_kind": self.provider_metadata["provider_kind"],
@@ -359,6 +367,21 @@ class MotifViewer:
             at = self._now()
             sample = self._runtime.interrupt(at)
             self._event("stop", at, revision=sample["revision"])
+            self._save()
+            return 200, {"sample": sample}
+
+    def recover(self) -> tuple[int, dict]:
+        """Explicit host motion, with no provider request or automatic restart."""
+        with self._lock:
+            if self._closing:
+                return 410, {"error": "session_closed"}
+            at = self._now()
+            try:
+                sample = self._runtime.recover_to_rest(at)
+            except ValueError:
+                return 409, {"error": "stop_before_recovery"}
+            self._event("recover", at, revision=sample["revision"],
+                        recovery_sha256=sample.get("recovery_sha256"))
             self._save()
             return 200, {"sample": sample}
 

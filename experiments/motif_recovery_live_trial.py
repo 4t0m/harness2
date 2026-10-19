@@ -1,0 +1,396 @@
+"""Bounded loopback driver for a two-request MotifViewer recovery lifecycle trial.
+
+This script never invokes a model API directly. The only provider requests are
+explicit POSTs to the operator-started local viewer's /direct endpoint (max 2).
+Run only against a fresh local viewer; each phase is time bounded and the JSON
+receipt is created exclusively and retained even when an assertion fails.
+"""
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import tempfile
+import time
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlsplit
+from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE_PATHS = (
+    "experiments/motif_recovery_live_trial.py",
+    "experiments/motif_viewer.html",
+    "experiments/dance_motif_probe.py",
+    "harness2/motif_viewer.py",
+    "harness2/dance_motif_runtime.py",
+    "harness2/dance_motif_recovery.py",
+    "harness2/dance_motif_score.py",
+    "harness2/dance_phrases.py",
+    "harness2/dance_motion.py",
+)
+INITIAL_BRIEF = (
+    "Use sway as the repeating motif. Set the four section accents, in order, "
+    "to soft, clear, soft, clear."
+)
+SECOND_BRIEF = (
+    "Use pulse as the repeating motif. Set the four section accents, in order, "
+    "to clear, soft, clear, soft."
+)
+POLL_SECONDS = 0.05
+PHASE_TIMEOUT_SECONDS = 25.0
+TRIAL_LIMIT_SECONDS = 80.0
+HTTP_TIMEOUT_SECONDS = 2.0
+
+
+def _sha_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _validate_url(value: str) -> str:
+    parsed = urlsplit(value)
+    if (parsed.scheme != "http" or parsed.hostname not in ("127.0.0.1", "localhost")
+            or parsed.port is None or parsed.path not in ("", "/")
+            or parsed.query or parsed.fragment or parsed.username or parsed.password):
+        raise ValueError("url must be an http loopback origin with an explicit port")
+    return f"http://{parsed.hostname}:{parsed.port}"
+
+
+class Trial:
+    def __init__(self, url: str, output: Path):
+        self.url = _validate_url(url).rstrip("/")
+        self.output = output.expanduser().absolute()
+        if self.output.exists():
+            raise FileExistsError(f"refusing to overwrite {self.output}")
+        self.output.parent.mkdir(parents=True, exist_ok=True)
+        fd = os.open(self.output, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        os.close(fd)
+        self.started = time.monotonic()
+        self.deadline = self.started + TRIAL_LIMIT_SECONDS
+        self.receipt = {
+            "kind": "motif_recovery_live_loopback_trial",
+            "schema_version": 1,
+            "started_at_utc": datetime.now(timezone.utc).isoformat(),
+            "url_origin": self.url,
+            "client_elapsed_seconds": None,
+            "provider_request_cap": 2,
+            "provider_requests_requested": 0,
+            "provider_calls_observed": None,
+            "states": [],
+            "events": [],
+            "http_actions": [],
+            "checks": {},
+            "failures": [],
+            "cleanup": {"stop_attempted": False, "shutdown_attempted": False},
+            "source_sha256": {},
+            "visual_quality": "not assessed; no UI or renderer review",
+        }
+        for rel in SOURCE_PATHS:
+            path = ROOT / rel
+            self.receipt["source_sha256"][rel] = _sha_file(path) if path.is_file() else None
+        self._persist()
+
+    def _persist(self):
+        self.receipt["client_elapsed_seconds"] = round(time.monotonic() - self.started, 3)
+        fd, name = tempfile.mkstemp(prefix=self.output.name + ".", dir=self.output.parent)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as handle:
+                json.dump(self.receipt, handle, indent=2, sort_keys=True, allow_nan=False)
+                handle.write("\n")
+            os.replace(name, self.output)
+        finally:
+            if os.path.exists(name):
+                os.unlink(name)
+
+    def _request(self, method: str, path: str, payload: dict | None = None):
+        data = None
+        headers = {"Accept": "application/json"}
+        if method == "POST":
+            data = json.dumps(payload if payload is not None else {},
+                              separators=(",", ":")).encode("utf-8")
+            headers.update({"Content-Type": "application/json", "Origin": self.url})
+        request = Request(self.url + path, data=data, headers=headers, method=method)
+        status, body = None, None
+        try:
+            with urlopen(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
+                status = response.status
+                raw = response.read(65537)
+        except HTTPError as exc:
+            status = exc.code
+            raw = exc.read(65537)
+        except (URLError, TimeoutError, OSError) as exc:
+            action = {"method": method, "path": path, "status": None,
+                      "error": type(exc).__name__}
+            self.receipt["http_actions"].append(action)
+            self._persist()
+            raise RuntimeError(f"{method} {path} transport failed: {type(exc).__name__}") from None
+        if len(raw) > 65536:
+            raise RuntimeError(f"{method} {path} response exceeded bound")
+        try:
+            body = json.loads(raw.decode("utf-8")) if raw else {}
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            body = {"unparsed_response_bytes": len(raw)}
+        action = {"method": method, "path": path, "status": status, "body": body}
+        self.receipt["http_actions"].append(action)
+        self._persist()
+        return status, body
+
+    def _record_state(self, state: dict):
+        # Preserve each complete state snapshot; merge event occurrences by exact
+        # canonical JSON so the top-level event list is useful without losing the
+        # per-poll event history present in states.
+        event_rows = state.get("events", []) if type(state.get("events")) is list else []
+        state_row = dict(state)
+        state_row.pop("events", None)
+        state_row["events_seen_count"] = len(event_rows)
+        self.receipt["states"].append(state_row)
+        known = {json.dumps(e, sort_keys=True, separators=(",", ":"))
+                 for e in self.receipt["events"]}
+        for event in state.get("events", []) if type(state.get("events")) is list else []:
+            key = json.dumps(event, sort_keys=True, separators=(",", ":"))
+            if key not in known:
+                self.receipt["events"].append(event)
+                known.add(key)
+        if type(state.get("calls_started")) is int:
+            self.receipt["provider_calls_observed"] = state["calls_started"]
+        if len(self.receipt["states"]) % 20 == 0:
+            self._persist()
+        return state
+
+    def state(self):
+        status, body = self._request("GET", "/state")
+        if status != 200 or type(body) is not dict or type(body.get("sample")) is not dict:
+            raise RuntimeError(f"GET /state returned invalid response ({status})")
+        return self._record_state(body)
+
+    def post(self, route: str, payload: dict):
+        return self._request("POST", route, payload)
+
+    def check(self, name: str, passed: bool, detail=None):
+        self.receipt["checks"][name] = {"passed": bool(passed), "detail": detail}
+        if not passed:
+            self.receipt["failures"].append({"check": name, "detail": detail})
+        self._persist()
+        if not passed:
+            raise AssertionError(f"{name}: {detail}")
+
+    def poll_until(self, predicate, description: str, *, timeout=PHASE_TIMEOUT_SECONDS):
+        end = min(time.monotonic() + timeout, self.deadline)
+        last = None
+        while time.monotonic() < end:
+            last = self.state()
+            if predicate(last):
+                return last
+            time.sleep(min(POLL_SECONDS, max(0, end - time.monotonic())))
+        raise TimeoutError(f"timed out waiting for {description}; last={_brief_state(last)}")
+
+    def wait_sample_time(self, target_ms: int, description: str, *, timeout=8.0):
+        return self.poll_until(lambda s: _sample_ms(s) >= target_ms,
+                               description, timeout=timeout)
+
+    def wait_call_finished(self, expected_count: int):
+        return self.poll_until(lambda s: s.get("calls_started") == expected_count
+                               and not s.get("worker_busy"),
+                               f"request {expected_count} completed")
+
+
+def _sample_ms(state):
+    sample = state.get("sample") if type(state) is dict else None
+    value = sample.get("now_ms") if type(sample) is dict else None
+    return value if type(value) is int else -1
+
+
+def _brief_state(state):
+    if not state:
+        return None
+    sample = state.get("sample", {})
+    return {"now_ms": sample.get("now_ms"), "status": sample.get("status"),
+            "revision": sample.get("revision"), "score_sha256": sample.get("score_sha256"),
+            "calls_started": state.get("calls_started"), "worker_busy": state.get("worker_busy")}
+
+
+def _pose(sample):
+    frame = sample.get("frame", {})
+    return {"joints": frame.get("joints"), "contacts": frame.get("contacts")}
+
+
+def execute(url: str, output: Path) -> dict:
+    trial = Trial(url, output)
+    initial_idle = None
+    try:
+        start_state = trial.state()
+        trial.check("fresh_viewer_idle_at_start", start_state["sample"].get("status") == "idle",
+                    _brief_state(start_state))
+        initial_idle = _pose(start_state["sample"])
+        # First explicit model request: sway with alternating soft/clear sections.
+        status, response = trial.post("/direct", {"brief": INITIAL_BRIEF})
+        trial.receipt["provider_requests_requested"] += int(status == 202)
+        trial._persist()
+        trial.check("initial_direct_accepted", status == 202, {"status": status, "body": response})
+        playing = trial.poll_until(lambda s: s["sample"].get("status") in ("playing", "holding_end")
+                                   and s["sample"].get("score_sha256"),
+                                   "first score playing")
+        trial.check("initial_request_playing", playing["calls_started"] == 1,
+                    _brief_state(playing))
+        epoch = playing["sample"].get("epoch_ms")
+        trial.check("initial_epoch_present", type(epoch) is int, epoch)
+        stop_target = epoch + 1350
+        before_stop = trial.wait_sample_time(stop_target, "first stop target")
+        stop_at_start = _sample_ms(before_stop)
+        stop_status, stop_body = trial.post("/stop", {})
+        trial.receipt["cleanup"]["stop_attempted"] = True
+        trial._persist()
+        trial.check("initial_stop_accepted", stop_status == 200 and type(stop_body.get("sample")) is dict,
+                    {"status": stop_status, "body": stop_body})
+        frozen_sample = stop_body["sample"]
+        stopped_delta = frozen_sample.get("now_ms", -1) - epoch
+        trial.check("stop_near_1_35_seconds", 1350 <= stopped_delta <= 1800,
+                    {"epoch_ms": epoch, "pre_stop_sample_ms": stop_at_start,
+                     "stop_sample_ms": frozen_sample.get("now_ms"), "delta_ms": stopped_delta})
+        frozen_check = trial.state()
+        trial.check("stop_returns_frozen_pose", frozen_sample.get("status") == "frozen"
+                    and _pose(frozen_sample) == _pose(frozen_check["sample"])
+                    and frozen_check["sample"].get("status") == "frozen",
+                    {"stop": _brief_state({"sample": frozen_sample}),
+                     "after_stop_poll": _brief_state(frozen_check)})
+
+        # Start explicit host recovery. A simultaneous direct request must be rejected.
+        rec_status, rec_body = trial.post("/recover", {})
+        trial.check("first_recovery_started", rec_status == 200
+                    and rec_body.get("sample", {}).get("status") == "recovering",
+                    {"status": rec_status, "body": rec_body})
+        recovery_start = rec_body["sample"]
+        trial.check("first_recovery_starts_at_stopped_pose",
+                    _pose(recovery_start) == _pose(frozen_sample),
+                    {"stopped_pose_sha256": _hash_pose(_pose(frozen_sample)),
+                     "recovery_start_pose_sha256": _hash_pose(_pose(recovery_start))})
+        calls_before_conflict = trial.state().get("calls_started")
+        direct_status, direct_body = trial.post("/direct", {"brief": SECOND_BRIEF})
+        state_after_conflict = trial.state()
+        trial.check("direct_rejected_during_recovery", direct_status == 409
+                    and direct_body.get("error") == "recovery_in_progress",
+                    {"status": direct_status, "body": direct_body})
+        trial.check("recovery_rejection_started_no_call",
+                    state_after_conflict.get("calls_started") == calls_before_conflict == 1,
+                    {"before": calls_before_conflict,
+                     "after": state_after_conflict.get("calls_started")})
+        recovery_epoch = recovery_start.get("recovery_epoch_ms")
+        trial.check("recovery_epoch_present", type(recovery_epoch) is int, recovery_epoch)
+        mid = trial.wait_sample_time(recovery_epoch + 700, "recovery interruption point", timeout=5.0)
+        elapsed_recovery = _sample_ms(mid) - recovery_epoch
+        trial.check("recovery_interrupted_after_0_7_seconds", 700 <= elapsed_recovery <= 1100,
+                    {"recovery_epoch_ms": recovery_epoch, "sample_ms": _sample_ms(mid),
+                     "delta_ms": elapsed_recovery})
+        interrupt_status, interrupt_body = trial.post("/stop", {})
+        trial.check("recovery_interrupt_froze_pose", interrupt_status == 200
+                    and interrupt_body.get("sample", {}).get("status") == "frozen",
+                    {"status": interrupt_status, "body": interrupt_body})
+        interrupted_pose = _pose(interrupt_body["sample"])
+        post_interrupt = trial.state()
+        trial.check("interrupted_pose_remains_exact", post_interrupt["sample"].get("status") == "frozen"
+                    and _pose(post_interrupt["sample"]) == interrupted_pose,
+                    _brief_state(post_interrupt))
+
+        rec2_status, rec2_body = trial.post("/recover", {})
+        trial.check("second_recovery_started_from_interrupted_pose", rec2_status == 200
+                    and rec2_body.get("sample", {}).get("status") == "recovering"
+                    and _pose(rec2_body["sample"]) == interrupted_pose,
+                    {"status": rec2_status, "body": rec2_body})
+        resting = trial.poll_until(lambda s: s["sample"].get("status") == "frozen"
+                                   and s["sample"].get("recovery_frame_index") is None,
+                                   "recovery completed at rest", timeout=5.5)
+        trial.check("recovery_returns_to_initial_idle_pose",
+                    _pose(resting["sample"]) == initial_idle,
+                    {"initial_pose_sha256": _hash_pose(initial_idle),
+                     "rest_pose_sha256": _hash_pose(_pose(resting["sample"]))})
+        rest_snapshot = _pose(resting["sample"])
+        stable_start = _sample_ms(resting)
+        stable = trial.wait_sample_time(stable_start + 250, "rest hold", timeout=2.0)
+        trial.check("rest_pose_stays_frozen_for_250ms",
+                    stable["sample"].get("status") == "frozen"
+                    and _pose(stable["sample"]) == rest_snapshot,
+                    {"start_ms": stable_start, "end_ms": _sample_ms(stable)})
+
+        # Second and final model request is made only after recovered rest is stable.
+        second_status, second_body = trial.post("/direct", {"brief": SECOND_BRIEF})
+        trial.receipt["provider_requests_requested"] += int(second_status == 202)
+        trial._persist()
+        trial.check("second_direct_accepted", second_status == 202,
+                    {"status": second_status, "body": second_body})
+        second_playing = trial.poll_until(lambda s: s["calls_started"] == 2
+                                          and s["sample"].get("status") in ("playing", "holding_end")
+                                          and s["sample"].get("score_sha256"),
+                                          "fresh second score playing")
+        trial.check("second_request_playing_with_new_score",
+                    second_playing["calls_started"] == 2
+                    and second_playing["sample"].get("score_sha256") != playing["sample"].get("score_sha256"),
+                    _brief_state(second_playing))
+        trial.check("request_cap_respected", trial.receipt["provider_requests_requested"] <= 2
+                    and second_playing["calls_started"] <= 2,
+                    {"requested": trial.receipt["provider_requests_requested"],
+                     "observed": second_playing["calls_started"]})
+    except BaseException as exc:
+        trial.receipt["failures"].append({"check": "trial_exception",
+                                          "type": type(exc).__name__,
+                                          "detail": str(exc)[:300]})
+        trial._persist()
+    finally:
+        # Always attempt stop, then server shutdown. Each action is logged and bounded.
+        try:
+            trial.receipt["cleanup"]["stop_attempted"] = True
+            status, body = trial.post("/stop", {})
+            trial.receipt["cleanup"]["stop"] = {"status": status, "body": body}
+        except BaseException as exc:
+            trial.receipt["cleanup"]["stop_error"] = type(exc).__name__
+        trial._persist()
+        try:
+            trial.receipt["cleanup"]["shutdown_attempted"] = True
+            status, body = trial.post("/shutdown", {})
+            trial.receipt["cleanup"]["shutdown"] = {"status": status, "body": body}
+        except BaseException as exc:
+            trial.receipt["cleanup"]["shutdown_error"] = type(exc).__name__
+        trial.receipt["checks"]["two_provider_calls_max"] = {
+            "passed": trial.receipt["provider_requests_requested"] <= 2,
+            "detail": {"requested": trial.receipt["provider_requests_requested"],
+                       "observed": trial.receipt["provider_calls_observed"]}}
+        trial.receipt["client_elapsed_seconds"] = round(time.monotonic() - trial.started, 3)
+        trial.receipt["finished_at_utc"] = datetime.now(timezone.utc).isoformat()
+        trial.receipt["within_90_second_bound"] = trial.receipt["client_elapsed_seconds"] < 90
+        if not trial.receipt["within_90_second_bound"]:
+            trial.receipt["failures"].append({"check": "within_90_second_bound",
+                                              "detail": trial.receipt["client_elapsed_seconds"]})
+        trial._persist()
+    return trial.receipt
+
+
+def _hash_pose(pose) -> str:
+    raw = json.dumps(pose, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+    return hashlib.sha256(raw).hexdigest()
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Run bounded local motif recovery lifecycle trial")
+    parser.add_argument("--url", required=True, help="fresh MotifViewer loopback origin, e.g. http://127.0.0.1:8765")
+    parser.add_argument("--output", required=True, type=Path, help="new receipt path; existing files are never overwritten")
+    args = parser.parse_args(argv)
+    try:
+        result = execute(args.url, args.output)
+    except BaseException as exc:
+        print(json.dumps({"result": "not_started", "error_type": type(exc).__name__,
+                          "detail": str(exc)[:300]}, indent=2))
+        raise SystemExit(2)
+    summary = {"output": str(args.output.expanduser().absolute()),
+               "elapsed_seconds": result["client_elapsed_seconds"],
+               "provider_requests_requested": result["provider_requests_requested"],
+               "provider_calls_observed": result["provider_calls_observed"],
+               "checks_passed": sum(item.get("passed") is True for item in result["checks"].values()),
+               "check_count": len(result["checks"]), "failure_count": len(result["failures"]),
+               "shutdown": result["cleanup"].get("shutdown"),
+               "source_sha256": result["source_sha256"]}
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    raise SystemExit(0 if not result["failures"] and result["checks"].get("two_provider_calls_max", {}).get("passed") else 1)
+
+if __name__ == "__main__":
+    main()

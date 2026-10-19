@@ -44,10 +44,10 @@
       <h2>Direct movement</h2><p class="sub">Describe a replacement movement while the current phrase is playing.</p>
       <div class="label-row"><label for="brief">Direction</label><span>Up to 500 characters</span></div>
       <textarea id="brief" maxlength="500" aria-label="Direction" spellcheck="true">Use a side-to-side sway for the A movement. Give the four sections, from first to last, these accents: soft, clear, soft, clear.</textarea>
-      <div class="actions"><button class="btn primary" id="send">Direct movement</button><button class="btn secondary" id="stop">Stop</button><button class="btn end" id="shutdown">End session</button></div>
+      <div class="actions"><button class="btn primary" id="send">Direct movement</button><button class="btn secondary" id="stop">Stop</button><button class="btn secondary" id="recover" disabled>Return to rest</button><button class="btn end" id="shutdown">End session</button></div>
     </section>
   </div>
-  <p class="foot">Requests stay on this local stage. No movement is sent until you choose Direct movement.</p>
+  <p class="foot">Requests stay on this local stage. Direct movement asks the model for a new phrase. Stop and Return to rest work without a model call.</p>
 </main>
 <script>
 (() => {
@@ -56,7 +56,7 @@
   const ui = { connection:$('connection'), connectionText:$('connectionText'), stagePillText:$('stagePillText'),
     stateLine:$('stateLine'), stateDetail:$('stateDetail'), counts:$('counts'),
     error:$('error'), readback:$('readback'), stageTime:$('stageTime'), actor:$('actor'), brief:$('brief'),
-    send:$('send'), stop:$('stop'), shutdown:$('shutdown') };
+    send:$('send'), stop:$('stop'), recover:$('recover'), shutdown:$('shutdown') };
   const NS='http://www.w3.org/2000/svg';
   const EDGES=[['left_hip','left_knee'],['left_knee','left_ankle'],['right_hip','right_knee'],['right_knee','right_ankle'],
     ['left_shoulder','left_elbow'],['left_elbow','left_wrist'],['right_shoulder','right_elbow'],['right_elbow','right_wrist'],
@@ -103,7 +103,8 @@
     const status=s?.status;
     if(!s)return ['Waiting for the local stage.','The stage will appear here when connected.'];
     const pending=!!state?.pending, queued=state?.queued_switch_ms!==null&&state?.queued_switch_ms!==undefined;
-    if(status==='frozen')return ['Movement stopped','The current pose is held in place.'];
+    if(status==='recovering')return ['Returning to rest','A two-second transition. You can stop it at any time.'];
+    if(status==='frozen')return s.at_rest?['At rest','Ready for a fresh movement direction.']:['Movement stopped','Choose Return to rest before directing a new movement.'];
     if(queued)return ['Replacement is queued','The current phrase continues until its next section boundary.'];
     if(pending)return ['Preparing a replacement','The current movement continues while the request is prepared.'];
     if(status==='playing'||status==='holding_end')return ['Movement is playing',status==='holding_end'?'The phrase has reached its ending pose.':'The current phrase is active.'];
@@ -113,8 +114,10 @@
     if(ended||!state)return;
     if(state.sample){lastSample=state.sample;renderActor(state.sample.frame);lastGoodAt=Date.now();setConn('live','Stage connected');ui.stageTime.textContent=Number.isFinite(state.sample.now_ms)?`${(state.sample.now_ms/1000).toFixed(2)}s`:'';}
     const sample=state.sample||lastSample;
+    ui.recover.disabled=sample?.status!=='frozen'||!!sample?.at_rest;
+    ui.send.disabled=sample?.status==='recovering'||(sample?.status==='frozen'&&!sample.at_rest)||!!state.worker_busy;
     const [headline,detail]=labelState(sample,state);
-    ui.stateLine.textContent=headline;ui.stagePillText.textContent=sample?.status==='playing'?(state.queued_switch_ms!==null&&state.queued_switch_ms!==undefined?'Replacement queued':'In motion'):sample?.status==='frozen'?'Stopped':state.pending?'Preparing':'Stage ready';
+    ui.stateLine.textContent=headline;ui.stagePillText.textContent=sample?.status==='playing'?(state.queued_switch_ms!==null&&state.queued_switch_ms!==undefined?'Replacement queued':'In motion'):sample?.status==='frozen'?'Stopped':sample?.status==='recovering'?'Returning to rest':state.pending?'Preparing':'Stage ready';
     const pending=state.pending?1:0;
     const remaining=Number(state.remaining_seconds);
     const model=safeText(state.model,'Local model');
@@ -142,6 +145,7 @@
   }
   ui.send.addEventListener('click',()=>{const brief=ui.brief.value.trim();if(!brief){ui.error.textContent='Add a movement direction first.';ui.brief.focus();return;}if(brief.length>500){ui.error.textContent='Keep the direction under 500 characters.';return;}void post('/direct',{brief});});
   ui.stop.addEventListener('click',()=>void post('/stop',{}));
+  ui.recover.addEventListener('click',()=>void post('/recover',{}));
   let ending=false;
   ui.shutdown.addEventListener('click',async()=>{
     if(ended||ending)return;ending=true;ui.shutdown.disabled=true;ui.shutdown.textContent='Ending…';ui.stateLine.textContent='Ending session…';
@@ -149,7 +153,7 @@
       const response=await fetch('/shutdown',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
       const body=await response.json().catch(()=>({}));
       if(!response.ok||body.termination_reason!=='user_shutdown')throw new Error(body.error||`Shutdown was not confirmed (${response.status})`);
-      ended=true;stopped=true;clearTimeout(timer);setConn('ended','Shutdown requested');ui.stateLine.textContent='Shutdown requested';ui.stateDetail.textContent='The local server accepted the request. Server exit is not verified by this page.';ui.send.disabled=ui.stop.disabled=ui.shutdown.disabled=true;
+      ended=true;stopped=true;clearTimeout(timer);setConn('ended','Shutdown requested');ui.stateLine.textContent='Shutdown requested';ui.stateDetail.textContent='The local server accepted the request. Server exit is not verified by this page.';ui.send.disabled=ui.stop.disabled=ui.recover.disabled=ui.shutdown.disabled=true;
       if(pollController)pollController.abort();
     }catch(err){
       ending=false;latestError=err.message||'Shutdown was not confirmed';ui.stateLine.textContent='Shutdown not confirmed';ui.stateDetail.textContent='The session may still be running. You can retry End session.';ui.error.textContent=latestError;ui.shutdown.disabled=false;ui.shutdown.textContent='End session';

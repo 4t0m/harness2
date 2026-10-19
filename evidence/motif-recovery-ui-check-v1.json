@@ -1,0 +1,40 @@
+{
+  "scope": "Actual browser controls and static screenshot; no continuous frame-rate or artistic-quality assessment.",
+  "server_receipt": "evidence/motif-recovery-ui-server-v1.json",
+  "observations": [
+    "Direct movement launched one actual Qwen3 8B request",
+    "Playing status observed",
+    "Stop froze a mid-motion pose and enabled Return to rest",
+    "Return to rest button showed Returning to rest and disabled new direction",
+    "At rest status restored Direct movement and disabled redundant recovery",
+    "End session acknowledged; process exit 0 separately verified"
+  ],
+  "artifacts": {
+    "ui-recovering.txt": {
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-recovery-v1/ui-recovering.txt",
+      "sha256": "f3c9d811322c948f08dd6cf671bfb4587c4f34a342da8f6fe17a29a6ea9d0ce9"
+    },
+    "ui-recovering.png": {
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-recovery-v1/ui-recovering.png",
+      "sha256": "a54f70c457fac07607cf4c3c64a5ffd0b859596019f10a4e0b5be54b37197091"
+    },
+    "ui-ended.txt": {
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-recovery-v1/ui-ended.txt",
+      "sha256": "acef1aac731b9092555b73044e75ce22d562d8b997dc7c6a2f96e21c0658016b"
+    },
+    "ui-rest.txt": {
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-recovery-v1/ui-rest.txt",
+      "sha256": "425deeff3ec91d84368d1f3fe05c2ad9cc4074c14aa12ac145593f78db29fca9"
+    }
+  },
+  "cleanup": {
+    "all_viewer_processes_exited": true,
+    "worker_drained_all_four_receipts": true,
+    "ports_closed": [
+      51877,
+      54184,
+      55224,
+      56396
+    ]
+  }
+}

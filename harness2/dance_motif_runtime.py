@@ -11,6 +11,7 @@ import json
 import threading
 
 from .dance_motif_score import compile_intent, verify_score
+from .dance_motif_recovery import RECOVERY_MS, recover_frames, verify_recovery
 
 FRAME_MS = 50
 SECTION_MS = 4000
@@ -58,6 +59,9 @@ class MotifRuntime:
         self._queued: tuple[int, PreparedScore] | None = None
         self._pending: dict | None = None
         self._frozen_frame: bytes | None = None
+        self._recovery_frames: tuple[bytes, ...] | None = None
+        self._recovery_epoch_ms: int | None = None
+        self._recovery_digest: str | None = None
         self._last_now_ms = 0
         self._revision = 0
 
@@ -80,10 +84,16 @@ class MotifRuntime:
         if self._queued is not None and now_ms >= self._queued[0]:
             self._epoch_ms, self._active = self._queued
             self._queued = None
+        if (self._recovery_frames is not None and self._frozen_frame is None
+                and now_ms - self._recovery_epoch_ms >= RECOVERY_MS):
+            self._frozen_frame = self._recovery_frames[-1]
 
     def _frame(self, now_ms: int) -> tuple[bytes, int | None, str]:
         if self._frozen_frame is not None:
             return self._frozen_frame, None, "frozen"
+        if self._recovery_frames is not None:
+            index = (now_ms - self._recovery_epoch_ms) // FRAME_MS
+            return self._recovery_frames[index], None, "recovering"
         if self._active is None:
             return self._rest_frame, None, "idle"
         elapsed = min(now_ms - self._epoch_ms, SCORE_MS)
@@ -93,10 +103,17 @@ class MotifRuntime:
 
     def _sample(self, now_ms: int) -> dict:
         encoded, index, status = self._frame(now_ms)
+        frame = json.loads(encoded)
+        recovery_index = ((now_ms - self._recovery_epoch_ms) // FRAME_MS
+                          if status == "recovering" else None)
         return {"now_ms": now_ms, "status": status, "revision": self._revision,
-                "frame": json.loads(encoded), "source_frame_index": index,
+                "frame": frame, "source_frame_index": index,
+                "at_rest": _pose(frame) == self._rest_pose,
                 "score_sha256": self._active._digest if self._active else None,
-                "epoch_ms": self._epoch_ms}
+                "epoch_ms": self._epoch_ms,
+                "recovery_sha256": self._recovery_digest,
+                "recovery_epoch_ms": self._recovery_epoch_ms,
+                "recovery_frame_index": recovery_index}
 
     def request(self, now_ms: int, budget_ms: int) -> dict:
         """Replace the pending request and any queued replacement."""
@@ -104,6 +121,8 @@ class MotifRuntime:
             raise ValueError("budget_ms must be an integer from 1 to 5000")
         with self._lock:
             self._time(now_ms)
+            if self._recovery_frames is not None and self._frozen_frame is None:
+                raise ValueError("cannot request while recovering")
             self._revision += 1
             request_id = f"motif-{self._revision}"
             self._pending = {"request_id": request_id, "revision": self._revision,
@@ -148,6 +167,9 @@ class MotifRuntime:
                             "revision": self._revision}
                 self._active, self._epoch_ms = prepared, now_ms
                 self._frozen_frame = None
+                self._recovery_frames = None
+                self._recovery_epoch_ms = None
+                self._recovery_digest = None
                 return {"status": "applied", "revision": self._revision,
                         "switch_at_ms": now_ms, "score_sha256": prepared._digest}
             self._queued = (switch_ms, prepared)
@@ -186,6 +208,26 @@ class MotifRuntime:
             self._pending = None
             self._queued = None
             self._revision += 1
+            return self._sample(now_ms)
+
+    def recover_to_rest(self, now_ms: int) -> dict:
+        """Explicitly recover a frozen planted pose over two seconds."""
+        with self._lock:
+            self._time(now_ms)
+            if self._frozen_frame is None:
+                raise ValueError("recovery requires a frozen pose")
+            source = json.loads(self._frozen_frame)
+            frames = recover_frames(source)
+            report = verify_recovery(frames, source)
+            self._revision += 1
+            self._pending = None
+            self._queued = None
+            self._active = None
+            self._epoch_ms = None
+            self._recovery_frames = tuple(_encoded(frame) for frame in frames)
+            self._recovery_epoch_ms = now_ms
+            self._recovery_digest = report["frames_sha256"]
+            self._frozen_frame = None
             return self._sample(now_ms)
 
     def snapshot(self) -> dict:

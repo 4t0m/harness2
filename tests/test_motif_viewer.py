@@ -25,9 +25,9 @@ class ViewerTests(unittest.TestCase):
         self.output = self.root / "receipt.json"
         self.threads = []
 
-    def start_viewer(self, provider, *, lifetime=30):
+    def start_viewer(self, provider, *, lifetime=30, clock=time.monotonic):
         viewer = MotifViewer("gemma4:e2b", self.output, provider=provider,
-                             html_path=self.html, lifetime=lifetime)
+                             html_path=self.html, lifetime=lifetime, clock=clock)
         thread = threading.Thread(target=viewer.serve, daemon=True)
         thread.start()
         self.threads.append(thread)
@@ -160,6 +160,42 @@ class ViewerTests(unittest.TestCase):
         receipt = json.loads(self.output.read_text())
         self.assertEqual(receipt["calls"][0]["error"], "incomplete model response")
         self.assertIsNone(receipt["calls"][0]["delivery"])
+
+    def test_explicit_recovery_http_contract_and_fresh_restart(self):
+        clock = [0.0]
+        viewer = self.start_viewer(lambda _body: {"message": {"content": GOOD},
+                                  "done_reason": "stop"}, clock=lambda: clock[0])
+        rest = viewer.state()["sample"]["frame"]["joints"]
+        self.assertEqual(self.post(viewer, "/recover", {})[0], 409)
+        self.assertEqual(self.post(viewer, "/recover", {}, origin=False)[0], 403)
+        self.assertEqual(self.post(viewer, "/recover", {"extra": 1})[0], 400)
+        self.assertEqual(self.post(viewer, "/direct", {"brief": "sway"})[0], 202)
+        self.wait_until(lambda: not viewer.state()["worker_busy"])
+        clock[0] = 1.35
+        stopped = self.post(viewer, "/stop", {})[1]["sample"]
+        code, recovered = self.post(viewer, "/recover", {})
+        self.assertEqual(code, 200)
+        self.assertEqual(recovered["sample"]["status"], "recovering")
+        self.assertEqual(recovered["sample"]["frame"]["joints"], stopped["frame"]["joints"])
+        self.assertEqual(self.post(viewer, "/direct", {"brief": "pulse"}),
+                         (409, {"error": "recovery_in_progress"}))
+        self.assertEqual(viewer.state()["calls_started"], 1)
+        clock[0] = 2.05
+        partial = self.post(viewer, "/stop", {})[1]["sample"]
+        self.assertEqual(partial["status"], "frozen")
+        code, again = self.post(viewer, "/recover", {})
+        self.assertEqual(code, 200)
+        self.assertEqual(again["sample"]["frame"]["joints"], partial["frame"]["joints"])
+        clock[0] = 4.1
+        end = viewer.state()["sample"]
+        self.assertEqual(end["status"], "frozen")
+        self.assertEqual(end["frame"]["joints"], rest)
+        self.assertEqual(self.post(viewer, "/direct", {"brief": "pulse"})[0], 202)
+        self.wait_until(lambda: not viewer.state()["worker_busy"])
+        self.assertEqual(viewer.state()["sample"]["status"], "playing")
+        receipt = json.loads(self.output.read_text())
+        self.assertEqual(sum(e["kind"] == "recover" for e in receipt["events"]), 2)
+        self.assertEqual(len(receipt["calls"]), 2)
 
     def test_constructor_refuses_reuse_bad_bounds_and_missing_html(self):
         with self.assertRaises(ValueError):

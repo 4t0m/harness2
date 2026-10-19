@@ -1,0 +1,741 @@
+{
+  "kind": "independent_motif_recovery_live_replay",
+  "schema_version": 1,
+  "scope": "Saved local receipts only; no inference, rendering, or live service.",
+  "checker_sha256": "31d166b38006006f1ddc5c0561c65804559e98c26685fb81dffa5546ae15e2cc",
+  "sessions": [
+    {
+      "label": "e2b_cold_v1",
+      "server_receipt": "motif-recovery-e2b-server-v1.json",
+      "client_receipt": "motif-recovery-e2b-live-v1.json",
+      "model": "gemma4:e2b",
+      "calls": [
+        {
+          "request_id": "motif-1",
+          "brief": "Use sway as the repeating motif. Set the four section accents, in order, to soft, clear, soft, clear.",
+          "brief_chars": 101,
+          "system_chars": 712,
+          "content": "{\"motif\": \"sway\", \"accents\": [\"soft\", \"clear\", \"soft\", \"clear\"]}",
+          "content_chars": 64,
+          "intended": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "compiled_intent": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "semantic_correct": true,
+          "compiled_score_sha256": "6eb7b39da4560b381fefb1ff9bd690260acb2de3fd296f54b951945703229417",
+          "delivery": {
+            "status": "rejected_deadline",
+            "revision": 1
+          },
+          "timing": {
+            "prompt_tokens": 210,
+            "output_tokens": 24,
+            "native": {
+              "total_ms": 5813.680416,
+              "load_ms": 5265.6875,
+              "prompt_eval_ms": 171.547,
+              "eval_ms": 371.942
+            },
+            "provider_wall_ms": 5866,
+            "request_to_delivery_ms": 6156,
+            "provider_finish_to_prepared_ms": 286
+          }
+        }
+      ],
+      "events": [
+        {
+          "kind": "request",
+          "at_ms": 63544,
+          "request_id": "motif-1"
+        },
+        {
+          "kind": "delivery",
+          "at_ms": 69700,
+          "request_id": "motif-1",
+          "status": "rejected_deadline",
+          "switch_at_ms": null
+        },
+        {
+          "kind": "stop",
+          "at_ms": 88634,
+          "revision": 2
+        },
+        {
+          "kind": "shutdown",
+          "at_ms": 88729,
+          "reason": "user_shutdown"
+        }
+      ],
+      "source_checks": {
+        "harness2/motif_viewer.py": {
+          "recorded_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "current_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "match": true
+        },
+        "harness2/dance_motif_runtime.py": {
+          "recorded_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "current_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "match": true
+        },
+        "harness2/dance_motif_score.py": {
+          "recorded_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "current_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "match": true
+        },
+        "harness2/dance_phrases.py": {
+          "recorded_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "current_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "match": true
+        },
+        "harness2/dance_motion.py": {
+          "recorded_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "current_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "match": true
+        },
+        "harness2/bounded_json_http.py": {
+          "recorded_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "current_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "match": true
+        },
+        "harness2/dance_motif_recovery.py": {
+          "recorded_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "current_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "match": true
+        },
+        "experiments/dance_motif_probe.py": {
+          "recorded_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "current_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "match": true
+        },
+        "experiments/motif_viewer.html": {
+          "recorded_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "current_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "match": true
+        }
+      },
+      "replay": {
+        "observations": 2341,
+        "matched": 2341,
+        "server_samples": 1764,
+        "served_samples_total": 1764,
+        "equal_ms_order_ambiguous_observations": 1,
+        "mismatches": [],
+        "mismatch_count": 0
+      },
+      "termination_reason": "user_shutdown",
+      "worker_drained": true,
+      "client_failures": [
+        {
+          "check": "trial_exception",
+          "detail": "timed out waiting for first score playing; last={'now_ms': 88543, 'status': 'idle', 'revision': 1, 'score_sha256': None, 'calls_started': 1, 'worker_busy': False}",
+          "type": "TimeoutError"
+        }
+      ],
+      "failures": [],
+      "pass": true
+    },
+    {
+      "label": "e2b_warm_v2",
+      "server_receipt": "motif-recovery-e2b-server-v2.json",
+      "client_receipt": "motif-recovery-e2b-live-v2.json",
+      "model": "gemma4:e2b",
+      "calls": [
+        {
+          "request_id": "motif-1",
+          "brief": "Use sway as the repeating motif. Set the four section accents, in order, to soft, clear, soft, clear.",
+          "brief_chars": 101,
+          "system_chars": 712,
+          "content": "{\"motif\": \"sway\", \"accents\": [\"soft\", \"clear\", \"soft\", \"clear\"]}",
+          "content_chars": 64,
+          "intended": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "compiled_intent": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "semantic_correct": true,
+          "compiled_score_sha256": "6eb7b39da4560b381fefb1ff9bd690260acb2de3fd296f54b951945703229417",
+          "delivery": {
+            "status": "applied",
+            "revision": 1,
+            "switch_at_ms": 15613,
+            "score_sha256": "6eb7b39da4560b381fefb1ff9bd690260acb2de3fd296f54b951945703229417"
+          },
+          "timing": {
+            "prompt_tokens": 210,
+            "output_tokens": 24,
+            "native": {
+              "total_ms": 758.575416,
+              "load_ms": 319.234083,
+              "prompt_eval_ms": 58.302,
+              "eval_ms": 378.648
+            },
+            "provider_wall_ms": 805,
+            "request_to_delivery_ms": 1103,
+            "provider_finish_to_prepared_ms": 297
+          }
+        },
+        {
+          "request_id": "motif-6",
+          "brief": "Use pulse as the repeating motif. Set the four section accents, in order, to clear, soft, clear, soft.",
+          "brief_chars": 102,
+          "system_chars": 712,
+          "content": "{\"motif\": \"pulse\", \"accents\": [\"clear\", \"soft\", \"clear\", \"soft\"]}",
+          "content_chars": 65,
+          "intended": {
+            "motif": "pulse",
+            "accents": [
+              "clear",
+              "soft",
+              "clear",
+              "soft"
+            ]
+          },
+          "compiled_intent": {
+            "motif": "pulse",
+            "accents": [
+              "clear",
+              "soft",
+              "clear",
+              "soft"
+            ]
+          },
+          "semantic_correct": true,
+          "compiled_score_sha256": "5bcadf95d58d4552bbe39c38bb3359da2d4a22357b5eb4e0c1f471c7b71c0ce8",
+          "delivery": {
+            "status": "applied",
+            "revision": 6,
+            "switch_at_ms": 21483,
+            "score_sha256": "5bcadf95d58d4552bbe39c38bb3359da2d4a22357b5eb4e0c1f471c7b71c0ce8"
+          },
+          "timing": {
+            "prompt_tokens": 210,
+            "output_tokens": 23,
+            "native": {
+              "total_ms": 858.927291,
+              "load_ms": 311.217625,
+              "prompt_eval_ms": 179.709,
+              "eval_ms": 365.127
+            },
+            "provider_wall_ms": 908,
+            "request_to_delivery_ms": 1201,
+            "provider_finish_to_prepared_ms": 290
+          }
+        }
+      ],
+      "events": [
+        {
+          "kind": "request",
+          "at_ms": 14510,
+          "request_id": "motif-1"
+        },
+        {
+          "kind": "delivery",
+          "at_ms": 15613,
+          "request_id": "motif-1",
+          "status": "applied",
+          "switch_at_ms": 15613
+        },
+        {
+          "kind": "stop",
+          "at_ms": 17033,
+          "revision": 2
+        },
+        {
+          "kind": "recover",
+          "at_ms": 17087,
+          "revision": 3,
+          "recovery_sha256": "8400c802b2779f817b610e31f8385b87a4e7a3816e1e23ce0adcff348cacd297"
+        },
+        {
+          "kind": "stop",
+          "at_ms": 17887,
+          "revision": 4
+        },
+        {
+          "kind": "recover",
+          "at_ms": 17936,
+          "revision": 5,
+          "recovery_sha256": "f5003327dffb75e7e75436e481ca07dbb28fe575081494ae970f32295b8d68b9"
+        },
+        {
+          "kind": "request",
+          "at_ms": 20282,
+          "request_id": "motif-6"
+        },
+        {
+          "kind": "delivery",
+          "at_ms": 21483,
+          "request_id": "motif-6",
+          "status": "applied",
+          "switch_at_ms": 21483
+        },
+        {
+          "kind": "stop",
+          "at_ms": 21613,
+          "revision": 7
+        },
+        {
+          "kind": "shutdown",
+          "at_ms": 21652,
+          "reason": "user_shutdown"
+        }
+      ],
+      "source_checks": {
+        "harness2/motif_viewer.py": {
+          "recorded_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "current_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "match": true
+        },
+        "harness2/dance_motif_runtime.py": {
+          "recorded_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "current_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "match": true
+        },
+        "harness2/dance_motif_score.py": {
+          "recorded_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "current_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "match": true
+        },
+        "harness2/dance_phrases.py": {
+          "recorded_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "current_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "match": true
+        },
+        "harness2/dance_motion.py": {
+          "recorded_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "current_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "match": true
+        },
+        "harness2/bounded_json_http.py": {
+          "recorded_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "current_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "match": true
+        },
+        "harness2/dance_motif_recovery.py": {
+          "recorded_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "current_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "match": true
+        },
+        "experiments/dance_motif_probe.py": {
+          "recorded_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "current_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "match": true
+        },
+        "experiments/motif_viewer.html": {
+          "recorded_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "current_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "match": true
+        }
+      },
+      "replay": {
+        "observations": 586,
+        "matched": 586,
+        "server_samples": 375,
+        "served_samples_total": 375,
+        "equal_ms_order_ambiguous_observations": 6,
+        "mismatches": [],
+        "mismatch_count": 0
+      },
+      "termination_reason": "user_shutdown",
+      "worker_drained": true,
+      "client_failures": [],
+      "failures": [],
+      "pass": true
+    },
+    {
+      "label": "qwen_v1",
+      "server_receipt": "motif-recovery-qwen-server-v1.json",
+      "client_receipt": "motif-recovery-qwen-live-v1.json",
+      "model": "hermes-lab-qwen3-8b:latest",
+      "calls": [
+        {
+          "request_id": "motif-1",
+          "brief": "Use sway as the repeating motif. Set the four section accents, in order, to soft, clear, soft, clear.",
+          "brief_chars": 101,
+          "system_chars": 712,
+          "content": "{\n  \"motif\": \"sway\",\n  \"accents\": [\"soft\", \"clear\", \"soft\", \"clear\"]\n}",
+          "content_chars": 70,
+          "intended": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "compiled_intent": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "semantic_correct": true,
+          "compiled_score_sha256": "6eb7b39da4560b381fefb1ff9bd690260acb2de3fd296f54b951945703229417",
+          "delivery": {
+            "status": "applied",
+            "revision": 1,
+            "switch_at_ms": 12517,
+            "score_sha256": "6eb7b39da4560b381fefb1ff9bd690260acb2de3fd296f54b951945703229417"
+          },
+          "timing": {
+            "prompt_tokens": 210,
+            "output_tokens": 29,
+            "native": {
+              "total_ms": 4270.587375,
+              "load_ms": 3278.296791,
+              "prompt_eval_ms": 400.456,
+              "eval_ms": 588.225
+            },
+            "provider_wall_ms": 4339,
+            "request_to_delivery_ms": 4634,
+            "provider_finish_to_prepared_ms": 295
+          }
+        },
+        {
+          "request_id": "motif-6",
+          "brief": "Use pulse as the repeating motif. Set the four section accents, in order, to clear, soft, clear, soft.",
+          "brief_chars": 102,
+          "system_chars": 712,
+          "content": "{\n  \"motif\": \"pulse\",\n  \"accents\": [\"clear\", \"soft\", \"clear\", \"soft\"]\n}",
+          "content_chars": 71,
+          "intended": {
+            "motif": "pulse",
+            "accents": [
+              "clear",
+              "soft",
+              "clear",
+              "soft"
+            ]
+          },
+          "compiled_intent": {
+            "motif": "pulse",
+            "accents": [
+              "clear",
+              "soft",
+              "clear",
+              "soft"
+            ]
+          },
+          "semantic_correct": true,
+          "compiled_score_sha256": "5bcadf95d58d4552bbe39c38bb3359da2d4a22357b5eb4e0c1f471c7b71c0ce8",
+          "delivery": {
+            "status": "applied",
+            "revision": 6,
+            "switch_at_ms": 18584,
+            "score_sha256": "5bcadf95d58d4552bbe39c38bb3359da2d4a22357b5eb4e0c1f471c7b71c0ce8"
+          },
+          "timing": {
+            "prompt_tokens": 210,
+            "output_tokens": 28,
+            "native": {
+              "total_ms": 853.678458,
+              "load_ms": 126.895,
+              "prompt_eval_ms": 155.844,
+              "eval_ms": 568.839
+            },
+            "provider_wall_ms": 905,
+            "request_to_delivery_ms": 1199,
+            "provider_finish_to_prepared_ms": 293
+          }
+        }
+      ],
+      "events": [
+        {
+          "kind": "request",
+          "at_ms": 7883,
+          "request_id": "motif-1"
+        },
+        {
+          "kind": "delivery",
+          "at_ms": 12517,
+          "request_id": "motif-1",
+          "status": "applied",
+          "switch_at_ms": 12517
+        },
+        {
+          "kind": "stop",
+          "at_ms": 13958,
+          "revision": 2
+        },
+        {
+          "kind": "recover",
+          "at_ms": 14054,
+          "revision": 3,
+          "recovery_sha256": "8400c802b2779f817b610e31f8385b87a4e7a3816e1e23ce0adcff348cacd297"
+        },
+        {
+          "kind": "stop",
+          "at_ms": 14873,
+          "revision": 4
+        },
+        {
+          "kind": "recover",
+          "at_ms": 14943,
+          "revision": 5,
+          "recovery_sha256": "f5003327dffb75e7e75436e481ca07dbb28fe575081494ae970f32295b8d68b9"
+        },
+        {
+          "kind": "request",
+          "at_ms": 17385,
+          "request_id": "motif-6"
+        },
+        {
+          "kind": "delivery",
+          "at_ms": 18584,
+          "request_id": "motif-6",
+          "status": "applied",
+          "switch_at_ms": 18584
+        },
+        {
+          "kind": "stop",
+          "at_ms": 18692,
+          "revision": 7
+        },
+        {
+          "kind": "shutdown",
+          "at_ms": 18742,
+          "reason": "user_shutdown"
+        }
+      ],
+      "source_checks": {
+        "harness2/motif_viewer.py": {
+          "recorded_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "current_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "match": true
+        },
+        "harness2/dance_motif_runtime.py": {
+          "recorded_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "current_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "match": true
+        },
+        "harness2/dance_motif_score.py": {
+          "recorded_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "current_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "match": true
+        },
+        "harness2/dance_phrases.py": {
+          "recorded_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "current_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "match": true
+        },
+        "harness2/dance_motion.py": {
+          "recorded_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "current_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "match": true
+        },
+        "harness2/bounded_json_http.py": {
+          "recorded_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "current_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "match": true
+        },
+        "harness2/dance_motif_recovery.py": {
+          "recorded_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "current_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "match": true
+        },
+        "experiments/dance_motif_probe.py": {
+          "recorded_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "current_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "match": true
+        },
+        "experiments/motif_viewer.html": {
+          "recorded_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "current_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "match": true
+        }
+      },
+      "replay": {
+        "observations": 440,
+        "matched": 440,
+        "server_samples": 145,
+        "served_samples_total": 145,
+        "equal_ms_order_ambiguous_observations": 5,
+        "mismatches": [],
+        "mismatch_count": 0
+      },
+      "termination_reason": "user_shutdown",
+      "worker_drained": true,
+      "client_failures": [],
+      "failures": [],
+      "pass": true
+    },
+    {
+      "label": "qwen_ui_v1",
+      "server_receipt": "motif-recovery-ui-server-v1.json",
+      "client_receipt": null,
+      "model": "hermes-lab-qwen3-8b:latest",
+      "calls": [
+        {
+          "request_id": "motif-1",
+          "brief": "Use a side-to-side sway for the A movement. Give the four sections, from first to last, these accents: soft, clear, soft, clear.",
+          "brief_chars": 128,
+          "system_chars": 712,
+          "content": "{\n  \"motif\": \"sway\",\n  \"accents\": [\"soft\", \"clear\", \"soft\", \"clear\"]\n}",
+          "content_chars": 70,
+          "intended": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "compiled_intent": {
+            "motif": "sway",
+            "accents": [
+              "soft",
+              "clear",
+              "soft",
+              "clear"
+            ]
+          },
+          "semantic_correct": true,
+          "compiled_score_sha256": "6eb7b39da4560b381fefb1ff9bd690260acb2de3fd296f54b951945703229417",
+          "delivery": {
+            "status": "applied",
+            "revision": 1,
+            "switch_at_ms": 10965,
+            "score_sha256": "6eb7b39da4560b381fefb1ff9bd690260acb2de3fd296f54b951945703229417"
+          },
+          "timing": {
+            "prompt_tokens": 217,
+            "output_tokens": 29,
+            "native": {
+              "total_ms": 871.12,
+              "load_ms": 125.68975,
+              "prompt_eval_ms": 152.181,
+              "eval_ms": 591.142
+            },
+            "provider_wall_ms": 943,
+            "request_to_delivery_ms": 1243,
+            "provider_finish_to_prepared_ms": 299
+          }
+        }
+      ],
+      "events": [
+        {
+          "kind": "request",
+          "at_ms": 9722,
+          "request_id": "motif-1"
+        },
+        {
+          "kind": "delivery",
+          "at_ms": 10965,
+          "request_id": "motif-1",
+          "status": "applied",
+          "switch_at_ms": 10965
+        },
+        {
+          "kind": "stop",
+          "at_ms": 19308,
+          "revision": 2
+        },
+        {
+          "kind": "recover",
+          "at_ms": 25356,
+          "revision": 3,
+          "recovery_sha256": "16026228c78b520d913c84c107574a92a0cc0ae9dd61049e44491d725ae6dec3"
+        },
+        {
+          "kind": "shutdown",
+          "at_ms": 35009,
+          "reason": "user_shutdown"
+        }
+      ],
+      "source_checks": {
+        "harness2/motif_viewer.py": {
+          "recorded_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "current_sha256": "44edd8de5652a4eec8783b5d23d87728308ed98a24f67926a4864b0a14c3786d",
+          "match": true
+        },
+        "harness2/dance_motif_runtime.py": {
+          "recorded_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "current_sha256": "0a429c4c6607ba36a130a837f888c30222e1a4c684eaecc5992c0740cb28c8fa",
+          "match": true
+        },
+        "harness2/dance_motif_score.py": {
+          "recorded_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "current_sha256": "36b0f50381ba7bf7f92072c48bb06176a43c4863dad92837281df9fdef6d3399",
+          "match": true
+        },
+        "harness2/dance_phrases.py": {
+          "recorded_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "current_sha256": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+          "match": true
+        },
+        "harness2/dance_motion.py": {
+          "recorded_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "current_sha256": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+          "match": true
+        },
+        "harness2/bounded_json_http.py": {
+          "recorded_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "current_sha256": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f",
+          "match": true
+        },
+        "harness2/dance_motif_recovery.py": {
+          "recorded_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "current_sha256": "ad5efeb7fe1041907de349f23089a9f0e55e8271b331c69b1cfa5d760e7a4415",
+          "match": true
+        },
+        "experiments/dance_motif_probe.py": {
+          "recorded_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "current_sha256": "b5ec1e85b994a45f6648be35e952c0cad4961f25a185aeeb8575e5720d8d2f28",
+          "match": true
+        },
+        "experiments/motif_viewer.html": {
+          "recorded_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "current_sha256": "1232a9b3dc2d393698093478d07b666963652fa9775bdda233fcb80cd72376f0",
+          "match": true
+        }
+      },
+      "replay": {
+        "observations": 509,
+        "matched": 509,
+        "server_samples": 509,
+        "served_samples_total": 509,
+        "equal_ms_order_ambiguous_observations": 0,
+        "mismatches": [],
+        "mismatch_count": 0
+      },
+      "termination_reason": "user_shutdown",
+      "worker_drained": true,
+      "client_failures": null,
+      "failures": [],
+      "pass": true
+    }
+  ],
+  "passed": true
+}
