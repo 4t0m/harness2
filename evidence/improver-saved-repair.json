@@ -1,0 +1,65 @@
+{
+  "scope": "offline replay of saved responses with exact fence normalization through actual Harness2; not fresh model adaptation",
+  "provider_calls": 0,
+  "run_domain": {
+    "domain": "actor-planning",
+    "n_tasks": 1,
+    "seed": null,
+    "done": 1,
+    "failed": 0,
+    "tasks": [
+      {
+        "task": "left-mirror",
+        "status": "ok",
+        "library_entries_before": {
+          "seq": 0
+        }
+      }
+    ]
+  },
+  "replayed": [
+    {
+      "stage": "dom1",
+      "format_repaired": false,
+      "source_content": "{\n  \"coordinate_policy\": \"preserve_snapshot\",\n  \"clearance_policy\": \"preserve_requested_gap\"\n}"
+    },
+    {
+      "stage": "inv1",
+      "format_repaired": true,
+      "source_content": "```json\n{\n  \"coordinate_policy\": \"preserve_snapshot\",\n  \"clearance_policy\": \"preserve_requested_gap\"\n}\n```"
+    },
+    {
+      "stage": "c1",
+      "format_repaired": true,
+      "source_content": "```json\n{\n  \"coordinate_policy\": \"preserve_snapshot\",\n  \"clearance_policy\": \"preserve_requested_gap\"\n}\n```"
+    }
+  ],
+  "checks": {
+    "left-mirror": {
+      "valid": true,
+      "edge_gap_final": 0.11999999999999993,
+      "travel_distance": 0.3800000000000001,
+      "gaze": "screen_left",
+      "adapter_control": null,
+      "final_position": {
+        "x": 0.41999999999999993,
+        "y": 0.5
+      }
+    },
+    "heldout-diagonal": {
+      "valid": true,
+      "edge_gap_final": 0.13999999999999999,
+      "travel_distance": 0.4672481884034769,
+      "gaze": "screen_left",
+      "adapter_control": null,
+      "final_position": {
+        "x": 0.43021260191509864,
+        "y": 0.5376560767001891
+      }
+    }
+  },
+  "limitations": [
+    "Recorded composer response did not see repaired upstream stages; a fresh causal model loop is not established",
+    "Scripted solver, planted fault, deterministic selector, no persistent learned memory"
+  ]
+}
