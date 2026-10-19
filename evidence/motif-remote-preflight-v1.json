@@ -1,0 +1,179 @@
+{
+  "scope": "Two pre-allocation controller failures plus harmless template-field diagnostics; no GPU allocation or model inference.",
+  "recorded_at_utc": "2026-10-19T08:38:54.484322+00:00",
+  "controller_attempts": [
+    {
+      "sha256": "f58fad1e8dbc2914015ce3e4dad7a41b026fea67942bc695e6a83ca6477474b2",
+      "receipt": {
+        "scope": "Bounded single-pod qualification; credentials and endpoints remain private.\n\nOne allocation attempt, no replacement hardware or retry allocation. The remote\ntermination timestamp includes image pulls and model startup. A local supervisor\nalso terminates in finally and verifies disappearance. No account key goes to pod.\n",
+        "planned_spend_ceiling_usd": 5.0,
+        "provider_billing_cap_enforced": false,
+        "max_rate_usd_per_hour": 2.0,
+        "total_provider_lifetime_seconds": 1800,
+        "local_cleanup_starts_by_seconds": 1500,
+        "readiness_cutoff_seconds": 1080,
+        "storage_assumption_usd_per_gb_month": 0.1,
+        "storage_gb": 100,
+        "budget_basis": "Bound rate and lifetime, provider deadline request and verified deletion; not a provider account spending limit",
+        "allocation_attempts": 0,
+        "events": [
+          {
+            "utc": "2026-10-19T08:30:58.535490+00:00",
+            "kind": "trial_ended",
+            "error_type": "RuntimeError",
+            "reason": "see_stage"
+          },
+          {
+            "utc": "2026-10-19T08:30:58.777947+00:00",
+            "kind": "cleanup",
+            "pod_absent_verified": true,
+            "template_absent_verified": false
+          }
+        ],
+        "pod_absent_verified": true,
+        "template_absent_verified": false,
+        "model_calls": 0,
+        "preflight": {
+          "gpu": "NVIDIA GeForce RTX 5090",
+          "quote": {
+            "stockStatus": "Low",
+            "uninterruptablePrice": 1.19
+          },
+          "balance_covers_cap": true,
+          "pod_count": 0
+        },
+        "gate_sha256": "15034f806dba06a2d63e9c71a6729d94d57dbe986543a70552947a7102543c5c",
+        "image": "vllm/vllm-openai@sha256:a77ed1c057e0458dbed205dea0ecaacd0ca2405721be6e58182bf9ee42c359f6",
+        "checkpoint": {
+          "model": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+          "revision": "6c7f09d4036e97393f82e9f9ecd1a5c35ca5ee92"
+        },
+        "finished_at_utc": "2026-10-19T08:30:58.777933+00:00"
+      }
+    },
+    {
+      "sha256": "b4d89f20aa3a5b4a40ab282f77d359a7df584c83b71375261bed5e43be10067f",
+      "receipt": {
+        "scope": "Bounded single-pod qualification; credentials and endpoints remain private.\n\nOne allocation attempt, no replacement hardware or retry allocation. The remote\ntermination timestamp includes image pulls and model startup. A local supervisor\nalso terminates in finally and verifies disappearance. No account key goes to pod.\n",
+        "planned_spend_ceiling_usd": 5.0,
+        "provider_billing_cap_enforced": false,
+        "max_rate_usd_per_hour": 2.0,
+        "total_provider_lifetime_seconds": 1800,
+        "local_cleanup_starts_by_seconds": 1500,
+        "readiness_cutoff_seconds": 1080,
+        "storage_assumption_usd_per_gb_month": 0.1,
+        "storage_gb": 100,
+        "budget_basis": "Bound rate and lifetime, provider deadline request and verified deletion; not a provider account spending limit",
+        "allocation_attempts": 0,
+        "events": [
+          {
+            "utc": "2026-10-19T08:33:37.357226+00:00",
+            "kind": "trial_ended",
+            "error_type": "RuntimeError",
+            "reason": "see_stage"
+          },
+          {
+            "utc": "2026-10-19T08:33:38.439385+00:00",
+            "kind": "cleanup",
+            "pod_absent_verified": true,
+            "template_absent_verified": true
+          }
+        ],
+        "pod_absent_verified": true,
+        "template_absent_verified": true,
+        "model_calls": 0,
+        "preflight": {
+          "gpu": "NVIDIA GeForce RTX 5090",
+          "quote": {
+            "stockStatus": "Low",
+            "uninterruptablePrice": 1.19
+          },
+          "balance_covers_cap": true,
+          "pod_count": 0
+        },
+        "gate_sha256": "15034f806dba06a2d63e9c71a6729d94d57dbe986543a70552947a7102543c5c",
+        "image": "vllm/vllm-openai@sha256:a77ed1c057e0458dbed205dea0ecaacd0ca2405721be6e58182bf9ee42c359f6",
+        "checkpoint": {
+          "model": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+          "revision": "6c7f09d4036e97393f82e9f9ecd1a5c35ca5ee92"
+        },
+        "finished_at_utc": "2026-10-19T08:33:38.439373+00:00"
+      }
+    }
+  ],
+  "field_readback": {
+    "dockerEntrypoint": {
+      "equal": true,
+      "type": "list",
+      "value": [
+        "python3",
+        "-c",
+        "print('template field check')"
+      ]
+    },
+    "dockerStartCmd": {
+      "equal": false,
+      "type": "NoneType",
+      "value": null
+    },
+    "ports": {
+      "equal": true,
+      "type": "list",
+      "value": [
+        "8080/http"
+      ]
+    },
+    "volumeInGb": {
+      "equal": false,
+      "type": "NoneType",
+      "value": null
+    },
+    "imageName": {
+      "equal": true,
+      "type": "str",
+      "value": "vllm/vllm-openai@sha256:a77ed1c057e0458dbed205dea0ecaacd0ca2405721be6e58182bf9ee42c359f6"
+    },
+    "isPublic": {
+      "equal": false,
+      "type": "NoneType",
+      "value": null
+    },
+    "template_deleted_and_absent": true
+  },
+  "graphql_zero_readback": {
+    "rest_present_fields": [
+      "category",
+      "containerDiskInGb",
+      "containerRegistryAuthId",
+      "dockerEntrypoint",
+      "id",
+      "imageName",
+      "name",
+      "ports",
+      "readme",
+      "startJupyter",
+      "startSsh",
+      "volumeMountPath"
+    ],
+    "graphql_values": {
+      "isPublic": false,
+      "volumeInGb": 0,
+      "containerDiskInGb": 100,
+      "isServerless": false,
+      "dockerArgs": "{\"entrypoint\":[\"python3\",\"-c\",\"print('template field check')\"]}"
+    },
+    "template_deleted_and_absent": true
+  },
+  "final_account_pod_count": 0,
+  "final_account_template_count": 14,
+  "gpu_allocation_requests": 0,
+  "gpu_inference_calls": 0,
+  "source_export_approval_pending": true,
+  "sources": {
+    "experiments/motif_pod_gate.py": "15034f806dba06a2d63e9c71a6729d94d57dbe986543a70552947a7102543c5c",
+    "experiments/motif_runpod_trial.py": "7ef342f28f11a4ac0614609296d9464e422c866461b7a4e860eb9b320932693f",
+    "experiments/motif_remote_probe.py": "06ff5af5024da62e2a32bec84e213c2471a3135610b9548e09831e1e5fbea66b",
+    "harness2/motif_remote_provider.py": "b481b3372de642dd6032d8280231a2c13ab3bce24ada50551ad34b310cf8c754",
+    "harness2/bounded_json_http.py": "ec5fc70c795aacae52e2fb711c72cc960f03dfca4ee0b87f0169f49570e6649f"
+  }
+}

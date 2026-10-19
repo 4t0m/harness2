@@ -32,6 +32,9 @@ class ControllerTests(unittest.TestCase):
                 self.assertEqual(variables['input']['podId'],'owned')
                 state['terminations']+=1;state['pod']=None
                 return {'podTerminate':None}
+            if 'podTemplates' in query:
+                return {'myself':{'podTemplates':[{'id':'owned-template','isPublic':False,
+                    'volumeInGb':0,'containerDiskInGb':100,'isServerless':False}]}}
             if 'gpuTypes' in query:
                 return {'gpuTypes':[{'id':trial.GPU,'secure':{'uninterruptablePrice':1.19,'stockStatus':'Low'}}]}
             if 'clientBalance' in query:

@@ -77,3 +77,9 @@ Typed-policy full-loop trial: one model edit accepted and its scripted training 
 Saved typed-response replay through actual Harness² now passes scripted training and diagonal holdout after exact-single-fence normalization; no new provider calls. Evidence/improver-saved-repair.json and reproducible experiments/improver_saved_replay.py preserve source outputs. This is not a fresh causal model loop: the recorded composer did not observe repaired upstream stages. Toy fault wiring is now sufficiently explored; prioritize realistic production dependencies and event tasks.
 
 Production dispatcher: eight frozen dependency/retry/approval scenes and10offline tests prepared. Parent review identified malformed operation-type and generated retry-ID boundary issues; fixes and boundary tests requested before paid trials. No image generation or external jobs are launched by this fixture.
+
+## Current remote-serving checkpoint
+
+Remote connection/gate/supervisor prepared on `codex/remote-motif-serving`; all focused offline checks passed. No GPU allocated. Two real preflights exposed API-client User-Agent rejection and REST omission of false/zero template fields; both diagnosed with primary readback and corrected. `evidence/motif-remote-preflight-v1.json` preserves zero-allocation failures and final zero pods/templates.
+
+Automatic approval review rejected re-uploading the full local gate source to RunPod without explicit code-export approval. An asynchronous question now asks the user to approve sending only `experiments/motif_pod_gate.py` to their RunPod account as a temporary private template. **Wait for that answer before source export or running the paid supervisor again.** Do not work around the denial by publishing/fetching the code indirectly. Other local/hosted experiments remain authorized. No goal pause or completion is implied.

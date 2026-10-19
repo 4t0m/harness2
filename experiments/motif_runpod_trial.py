@@ -135,7 +135,8 @@ def main():
         launcher="import base64;exec(compile(base64.b64decode('"+base64.b64encode(source).decode()+"'),'<motif-gate>','exec'))"
         template={'name':name,'imageName':IMAGE,'category':'NVIDIA','containerDiskInGb':100,
                   'volumeInGb':0,'isPublic':False,'isServerless':False,'env':{},
-                  'dockerEntrypoint':['python3','-u','-c',launcher],'dockerStartCmd':[],
+                  'dockerEntrypoint':['python3','-u','-c',launcher],
+                  'dockerStartCmd':['--startup-timeout','600'],
                   'ports':['8080/http']}
         try:
             made=http('POST',REST+'/templates',os.environ['RUNPOD_API_KEY'],template)
@@ -147,8 +148,15 @@ def main():
             if len(matches)==1: private['template_id']=matches[0]['id']; save()
             raise
         readback=http('GET',REST+'/templates/'+private['template_id'],os.environ['RUNPOD_API_KEY'])
-        for field in ('dockerEntrypoint','dockerStartCmd','ports','volumeInGb','imageName','isPublic'):
+        for field in ('dockerEntrypoint','dockerStartCmd','ports','imageName'):
             if readback.get(field)!=template[field]: raise RuntimeError('template_readback_mismatch_'+field)
+        stored=gql('query{myself{podTemplates{id isPublic volumeInGb containerDiskInGb isServerless}}}')['myself']['podTemplates']
+        exact=[row for row in stored if row['id']==private['template_id']]
+        if (len(exact)!=1 or exact[0]['isPublic'] is not False or
+                exact[0]['volumeInGb']!=0 or exact[0]['containerDiskInGb']!=100 or
+                exact[0]['isServerless'] is not False):
+            raise RuntimeError('template_privacy_or_storage_mismatch')
+        report['template_privacy_and_storage_verified_via_graphql']=True
         event('private_template_verified')
         report['preflight']=preflight() # Refresh immediately before paid allocation.
         token=secrets.token_urlsafe(32)
@@ -235,7 +243,7 @@ def main():
             'readiness_deadline','model_process_exited','probe_failed','allocated_bounds_mismatch',
             'allocation_returned_no_pod','graphql_operation_failed','account_preflight_failed',
             'rate_preflight_failed','hardware_identity_mismatch','model_registration_mismatch') or
-            re.fullmatch(r'http_status_[0-9]{3}',str(exc)) else 'see_stage')
+            re.fullmatch(r'(?:http_status_[0-9]{3}|template_readback_mismatch_[A-Za-z]+|template_privacy_or_storage_mismatch)',str(exc)) else 'see_stage')
     finally:
         if watchdog: watchdog.cancel()
         for _ in range(3):
