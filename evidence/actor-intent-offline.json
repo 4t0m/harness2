@@ -1,0 +1,355 @@
+{
+  "scope": "CPU-only scripted intents and trusted compiler; no model call or live animation",
+  "model_brief_excludes_answer": true,
+  "cases": [
+    {
+      "task": "look-left-nearest",
+      "kind": "scripted_correct",
+      "intent": {
+        "scene_revision": "left-v1",
+        "actor_id": "aya",
+        "target_id": "ren",
+        "action": "look_at"
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": true,
+        "accepted": true,
+        "runtime_status": "unsupported",
+        "plan": {
+          "action": "look_at",
+          "actor_id": "aya",
+          "target_id": "ren",
+          "scene_revision": "left-v1",
+          "execution": "planning_only",
+          "screen_gaze": "screen_left",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_right",
+          "runtime_status": "unsupported",
+          "adapter_control": null
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "look-left-nearest",
+      "kind": "scripted_wrong_target",
+      "intent": {
+        "scene_revision": "left-v1",
+        "actor_id": "aya",
+        "target_id": "mira",
+        "action": "look_at"
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": false,
+        "accepted": false,
+        "runtime_status": "unsupported",
+        "plan": {
+          "action": "look_at",
+          "actor_id": "aya",
+          "target_id": "mira",
+          "scene_revision": "left-v1",
+          "execution": "planning_only",
+          "screen_gaze": "screen_left",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_right",
+          "runtime_status": "unsupported",
+          "adapter_control": null
+        },
+        "reason": "wrong task target, actor, action, or gap"
+      }
+    },
+    {
+      "task": "look-right-mirror",
+      "kind": "scripted_correct",
+      "intent": {
+        "scene_revision": "right-v1",
+        "actor_id": "aya",
+        "target_id": "ren",
+        "action": "look_at"
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": true,
+        "accepted": true,
+        "runtime_status": "supported",
+        "plan": {
+          "action": "look_at",
+          "actor_id": "aya",
+          "target_id": "ren",
+          "scene_revision": "right-v1",
+          "execution": "planning_only",
+          "screen_gaze": "screen_right",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_right",
+          "runtime_status": "supported",
+          "adapter_control": "look_right"
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "look-right-mirror",
+      "kind": "scripted_wrong_target",
+      "intent": {
+        "scene_revision": "right-v1",
+        "actor_id": "aya",
+        "target_id": "mira",
+        "action": "look_at"
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": false,
+        "accepted": false,
+        "runtime_status": "supported",
+        "plan": {
+          "action": "look_at",
+          "actor_id": "aya",
+          "target_id": "mira",
+          "scene_revision": "right-v1",
+          "execution": "planning_only",
+          "screen_gaze": "screen_right",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_right",
+          "runtime_status": "supported",
+          "adapter_control": "look_right"
+        },
+        "reason": "wrong task target, actor, action, or gap"
+      }
+    },
+    {
+      "task": "look-vertical",
+      "kind": "scripted_correct",
+      "intent": {
+        "scene_revision": "vertical-v1",
+        "actor_id": "aya",
+        "target_id": "ren",
+        "action": "look_at"
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": true,
+        "accepted": true,
+        "runtime_status": "unsupported",
+        "plan": {
+          "action": "look_at",
+          "actor_id": "aya",
+          "target_id": "ren",
+          "scene_revision": "vertical-v1",
+          "execution": "planning_only",
+          "screen_gaze": "center",
+          "vertical_gaze": "screen_down",
+          "actor_local_gaze": "center",
+          "runtime_status": "unsupported",
+          "adapter_control": null
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "look-vertical",
+      "kind": "scripted_wrong_target",
+      "intent": {
+        "scene_revision": "vertical-v1",
+        "actor_id": "aya",
+        "target_id": "mira",
+        "action": "look_at"
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": false,
+        "accepted": false,
+        "runtime_status": "supported",
+        "plan": {
+          "action": "look_at",
+          "actor_id": "aya",
+          "target_id": "mira",
+          "scene_revision": "vertical-v1",
+          "execution": "planning_only",
+          "screen_gaze": "screen_right",
+          "vertical_gaze": "center",
+          "actor_local_gaze": "actor_left",
+          "runtime_status": "supported",
+          "adapter_control": "look_right"
+        },
+        "reason": "wrong task target, actor, action, or gap"
+      }
+    },
+    {
+      "task": "approach-left",
+      "kind": "scripted_correct",
+      "intent": {
+        "scene_revision": "approach-left-v1",
+        "actor_id": "aya",
+        "target_id": "ren",
+        "action": "approach",
+        "stop_gap": 0.12
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": true,
+        "accepted": true,
+        "runtime_status": "preview_only",
+        "plan": {
+          "action": "approach",
+          "actor_id": "aya",
+          "target_id": "ren",
+          "scene_revision": "approach-left-v1",
+          "execution": "planning_only",
+          "runtime_status": "preview_only",
+          "adapter_control": null,
+          "geometry": {
+            "final_position": {
+              "x": 0.62,
+              "y": 0.5
+            },
+            "edge_gap_final": 0.12,
+            "stop_gap_requested": 0.12,
+            "travel_distance": 0.19999999999999996,
+            "replan_if_target_moves": true
+          }
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "approach-left",
+      "kind": "scripted_wrong_target",
+      "intent": {
+        "scene_revision": "approach-left-v1",
+        "actor_id": "aya",
+        "target_id": "mira",
+        "action": "approach",
+        "stop_gap": 0.12
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": false,
+        "accepted": false,
+        "runtime_status": "preview_only",
+        "plan": {
+          "action": "approach",
+          "actor_id": "aya",
+          "target_id": "mira",
+          "scene_revision": "approach-left-v1",
+          "execution": "planning_only",
+          "runtime_status": "preview_only",
+          "adapter_control": null,
+          "geometry": {
+            "final_position": {
+              "x": 0.33999999999999997,
+              "y": 0.5
+            },
+            "edge_gap_final": 0.11999999999999998,
+            "stop_gap_requested": 0.12,
+            "travel_distance": 0.48,
+            "replan_if_target_moves": true
+          }
+        },
+        "reason": "wrong task target, actor, action, or gap"
+      }
+    },
+    {
+      "task": "approach-right-mirror",
+      "kind": "scripted_correct",
+      "intent": {
+        "scene_revision": "approach-right-v1",
+        "actor_id": "aya",
+        "target_id": "ren",
+        "action": "approach",
+        "stop_gap": 0.12
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": true,
+        "accepted": true,
+        "runtime_status": "preview_only",
+        "plan": {
+          "action": "approach",
+          "actor_id": "aya",
+          "target_id": "ren",
+          "scene_revision": "approach-right-v1",
+          "execution": "planning_only",
+          "runtime_status": "preview_only",
+          "adapter_control": null,
+          "geometry": {
+            "final_position": {
+              "x": 0.38,
+              "y": 0.5
+            },
+            "edge_gap_final": 0.12,
+            "stop_gap_requested": 0.12,
+            "travel_distance": 0.2,
+            "replan_if_target_moves": true
+          }
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "approach-right-mirror",
+      "kind": "scripted_wrong_target",
+      "intent": {
+        "scene_revision": "approach-right-v1",
+        "actor_id": "aya",
+        "target_id": "mira",
+        "action": "approach",
+        "stop_gap": 0.12
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": true,
+        "semantic_correct": false,
+        "accepted": false,
+        "runtime_status": "preview_only",
+        "plan": {
+          "action": "approach",
+          "actor_id": "aya",
+          "target_id": "mira",
+          "scene_revision": "approach-right-v1",
+          "execution": "planning_only",
+          "runtime_status": "preview_only",
+          "adapter_control": null,
+          "geometry": {
+            "final_position": {
+              "x": 0.6599999999999999,
+              "y": 0.5
+            },
+            "edge_gap_final": 0.12000000000000009,
+            "stop_gap_requested": 0.12,
+            "travel_distance": 0.48,
+            "replan_if_target_moves": true
+          }
+        },
+        "reason": "wrong task target, actor, action, or gap"
+      }
+    },
+    {
+      "task": "look-left-nearest",
+      "kind": "scripted_stale_revision",
+      "intent": {
+        "scene_revision": "old",
+        "actor_id": "aya",
+        "target_id": "ren",
+        "action": "look_at"
+      },
+      "verdict": {
+        "schema_valid": true,
+        "compiled": false,
+        "semantic_correct": false,
+        "accepted": false,
+        "reason": "stale scene revision"
+      }
+    }
+  ]
+}
