@@ -1,0 +1,261 @@
+{
+  "source_sha256": "df35b14af94eb3b0c3135f9f99a732bbee282f0c1f02a39baa8a268fe6a4c1d8",
+  "conditions": [
+    {
+      "model": "gemma4:e2b",
+      "condition": "fixed",
+      "tasks": 8,
+      "first_accepted": 2,
+      "final_accepted": 2,
+      "calls": 14,
+      "median_first_provider_seconds": 1.2746479794732295,
+      "median_total_provider_seconds": 2.576372708484996,
+      "initial_prompt_tokens_range": [
+        414,
+        428
+      ],
+      "output_tokens_range": [
+        38,
+        39
+      ],
+      "initial_input_characters_range": [
+        1556,
+        1624
+      ],
+      "total_prompt_tokens": 6469,
+      "total_output_tokens": 533
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "adapted",
+      "tasks": 8,
+      "first_accepted": 1,
+      "final_accepted": 1,
+      "calls": 8,
+      "median_first_provider_seconds": 1.2659019585116766,
+      "median_total_provider_seconds": 1.2659019585116766,
+      "initial_prompt_tokens_range": [
+        444,
+        458
+      ],
+      "output_tokens_range": [
+        38,
+        41
+      ],
+      "initial_input_characters_range": [
+        1743,
+        1811
+      ],
+      "total_prompt_tokens": 3622,
+      "total_output_tokens": 307
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "fixed",
+      "tasks": 8,
+      "first_accepted": 2,
+      "final_accepted": 2,
+      "calls": 14,
+      "median_first_provider_seconds": 1.7923726249719039,
+      "median_total_provider_seconds": 3.903257291065529,
+      "initial_prompt_tokens_range": [
+        391,
+        404
+      ],
+      "output_tokens_range": [
+        42,
+        42
+      ],
+      "initial_input_characters_range": [
+        1556,
+        1624
+      ],
+      "total_prompt_tokens": 6236,
+      "total_output_tokens": 588
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "adapted",
+      "tasks": 8,
+      "first_accepted": 2,
+      "final_accepted": 2,
+      "calls": 8,
+      "median_first_provider_seconds": 1.7889757914235815,
+      "median_total_provider_seconds": 1.7889757914235815,
+      "initial_prompt_tokens_range": [
+        421,
+        434
+      ],
+      "output_tokens_range": [
+        42,
+        42
+      ],
+      "initial_input_characters_range": [
+        1743,
+        1811
+      ],
+      "total_prompt_tokens": 3429,
+      "total_output_tokens": 336
+    }
+  ],
+  "reported_editor_cost_usd": 0.00173442,
+  "editor_calls": 3,
+  "total_calls": 51,
+  "development": [
+    {
+      "run_id": "dance_step_h2-oc-agg1/offset_return_to_mark_with_endpoint_direction/base1",
+      "valid": false,
+      "reason": "final root 600 mm differs from target 200 mm"
+    },
+    {
+      "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/c1",
+      "valid": false,
+      "reason": "move slot 3 violates requirement"
+    },
+    {
+      "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/dom1",
+      "valid": true,
+      "reason": "step task constraints satisfied"
+    },
+    {
+      "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/inv1",
+      "valid": true,
+      "reason": "step task constraints satisfied"
+    }
+  ],
+  "guidance_changed": true,
+  "selected_guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\n\nPlan four chronological move and variation pairs. Ensure the sum of move distances exactly reaches the target endpoint while keeping the root within the specified bounds. Verify that required directions and accents are placed in the correct sequence indices.\n\nReturn only the required JSON object.\n",
+  "deterministic_solver": [
+    {
+      "case_id": "h2_eval_offset_reentry_positive_target",
+      "feasible_plans": 16,
+      "receipt": {
+        "task_sha256": "91baccc4fabd0c7baa21fccdee1b6c6741d2840c3019cd0f516db86b21b6e246",
+        "local_sequence_sha256": "a95368aa7d17d19be38ba9a449652480dd9da4cb1518336a838410872593b8b9",
+        "checks": {
+          "world_root_min_x_mm": -150.0,
+          "world_root_max_x_mm": 250.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_leftward_recovery_from_far_side",
+      "feasible_plans": 8,
+      "receipt": {
+        "task_sha256": "5e26c82b09660d648cfce9ad039eb7602ea691b0f7c2d8615bba4e20b51dccfe",
+        "local_sequence_sha256": "4f377efdf505e3411cde6e18a36a9fa1b14088d5ce527facab775393f17fd998",
+        "checks": {
+          "world_root_min_x_mm": -50.0,
+          "world_root_max_x_mm": 350.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_crossing_from_negative_offset",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "36aeeb29f953cdc7fdca7f2fe6fca2c2301487a41c8d1256d5b9a51342cbf447",
+        "local_sequence_sha256": "0143ee79ce4636f43b36a50ecf1298e78379b3cf8b0953972d5706dc4df3d452",
+        "checks": {
+          "world_root_min_x_mm": -550.0,
+          "world_root_max_x_mm": 50.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_positive_start_bounded_return",
+      "feasible_plans": 16,
+      "receipt": {
+        "task_sha256": "c909756928c0a77ba2a801e6e8ada3272b74bf465a55f9f07a66529c7e1dc3c3",
+        "local_sequence_sha256": "d099aa5647e54e006e56313e8632035eb3841539d11d5c70981115e3220afcaa",
+        "checks": {
+          "world_root_min_x_mm": 150.0,
+          "world_root_max_x_mm": 550.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_rightward_opening_then_three_lefts",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "0d6236e672b60f8c1d9f3388b326d4d18ab558c1cd2d419561d0d9a30e80cf4e",
+        "local_sequence_sha256": "a2c84810dadb5862e22ddf7617da12e9d239ca7538a1bcb302e2adddd750fb57",
+        "checks": {
+          "world_root_min_x_mm": -250.0,
+          "world_root_max_x_mm": 350.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_lower_edge_then_climb",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "20f28468ff7aec4baf44e42d3a4822b6147a6c787b333e30ef2bcb1e35fa3ace",
+        "local_sequence_sha256": "6806075ed9a5b6f47d4944454419d03630dae3c75806d5cae6ebed11b84b4df3",
+        "checks": {
+          "world_root_min_x_mm": -550.0,
+          "world_root_max_x_mm": 50.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_tight_upper_edge_crossback",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "120b6d4ef8625bfb5d0ffafdde5c1a240e31c7f48a2886f58014aa0e3dcca62a",
+        "local_sequence_sha256": "ac425bb3e9ac3078829ad29dba0b174d0ab26d05af67e138db3f876b6e8383af",
+        "checks": {
+          "world_root_min_x_mm": 150.0,
+          "world_root_max_x_mm": 350.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_tight_lower_edge_reversal",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "2897f61731a9c2f08a6f39e65b40ddab1e594e92047342bbf5444b37096a046b",
+        "local_sequence_sha256": "48f429e0b870decbfd396ff6f14d7187ad7335c0946439434578a097bc4a4db7",
+        "checks": {
+          "world_root_min_x_mm": -350.0,
+          "world_root_max_x_mm": -150.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    }
+  ],
+  "evaluation_ids_absent_from_all_editor_requests": true,
+  "editor_completed_before_evaluation": true,
+  "scope": "Frozen within-family eval; raw replies rechecked. H2 final selection at k=1 is scripted, not validation-based promotion. Deterministic solver success is separate from local-model capability. Provider times exclude host validation."
+}

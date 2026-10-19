@@ -1,0 +1,220 @@
+{
+  "scope": "Post-trial host admission repair using development receipts only; no new model calls or heldout testing. Original composed candidate results remain unchanged. A passed development reply does not prove repeated reliability or generalization.",
+  "trial_evidence_sha256": "df35b14af94eb3b0c3135f9f99a732bbee282f0c1f02a39baa8a268fe6a4c1d8",
+  "source_files": {
+    "runs/dance-step-h2-v1/development/base/systemprompt.md": "27180666aef28abb6e4fe56244f96013b4380c005f070ba05b492b41f4f95874",
+    "runs/dance-step-h2-v1/development/executions/dance_step_h2-oc-agg1/offset_return_to_mark_with_endpoint_direction/base1/receipt.json": "2e538d64e4243bb8eed58f79f923e1136cd2d65bf881dac6d40165991a324faf",
+    "runs/dance-step-h2-v1/development/runs/dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/harnesses/c1/systemprompt.md": "0871ce134e26b392d67298b57434aa0ad1c0dce9255457b8fa33bf11ce3d2982",
+    "runs/dance-step-h2-v1/development/executions/dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/c1/receipt.json": "d09e9c20bef5d376694aaf3f94b5f3e057dd34e12c0274410504bb23781441cb",
+    "runs/dance-step-h2-v1/development/runs/dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/harnesses/dom1/systemprompt.md": "7b91d882d3ebb3c11475bfa7d6d252757401fedb18d8e5dc89a654a1e21fa428",
+    "runs/dance-step-h2-v1/development/executions/dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/dom1/receipt.json": "2fbedb9236982ca8063cee74c24fd1eb3fc88fc8426fdb4ffb2a6b8c06debe6e",
+    "runs/dance-step-h2-v1/development/runs/dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/harnesses/inv1/systemprompt.md": "32a893d73e91bf810ec8b36849f9a4491601bd5699ee783a27b8a1fc6c5c99bf",
+    "runs/dance-step-h2-v1/development/executions/dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/inv1/receipt.json": "bf16734f425c8b305cb716bcdfea3d8ec06a0510e30335e5bcd55e94700844e0"
+  },
+  "gate_source_sha256": "7b94584285e87383db0441579409ac9449fe176b425b370d6b1b0986c53418cd",
+  "runner_source_sha256": "4a372ad811a393d487e1d1a409b9306116ca2c776a8c70807dd25236a09886ac",
+  "task": {
+    "task": {
+      "id": "offset_return_to_mark_with_endpoint_direction",
+      "start_x_mm": -200,
+      "target_x_mm": 200,
+      "root_bounds_mm": [
+        -400,
+        400
+      ],
+      "required_moves": {
+        "0": "step_right",
+        "3": "step_right"
+      },
+      "required_variations": {
+        "1": "clear"
+      }
+    },
+    "request": "The root begins at x=-200 mm and must finish at x=200 mm. Keep the pelvis within [-400, 400] mm throughout. The first and fourth moves go right; the second move uses a clear accent. Choose the other details so the endpoint is reached."
+  },
+  "candidates": [
+    {
+      "label": "base1",
+      "guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\nChoose four chronological move and variation pairs that satisfy the task.\nReturn only the required JSON object.\n",
+      "receipt": {
+        "task_id": "offset_return_to_mark_with_endpoint_direction",
+        "run_id": "dance_step_h2-oc-agg1/offset_return_to_mark_with_endpoint_direction/base1",
+        "mode": "model_solver",
+        "model_requested": "gemma4:e2b",
+        "guidance_sha256": "27180666aef28abb6e4fe56244f96013b4380c005f070ba05b492b41f4f95874",
+        "request_sha256": "22c11604c8d04d694cbc0725189d41a4202e722ca63d68b3831725b594c51fce",
+        "request_timeout_seconds": 20.0,
+        "max_output_tokens": 128,
+        "attempts": 1,
+        "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 433,
+          "completion_tokens": 38
+        },
+        "latency_seconds": 3.998109000036493,
+        "model_served": "gemma4:e2b",
+        "cost_usd": null,
+        "verdict": {
+          "valid": false,
+          "reason": "final root 600 mm differs from target 200 mm"
+        }
+      }
+    },
+    {
+      "label": "c1",
+      "guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\n\nPlan four chronological move and variation pairs. Ensure the sum of move distances exactly reaches the target endpoint while keeping the root within the specified bounds. Verify that required directions and accents are placed in the correct sequence indices.\n\nReturn only the required JSON object.\n",
+      "receipt": {
+        "task_id": "offset_return_to_mark_with_endpoint_direction",
+        "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/c1",
+        "mode": "model_solver",
+        "model_requested": "gemma4:e2b",
+        "guidance_sha256": "0871ce134e26b392d67298b57434aa0ad1c0dce9255457b8fa33bf11ce3d2982",
+        "request_sha256": "6d43586238cd4298bdcd68c73b78bda885562d81ed63ec6b22874ced3062474a",
+        "request_timeout_seconds": 20.0,
+        "max_output_tokens": 128,
+        "attempts": 1,
+        "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_left\", \"clear\"]]}",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 463,
+          "completion_tokens": 38
+        },
+        "latency_seconds": 1.295210542040877,
+        "model_served": "gemma4:e2b",
+        "cost_usd": null,
+        "verdict": {
+          "valid": false,
+          "reason": "move slot 3 violates requirement"
+        }
+      }
+    },
+    {
+      "label": "dom1",
+      "guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\n\nPlan the four-step sequence by calculating the total displacement. Ensure the sum of move distances exactly matches the distance from start_x_mm to target_x_mm. Verify that the root position remains within root_bounds_mm after every step.\n\nAssign the required moves and variations to their specific indices. For the remaining steps, select directions and accents that satisfy the endpoint and boundary constraints.\n\nReturn only the required JSON object.\n",
+      "receipt": {
+        "task_id": "offset_return_to_mark_with_endpoint_direction",
+        "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/dom1",
+        "mode": "model_solver",
+        "model_requested": "gemma4:e2b",
+        "guidance_sha256": "7b91d882d3ebb3c11475bfa7d6d252757401fedb18d8e5dc89a654a1e21fa428",
+        "request_sha256": "0257e47e31aa3cad4dfbc189f6da480171f390bde05bb7fba69b54ae5d84d0be",
+        "request_timeout_seconds": 20.0,
+        "max_output_tokens": 128,
+        "attempts": 1,
+        "content": "{\"moves\": [[\"step_right\", \"soft\"], [\"step_right\", \"clear\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 501,
+          "completion_tokens": 38
+        },
+        "latency_seconds": 1.3014685000525787,
+        "model_served": "gemma4:e2b",
+        "cost_usd": null,
+        "verdict": {
+          "valid": true,
+          "reason": "step task constraints satisfied"
+        },
+        "task_receipt": {
+          "task_sha256": "574480b533142c3f0e03a8197d2ae5faec5b6586e428f15dd5292c6aea12fa23",
+          "local_sequence_sha256": "4a4d29ccf313b47aa7a3140b332a0fceb7e375375e410735cdbcef46ad3a084a",
+          "checks": {
+            "world_root_min_x_mm": -200.0,
+            "world_root_max_x_mm": 200.0,
+            "sample_count": 81,
+            "lane_valid": true,
+            "target_valid": true,
+            "requirements_valid": true
+          }
+        },
+        "placement": {
+          "world_start_x_mm": -200,
+          "world_final_x_mm": 200
+        }
+      }
+    },
+    {
+      "label": "inv1",
+      "guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\n\nPlan four chronological move and variation pairs. Calculate the cumulative displacement of each move to ensure the final root position exactly matches the target x_mm. Verify that the root remains within the root_bounds_mm at every step.\n\nReturn only the required JSON object.\n",
+      "receipt": {
+        "task_id": "offset_return_to_mark_with_endpoint_direction",
+        "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/inv1",
+        "mode": "model_solver",
+        "model_requested": "gemma4:e2b",
+        "guidance_sha256": "32a893d73e91bf810ec8b36849f9a4491601bd5699ee783a27b8a1fc6c5c99bf",
+        "request_sha256": "4d3bf537eb76a5da3181ed0d1d028656bff6f5572c8276f20af476a7b32299c6",
+        "request_timeout_seconds": 20.0,
+        "max_output_tokens": 128,
+        "attempts": 1,
+        "content": "{\n  \"moves\": [\n    [\n      \"step_right\",\n      \"soft\"\n    ],\n    [\n      \"step_right\",\n      \"clear\"\n    ],\n    [\n      \"step_left\",\n      \"soft\"\n    ],\n    [\n      \"step_right\",\n      \"clear\"\n    ]\n  ]\n}",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 466,
+          "completion_tokens": 85
+        },
+        "latency_seconds": 2.025027292082086,
+        "model_served": "gemma4:e2b",
+        "cost_usd": null,
+        "verdict": {
+          "valid": true,
+          "reason": "step task constraints satisfied"
+        },
+        "task_receipt": {
+          "task_sha256": "574480b533142c3f0e03a8197d2ae5faec5b6586e428f15dd5292c6aea12fa23",
+          "local_sequence_sha256": "4a4d29ccf313b47aa7a3140b332a0fceb7e375375e410735cdbcef46ad3a084a",
+          "checks": {
+            "world_root_min_x_mm": -200.0,
+            "world_root_max_x_mm": 200.0,
+            "sample_count": 81,
+            "lane_valid": true,
+            "target_valid": true,
+            "requirements_valid": true
+          }
+        },
+        "placement": {
+          "world_start_x_mm": -200,
+          "world_final_x_mm": 200
+        }
+      }
+    }
+  ],
+  "admission": {
+    "selected": {
+      "label": "dom1",
+      "guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\n\nPlan the four-step sequence by calculating the total displacement. Ensure the sum of move distances exactly matches the distance from start_x_mm to target_x_mm. Verify that the root position remains within root_bounds_mm after every step.\n\nAssign the required moves and variations to their specific indices. For the remaining steps, select directions and accents that satisfy the endpoint and boundary constraints.\n\nReturn only the required JSON object.\n",
+      "guidance_sha256": "7b91d882d3ebb3c11475bfa7d6d252757401fedb18d8e5dc89a654a1e21fa428"
+    },
+    "audited_candidates": [
+      {
+        "label": "c1",
+        "priority": 0,
+        "guidance_sha256": "0871ce134e26b392d67298b57434aa0ad1c0dce9255457b8fa33bf11ce3d2982",
+        "valid": false,
+        "reason": "move slot 3 violates requirement"
+      },
+      {
+        "label": "dom1",
+        "priority": 1,
+        "guidance_sha256": "7b91d882d3ebb3c11475bfa7d6d252757401fedb18d8e5dc89a654a1e21fa428",
+        "valid": true,
+        "reason": "step task constraints satisfied"
+      },
+      {
+        "label": "inv1",
+        "priority": 2,
+        "guidance_sha256": "32a893d73e91bf810ec8b36849f9a4491601bd5699ee783a27b8a1fc6c5c99bf",
+        "valid": true,
+        "reason": "step task constraints satisfied"
+      },
+      {
+        "label": "base1",
+        "priority": 3,
+        "guidance_sha256": "27180666aef28abb6e4fe56244f96013b4380c005f070ba05b492b41f4f95874",
+        "valid": false,
+        "reason": "final root 600 mm differs from target 200 mm"
+      }
+    ]
+  },
+  "provider_calls": 0,
+  "paid_provider_calls": 0
+}
