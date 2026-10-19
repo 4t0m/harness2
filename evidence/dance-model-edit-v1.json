@@ -1,0 +1,154 @@
+{
+  "scope": "local model selects named arm accent; deterministic span edit and geometry checks; no model-created dance or taste judgment",
+  "host_span_zero_based_beats": [
+    2,
+    6
+  ],
+  "model": "gemma4:e2b",
+  "attempts": [
+    {
+      "request": {
+        "model": "gemma4:e2b",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Select one available motion edit. Return only strict JSON with operation=accent_arms and strength=soft or clear. soft is subtle (0.20 radians); clear is pronounced (0.45 radians). The host alone owns the edit span and preserves footwork."
+          },
+          {
+            "role": "user",
+            "content": "Make the arm accent clearly pronounced through the middle four beats. Preserve all footwork, the first two beats and last two beats. Use the existing motion rather than regenerating it."
+          }
+        ],
+        "stream": false,
+        "think": false,
+        "keep_alive": "2m",
+        "options": {
+          "num_ctx": 2048,
+          "num_predict": 96,
+          "temperature": 0
+        },
+        "format": {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string",
+              "enum": [
+                "accent_arms"
+              ]
+            },
+            "strength": {
+              "type": "string",
+              "enum": [
+                "soft",
+                "clear"
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "strength"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "content": "{\"operation\": \"accent_arms\", \"strength\": \"clear\"}",
+      "wall_seconds": 4.06871754094027,
+      "done_reason": "stop",
+      "total_duration": 4055508458,
+      "load_duration": 3484345042,
+      "prompt_eval_count": 104,
+      "prompt_eval_duration": 290030000,
+      "eval_count": 15,
+      "eval_duration": 277390000,
+      "valid_command": true,
+      "matches_brief": true
+    }
+  ],
+  "sources": {
+    "harness2/dance_motion.py": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+    "harness2/dance_edit.py": "11b22bd5ea6be65f2b18378cceb19d41c3f20f91c17b4ae62fa1628d5179a359",
+    "experiments/dance_motion_render.py": "9ef9570de598943a395b0a5b199225b4e92796715767dc873f5d9b5800d1693c"
+  },
+  "original_sha256": "d3458d49aa0dff4d1ba42ae3bc0c80cb5ea98d37abe3ef9ea3cef0d1ba29b43b",
+  "edit_receipt": {
+    "operation": "accent_arms",
+    "strength": "clear",
+    "edit_window_beats": [
+      2,
+      6
+    ],
+    "peak_angle_radians": 0.45,
+    "axis": "world +Y (forward); shoulder-centered rigid rotation in the world X-Z plane",
+    "changed_frames": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "source_sha256": "b499ab93bc684b12c91b2f75cf57c51c7a8bfc8c3cf113c47abac344b3da130a",
+    "result_sha256": "2b17d4f9b9b476940ec9fbd35b589cd0b5b4e2947761bbb443b92865f8ce3174",
+    "source_unchanged": true,
+    "protected_frames_preserved": true,
+    "non_arm_joints_preserved": true,
+    "contacts_preserved": true,
+    "timestamps_preserved": true,
+    "metadata_preserved": true,
+    "validation": {
+      "valid": true,
+      "frame_count": 81,
+      "duration_seconds": 4.0,
+      "max_joint_delta_m": 0.0672668207507937,
+      "max_skeletal_segment_error_m": 3.3306690738754696e-16,
+      "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+    },
+    "scope": "Technical skeletal edit only; no style or visual-quality claim."
+  },
+  "tracks_sha256": "6a270b71f50fb9c2b3c5de1dae9467edd4a8ad4012ba1bbb9aed67a121e563cf",
+  "video": {
+    "width": 512,
+    "height": 320,
+    "duration": "4.000000",
+    "nb_read_frames": "40"
+  },
+  "complete": true,
+  "original_unchanged": true,
+  "video_sha256": "fae23a8b9cd88af9084ecdf50f18e7e89a4ee83a382e62d0ccfed727834a3d44",
+  "visual_review": "Decoded frames 5,20,35 inspected. Cyan original and orange edited; visible inward/downward arm pulse only in middle sample, matching arm poses in protected beginning/end samples. Data preservation, not pixel equivalence, verified separately. No artistic acceptance.",
+  "path": "/Users/adom/Development/hermes-testing/runs/harness2-dance-model-edit-v1/comparison.mp4",
+  "wall_seconds": 6.284090332919732
+}

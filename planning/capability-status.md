@@ -11,7 +11,7 @@ This is the current entry point. Earlier active-goal checkpoints are historical,
 | Flat-avatar bridge | avatar-bridge-live: command delivery/readback and neutral cleanup | Directional gaze remains visually unconfirmed. Listener/process must be revalidated; historical handle is not live-state proof. |
 | Actual 3D procedural-avatar preview | menu-blender-preview-v1: model picked wave; Blender output hashes, decoded PNGs, visual arm raise | Existing deterministic action;3stills do not prove smoothness. |
 | Protected-span motion edit | blender-span-preview:48-frame transforms and isolated pixel comparisons | Host-authored edit; same-process mutation/render failed and was replaced by isolated renders. |
-| Model-selected motion variation | gesture-variation-live: model chose restrained, bounded compiler, fresh application/verification processes, video | One rig/gesture and two named variants. No model interpretation of video or human taste evaluation. |
+| Model-selected motion variation and span edit | gesture-variation-live plus dance-model-edit-v1: local E2B selects arm accent; exact lower-body/protected-span checks; before/after render | Named deterministic operations on technical rigs, not model-generated choreography or human taste acceptance. |
 | Dance score and executable prototype | Synthetic score plus dance-motion-render-v3: two procedural stick-rig variants, checked 19 segment lengths, rendered 4s comparison | Prototype is not bound to the original score atlas, retargeted, biomechanically qualified or artistically accepted. |
 | Runtime interruption/stale responses | CPU runtime with real local inference; Qwen/Gemma model-driven offline VRM cancellation and stale-response rejection | Offline renderer has a bounded synchronization wait; no persistent real-time service or audio pipeline. |
 
@@ -120,3 +120,7 @@ A matched representation follow-up, `avatar-scope-representation-v1.json`, reuse
 ## Corrected executable motion geometry
 
 Review found the first prototype's foot marker stayed at fixed height during ankle swing, and pelvis motion deformed hip/torso attachments. The old arm/leg-only validator did not catch these. Investigation and repair now enforce all19declared skeletal segment lengths, add ankle-foot links, and move torso attachments with pelvis. Seven motion tests pass, including new corruption cases. `dance-motion-render-v3.json` records a fresh four-second render and updated track hash; sparse decoded frames were inspected. Earlier v1/v2 artifacts remain historical and should not be treated as corrected geometry. Geometry consistency still does not prove balance, realistic articulation, collision freedom or compelling dance.
+
+## Model-selected motion edit
+
+`dance-model-edit-v1.json` records a successful first-try local Gemma E2B selection of a pronounced arm accent. Trusted code edited only39middle frames' elbows/wrists, preserved every other joint and the first/last two beats exactly, and rendered a four-second comparison. The effect is an inward/downward arm pulse; taste remains unjudged. See dance-lab.md for input tokens, load/evaluation times, hashes and media. A subsequent contract review identified mutable timing metadata as a potential span shift; the editor now requires the prototype's exact authoritative timing before accepting a source.

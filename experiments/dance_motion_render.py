@@ -11,6 +11,8 @@ def main():
     data=json.loads(Path(args[0]).read_text());output=Path(args[1])
     if output.exists():raise ValueError('refusing overwrite')
     output.mkdir()
+    labels=data.get('labels',['restrained','broad'])
+    if len(data['sequences'])!=2 or len(labels)!=2:raise ValueError('exactly two sequences and labels required')
     bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
     scene=bpy.context.scene
     scene.render.engine='BLENDER_WORKBENCH'
@@ -21,7 +23,7 @@ def main():
     scene.render.image_settings.file_format='PNG'
     actors=[]
     for index,sequence in enumerate(data['sequences']):
-        material=bpy.data.materials.new('restrained' if index==0 else 'broad')
+        material=bpy.data.materials.new(labels[index])
         material.diffuse_color=(.15,.7,.9,1) if index==0 else (.95,.45,.15,1)
         joints={}
         for name in sequence['frames'][0]['joints']:
@@ -48,6 +50,6 @@ def main():
                 obj.location=(positions[start]+positions[end])/2
                 obj.rotation_euler=direction.to_track_quat('Z','Y').to_euler();obj.scale.z=direction.length
         scene.render.filepath=str(output/f'{number:03d}.png');bpy.ops.render.render(write_still=True)
-    (output/'render.json').write_text(json.dumps({'source_indices':indices,'left':'restrained','right':'broad','fps':10,'scope':'procedural technical motion, no model choice or taste assessment'},indent=2)+'\n')
+    (output/'render.json').write_text(json.dumps({'source_indices':indices,'left':labels[0],'right':labels[1],'fps':10,'scope':'procedural track rendering; no taste assessment'},indent=2)+'\n')
 
 if __name__=='__main__':main()

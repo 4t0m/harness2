@@ -111,3 +111,17 @@ This is an alternative first executable prototype, not full completion of D1: it
 The v2 prototype had unintended changing ankle-foot and pelvis-attached segment lengths. Its arm/leg checks were too narrow. The investigation in `investigations/2026-10-19-dance-motion-rig-geometry.md` records the measurements. The repaired generator attaches feet to ankles, adds their bone links, translates hips/torso with pelvis and validates all19skeletal segment lengths. Seven focused tests pass.
 
 Use `/Users/adom/Development/hermes-testing/runs/harness2-dance-motion-v3/comparison.mp4` and sibling tracks.json as the current prototype; `evidence/dance-motion-render-v3.json` records source/track/video hashes. All40frames decoded, four seconds at512x320, render pipeline1.88seconds. Parent inspected frames0,1,3. Earlier renders are preserved but superseded. Still no biomechanics, collision screening, continuous-contact proof between samples or human taste acceptance.
+
+## Local-model-directed protected-span edit (2026-10-19)
+
+`harness2/dance_edit.py` exposes one bounded operation: accent_arms with soft (0.20rad) or clear (0.45rad) strength. The host fixes the window to zero-based beats2–6 (seconds1–3). A sin² envelope rotates both elbows/wrists around their shoulder about world Y; this particular sign convention produces an inward/downward pulse. It does not generate new footwork or claim to improve taste.
+
+`experiments/dance_model_edit_probe.py` asked local Gemma E2B for a pronounced accent while preserving footwork and approved opening/ending. It selected clear first try:104input/15output tokens,4.069seconds including3.484seconds model load. Native prompt evaluation was0.290seconds and output evaluation0.277seconds. Whole model/edit/render pipeline6.284seconds. No hosted calls.
+
+The host changed only elbow/wrist positions at source frames21–59 of81. Allotherjoints, contact flags, timestamps, metadata and protected frames0–20/60–80 compare exactly equal. All19segment lengths still validate. The on-disk original hash remained unchanged. Output40frames/4seconds/512x320. Parent inspected decoded frames5,20,35: cyan original, orange edited; clearly visible central pulse, matching protected poses. This is sparse visual inspection, not a full-motion human taste audition or pixel-level preservation proof.
+
+Media: `/Users/adom/Development/hermes-testing/runs/harness2-dance-model-edit-v1/comparison.mp4`. Evidence: `dance-model-edit-v1.json`; original and combined tracks in the media directory. The model chose a named operation and strength; trusted code authored the actual kinematic edit. No new Harness² refinement was performed in this trial.
+
+Timing hardening: a deterministic review showed altered BPM could shift edits into protected frames even while the general geometry validator passed. The edit tool now rejects missing, boolean or nonmatching BPM/FPS/beat-count/duration metadata and computes bounds from authoritative timing constants. Thirteen edit/motion tests passed. Saved valid-input source/result hashes reproduce exactly after hardening; the render receipt retains the pre-hardening source file hash rather than being rewritten to imply a new render. Investigation: `2026-10-19-dance-edit-timing.md`.
+
+The established operations chat was asked for the exact H3 backend/workflow and verified pose/animation-reference input contracts. No GPU work was requested. Treat an H3-compatible export as unverified until a substantive reply and actual interface test exist.
