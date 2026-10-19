@@ -1,0 +1,299 @@
+{
+  "source_sha256": "9088b4a51e638e1263a13119765650b382b2d77d829ce9612593370451f477ed",
+  "conditions": [
+    {
+      "model": "gemma4:e2b",
+      "condition": "fixed",
+      "tasks": 8,
+      "first_accepted": 0,
+      "final_accepted": 0,
+      "calls": 16,
+      "median_first_provider_seconds": 1.2661850210279226,
+      "median_total_provider_seconds": 2.5679818755597807,
+      "initial_prompt_tokens_range": [
+        412,
+        431
+      ],
+      "output_tokens_range": [
+        38,
+        38
+      ],
+      "initial_input_characters_range": [
+        1522,
+        1599
+      ],
+      "total_prompt_tokens": 7447,
+      "total_output_tokens": 608
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "adapted",
+      "tasks": 8,
+      "first_accepted": 0,
+      "final_accepted": 0,
+      "calls": 8,
+      "median_first_provider_seconds": 2.0360900624655187,
+      "median_total_provider_seconds": 2.0360900624655187,
+      "initial_prompt_tokens_range": [
+        476,
+        495
+      ],
+      "output_tokens_range": [
+        85,
+        91
+      ],
+      "initial_input_characters_range": [
+        1863,
+        1940
+      ],
+      "total_prompt_tokens": 3873,
+      "total_output_tokens": 686
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "fixed",
+      "tasks": 8,
+      "first_accepted": 2,
+      "final_accepted": 2,
+      "calls": 14,
+      "median_first_provider_seconds": 1.812464542046655,
+      "median_total_provider_seconds": 3.8255203954759054,
+      "initial_prompt_tokens_range": [
+        388,
+        407
+      ],
+      "output_tokens_range": [
+        42,
+        42
+      ],
+      "initial_input_characters_range": [
+        1522,
+        1599
+      ],
+      "total_prompt_tokens": 6177,
+      "total_output_tokens": 588
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "adapted",
+      "tasks": 8,
+      "first_accepted": 2,
+      "final_accepted": 2,
+      "calls": 8,
+      "median_first_provider_seconds": 1.8288125204853714,
+      "median_total_provider_seconds": 1.8288125204853714,
+      "initial_prompt_tokens_range": [
+        448,
+        467
+      ],
+      "output_tokens_range": [
+        42,
+        42
+      ],
+      "initial_input_characters_range": [
+        1863,
+        1940
+      ],
+      "total_prompt_tokens": 3643,
+      "total_output_tokens": 336
+    }
+  ],
+  "reported_editor_cost_usd": 0.00186565,
+  "editor_calls": 3,
+  "total_calls": 53,
+  "admission": {
+    "selected": {
+      "label": "c1",
+      "guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\n\nPlan four chronological move and variation pairs:\n1. Calculate the total displacement required to reach the target endpoint from the start position.\n2. Assign the required directions and accents to the specified indices.\n3. Determine the remaining moves and accents to ensure the final position exactly matches the target endpoint and all bounds are respected.\n4. Verify the cumulative displacement at each step.\n\nReturn only the required JSON object.\n",
+      "guidance_sha256": "9dc277c0d08d89a1cec791d4dad1316086529c7d0c630cad7fa8a11f20bf1cca"
+    },
+    "audited_candidates": [
+      {
+        "label": "c1",
+        "priority": 0,
+        "guidance_sha256": "9dc277c0d08d89a1cec791d4dad1316086529c7d0c630cad7fa8a11f20bf1cca",
+        "valid": true,
+        "reason": "step task constraints satisfied"
+      },
+      {
+        "label": "dom1",
+        "priority": 1,
+        "guidance_sha256": "57cfe992701590bc071766eab693a187de5e5243d59bb44b178727ae7887cf1b",
+        "valid": false,
+        "reason": "move slot 3 violates requirement"
+      },
+      {
+        "label": "inv1",
+        "priority": 2,
+        "guidance_sha256": "a22ef42edc82c99648961a47a3f2b938a62467d91b08e621b29429db1019678d",
+        "valid": false,
+        "reason": "final root 600 mm differs from target 200 mm"
+      },
+      {
+        "label": "base1",
+        "priority": 3,
+        "guidance_sha256": "27180666aef28abb6e4fe56244f96013b4380c005f070ba05b492b41f4f95874",
+        "valid": false,
+        "reason": "final root 600 mm differs from target 200 mm"
+      }
+    ]
+  },
+  "composer_pool_in_request": true,
+  "development": [
+    {
+      "run_id": "dance_step_h2-oc-agg1/offset_return_to_mark_with_endpoint_direction/base1",
+      "valid": false,
+      "reason": "final root 600 mm differs from target 200 mm"
+    },
+    {
+      "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/c1",
+      "valid": true,
+      "reason": "step task constraints satisfied"
+    },
+    {
+      "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/dom1",
+      "valid": false,
+      "reason": "move slot 3 violates requirement"
+    },
+    {
+      "run_id": "dance_step_h2-oc-seq1/offset_return_to_mark_with_endpoint_direction/inv1",
+      "valid": false,
+      "reason": "final root 600 mm differs from target 200 mm"
+    }
+  ],
+  "guidance_changed": true,
+  "selected_guidance": "Read the approved task and request carefully. Check every stated constraint before choosing moves.\n\nPlan four chronological move and variation pairs:\n1. Calculate the total displacement required to reach the target endpoint from the start position.\n2. Assign the required directions and accents to the specified indices.\n3. Determine the remaining moves and accents to ensure the final position exactly matches the target endpoint and all bounds are respected.\n4. Verify the cumulative displacement at each step.\n\nReturn only the required JSON object.\n",
+  "deterministic_solver": [
+    {
+      "case_id": "h2_eval_v2_positive_offset_reach",
+      "feasible_plans": 16,
+      "receipt": {
+        "task_sha256": "e403c8c8727eaec21cc244b7e1c6c90af59bc3ebd1af1c57410ca54e877ea34b",
+        "local_sequence_sha256": "ec0fc56de49912b3fc738c44d5bb44ebd3fa5093c08552e8c851bcf6b3be4697",
+        "checks": {
+          "world_root_min_x_mm": 250.0,
+          "world_root_max_x_mm": 650.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_v2_return_to_negative_mark",
+      "feasible_plans": 8,
+      "receipt": {
+        "task_sha256": "ac71e191621f729f3d4109b012bc1ecfead58716f65f2cdf3ea6d4a000a820b6",
+        "local_sequence_sha256": "e289d6b569dca2d0a9a506d7bf9703b10aea539943c58e2dfa4d0485bd2e9aba",
+        "checks": {
+          "world_root_min_x_mm": -450.0,
+          "world_root_max_x_mm": -50.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_v2_leftward_route_from_east",
+      "feasible_plans": 16,
+      "receipt": {
+        "task_sha256": "f5ca7cadd7a3c7b3abeb21396b883c51d00f66ed71ca35340d1dc5272fe64349",
+        "local_sequence_sha256": "8c03b1d8e9e0c5225adfe3e21c43d5200ebb733a299d0e375e226a67f25c2fce",
+        "checks": {
+          "world_root_min_x_mm": 50.0,
+          "world_root_max_x_mm": 450.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_v2_boundary_start_crossing",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "012e9bb17afc381cf2debe9bf0ff8804dcaf762f6518c71dc292aa7b1a7b5e8f",
+        "local_sequence_sha256": "b9ced9a749a782cd60cd0a37eccd4b7ce6a685659c07b40ce7b45937531e6103",
+        "checks": {
+          "world_root_min_x_mm": -850.0,
+          "world_root_max_x_mm": -250.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_v2_soft_middle_return",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "5f96531e9f3303f97c9dd9ec31f0be3aaa41d35982ebfd917c27960f143edd12",
+        "local_sequence_sha256": "5b0ecbdd287c058d87b83c713334b3a6adb0940e5eccbd73f213a2cb2aeec8a0",
+        "checks": {
+          "world_root_min_x_mm": -250.0,
+          "world_root_max_x_mm": 350.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_v2_recover_from_upper_offset",
+      "feasible_plans": 8,
+      "receipt": {
+        "task_sha256": "4920051dc96ddfceb65b2abc7647be6e0a258d5e88e6ba148cd4a8a974c42cc1",
+        "local_sequence_sha256": "0fbabffba92851e7c3653ff4f4f890beea837095cab0e7646dac1e3009dd950a",
+        "checks": {
+          "world_root_min_x_mm": 50.0,
+          "world_root_max_x_mm": 650.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_v2_upper_lane_crossback",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "86c509cc5fa9c8f500197c76cd3965dc4736fcebe85902209cb7498699d4057b",
+        "local_sequence_sha256": "c34440705ae5c0d45f34b6cd0aaf06c3178952910bcb690bd93e464633f04cb2",
+        "checks": {
+          "world_root_min_x_mm": 250.0,
+          "world_root_max_x_mm": 450.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    },
+    {
+      "case_id": "h2_eval_v2_lower_lane_crossback",
+      "feasible_plans": 4,
+      "receipt": {
+        "task_sha256": "2e13ce7a00b3f6de083ab1e341c68bc7d9383daf461e307facdbdcabc726164d",
+        "local_sequence_sha256": "48f429e0b870decbfd396ff6f14d7187ad7335c0946439434578a097bc4a4db7",
+        "checks": {
+          "world_root_min_x_mm": -450.0,
+          "world_root_max_x_mm": -250.0,
+          "sample_count": 81,
+          "lane_valid": true,
+          "target_valid": true,
+          "requirements_valid": true
+        }
+      }
+    }
+  ],
+  "evaluation_ids_absent_from_all_editor_requests": true,
+  "editor_completed_before_evaluation": true,
+  "scope": "Frozen within-family eval; raw replies rechecked. H2 final selection at k=1 is scripted; independent development admission precedes evaluation. Composer sees both development candidates; this combined pipeline does not isolate the effects of context repair and admission. Deterministic solver success is separate from local-model capability. Provider times exclude host validation."
+}
