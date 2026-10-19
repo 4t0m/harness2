@@ -1,0 +1,85 @@
+{
+  "scope": "descriptive, small non-independent sample; option rotations are not independent task families",
+  "models": [
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "observations": 12,
+      "expected_observations": 12,
+      "complete": true,
+      "strict_matches": 7,
+      "repaired_matches": 12,
+      "errors": 0,
+      "known_cost_usd": 0.00023133,
+      "unknown_cost_calls": 0,
+      "input_tokens": 3125,
+      "output_tokens": 148,
+      "median_latency_seconds": 0.796160708530806,
+      "latency_range_seconds": [
+        0.5479321249295026,
+        2.319140790961683
+      ],
+      "cases": [
+        {
+          "task_id": "contact-repair",
+          "observations": 3,
+          "repaired_matches": 3
+        },
+        {
+          "task_id": "appearance-lock",
+          "observations": 3,
+          "repaired_matches": 3
+        },
+        {
+          "task_id": "budget-preview",
+          "observations": 3,
+          "repaired_matches": 3
+        },
+        {
+          "task_id": "taste-uncertain",
+          "observations": 3,
+          "repaired_matches": 3
+        }
+      ]
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "observations": 12,
+      "expected_observations": 12,
+      "complete": true,
+      "strict_matches": 12,
+      "repaired_matches": 12,
+      "errors": 0,
+      "known_cost_usd": 0.00158645,
+      "unknown_cost_calls": 0,
+      "input_tokens": 3126,
+      "output_tokens": 124,
+      "median_latency_seconds": 1.174055458046496,
+      "latency_range_seconds": [
+        0.34886354207992554,
+        21.870866415905766
+      ],
+      "cases": [
+        {
+          "task_id": "contact-repair",
+          "observations": 3,
+          "repaired_matches": 3
+        },
+        {
+          "task_id": "appearance-lock",
+          "observations": 3,
+          "repaired_matches": 3
+        },
+        {
+          "task_id": "budget-preview",
+          "observations": 3,
+          "repaired_matches": 3
+        },
+        {
+          "task_id": "taste-uncertain",
+          "observations": 3,
+          "repaired_matches": 3
+        }
+      ]
+    }
+  ]
+}

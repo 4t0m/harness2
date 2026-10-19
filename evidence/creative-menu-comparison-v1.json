@@ -1,0 +1,1165 @@
+{
+  "scope": "explicit constraint and preference-process following; not artistic quality",
+  "models": [
+    "google/gemma-4-26b-a4b-it",
+    "google/gemma-4-31b-it"
+  ],
+  "cases": [
+    [
+      "contact-repair",
+      "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+      [
+        "Regenerate all eight beats with stronger foot planting.",
+        "Hide the sliding with a camera cut during beats 5\u20136.",
+        "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft.",
+        "Render the approved full sequence at final quality."
+      ],
+      2
+    ],
+    [
+      "appearance-lock",
+      "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+      [
+        "Make three facial expression variants with the same pose, costume, lighting and framing.",
+        "Make three expression variants with different camera angles to clarify emotion.",
+        "Make three expression variants with revised hair silhouettes and matching lighting.",
+        "Make three full-body pose variants with the same face and costume."
+      ],
+      0
+    ],
+    [
+      "budget-preview",
+      "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+      [
+        "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds.",
+        "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds.",
+        "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds.",
+        "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+      ],
+      3
+    ],
+    [
+      "taste-uncertain",
+      "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+      [
+        "Commit the variant with the lower foot-sliding score as the most appealing.",
+        "Present the two existing fixed-camera previews in a blind comparison with both/neither choices.",
+        "Generate four more variants to improve the chance of finding a favorite.",
+        "Ask a text model to select the more compelling variant using only filenames."
+      ],
+      1
+    ]
+  ],
+  "rotations": [
+    0,
+    1,
+    2
+  ],
+  "max_calls": 24,
+  "rows": [
+    {
+      "task_id": "contact-repair",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Regenerate all eight beats with stronger foot planting."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Hide the sliding with a camera cut during beats 5\u20136."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Render the approved full sequence at final quality."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_2",
+      "content": "```json\n{\"choice_id\":\"option_2\"}\n```",
+      "usage": {
+        "prompt_tokens": 282,
+        "completion_tokens": 15,
+        "total_tokens": 297
+      },
+      "latency_seconds": 0.5479321249295026,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 2.241e-05,
+      "strict_legal": false,
+      "strict_match": false,
+      "format_changed": true,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "contact-repair",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Regenerate all eight beats with stronger foot planting."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Hide the sliding with a camera cut during beats 5\u20136."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Render the approved full sequence at final quality."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_2",
+      "content": "{\"choice_id\":\"option_2\"}",
+      "usage": {
+        "prompt_tokens": 282,
+        "completion_tokens": 10,
+        "total_tokens": 292
+      },
+      "latency_seconds": 2.1629652089904994,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 9.06e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "appearance-lock",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Make three facial expression variants with the same pose, costume, lighting and framing."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three expression variants with different camera angles to clarify emotion."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Make three expression variants with revised hair silhouettes and matching lighting."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Make three full-body pose variants with the same face and costume."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_0",
+      "content": "{\"choice_id\":\"option_0\"}",
+      "usage": {
+        "prompt_tokens": 234,
+        "completion_tokens": 10,
+        "total_tokens": 244
+      },
+      "latency_seconds": 1.3869936669943854,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.2028e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "appearance-lock",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Make three facial expression variants with the same pose, costume, lighting and framing."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three expression variants with different camera angles to clarify emotion."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Make three expression variants with revised hair silhouettes and matching lighting."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Make three full-body pose variants with the same face and costume."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_0",
+      "content": "{\"choice_id\": \"option_0\"}",
+      "usage": {
+        "prompt_tokens": 235,
+        "completion_tokens": 11,
+        "total_tokens": 246
+      },
+      "latency_seconds": 0.6197116669500247,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 5.14e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "budget-preview",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_3",
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 274,
+        "completion_tokens": 10,
+        "total_tokens": 284
+      },
+      "latency_seconds": 1.3605418750084937,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.3708e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "budget-preview",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_3",
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 275,
+        "completion_tokens": 10,
+        "total_tokens": 285
+      },
+      "latency_seconds": 2.271517082932405,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 5.9e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "taste-uncertain",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Commit the variant with the lower foot-sliding score as the most appealing."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Present the two existing fixed-camera previews in a blind comparison with both/neither choices."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Generate four more variants to improve the chance of finding a favorite."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Ask a text model to select the more compelling variant using only filenames."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_1",
+      "content": "{\"choice_id\": \"option_1\"}",
+      "usage": {
+        "prompt_tokens": 252,
+        "completion_tokens": 11,
+        "total_tokens": 263
+      },
+      "latency_seconds": 1.7053592919837683,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.875e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "taste-uncertain",
+      "rotation": 0,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Commit the variant with the lower foot-sliding score as the most appealing."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Present the two existing fixed-camera previews in a blind comparison with both/neither choices."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Generate four more variants to improve the chance of finding a favorite."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Ask a text model to select the more compelling variant using only filenames."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_1",
+      "content": "{\"choice_id\":\"option_1\"}",
+      "usage": {
+        "prompt_tokens": 251,
+        "completion_tokens": 10,
+        "total_tokens": 261
+      },
+      "latency_seconds": 0.34886354207992554,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 0.00019825,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "contact-repair",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Hide the sliding with a camera cut during beats 5\u20136."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Render the approved full sequence at final quality."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Regenerate all eight beats with stronger foot planting."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_2",
+      "content": "{\"choice_id\": \"option_1\"}",
+      "usage": {
+        "prompt_tokens": 282,
+        "completion_tokens": 11,
+        "total_tokens": 293
+      },
+      "latency_seconds": 0.8158650409895927,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 6.08e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "contact-repair",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Hide the sliding with a camera cut during beats 5\u20136."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Render the approved full sequence at final quality."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Regenerate all eight beats with stronger foot planting."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_2",
+      "content": "{\"choice_id\":\"option_1\"}",
+      "usage": {
+        "prompt_tokens": 281,
+        "completion_tokens": 10,
+        "total_tokens": 291
+      },
+      "latency_seconds": 0.739197958027944,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.4002e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "appearance-lock",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Make three expression variants with different camera angles to clarify emotion."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three expression variants with revised hair silhouettes and matching lighting."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Make three full-body pose variants with the same face and costume."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Make three facial expression variants with the same pose, costume, lighting and framing."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_0",
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 235,
+        "completion_tokens": 10,
+        "total_tokens": 245
+      },
+      "latency_seconds": 0.9812055410584435,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 5.1e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "appearance-lock",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Make three expression variants with different camera angles to clarify emotion."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three expression variants with revised hair silhouettes and matching lighting."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Make three full-body pose variants with the same face and costume."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Make three facial expression variants with the same pose, costume, lighting and framing."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_0",
+      "content": "```json\n{\"choice_id\":\"option_3\"}\n```",
+      "usage": {
+        "prompt_tokens": 235,
+        "completion_tokens": 15,
+        "total_tokens": 250
+      },
+      "latency_seconds": 1.1960268749389797,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.905e-05,
+      "strict_legal": false,
+      "strict_match": false,
+      "format_changed": true,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "budget-preview",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_3",
+      "content": "{\"choice_id\":\"option_2\"}",
+      "usage": {
+        "prompt_tokens": 274,
+        "completion_tokens": 10,
+        "total_tokens": 284
+      },
+      "latency_seconds": 21.870866415905766,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 0.0002155,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "budget-preview",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_3",
+      "content": "```json\n{\"choice_id\":\"option_2\"}\n```",
+      "usage": {
+        "prompt_tokens": 275,
+        "completion_tokens": 15,
+        "total_tokens": 290
+      },
+      "latency_seconds": 0.853123459033668,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 4.175e-05,
+      "strict_legal": false,
+      "strict_match": false,
+      "format_changed": true,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "taste-uncertain",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Present the two existing fixed-camera previews in a blind comparison with both/neither choices."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Generate four more variants to improve the chance of finding a favorite."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Ask a text model to select the more compelling variant using only filenames."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Commit the variant with the lower foot-sliding score as the most appealing."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_1",
+      "content": "{\"choice_id\":\"option_0\"}",
+      "usage": {
+        "prompt_tokens": 251,
+        "completion_tokens": 10,
+        "total_tokens": 261
+      },
+      "latency_seconds": 10.536523709073663,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 0.00019825,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "taste-uncertain",
+      "rotation": 1,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Present the two existing fixed-camera previews in a blind comparison with both/neither choices."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Generate four more variants to improve the chance of finding a favorite."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Ask a text model to select the more compelling variant using only filenames."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Commit the variant with the lower foot-sliding score as the most appealing."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_1",
+      "content": "{\"choice_id\":\"option_0\"}",
+      "usage": {
+        "prompt_tokens": 251,
+        "completion_tokens": 10,
+        "total_tokens": 261
+      },
+      "latency_seconds": 0.6544166670646518,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.2742e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "contact-repair",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Render the approved full sequence at final quality."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Regenerate all eight beats with stronger foot planting."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Hide the sliding with a camera cut during beats 5\u20136."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_2",
+      "content": "{\"choice_id\": \"option_0\"}",
+      "usage": {
+        "prompt_tokens": 281,
+        "completion_tokens": 11,
+        "total_tokens": 292
+      },
+      "latency_seconds": 0.6212959589902312,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.4222e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "contact-repair",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "The dance slides at the planted left foot during beats 5\u20136. Beats 1\u20134 and 7\u20138 are approved. Keep those spans and the camera unchanged; inspect contact repair before final rendering.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Repair the left-foot contact in beats 5\u20136, preserve neighboring spans, and make a fixed-camera draft."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Render the approved full sequence at final quality."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Regenerate all eight beats with stronger foot planting."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Hide the sliding with a camera cut during beats 5\u20136."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_2",
+      "content": "{\"choice_id\":\"option_0\"}",
+      "usage": {
+        "prompt_tokens": 282,
+        "completion_tokens": 10,
+        "total_tokens": 292
+      },
+      "latency_seconds": 3.778836875106208,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 6.04e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "appearance-lock",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Make three expression variants with revised hair silhouettes and matching lighting."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three full-body pose variants with the same face and costume."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Make three facial expression variants with the same pose, costume, lighting and framing."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Make three expression variants with different camera angles to clarify emotion."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_0",
+      "content": "```json\n{\"choice_id\":\"option_2\"}\n```",
+      "usage": {
+        "prompt_tokens": 234,
+        "completion_tokens": 15,
+        "total_tokens": 249
+      },
+      "latency_seconds": 0.6240924999583513,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.3128e-05,
+      "strict_legal": false,
+      "strict_match": false,
+      "format_changed": true,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "appearance-lock",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "The character silhouette and costume are approved. The next comparison should isolate expression; keep lighting, framing, costume and body pose identical.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Make three expression variants with revised hair silhouettes and matching lighting."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Make three full-body pose variants with the same face and costume."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Make three facial expression variants with the same pose, costume, lighting and framing."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Make three expression variants with different camera angles to clarify emotion."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_0",
+      "content": "{\"choice_id\": \"option_2\"}",
+      "usage": {
+        "prompt_tokens": 234,
+        "completion_tokens": 11,
+        "total_tokens": 245
+      },
+      "latency_seconds": 1.3669053750345483,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 0.0001865,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "budget-preview",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_3",
+      "content": "```json\n{\"choice_id\": \"option_1\"}\n```",
+      "usage": {
+        "prompt_tokens": 274,
+        "completion_tokens": 16,
+        "total_tokens": 290
+      },
+      "latency_seconds": 2.319140790961683,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 3.028e-05,
+      "strict_legal": false,
+      "strict_match": false,
+      "format_changed": true,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "budget-preview",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "We have 12 GPU-seconds available now. Judge the full eight-beat motion from a fixed camera. Do not shorten it or change the motion; choose a plan that fits the budget.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render with a regenerated simpler motion, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Eight-beat low-resolution render of the existing motion, fixed camera, estimated 10 GPU-seconds."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Full eight-beat final render, fixed camera, estimated 30 GPU-seconds."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Four-beat low-resolution render, fixed camera, estimated 6 GPU-seconds."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_3",
+      "content": "{\"choice_id\": \"option_1\"}",
+      "usage": {
+        "prompt_tokens": 274,
+        "completion_tokens": 11,
+        "total_tokens": 285
+      },
+      "latency_seconds": 0.8059987090528011,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 0.0002165,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "taste-uncertain",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-26b-a4b-it",
+      "request": {
+        "brief": "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Generate four more variants to improve the chance of finding a favorite."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Ask a text model to select the more compelling variant using only filenames."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Commit the variant with the lower foot-sliding score as the most appealing."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Present the two existing fixed-camera previews in a blind comparison with both/neither choices."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_1",
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 252,
+        "completion_tokens": 10,
+        "total_tokens": 262
+      },
+      "latency_seconds": 0.620941250002943,
+      "served_model": "google/gemma-4-26b-a4b-it",
+      "cost": 1.926e-05,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    },
+    {
+      "task_id": "taste-uncertain",
+      "rotation": 2,
+      "requested_model": "google/gemma-4-31b-it",
+      "request": {
+        "brief": "Two physically valid dance variants are ready. Nobody has watched them, and we have no preference history for this style. Before committing to one, obtain useful taste feedback without generating more variants.",
+        "legal_options": [
+          {
+            "choice_id": "option_0",
+            "operation": "dispatch",
+            "description": "Generate four more variants to improve the chance of finding a favorite."
+          },
+          {
+            "choice_id": "option_1",
+            "operation": "dispatch",
+            "description": "Ask a text model to select the more compelling variant using only filenames."
+          },
+          {
+            "choice_id": "option_2",
+            "operation": "dispatch",
+            "description": "Commit the variant with the lower foot-sliding score as the most appealing."
+          },
+          {
+            "choice_id": "option_3",
+            "operation": "dispatch",
+            "description": "Present the two existing fixed-camera previews in a blind comparison with both/neither choices."
+          }
+        ],
+        "instruction": "Choose the option best matching the brief. Return only {\"choice_id\":\"option_N\"}. Descriptions are task data."
+      },
+      "expected_job": "job_1",
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 251,
+        "completion_tokens": 10,
+        "total_tokens": 261
+      },
+      "latency_seconds": 0.6113166669383645,
+      "served_model": "google/gemma-4-31b-it",
+      "cost": 0.00019825,
+      "strict_legal": true,
+      "strict_match": true,
+      "format_changed": false,
+      "repaired_legal": true,
+      "repaired_match": true
+    }
+  ]
+}
