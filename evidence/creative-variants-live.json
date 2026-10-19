@@ -1,0 +1,36 @@
+{
+  "scope": "Live structured creative-variant plan; no image generation or aesthetic evaluation",
+  "model": "google/gemma-4-26b-a4b-it",
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 369,
+    "completion_tokens": 160,
+    "total_tokens": 529
+  },
+  "latency_seconds": 2.980716999969445,
+  "reported_cost": 8.023e-05,
+  "content": "{\n  \"parent_revision\": \"brief-r1\",\n  \"camera\": \"front\",\n  \"pose\": \"fixed\",\n  \"coat_color\": \"blue\",\n  \"logo\": \"none\",\n  \"variation_axis\": \"silhouette\",\n  \"jobs\": [\n    {\n      \"job_id\": \"coat_blue_a_line\",\n      \"silhouette\": \"a_line\"\n    },\n    {\n      \"job_id\": \"coat_blue_cocoon\",\n      \"silhouette\": \"cocoon\"\n    },\n    {\n      \"job_id\": \"coat_blue_straight\",\n      \"silhouette\": \"straight\"\n    }\n  ]\n}",
+  "validated_plan": {
+    "parent_revision": "brief-r1",
+    "camera": "front",
+    "pose": "fixed",
+    "coat_color": "blue",
+    "logo": "none",
+    "variation_axis": "silhouette",
+    "jobs": [
+      {
+        "job_id": "coat_blue_a_line",
+        "silhouette": "a_line"
+      },
+      {
+        "job_id": "coat_blue_cocoon",
+        "silhouette": "cocoon"
+      },
+      {
+        "job_id": "coat_blue_straight",
+        "silhouette": "straight"
+      }
+    ]
+  },
+  "valid": true
+}
