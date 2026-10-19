@@ -1,0 +1,28 @@
+{
+  "kind": "offline_transport_contract_check",
+  "scope": "single OpenAI-compatible chat-completions request",
+  "implementation": "harness2/actor_provider.py",
+  "test_module": "tests.test_actor_provider",
+  "configuration": {
+    "base_url": "caller supplied HTTPS or loopback HTTP",
+    "api_key": "caller supplied or HARNESS2_ACTOR_API_KEY",
+    "timeout": "bounded socket operation timeout; outer executor must enforce total wall clock",
+    "max_output_tokens": "caller supplied, bounded 1..16384",
+    "max_response_bytes": 1048576
+  },
+  "checks": [
+    "one request with system and user messages",
+    "validated content, finish reason, usage, returned model and latency",
+    "raw response opt-in only",
+    "malformed, duplicate-key, nonfinite and oversized responses rejected",
+    "timeout and transport errors redact exception detail",
+    "unsafe URLs and redirects refused"
+  ],
+  "claims": {
+    "local_tests_passed": true,
+    "paid_inference_performed": false,
+    "live_endpoint_compatibility_verified": false,
+    "model_trial": false,
+    "actor_quality_evaluated": false
+  }
+}
