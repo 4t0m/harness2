@@ -1,5 +1,5 @@
 """Render two accepted phrase plans; independently verify Blender joint readback."""
-import hashlib,json,math,subprocess,time
+import hashlib,json,math,re,subprocess,time
 from pathlib import Path
 
 
@@ -29,11 +29,12 @@ def verify_readback(sequences,readback):
             'scope':'Actual rendered sample joint positions and segment lengths; not skinning, taste, or unsampled dynamics.'}
 
 
-def render_pair(sequences,labels,provenance):
-    root=Path('/Users/adom/Development/hermes-testing/runs/harness2-dance-phrases-v1')
-    report_path=Path('evidence/dance-phrase-preview-v1.json')
+def render_pair(sequences,labels,provenance,*,run_name='harness2-dance-phrases-v1',evidence_name='dance-phrase-preview-v1'):
+    if any(not re.fullmatch(r'[a-z0-9-]{1,80}',name) for name in [run_name,evidence_name]):raise ValueError('invalid host artifact name')
+    root=Path('/Users/adom/Development/hermes-testing/runs')/run_name
+    report_path=Path('evidence')/(evidence_name+'.json')
     if root.exists() or report_path.exists():raise ValueError('refusing overwrite')
-    root.mkdir();start=time.monotonic();report={'provenance':provenance,'labels':labels,'scope':'Illustrative accepted local-model phrase plans, not blinded human taste results.'}
+    root.mkdir();start=time.monotonic();report={'provenance':provenance,'labels':labels,'preview_helper_sha256':digest(__file__),'scope':'Illustrative accepted local-model phrase plans, not blinded human taste results.'}
     def save():report_path.write_text(json.dumps(report,indent=2)+'\n')
     try:
         source=root/'tracks.json';source.write_text(json.dumps({'sequences':sequences,'labels':labels},indent=2)+'\n')

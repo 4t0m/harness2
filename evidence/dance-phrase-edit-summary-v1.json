@@ -1,0 +1,134 @@
+{
+  "scope": "Eight within-shelf edit cases, then two exploratory routing runs on those observed cases. No H2 learning or broad reliability claim.",
+  "source_sha256": {
+    "dance-phrase-edit-model-v1.json": "ea8aec4f688771655fdcfe49f11fb2264ec5577629d01fd2002540dfadec2974",
+    "dance-edit-route-v1.json": "f3d2200a14df86600857865de3ac50daa79cfb32b33e9649da5cd6f73aeddcfc",
+    "dance-edit-route-fresh-v1.json": "bfb6c38810971ec4aa95e42d1ad14753bde1a8361a21d0b991799d5f4db8c358"
+  },
+  "paired": [
+    {
+      "model": "gemma4:e2b",
+      "condition": "full",
+      "first_correct": 8,
+      "after_one_correction": 8,
+      "n": 8,
+      "first_wall_median_seconds": 1.0576227289857343,
+      "prompt_eval_count": {
+        "min": 239,
+        "max": 269
+      },
+      "eval_count": {
+        "min": 26,
+        "max": 31
+      },
+      "input_text_characters": {
+        "min": 912,
+        "max": 1048
+      }
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "patch",
+      "first_correct": 7,
+      "after_one_correction": 7,
+      "n": 8,
+      "first_wall_median_seconds": 0.8022436670144089,
+      "prompt_eval_count": {
+        "min": 251,
+        "max": 281
+      },
+      "eval_count": {
+        "min": 14,
+        "max": 15
+      },
+      "input_text_characters": {
+        "min": 951,
+        "max": 1087
+      }
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "full",
+      "first_correct": 8,
+      "after_one_correction": 8,
+      "n": 8,
+      "first_wall_median_seconds": 1.3410905005293898,
+      "prompt_eval_count": {
+        "min": 240,
+        "max": 268
+      },
+      "eval_count": {
+        "min": 24,
+        "max": 40
+      },
+      "input_text_characters": {
+        "min": 912,
+        "max": 1048
+      }
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "patch",
+      "first_correct": 8,
+      "after_one_correction": 8,
+      "n": 8,
+      "first_wall_median_seconds": 0.7585049375193194,
+      "prompt_eval_count": {
+        "min": 251,
+        "max": 279
+      },
+      "eval_count": {
+        "min": 14,
+        "max": 15
+      },
+      "input_text_characters": {
+        "min": 951,
+        "max": 1087
+      }
+    }
+  ],
+  "routes": [
+    {
+      "source": "dance-edit-route-v1.json",
+      "correct": 7,
+      "accepted": 7,
+      "n": 8,
+      "calls": 9,
+      "fallback_cases": [
+        "replace_middle_pulse_with_sway"
+      ],
+      "median_total_wall_per_case_seconds": 0.8459300204995088,
+      "patch_prompts_equal_paired": true,
+      "patch_outputs_equal_paired": true,
+      "fallback_prompt_equal_standalone_full": [
+        false
+      ],
+      "fallback_output_equal_standalone_full": [
+        false
+      ]
+    },
+    {
+      "source": "dance-edit-route-fresh-v1.json",
+      "correct": 8,
+      "accepted": 8,
+      "n": 8,
+      "calls": 9,
+      "fallback_cases": [
+        "replace_middle_pulse_with_sway"
+      ],
+      "median_total_wall_per_case_seconds": 0.841719166492112,
+      "patch_prompts_equal_paired": true,
+      "patch_outputs_equal_paired": true,
+      "fallback_prompt_equal_standalone_full": [
+        true
+      ],
+      "fallback_output_equal_standalone_full": [
+        true
+      ]
+    }
+  ],
+  "total_calls": 51,
+  "paid_provider_calls": 0,
+  "protected_frames_per_edit": 62,
+  "total_motion_samples": 81
+}

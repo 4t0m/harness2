@@ -1,0 +1,1348 @@
+{
+  "scope": "Exploratory live structural fallback on8observed cases. No fresh heldout/generalization claim. Route never sees expected moves; evaluation occurs after route returns.",
+  "prior_sha256": "ea8aec4f688771655fdcfe49f11fb2264ec5577629d01fd2002540dfadec2974",
+  "sources": {
+    "harness2/dance_edit_route.py": "64f70b67636b8a3e1caf5ffee6a7f99a062f959eb4ba335810ca35371fcc6cab",
+    "harness2/dance_phrase_edit.py": "9d5fa5f3d8db91dfdb4b37034c3d567ad72160cb97ca8d779061fbcd55581fc6",
+    "harness2/dance_phrases.py": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+    "experiments/dance_phrase_edit_cases.py": "2d2b5bf9766acdfd30b3520f6ac13ea48cf8308a1dc653ea41df707bf9257b4b",
+    "experiments/dance_phrase_edit_probe.py": "afdddb8c44e5c3814ec941418cdce29db91c070b80f69e64eaf490df8eed1b1b",
+    "experiments/dance_edit_route_probe.py": "ea291bea756bbd74cdd6a127808fdefe36c6f3914e3842df3564fafbf8ec81d8"
+  },
+  "model": {
+    "name": "gemma4:e2b",
+    "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+    "size": 7162405886
+  },
+  "max_calls": 16,
+  "max_calls_per_case": 2,
+  "cases": [
+    {
+      "id": "change_third_move_variation",
+      "source_moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "editable_slots": [
+        2
+      ],
+      "request": "Make the pulse in the third move clear. Keep its move name and preserve the first, second, and fourth source moves exactly.",
+      "expected_moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ]
+    },
+    {
+      "id": "match_opening_hold_to_final_hold",
+      "source_moves": [
+        [
+          "hold",
+          "soft"
+        ],
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ],
+      "editable_slots": [
+        0,
+        3
+      ],
+      "request": "Make the opening hold use the same variation as the final hold. The final hold is already clear, so change only the opening hold; leave the two middle moves and final move unchanged.",
+      "expected_moves": [
+        [
+          "hold",
+          "clear"
+        ],
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ]
+    },
+    {
+      "id": "replace_sway_with_pulse",
+      "source_moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "editable_slots": [
+        1
+      ],
+      "request": "Replace the sway in the second slot with a pulse, keeping that slot's variation soft. Preserve the other three approved source moves.",
+      "expected_moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ]
+    },
+    {
+      "id": "replace_middle_pulse_with_sway",
+      "source_moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "editable_slots": [
+        2
+      ],
+      "request": "Change the later of the two pulses, the third move, into a sway. Keep its variation soft and leave the earlier pulse and both endpoints exactly as they are.",
+      "expected_moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ]
+    },
+    {
+      "id": "choose_later_of_two_editable_middle_slots",
+      "source_moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "editable_slots": [
+        1,
+        2
+      ],
+      "request": "Only the two middle slots are editable. Leave the earlier middle sway untouched; make the later middle pulse clear. Preserve the rise and settle.",
+      "expected_moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ]
+    },
+    {
+      "id": "final_amendment_overrides_first_edit",
+      "source_moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "editable_slots": [
+        1,
+        2
+      ],
+      "request": "First, change the second-slot sway into a clear pulse. Final correction: do not change that second slot after all; instead make the third-slot pulse soft. The final correction replaces the earlier edit, and all other source moves stay exactly as they were.",
+      "expected_moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ]
+    },
+    {
+      "id": "edit_only_opening_endpoint",
+      "source_moves": [
+        [
+          "hold",
+          "clear"
+        ],
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "editable_slots": [
+        0,
+        3
+      ],
+      "request": "Of the two editable endpoints, change the opening hold to soft. Keep the ending settle and both approved middle moves unchanged.",
+      "expected_moves": [
+        [
+          "hold",
+          "soft"
+        ],
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ]
+    },
+    {
+      "id": "select_settle_variation_by_reference",
+      "source_moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "soft"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ],
+      "editable_slots": [
+        2,
+        3
+      ],
+      "request": "The last move is already a clear hold. Set the move immediately before that hold, the settle, to clear too. Do not change the hold or either earlier source move.",
+      "expected_moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "case_id": "change_third_move_variation",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [2], \"request\": \"Make the pulse in the third move clear. Keep its move name and preserve the first, second, and fourth source moves exactly.\", \"source_plan\": {\"moves\": [[\"rise\", \"soft\"], [\"sway\", \"clear\"], [\"pulse\", \"soft\"], [\"settle\", \"clear\"]]}}"
+        }
+      ],
+      "input_text_characters": 951,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:21.265607Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3084111541,
+        "load_duration": 2691302958,
+        "prompt_eval_count": 251,
+        "prompt_eval_duration": 175099000,
+        "eval_count": 14,
+        "eval_duration": 213208000
+      },
+      "total_duration": 3084111541,
+      "load_duration": 2691302958,
+      "prompt_eval_count": 251,
+      "prompt_eval_duration": 175099000,
+      "eval_count": 14,
+      "eval_duration": 213208000,
+      "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"clear\"}",
+      "wall_seconds": 3.1333369170315564
+    },
+    {
+      "case_id": "match_opening_hold_to_final_hold",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [0, 3], \"request\": \"Make the opening hold use the same variation as the final hold. The final hold is already clear, so change only the opening hold; leave the two middle moves and final move unchanged.\", \"source_plan\": {\"moves\": [[\"hold\", \"soft\"], [\"rise\", \"clear\"], [\"settle\", \"soft\"], [\"hold\", \"clear\"]]}}"
+        }
+      ],
+      "input_text_characters": 1012,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:22.120612Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":0,\"move\":\"hold\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 712838834,
+        "load_duration": 306682292,
+        "prompt_eval_count": 264,
+        "prompt_eval_duration": 193232000,
+        "eval_count": 14,
+        "eval_duration": 210368000
+      },
+      "total_duration": 712838834,
+      "load_duration": 306682292,
+      "prompt_eval_count": 264,
+      "prompt_eval_duration": 193232000,
+      "eval_count": 14,
+      "eval_duration": 210368000,
+      "content": "{\"slot\":0,\"move\":\"hold\",\"variation\":\"clear\"}",
+      "wall_seconds": 0.7636746669886634
+    },
+    {
+      "case_id": "replace_sway_with_pulse",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [1], \"request\": \"Replace the sway in the second slot with a pulse, keeping that slot's variation soft. Preserve the other three approved source moves.\", \"source_plan\": {\"moves\": [[\"rise\", \"clear\"], [\"sway\", \"soft\"], [\"pulse\", \"clear\"], [\"settle\", \"soft\"]]}}"
+        }
+      ],
+      "input_text_characters": 961,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:22.96791Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":1,\"move\":\"pulse\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 702834000,
+        "load_duration": 303113334,
+        "prompt_eval_count": 252,
+        "prompt_eval_duration": 174194000,
+        "eval_count": 14,
+        "eval_duration": 223125000
+      },
+      "total_duration": 702834000,
+      "load_duration": 303113334,
+      "prompt_eval_count": 252,
+      "prompt_eval_duration": 174194000,
+      "eval_count": 14,
+      "eval_duration": 223125000,
+      "content": "{\"slot\":1,\"move\":\"pulse\",\"variation\":\"soft\"}",
+      "wall_seconds": 0.7555765829747543
+    },
+    {
+      "case_id": "replace_middle_pulse_with_sway",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [2], \"request\": \"Change the later of the two pulses, the third move, into a sway. Keep its variation soft and leave the earlier pulse and both endpoints exactly as they are.\", \"source_plan\": {\"moves\": [[\"rise\", \"soft\"], [\"pulse\", \"clear\"], [\"pulse\", \"soft\"], [\"settle\", \"clear\"]]}}"
+        }
+      ],
+      "input_text_characters": 985,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:23.810339Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 694531208,
+        "load_duration": 305292917,
+        "prompt_eval_count": 257,
+        "prompt_eval_duration": 175595000,
+        "eval_count": 14,
+        "eval_duration": 211170000
+      },
+      "total_duration": 694531208,
+      "load_duration": 305292917,
+      "prompt_eval_count": 257,
+      "prompt_eval_duration": 175595000,
+      "eval_count": 14,
+      "eval_duration": 211170000,
+      "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"soft\"}",
+      "wall_seconds": 0.7470408340450376
+    },
+    {
+      "case_id": "replace_middle_pulse_with_sway",
+      "mode": "full",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn the entire edited plan: {\"moves\":[[\"move_id\",\"variation\"], ...]} with exactly four pairs."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [2], \"request\": \"Change the later of the two pulses, the third move, into a sway. Keep its variation soft and leave the earlier pulse and both endpoints exactly as they are.\", \"source_plan\": {\"moves\": [[\"rise\", \"soft\"], [\"pulse\", \"clear\"], [\"pulse\", \"soft\"], [\"settle\", \"clear\"]]}}"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"soft\"}"
+        },
+        {
+          "role": "user",
+          "content": "The patch was rejected: edit must change exactly one move pair. Re-express the requested edit as the complete four-move plan. Preserve every other approved pair."
+        }
+      ],
+      "input_text_characters": 1151,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:24.78527Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"], [\"pulse\",\"clear\"], [\"pulse\",\"soft\"], [\"settle\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 912073917,
+        "load_duration": 299918584,
+        "prompt_eval_count": 301,
+        "prompt_eval_duration": 211807000,
+        "eval_count": 26,
+        "eval_duration": 397047000
+      },
+      "total_duration": 912073917,
+      "load_duration": 299918584,
+      "prompt_eval_count": 301,
+      "prompt_eval_duration": 211807000,
+      "eval_count": 26,
+      "eval_duration": 397047000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"], [\"pulse\",\"clear\"], [\"pulse\",\"soft\"], [\"settle\",\"clear\"]]}",
+      "wall_seconds": 0.9708883750718087
+    },
+    {
+      "case_id": "choose_later_of_two_editable_middle_slots",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [1, 2], \"request\": \"Only the two middle slots are editable. Leave the earlier middle sway untouched; make the later middle pulse clear. Preserve the rise and settle.\", \"source_plan\": {\"moves\": [[\"rise\", \"clear\"], [\"sway\", \"soft\"], [\"pulse\", \"soft\"], [\"settle\", \"clear\"]]}}"
+        }
+      ],
+      "input_text_characters": 976,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:25.548051Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 687158542,
+        "load_duration": 298127167,
+        "prompt_eval_count": 256,
+        "prompt_eval_duration": 175579000,
+        "eval_count": 14,
+        "eval_duration": 210159000
+      },
+      "total_duration": 687158542,
+      "load_duration": 298127167,
+      "prompt_eval_count": 256,
+      "prompt_eval_duration": 175579000,
+      "eval_count": 14,
+      "eval_duration": 210159000,
+      "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"clear\"}",
+      "wall_seconds": 0.7466689579887316
+    },
+    {
+      "case_id": "final_amendment_overrides_first_edit",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [1, 2], \"request\": \"First, change the second-slot sway into a clear pulse. Final correction: do not change that second slot after all; instead make the third-slot pulse soft. The final correction replaces the earlier edit, and all other source moves stay exactly as they were.\", \"source_plan\": {\"moves\": [[\"rise\", \"soft\"], [\"sway\", \"clear\"], [\"pulse\", \"clear\"], [\"settle\", \"soft\"]]}}"
+        }
+      ],
+      "input_text_characters": 1087,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:26.412147Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 713899875,
+        "load_duration": 305421917,
+        "prompt_eval_count": 281,
+        "prompt_eval_duration": 194565000,
+        "eval_count": 14,
+        "eval_duration": 210790000
+      },
+      "total_duration": 713899875,
+      "load_duration": 305421917,
+      "prompt_eval_count": 281,
+      "prompt_eval_duration": 194565000,
+      "eval_count": 14,
+      "eval_duration": 210790000,
+      "content": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"soft\"}",
+      "wall_seconds": 0.7663257499225438
+    },
+    {
+      "case_id": "edit_only_opening_endpoint",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [0, 3], \"request\": \"Of the two editable endpoints, change the opening hold to soft. Keep the ending settle and both approved middle moves unchanged.\", \"source_plan\": {\"moves\": [[\"hold\", \"clear\"], [\"rise\", \"soft\"], [\"sway\", \"clear\"], [\"settle\", \"soft\"]]}}"
+        }
+      ],
+      "input_text_characters": 958,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:27.25525Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":0,\"move\":\"hold\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 697085041,
+        "load_duration": 301469458,
+        "prompt_eval_count": 252,
+        "prompt_eval_duration": 177131000,
+        "eval_count": 14,
+        "eval_duration": 215965000
+      },
+      "total_duration": 697085041,
+      "load_duration": 301469458,
+      "prompt_eval_count": 252,
+      "prompt_eval_duration": 177131000,
+      "eval_count": 14,
+      "eval_duration": 215965000,
+      "content": "{\"slot\":0,\"move\":\"hold\",\"variation\":\"soft\"}",
+      "wall_seconds": 0.7470962919760495
+    },
+    {
+      "case_id": "select_settle_variation_by_reference",
+      "mode": "patch",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Edit the approved dance plan to follow the latest request. Change exactly one [move,variation] pair, only within permitted_slots. Keep every other pair exactly unchanged. Slots are zero-based: first=0, second=1, third=2, fourth=3. Each move lasts two beats; four moves start/end at rest. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Variations are exactly soft or clear. Move boundaries must remain compatible. Apply final amendments to the request. Return only strict JSON, with no extra fields.\nReturn only the one replacement: {\"slot\":0,\"move\":\"move_id\",\"variation\":\"soft|clear\"}. Use the actual zero-based slot and exact values."
+        },
+        {
+          "role": "user",
+          "content": "{\"permitted_slots\": [2, 3], \"request\": \"The last move is already a clear hold. Set the move immediately before that hold, the settle, to clear too. Do not change the hold or either earlier source move.\", \"source_plan\": {\"moves\": [[\"rise\", \"clear\"], [\"sway\", \"soft\"], [\"settle\", \"soft\"], [\"hold\", \"clear\"]]}}"
+        }
+      ],
+      "input_text_characters": 991,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:27:28.134867Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"slot\":2,\"move\":\"settle\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 732943167,
+        "load_duration": 310663209,
+        "prompt_eval_count": 263,
+        "prompt_eval_duration": 192526000,
+        "eval_count": 15,
+        "eval_duration": 226676000
+      },
+      "total_duration": 732943167,
+      "load_duration": 310663209,
+      "prompt_eval_count": 263,
+      "prompt_eval_duration": 192526000,
+      "eval_count": 15,
+      "eval_duration": 226676000,
+      "content": "{\"slot\":2,\"move\":\"settle\",\"variation\":\"clear\"}",
+      "wall_seconds": 0.7842765829991549
+    }
+  ],
+  "results": [
+    {
+      "case_id": "change_third_move_variation",
+      "accepted": true,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"clear\"}",
+          "accepted": true,
+          "reason": "structurally accepted"
+        }
+      ],
+      "wall_seconds": 3.2129794999491423,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "edit_receipt": {
+        "accepted_revision": "approved-dance-v1",
+        "permitted_slots": [
+          2
+        ],
+        "edited_slot": 2,
+        "source_plan_sha256": "400c7f1ef6e1d5190233b16e32403d7abb14d051d853a9417bc96a70a4e2a912",
+        "result_plan_sha256": "bc1880cee6b0c5651c30429c903ae3633e4a4c6033ffe0433d91942fa0565b49",
+        "source_sequence_sha256": "8a34315052d86bba562aa95bb2222768d5c887a125c3a782c7d982809becddbd",
+        "result_sequence_sha256": "92f94029bb0b306484178ef482cb65e259c3deaf2dadbc3552315b4afd733399",
+        "protected_frame_count": 62,
+        "protected_frames_sha256": "efb0926d4072a0b293b0eea44c0c4c93c0a4c3da3361cfa81a21b847fa00978c",
+        "outside_frames_exact": true,
+        "other_clips_exact": true,
+        "seam_endpoints_exact": true,
+        "source_unmutated": true,
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_opening_hold_to_final_hold",
+      "accepted": true,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":0,\"move\":\"hold\",\"variation\":\"clear\"}",
+          "accepted": true,
+          "reason": "structurally accepted"
+        }
+      ],
+      "wall_seconds": 0.8444597909692675,
+      "moves": [
+        [
+          "hold",
+          "clear"
+        ],
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "edit_receipt": {
+        "accepted_revision": "approved-dance-v1",
+        "permitted_slots": [
+          0,
+          3
+        ],
+        "edited_slot": 0,
+        "source_plan_sha256": "87cb0c3ded79797cbad250d0511224f6a2a43975f5ac9ed7854eae7ec8d44a8c",
+        "result_plan_sha256": "d48f772819015131d777b0a1ddb401886195c209b5d945c2dc7b3f1ba6bb9913",
+        "source_sequence_sha256": "4854b943d15e9597bc886c8e7bc455b1844d06a337f74ff0eeec7bfafe763037",
+        "result_sequence_sha256": "45863d81146bffd05842b42d77e816e5762b2edad49b74af8ee1aba45c2d916e",
+        "protected_frame_count": 62,
+        "protected_frames_sha256": "fedaa0392df420720147631c3b847f42e99e75c37de8e65b5fb2d35d089152d5",
+        "outside_frames_exact": true,
+        "other_clips_exact": true,
+        "seam_endpoints_exact": true,
+        "source_unmutated": true,
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0053943427783843395,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.002798810472909241,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.002798810472909241,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      }
+    },
+    {
+      "case_id": "replace_sway_with_pulse",
+      "accepted": true,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":1,\"move\":\"pulse\",\"variation\":\"soft\"}",
+          "accepted": true,
+          "reason": "structurally accepted"
+        }
+      ],
+      "wall_seconds": 0.8403344580437988,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "edit_receipt": {
+        "accepted_revision": "approved-dance-v1",
+        "permitted_slots": [
+          1
+        ],
+        "edited_slot": 1,
+        "source_plan_sha256": "5f357b63d1ea353aebbcbf9a346956d37d1302f94587ac16324d2ffc1b6b54e2",
+        "result_plan_sha256": "bea11cdda955001d82793e4d08eefdd2e233bc2da19451e0b4d2932466868fcd",
+        "source_sequence_sha256": "cc86e86beae8c65c251d1799dd340f02a8e9191fa4b902e51664936e9e65d9f4",
+        "result_sequence_sha256": "f1cc0315a80f6a95afc3e3b41474ca06a51066760e9f9319ea9ccb0a4e0f2038",
+        "protected_frame_count": 62,
+        "protected_frames_sha256": "b4d6ee73d4aad95918d7f662c0223fb4fd75d31e7eb0184b5750a6cf7803e50f",
+        "outside_frames_exact": true,
+        "other_clips_exact": true,
+        "seam_endpoints_exact": true,
+        "source_unmutated": true,
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0029635162857315576,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      }
+    },
+    {
+      "case_id": "replace_middle_pulse_with_sway",
+      "accepted": false,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"soft\"}",
+          "accepted": false,
+          "reason": "edit must change exactly one move pair"
+        },
+        {
+          "mode": "full",
+          "raw": "{\"moves\":[[\"rise\",\"soft\"], [\"pulse\",\"clear\"], [\"pulse\",\"soft\"], [\"settle\",\"clear\"]]}",
+          "accepted": false,
+          "reason": "edit must change exactly one move pair"
+        }
+      ],
+      "wall_seconds": 1.7204337499570101,
+      "correct": false
+    },
+    {
+      "case_id": "choose_later_of_two_editable_middle_slots",
+      "accepted": true,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"clear\"}",
+          "accepted": true,
+          "reason": "structurally accepted"
+        }
+      ],
+      "wall_seconds": 0.834445875021629,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "edit_receipt": {
+        "accepted_revision": "approved-dance-v1",
+        "permitted_slots": [
+          1,
+          2
+        ],
+        "edited_slot": 2,
+        "source_plan_sha256": "b2f6883845deeb9beebdf5f6d21b74c6d9802f8c0814e12be6dca86bc6311ed1",
+        "result_plan_sha256": "efe7a2db9d14443c3a1ba2b88a831eed42fb5214820a50f5b409d94f47a71f11",
+        "source_sequence_sha256": "0d53e6f6126573286315d79536576f6fbe2b52596222f3cbf552b3756b050d70",
+        "result_sequence_sha256": "fafc23c982f31cd0296c63523e0b56c5eefa6d8e9e2e05a31761e0dfefb064db",
+        "protected_frame_count": 62,
+        "protected_frames_sha256": "57f606f9d974be4f395b2485b791d83db0b1d796f2abbb429896157322f6a1fa",
+        "outside_frames_exact": true,
+        "other_clips_exact": true,
+        "seam_endpoints_exact": true,
+        "source_unmutated": true,
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0028935482691470043,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      }
+    },
+    {
+      "case_id": "final_amendment_overrides_first_edit",
+      "accepted": true,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":2,\"move\":\"pulse\",\"variation\":\"soft\"}",
+          "accepted": true,
+          "reason": "structurally accepted"
+        }
+      ],
+      "wall_seconds": 0.8474002500297502,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "edit_receipt": {
+        "accepted_revision": "approved-dance-v1",
+        "permitted_slots": [
+          1,
+          2
+        ],
+        "edited_slot": 2,
+        "source_plan_sha256": "20d3d8d46be8434a6d23a60d2f8faa6f8bd136dd45387f115a5a5df42df0b81d",
+        "result_plan_sha256": "b6d9d0e82d70f9ccf9736c8a0c8443207b48fa4ce30da338a7d53f60aa690475",
+        "source_sequence_sha256": "271b2040c58a77976950d25ca0b1593ee6640de7628d6dde661d4198bc84ba35",
+        "result_sequence_sha256": "35f0ea3b225a876056ff22a4f132dd4545c87c88d963c6141f719b0799a4a21f",
+        "protected_frame_count": 62,
+        "protected_frames_sha256": "ebb7934586f63e541d43b4e886dc3046d64c12fce5d2345ed76330cbdfb13a53",
+        "outside_frames_exact": true,
+        "other_clips_exact": true,
+        "seam_endpoints_exact": true,
+        "source_unmutated": true,
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      }
+    },
+    {
+      "case_id": "edit_only_opening_endpoint",
+      "accepted": true,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":0,\"move\":\"hold\",\"variation\":\"soft\"}",
+          "accepted": true,
+          "reason": "structurally accepted"
+        }
+      ],
+      "wall_seconds": 0.8302777500357479,
+      "moves": [
+        [
+          "hold",
+          "soft"
+        ],
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "edit_receipt": {
+        "accepted_revision": "approved-dance-v1",
+        "permitted_slots": [
+          0,
+          3
+        ],
+        "edited_slot": 0,
+        "source_plan_sha256": "e10b7d5ceaa4be9824c31483234ff9bce5ee6aed3fee8249ac4de48bc38c1001",
+        "result_plan_sha256": "60f32842bd49a11ce58910c5ca67a4f82e0d3b0061626abc7a5101786c6bb0ac",
+        "source_sequence_sha256": "9f0e8320a64c5f3606c50b83289a1b5aea76e3d468d7f00599d1ab51421f15a8",
+        "result_sequence_sha256": "64f17046bfbaca3e96b0a3019e1a2a71e7932a550edcf43b371442df5008e318",
+        "protected_frame_count": 62,
+        "protected_frames_sha256": "9d0935b057951d45359e5fa9cf27c0a651b75dc5ce93b854b0544fae9ed168af",
+        "outside_frames_exact": true,
+        "other_clips_exact": true,
+        "seam_endpoints_exact": true,
+        "source_unmutated": true,
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.003448184309595372,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.0015371812694549836,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      }
+    },
+    {
+      "case_id": "select_settle_variation_by_reference",
+      "accepted": true,
+      "attempts": [
+        {
+          "mode": "patch",
+          "raw": "{\"slot\":2,\"move\":\"settle\",\"variation\":\"clear\"}",
+          "accepted": true,
+          "reason": "structurally accepted"
+        }
+      ],
+      "wall_seconds": 0.8670183341018856,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "edit_receipt": {
+        "accepted_revision": "approved-dance-v1",
+        "permitted_slots": [
+          2,
+          3
+        ],
+        "edited_slot": 2,
+        "source_plan_sha256": "c825e5282bf0db04778f0e86561b3dd23dddf8e6a628274d0da2017d21366ecb",
+        "result_plan_sha256": "f930ad359c18a78f5bb3089260ffb4378f425c2cc7b2a4b11725530f672de0fc",
+        "source_sequence_sha256": "0b959051806fcab04aaf99d070c28b2ea3c32a2a5a72eaf14593f35ec51915f8",
+        "result_sequence_sha256": "c96d1102cd054b4a6da1ca42d69c412825ee31c88e7425b12b6a97612c6ccdc3",
+        "protected_frame_count": 62,
+        "protected_frames_sha256": "45ff1dd09d29f07923773695dce6db994b469e6ccf1a1d67acd3a99c1b1a0d78",
+        "outside_frames_exact": true,
+        "other_clips_exact": true,
+        "seam_endpoints_exact": true,
+        "source_unmutated": true,
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.004199377643576119,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.002798810472909241,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      }
+    }
+  ],
+  "paid_provider_calls": 0,
+  "complete": true
+}

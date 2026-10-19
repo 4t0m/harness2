@@ -1,0 +1,136 @@
+{
+  "provenance": {
+    "evidence_sha256": "ea8aec4f688771655fdcfe49f11fb2264ec5577629d01fd2002540dfadec2974",
+    "case_id": "replace_sway_with_pulse",
+    "request": "Replace the sway in the second slot with a pulse, keeping that slot's variation soft. Preserve the other three approved source moves.",
+    "model": "gemma4:e2b",
+    "call_index": 5,
+    "selection": "Preset move-substitution case; first successful patch, illustrative only.",
+    "source_moves": [
+      [
+        "rise",
+        "clear"
+      ],
+      [
+        "sway",
+        "soft"
+      ],
+      [
+        "pulse",
+        "clear"
+      ],
+      [
+        "settle",
+        "soft"
+      ]
+    ],
+    "edited_moves": [
+      [
+        "rise",
+        "clear"
+      ],
+      [
+        "pulse",
+        "soft"
+      ],
+      [
+        "pulse",
+        "clear"
+      ],
+      [
+        "settle",
+        "soft"
+      ]
+    ],
+    "edit_receipt": {
+      "accepted_revision": "approved-dance-v1",
+      "permitted_slots": [
+        1
+      ],
+      "edited_slot": 1,
+      "source_plan_sha256": "5f357b63d1ea353aebbcbf9a346956d37d1302f94587ac16324d2ffc1b6b54e2",
+      "result_plan_sha256": "bea11cdda955001d82793e4d08eefdd2e233bc2da19451e0b4d2932466868fcd",
+      "source_sequence_sha256": "cc86e86beae8c65c251d1799dd340f02a8e9191fa4b902e51664936e9e65d9f4",
+      "result_sequence_sha256": "f1cc0315a80f6a95afc3e3b41474ca06a51066760e9f9319ea9ccb0a4e0f2038",
+      "protected_frame_count": 62,
+      "protected_frames_sha256": "b4d6ee73d4aad95918d7f662c0223fb4fd75d31e7eb0184b5750a6cf7803e50f",
+      "outside_frames_exact": true,
+      "other_clips_exact": true,
+      "seam_endpoints_exact": true,
+      "source_unmutated": true,
+      "validation": {
+        "valid": true,
+        "frame_count": 81,
+        "source_clip_frames": 21,
+        "seam_count": 3,
+        "max_seam_displacement_jump_m": 0.0029635162857315576,
+        "source_clip_validation": [
+          {
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_segment_error_m": 1.3877787807814457e-16
+          },
+          {
+            "max_joint_delta_m": 0.006653530396676379,
+            "max_segment_error_m": 1.3877787807814457e-16
+          },
+          {
+            "max_joint_delta_m": 0.012117349699105748,
+            "max_segment_error_m": 1.3877787807814457e-16
+          },
+          {
+            "max_joint_delta_m": 0.027838527672844168,
+            "max_segment_error_m": 1.3877787807814457e-16
+          }
+        ],
+        "max_joint_delta_m": 0.030498989295853377,
+        "max_segment_error_m": 1.3877787807814457e-16,
+        "full_rig_validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+          "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+        }
+      }
+    }
+  },
+  "labels": [
+    "Source",
+    "Edited"
+  ],
+  "preview_helper_sha256": "f3105f8e70c8ff10ab4dbf601a6bc566a729a9c628ab390b7ac12f38141b93ce",
+  "scope": "Illustrative accepted local-model phrase plans, not blinded human taste results.",
+  "tracks_sha256": "045c718cd4075a58ae2c72d43f4792483c6b60c23b3b8029cd4e9bf4cbb08faa",
+  "renderer_sha256": "04e7a70d1d8f02f94c2c4e44ecee498017e6e3785189bfb53628a1261febe12f",
+  "readback": {
+    "frames_checked": 40,
+    "actors": 2,
+    "max_position_error_m": 1.0792048474807683e-07,
+    "max_segment_error_m": 1.2811931271450305e-07,
+    "scope": "Actual rendered sample joint positions and segment lengths; not skinning, taste, or unsampled dynamics."
+  },
+  "readback_sha256": "15e08ee2e5d319d512142536f482188821da252295aa4bed4d72f089fa986056",
+  "complete": true,
+  "path": "/Users/adom/Development/hermes-testing/runs/harness2-dance-phrase-edit-v1/comparison.mp4",
+  "video": {
+    "width": 512,
+    "height": 320,
+    "avg_frame_rate": "10/1",
+    "duration": "4.000000",
+    "nb_read_frames": "40"
+  },
+  "video_sha256": "6b1b6c882076147bdd7dfb882546e3f4df8f3384b231257e984df24624bc65b1",
+  "visual_review": {
+    "method": "Parent inspected four decoded encoded-video frames",
+    "frame_indices": [
+      0,
+      12,
+      17,
+      30
+    ],
+    "finding": "Planted figures and arm states visible; soft sway-to-pulse change subtle.",
+    "limit": "Sparse still inspection, not full-motion taste or every pixel/bone endpoint verification."
+  },
+  "wall_seconds": 1.6894939170451835
+}
