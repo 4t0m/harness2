@@ -1,0 +1,194 @@
+{
+  "provenance": {
+    "evidence_sha256": "ce04af1ce7cb83b4e55bf5827d9114360a93d6bfcef37f60a0df317fd3c115cb",
+    "selection": "Preset soft/clear alternating-step briefs from E2B explicit_enum condition; illustrative variation comparison, not blind taste selection.",
+    "calls": [
+      2,
+      4
+    ],
+    "requests": [
+      "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "Take four clear steps: left, right, left, right. Return to the starting position."
+    ],
+    "moves": [
+      [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ]
+    ],
+    "source_validations": [
+      {
+        "valid": true,
+        "frame_count": 81,
+        "duration_seconds": 4.0,
+        "final_root_x_m": 0.0,
+        "max_abs_root_x_m": 0.2,
+        "max_joint_delta_m": 0.029822725259428414,
+        "max_segment_error_m": 1.3877787807814457e-16,
+        "max_moving_ankle_lift_m": 0.07000000000000002,
+        "clips": [
+          {
+            "id": "step_left",
+            "variation": "soft",
+            "start_root_x_m": 0.0,
+            "end_root_x_m": -0.2,
+            "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+          },
+          {
+            "id": "step_right",
+            "variation": "soft",
+            "start_root_x_m": -0.2,
+            "end_root_x_m": 0.0,
+            "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+          },
+          {
+            "id": "step_left",
+            "variation": "soft",
+            "start_root_x_m": 0.0,
+            "end_root_x_m": -0.2,
+            "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+          },
+          {
+            "id": "step_right",
+            "variation": "soft",
+            "start_root_x_m": -0.2,
+            "end_root_x_m": 0.0,
+            "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+          }
+        ],
+        "full_rig_validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "max_joint_delta_m": 0.029822725259428414,
+          "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+          "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+        },
+        "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+      },
+      {
+        "valid": true,
+        "frame_count": 81,
+        "duration_seconds": 4.0,
+        "final_root_x_m": 0.0,
+        "max_abs_root_x_m": 0.2,
+        "max_joint_delta_m": 0.03158201055186094,
+        "max_segment_error_m": 1.6653345369377348e-16,
+        "max_moving_ankle_lift_m": 0.07000000000000002,
+        "clips": [
+          {
+            "id": "step_left",
+            "variation": "clear",
+            "start_root_x_m": 0.0,
+            "end_root_x_m": -0.2,
+            "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+          },
+          {
+            "id": "step_right",
+            "variation": "clear",
+            "start_root_x_m": -0.2,
+            "end_root_x_m": 0.0,
+            "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+          },
+          {
+            "id": "step_left",
+            "variation": "clear",
+            "start_root_x_m": 0.0,
+            "end_root_x_m": -0.2,
+            "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+          },
+          {
+            "id": "step_right",
+            "variation": "clear",
+            "start_root_x_m": -0.2,
+            "end_root_x_m": 0.0,
+            "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+          }
+        ],
+        "full_rig_validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+          "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+        },
+        "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+      }
+    ]
+  },
+  "labels": [
+    "Soft",
+    "Clear"
+  ],
+  "preview_helper_sha256": "f3105f8e70c8ff10ab4dbf601a6bc566a729a9c628ab390b7ac12f38141b93ce",
+  "scope": "Illustrative accepted local-model phrase plans, not blinded human taste results.",
+  "tracks_sha256": "8a14dea6f8f45a577cbc583c0f88ac997247930248d1db13f3529f0c2813e3fa",
+  "renderer_sha256": "04e7a70d1d8f02f94c2c4e44ecee498017e6e3785189bfb53628a1261febe12f",
+  "readback": {
+    "frames_checked": 40,
+    "actors": 2,
+    "max_position_error_m": 1.0074922576385575e-07,
+    "max_segment_error_m": 9.504898451639932e-08,
+    "scope": "Actual rendered sample joint positions and segment lengths; not skinning, taste, or unsampled dynamics."
+  },
+  "readback_sha256": "50e249232d6f00bb4683ef0723015e49dc1767458c943e83509c70adf531a11c",
+  "complete": true,
+  "path": "/Users/adom/Development/hermes-testing/runs/harness2-dance-steps-v1/comparison.mp4",
+  "video": {
+    "width": 512,
+    "height": 320,
+    "avg_frame_rate": "10/1",
+    "duration": "4.000000",
+    "nb_read_frames": "40"
+  },
+  "video_sha256": "10bef4ec7eff804061a35e9a6ec9cc2f4a75aab1754d518f6dd28ac26b489c34",
+  "visual_review": {
+    "reviewer": "parent Codex",
+    "method": "Six stills decoded from the encoded MP4, arranged as a contact sheet",
+    "frame_indices": [
+      0,
+      3,
+      7,
+      12,
+      17,
+      30
+    ],
+    "contact_sheet_path": "/Users/adom/Development/hermes-testing/runs/harness2-dance-steps-v1/decoded-contact-sheet.png",
+    "contact_sheet_sha256": "4fd83227c063a189be8bea5f1bfb20dceaff60ca7e60f5f4bf2f107a885e98e1",
+    "observations": "Both complete proxy rigs visible; foot lift, stance changes and modest arm/body accent differences visible. Geometry is deliberately schematic. No continuous-playback human taste assessment, balance validation, skinned-avatar or H3 execution claimed."
+  },
+  "wall_seconds": 1.7525590000441298
+}

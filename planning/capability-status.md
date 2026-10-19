@@ -180,3 +180,7 @@ Bound source/revision/scope editing now accepts exactly one authorized phrase ch
 ## Fresh selective-edit policy evaluation
 
 On twelve new within-library briefs, E2B full/patch/fresh-fallback scores9/12,9/12,10/12; older Qwen8 scores10/12,11/12,12/12. Both routed conditions structurally accept12/12, but E2B retains two semantically wrong accepted edits.74localcalls; source hashes, all raw replies and route attempts independently replayed. Fresh fallback repairs structural failures without an expected-answer oracle; this is fixed-policy evaluation, not H2 learning. Initial prompts232–264tokens, patch replies14–15tokens. See [dance-edit-policy-evaluation.md](dance-edit-policy-evaluation.md).
+
+## Stepping motion and small-model tool wording
+
+A separate side-step compiler now converts four direction/accent pairs into81samples with fixed0.20metre travel, foot-contact checks and full segment validation. All256legal plans compile;13relevant tests pass. Initial wording produced0/4E2B and1/4Qwen correct plans; a reused-case prompt/schema diagnostic reaches4/4each with explicit identifiers.32localcalls; no hosted charges, heldout gain or H2 learning claimed. Actual Blender readback and a four-second proxy video are verified. Weight transfer and smooth landing velocity remain missing physical refinements. See [dance-stepping-pilot.md](dance-stepping-pilot.md) for evidence, initial context and timing.

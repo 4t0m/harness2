@@ -1,0 +1,211 @@
+{
+  "sources": {
+    "evidence/dance-steps-model-v1.json": "25306ed0721006532812bad9763e1735795629f401308372d66b67689aa43e69",
+    "evidence/dance-steps-contract-v1.json": "ce04af1ce7cb83b4e55bf5827d9114360a93d6bfcef37f60a0df317fd3c115cb"
+  },
+  "calls": 32,
+  "paid_provider_calls": 0,
+  "conditions": [
+    {
+      "model": "gemma4:e2b",
+      "condition": "explicit_enum",
+      "calls": 4,
+      "compiled": 4,
+      "correct": 4,
+      "median_wall_seconds": 1.0808349170256406,
+      "wall_seconds_range": [
+        1.0201537909451872,
+        1.1445556250400841
+      ],
+      "prompt_tokens_range": [
+        183,
+        189
+      ],
+      "output_tokens_range": [
+        38,
+        38
+      ],
+      "input_text_characters_range": [
+        724,
+        748
+      ],
+      "median_native_decode_tokens_per_second": 63.63117618879402
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "explicit_free",
+      "calls": 4,
+      "compiled": 4,
+      "correct": 4,
+      "median_wall_seconds": 1.075150374963414,
+      "wall_seconds_range": [
+        1.0188000419875607,
+        1.1628853749716654
+      ],
+      "prompt_tokens_range": [
+        183,
+        189
+      ],
+      "output_tokens_range": [
+        38,
+        38
+      ],
+      "input_text_characters_range": [
+        724,
+        748
+      ],
+      "median_native_decode_tokens_per_second": 63.86844523634291
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "original_enum",
+      "calls": 4,
+      "compiled": 4,
+      "correct": 3,
+      "median_wall_seconds": 1.164373271050863,
+      "wall_seconds_range": [
+        1.1204879159340635,
+        1.1678430830361322
+      ],
+      "prompt_tokens_range": [
+        180,
+        186
+      ],
+      "output_tokens_range": [
+        37,
+        37
+      ],
+      "input_text_characters_range": [
+        607,
+        631
+      ],
+      "median_native_decode_tokens_per_second": 57.59643159138141
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "original_free",
+      "calls": 4,
+      "compiled": 0,
+      "correct": 0,
+      "median_wall_seconds": 1.6827698755078018,
+      "wall_seconds_range": [
+        1.5093078749487177,
+        4.4321507080458105
+      ],
+      "prompt_tokens_range": [
+        180,
+        186
+      ],
+      "output_tokens_range": [
+        61,
+        77
+      ],
+      "input_text_characters_range": [
+        607,
+        631
+      ],
+      "median_native_decode_tokens_per_second": 63.182747621250016
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "explicit_enum",
+      "calls": 4,
+      "compiled": 4,
+      "correct": 4,
+      "median_wall_seconds": 1.4194938539876603,
+      "wall_seconds_range": [
+        1.3837874160381034,
+        1.6392915420001373
+      ],
+      "prompt_tokens_range": [
+        187,
+        193
+      ],
+      "output_tokens_range": [
+        42,
+        42
+      ],
+      "input_text_characters_range": [
+        724,
+        748
+      ],
+      "median_native_decode_tokens_per_second": 34.973765368708264
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "explicit_free",
+      "calls": 4,
+      "compiled": 4,
+      "correct": 4,
+      "median_wall_seconds": 1.3970054165110923,
+      "wall_seconds_range": [
+        1.2301245420239866,
+        1.487074292032048
+      ],
+      "prompt_tokens_range": [
+        187,
+        193
+      ],
+      "output_tokens_range": [
+        42,
+        42
+      ],
+      "input_text_characters_range": [
+        724,
+        748
+      ],
+      "median_native_decode_tokens_per_second": 37.142379092098146
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "original_enum",
+      "calls": 4,
+      "compiled": 4,
+      "correct": 4,
+      "median_wall_seconds": 0.974049229058437,
+      "wall_seconds_range": [
+        0.805699290940538,
+        1.0192269589751959
+      ],
+      "prompt_tokens_range": [
+        175,
+        181
+      ],
+      "output_tokens_range": [
+        26,
+        26
+      ],
+      "input_text_characters_range": [
+        607,
+        631
+      ],
+      "median_native_decode_tokens_per_second": 39.1457693439682
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "original_free",
+      "calls": 4,
+      "compiled": 1,
+      "correct": 1,
+      "median_wall_seconds": 1.3091127919615246,
+      "wall_seconds_range": [
+        0.8461225409992039,
+        2.3841542919399217
+      ],
+      "prompt_tokens_range": [
+        175,
+        181
+      ],
+      "output_tokens_range": [
+        26,
+        46
+      ],
+      "input_text_characters_range": [
+        607,
+        631
+      ],
+      "median_native_decode_tokens_per_second": 49.36782868374193
+    }
+  ],
+  "scope": "One local run, reused briefs; original_free ran before the diagnostic cells. Native decode speed excludes prefill/load/request/validation. No 5090 benchmark, human taste or H2 learning claim."
+}

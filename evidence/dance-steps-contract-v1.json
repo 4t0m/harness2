@@ -1,0 +1,2782 @@
+{
+  "scope": "Post-failure prompt/schema factorial diagnostic on observed briefs, not heldout improvement or Harness2 learning. Original/free cell reused from earlier run; remaining cells run later. No claim of isolated token-level causal mechanism.",
+  "baseline_path": "evidence/dance-steps-model-v1.json",
+  "baseline_sha256": "25306ed0721006532812bad9763e1735795629f401308372d66b67689aa43e69",
+  "sources": {
+    "harness2/dance_steps.py": "686c023970f231d3d8a8f1fa98dfb6715c1e04746df9dcd22f750e63c96b79b1",
+    "harness2/dance_motion.py": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+    "experiments/dance_steps_probe.py": "7447ec558a9c18b0efb3e867578cc59fd2faf5ef00105e4bc7368f8d60e5c909",
+    "/Users/adom/Development/harness2/experiments/dance_steps_contract_probe.py": "84db4cc5c4f9219cc8ec62d3541e0941a0865f0df4e67cf81541cae625417328"
+  },
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "size": 7162405886
+    },
+    "hermes-lab-qwen3-8b:latest": {
+      "name": "hermes-lab-qwen3-8b:latest",
+      "digest": "ce2f25b8da1b2f736433c5d436bb28c61751bcc4710c6f13697e05170b685552",
+      "size": 5225388180
+    }
+  },
+  "cases": [
+    {
+      "id": "alternating_soft",
+      "request": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "expected_moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "expected_final_x": 0.0
+    },
+    {
+      "id": "alternating_clear",
+      "request": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "expected_moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "expected_final_x": 0.0
+    },
+    {
+      "id": "two_left_then_two_right",
+      "request": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "expected_moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "expected_final_x": 0.0
+    },
+    {
+      "id": "offset_finish",
+      "request": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "expected_moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "expected_final_x": 0.4
+    }
+  ],
+  "conditions": {
+    "explicit_free": {
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "moves"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "moves": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "original_enum": {
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "moves"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "moves": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "step_left",
+                  "step_right",
+                  "soft",
+                  "clear"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "explicit_enum": {
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "schema": {
+        "type": "object",
+        "required": [
+          "moves"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "moves": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "step_left",
+                  "step_right",
+                  "soft",
+                  "clear"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "schema_limit": "Union enum applies to both pair positions; compiler still enforces roles.",
+  "max_calls": 24,
+  "max_seconds_per_call": 20,
+  "max_output_tokens": 128,
+  "paid_provider_calls": 0,
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_soft",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 724,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:41.212497Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1105798750,
+        "load_duration": 306938583,
+        "prompt_eval_count": 183,
+        "prompt_eval_duration": 194247000,
+        "eval_count": 38,
+        "eval_duration": 601313000
+      },
+      "total_duration": 1105798750,
+      "load_duration": 306938583,
+      "prompt_eval_count": 183,
+      "prompt_eval_duration": 194247000,
+      "eval_count": 38,
+      "eval_duration": 601313000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"]]}",
+      "receipt": {
+        "plan_sha256": "334ddc5b17d0ac806edb47854cc9501878c1e565bd0ed4b2919e5f9880c1f30d",
+        "sequence_sha256": "d111f5f0d62f3239c43e8b106f05092548fd1cbe04725d877ae3cd63975ff52d",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.029822725259428414,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.029822725259428414,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.1628853749716654
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_soft",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 607,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:42.365684Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left\", \"soft\"],[\"step_right\", \"clear\"],[\"step_left\", \"soft\"],[\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1086198166,
+        "load_duration": 297396333,
+        "prompt_eval_count": 180,
+        "prompt_eval_duration": 144152000,
+        "eval_count": 37,
+        "eval_duration": 642159000
+      },
+      "total_duration": 1086198166,
+      "load_duration": 297396333,
+      "prompt_eval_count": 180,
+      "prompt_eval_duration": 144152000,
+      "eval_count": 37,
+      "eval_duration": 642159000,
+      "content": "{\"moves\":[[\"step_left\", \"soft\"],[\"step_right\", \"clear\"],[\"step_left\", \"soft\"],[\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "71eb6b1e0c3edf043aae5f7594a1fbda4b83b6daff689cb6943a62a91b125fb6",
+        "sequence_sha256": "f88f0bfa8a2b8b489446b4841a49a56d948ba6e461749da7dfb68520e95be961",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": false,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.161440375028178
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_soft",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 724,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:43.39689Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 956927166,
+        "load_duration": 296406583,
+        "prompt_eval_count": 183,
+        "prompt_eval_duration": 58739000,
+        "eval_count": 38,
+        "eval_duration": 599003000
+      },
+      "total_duration": 956927166,
+      "load_duration": 296406583,
+      "prompt_eval_count": 183,
+      "prompt_eval_duration": 58739000,
+      "eval_count": 38,
+      "eval_duration": 599003000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"]]}",
+      "receipt": {
+        "plan_sha256": "334ddc5b17d0ac806edb47854cc9501878c1e565bd0ed4b2919e5f9880c1f30d",
+        "sequence_sha256": "d111f5f0d62f3239c43e8b106f05092548fd1cbe04725d877ae3cd63975ff52d",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.029822725259428414,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.029822725259428414,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.032228042022325
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_clear",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 608,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:44.567055Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left\", \"clear\"],[\"step_right\", \"clear\"],[\"step_left\", \"clear\"],[\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1093263583,
+        "load_duration": 301477125,
+        "prompt_eval_count": 180,
+        "prompt_eval_duration": 145768000,
+        "eval_count": 37,
+        "eval_duration": 643715000
+      },
+      "total_duration": 1093263583,
+      "load_duration": 301477125,
+      "prompt_eval_count": 180,
+      "prompt_eval_duration": 145768000,
+      "eval_count": 37,
+      "eval_duration": 643715000,
+      "content": "{\"moves\":[[\"step_left\", \"clear\"],[\"step_right\", \"clear\"],[\"step_left\", \"clear\"],[\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "4d0c13e0ec475db5dd4cb2d264c9c21c6dab2f041ea87c0f20ea1360cb1a13e1",
+        "sequence_sha256": "83928e8e45cdf72fe7ccc9dce9b6a3d179980a55980a2b35be258e6975350de5",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            },
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.1678430830361322
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_clear",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 725,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:45.704685Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1061727250,
+        "load_duration": 301011834,
+        "prompt_eval_count": 183,
+        "prompt_eval_duration": 164672000,
+        "eval_count": 38,
+        "eval_duration": 593510000
+      },
+      "total_duration": 1061727250,
+      "load_duration": 301011834,
+      "prompt_eval_count": 183,
+      "prompt_eval_duration": 164672000,
+      "eval_count": 38,
+      "eval_duration": 593510000,
+      "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "4d0c13e0ec475db5dd4cb2d264c9c21c6dab2f041ea87c0f20ea1360cb1a13e1",
+        "sequence_sha256": "83928e8e45cdf72fe7ccc9dce9b6a3d179980a55980a2b35be258e6975350de5",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            },
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.1294417920289561
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_clear",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 725,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:46.715635Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 944293292,
+        "load_duration": 289104375,
+        "prompt_eval_count": 183,
+        "prompt_eval_duration": 58131000,
+        "eval_count": 38,
+        "eval_duration": 594907000
+      },
+      "total_duration": 944293292,
+      "load_duration": 289104375,
+      "prompt_eval_count": 183,
+      "prompt_eval_duration": 58131000,
+      "eval_count": 38,
+      "eval_duration": 594907000,
+      "content": "{\"moves\": [[\"step_left\", \"clear\"], [\"step_right\", \"clear\"], [\"step_left\", \"clear\"], [\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "4d0c13e0ec475db5dd4cb2d264c9c21c6dab2f041ea87c0f20ea1360cb1a13e1",
+        "sequence_sha256": "83928e8e45cdf72fe7ccc9dce9b6a3d179980a55980a2b35be258e6975350de5",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            },
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.0188000419875607
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "two_left_then_two_right",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 744,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:47.867702Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1073610209,
+        "load_duration": 302968917,
+        "prompt_eval_count": 186,
+        "prompt_eval_duration": 167107000,
+        "eval_count": 38,
+        "eval_duration": 600905000
+      },
+      "total_duration": 1073610209,
+      "load_duration": 302968917,
+      "prompt_eval_count": 186,
+      "prompt_eval_duration": 167107000,
+      "eval_count": 38,
+      "eval_duration": 600905000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "865e80596ae595e4d1bf95da2bb80188052a727cd355e6407a8901e89ff43368",
+        "sequence_sha256": "1ce3caa4baf924a3699e4a50b08f5d121ed255923d024c3aa426d9dc263359e3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": -0.4,
+              "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.4,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.1445556250400841
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "two_left_then_two_right",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 744,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:48.88536Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 956961292,
+        "load_duration": 303004334,
+        "prompt_eval_count": 186,
+        "prompt_eval_duration": 58245000,
+        "eval_count": 38,
+        "eval_duration": 593149000
+      },
+      "total_duration": 956961292,
+      "load_duration": 303004334,
+      "prompt_eval_count": 186,
+      "prompt_eval_duration": 58245000,
+      "eval_count": 38,
+      "eval_duration": 593149000,
+      "content": "{\"moves\": [[\"step_left\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"soft\"], [\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "865e80596ae595e4d1bf95da2bb80188052a727cd355e6407a8901e89ff43368",
+        "sequence_sha256": "1ce3caa4baf924a3699e4a50b08f5d121ed255923d024c3aa426d9dc263359e3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": -0.4,
+              "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.4,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.0197749579092488
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "two_left_then_two_right",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 627,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:50.056291Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left\", \"soft\"],[\"step_left\", \"soft\"],[\"step_right\", \"soft\"],[\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1096175292,
+        "load_duration": 304887584,
+        "prompt_eval_count": 183,
+        "prompt_eval_duration": 145922000,
+        "eval_count": 37,
+        "eval_duration": 642643000
+      },
+      "total_duration": 1096175292,
+      "load_duration": 304887584,
+      "prompt_eval_count": 183,
+      "prompt_eval_duration": 145922000,
+      "eval_count": 37,
+      "eval_duration": 642643000,
+      "content": "{\"moves\":[[\"step_left\", \"soft\"],[\"step_left\", \"soft\"],[\"step_right\", \"soft\"],[\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "865e80596ae595e4d1bf95da2bb80188052a727cd355e6407a8901e89ff43368",
+        "sequence_sha256": "1ce3caa4baf924a3699e4a50b08f5d121ed255923d024c3aa426d9dc263359e3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": -0.4,
+              "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.4,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.1673061670735478
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "offset_finish",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 748,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:51.189242Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1060448458,
+        "load_duration": 297418542,
+        "prompt_eval_count": 189,
+        "prompt_eval_duration": 165478000,
+        "eval_count": 38,
+        "eval_duration": 595039000
+      },
+      "total_duration": 1060448458,
+      "load_duration": 297418542,
+      "prompt_eval_count": 189,
+      "prompt_eval_duration": 165478000,
+      "eval_count": 38,
+      "eval_duration": 595039000,
+      "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "a1ba682d9137fb6805fdca887f4eb5d7f413116ce34bb7eee7e7344097d8c646",
+        "sequence_sha256": "5b068edd59b8cc9febc1f7144ae544c1d456bc384c7cc301f4d0d91adf51c21e",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.4,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "31184ba05beee70af7cd688fb42694cc915f399cb16f4fca74c53b1e3f7ef4d7"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "6e122868eefb36a34c33e01af439fc4e5181bbcb4cebd1957ecf9ce9ef4c095c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.4,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "4ef999488c911365758e89fb7e2aad153e4f5e878e152b0d351ddd3b02937c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "3bfce9df56171e2285ff2091049c7c36f4194289005bd29d765ab94c13ff2fae"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.4,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.130525792017579
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "offset_finish",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 631,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:52.310958Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_right\", \"clear\"],[\"step_right\", \"soft\"],[\"step_left\", \"soft\"],[\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1051168833,
+        "load_duration": 291013000,
+        "prompt_eval_count": 186,
+        "prompt_eval_duration": 146316000,
+        "eval_count": 37,
+        "eval_duration": 611442000
+      },
+      "total_duration": 1051168833,
+      "load_duration": 291013000,
+      "prompt_eval_count": 186,
+      "prompt_eval_duration": 146316000,
+      "eval_count": 37,
+      "eval_duration": 611442000,
+      "content": "{\"moves\":[[\"step_right\", \"clear\"],[\"step_right\", \"soft\"],[\"step_left\", \"soft\"],[\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "a1ba682d9137fb6805fdca887f4eb5d7f413116ce34bb7eee7e7344097d8c646",
+        "sequence_sha256": "5b068edd59b8cc9febc1f7144ae544c1d456bc384c7cc301f4d0d91adf51c21e",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.4,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "31184ba05beee70af7cd688fb42694cc915f399cb16f4fca74c53b1e3f7ef4d7"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "6e122868eefb36a34c33e01af439fc4e5181bbcb4cebd1957ecf9ce9ef4c095c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.4,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "4ef999488c911365758e89fb7e2aad153e4f5e878e152b0d351ddd3b02937c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "3bfce9df56171e2285ff2091049c7c36f4194289005bd29d765ab94c13ff2fae"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.4,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.1204879159340635
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "offset_finish",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 748,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:41:53.337547Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 954793333,
+        "load_duration": 297889625,
+        "prompt_eval_count": 189,
+        "prompt_eval_duration": 58870000,
+        "eval_count": 38,
+        "eval_duration": 595391000
+      },
+      "total_duration": 954793333,
+      "load_duration": 297889625,
+      "prompt_eval_count": 189,
+      "prompt_eval_duration": 58870000,
+      "eval_count": 38,
+      "eval_duration": 595391000,
+      "content": "{\"moves\": [[\"step_right\", \"clear\"], [\"step_right\", \"soft\"], [\"step_left\", \"soft\"], [\"step_right\", \"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "a1ba682d9137fb6805fdca887f4eb5d7f413116ce34bb7eee7e7344097d8c646",
+        "sequence_sha256": "5b068edd59b8cc9febc1f7144ae544c1d456bc384c7cc301f4d0d91adf51c21e",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.4,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "31184ba05beee70af7cd688fb42694cc915f399cb16f4fca74c53b1e3f7ef4d7"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "6e122868eefb36a34c33e01af439fc4e5181bbcb4cebd1957ecf9ce9ef4c095c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.4,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "4ef999488c911365758e89fb7e2aad153e4f5e878e152b0d351ddd3b02937c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "3bfce9df56171e2285ff2091049c7c36f4194289005bd29d765ab94c13ff2fae"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.4,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.0201537909451872
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_soft",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 724,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:41:54.737175Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1336568541,
+        "load_duration": 148474833,
+        "prompt_eval_count": 187,
+        "prompt_eval_duration": 350892000,
+        "eval_count": 42,
+        "eval_duration": 833265000
+      },
+      "total_duration": 1336568541,
+      "load_duration": 148474833,
+      "prompt_eval_count": 187,
+      "prompt_eval_duration": 350892000,
+      "eval_count": 42,
+      "eval_duration": 833265000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "334ddc5b17d0ac806edb47854cc9501878c1e565bd0ed4b2919e5f9880c1f30d",
+        "sequence_sha256": "d111f5f0d62f3239c43e8b106f05092548fd1cbe04725d877ae3cd63975ff52d",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.029822725259428414,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.029822725259428414,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.4041584999067709
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_soft",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 607,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:41:55.542427Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left\",\"soft\"],[\"step_right\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 732044417,
+        "load_duration": 126603583,
+        "prompt_eval_count": 175,
+        "prompt_eval_duration": 81255000,
+        "eval_count": 26,
+        "eval_duration": 519898000
+      },
+      "total_duration": 732044417,
+      "load_duration": 126603583,
+      "prompt_eval_count": 175,
+      "prompt_eval_duration": 81255000,
+      "eval_count": 26,
+      "eval_duration": 519898000,
+      "content": "{\"moves\":[[\"step_left\",\"soft\"],[\"step_right\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"soft\"]]}",
+      "receipt": {
+        "plan_sha256": "334ddc5b17d0ac806edb47854cc9501878c1e565bd0ed4b2919e5f9880c1f30d",
+        "sequence_sha256": "d111f5f0d62f3239c43e8b106f05092548fd1cbe04725d877ae3cd63975ff52d",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.029822725259428414,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.029822725259428414,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 0.805699290940538
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_soft",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 724,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:41:56.777403Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1157750625,
+        "load_duration": 130730167,
+        "prompt_eval_count": 187,
+        "prompt_eval_duration": 21562000,
+        "eval_count": 42,
+        "eval_duration": 1002249000
+      },
+      "total_duration": 1157750625,
+      "load_duration": 130730167,
+      "prompt_eval_count": 187,
+      "prompt_eval_duration": 21562000,
+      "eval_count": 42,
+      "eval_duration": 1002249000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "334ddc5b17d0ac806edb47854cc9501878c1e565bd0ed4b2919e5f9880c1f30d",
+        "sequence_sha256": "d111f5f0d62f3239c43e8b106f05092548fd1cbe04725d877ae3cd63975ff52d",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.029822725259428414,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "16110009a1a190900883828d7020be35d999cad520b36280e3c0f6c0ac3efb6c"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.029822725259428414,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.2301245420239866
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_clear",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 725,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:41:58.16978Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1321904833,
+        "load_duration": 115130958,
+        "prompt_eval_count": 187,
+        "prompt_eval_duration": 87858000,
+        "eval_count": 42,
+        "eval_duration": 1116765000
+      },
+      "total_duration": 1321904833,
+      "load_duration": 115130958,
+      "prompt_eval_count": 187,
+      "prompt_eval_duration": 87858000,
+      "eval_count": 42,
+      "eval_duration": 1116765000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "4d0c13e0ec475db5dd4cb2d264c9c21c6dab2f041ea87c0f20ea1360cb1a13e1",
+        "sequence_sha256": "83928e8e45cdf72fe7ccc9dce9b6a3d179980a55980a2b35be258e6975350de5",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            },
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.3856155410176143
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_clear",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 725,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:41:59.547849Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1314461792,
+        "load_duration": 122735458,
+        "prompt_eval_count": 187,
+        "prompt_eval_duration": 20718000,
+        "eval_count": 42,
+        "eval_duration": 1168932000
+      },
+      "total_duration": 1314461792,
+      "load_duration": 122735458,
+      "prompt_eval_count": 187,
+      "prompt_eval_duration": 20718000,
+      "eval_count": 42,
+      "eval_duration": 1168932000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"],\n    [\"step_left\", \"clear\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "4d0c13e0ec475db5dd4cb2d264c9c21c6dab2f041ea87c0f20ea1360cb1a13e1",
+        "sequence_sha256": "83928e8e45cdf72fe7ccc9dce9b6a3d179980a55980a2b35be258e6975350de5",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            },
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.3837874160381034
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_clear",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 608,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:42:00.503495Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left\",\"clear\"],[\"step_right\",\"clear\"],[\"step_left\",\"clear\"],[\"step_right\",\"clear\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 883049042,
+        "load_duration": 124752542,
+        "prompt_eval_count": 175,
+        "prompt_eval_duration": 86718000,
+        "eval_count": 26,
+        "eval_duration": 668551000
+      },
+      "total_duration": 883049042,
+      "load_duration": 124752542,
+      "prompt_eval_count": 175,
+      "prompt_eval_duration": 86718000,
+      "eval_count": 26,
+      "eval_duration": 668551000,
+      "content": "{\"moves\":[[\"step_left\",\"clear\"],[\"step_right\",\"clear\"],[\"step_left\",\"clear\"],[\"step_right\",\"clear\"]]}\n\n",
+      "receipt": {
+        "plan_sha256": "4d0c13e0ec475db5dd4cb2d264c9c21c6dab2f041ea87c0f20ea1360cb1a13e1",
+        "sequence_sha256": "83928e8e45cdf72fe7ccc9dce9b6a3d179980a55980a2b35be258e6975350de5",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.2,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            },
+            {
+              "id": "step_left",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "9e8f3f04b61d01d4a282bee76c52512ee7343f7c6ea10a2d03767245e38e4b0e"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 0.9429180830484256
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "two_left_then_two_right",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 627,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:42:01.499798Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"soft\"],[\"step_right\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 942173333,
+        "load_duration": 120389958,
+        "prompt_eval_count": 178,
+        "prompt_eval_duration": 148830000,
+        "eval_count": 26,
+        "eval_duration": 671024000
+      },
+      "total_duration": 942173333,
+      "load_duration": 120389958,
+      "prompt_eval_count": 178,
+      "prompt_eval_duration": 148830000,
+      "eval_count": 26,
+      "eval_duration": 671024000,
+      "content": "{\"moves\":[[\"step_left\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"soft\"],[\"step_right\",\"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "865e80596ae595e4d1bf95da2bb80188052a727cd355e6407a8901e89ff43368",
+        "sequence_sha256": "1ce3caa4baf924a3699e4a50b08f5d121ed255923d024c3aa426d9dc263359e3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": -0.4,
+              "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.4,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.0051803750684485
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "two_left_then_two_right",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 744,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:42:02.997001Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1422987625,
+        "load_duration": 124989959,
+        "prompt_eval_count": 190,
+        "prompt_eval_duration": 149612000,
+        "eval_count": 42,
+        "eval_duration": 1145159000
+      },
+      "total_duration": 1422987625,
+      "load_duration": 124989959,
+      "prompt_eval_count": 190,
+      "prompt_eval_duration": 149612000,
+      "eval_count": 42,
+      "eval_duration": 1145159000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "865e80596ae595e4d1bf95da2bb80188052a727cd355e6407a8901e89ff43368",
+        "sequence_sha256": "1ce3caa4baf924a3699e4a50b08f5d121ed255923d024c3aa426d9dc263359e3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": -0.4,
+              "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.4,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.487074292032048
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "two_left_then_two_right",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 744,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:42:04.435536Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1372065833,
+        "load_duration": 114067958,
+        "prompt_eval_count": 190,
+        "prompt_eval_duration": 20753000,
+        "eval_count": 42,
+        "eval_duration": 1234666000
+      },
+      "total_duration": 1372065833,
+      "load_duration": 114067958,
+      "prompt_eval_count": 190,
+      "prompt_eval_duration": 20753000,
+      "eval_count": 42,
+      "eval_duration": 1234666000,
+      "content": "{\n  \"moves\": [\n    [\"step_left\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "865e80596ae595e4d1bf95da2bb80188052a727cd355e6407a8901e89ff43368",
+        "sequence_sha256": "1ce3caa4baf924a3699e4a50b08f5d121ed255923d024c3aa426d9dc263359e3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": -0.4,
+              "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.4,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.4348292080685496
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "offset_finish",
+      "condition": "explicit_enum",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 748,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:42:06.065926Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1568138083,
+        "load_duration": 114537042,
+        "prompt_eval_count": 193,
+        "prompt_eval_duration": 165864000,
+        "eval_count": 42,
+        "eval_duration": 1285522000
+      },
+      "total_duration": 1568138083,
+      "load_duration": 114537042,
+      "prompt_eval_count": 193,
+      "prompt_eval_duration": 165864000,
+      "eval_count": 42,
+      "eval_duration": 1285522000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "a1ba682d9137fb6805fdca887f4eb5d7f413116ce34bb7eee7e7344097d8c646",
+        "sequence_sha256": "5b068edd59b8cc9febc1f7144ae544c1d456bc384c7cc301f4d0d91adf51c21e",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.4,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "31184ba05beee70af7cd688fb42694cc915f399cb16f4fca74c53b1e3f7ef4d7"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "6e122868eefb36a34c33e01af439fc4e5181bbcb4cebd1957ecf9ce9ef4c095c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.4,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "4ef999488c911365758e89fb7e2aad153e4f5e878e152b0d351ddd3b02937c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "3bfce9df56171e2285ff2091049c7c36f4194289005bd29d765ab94c13ff2fae"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.4,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.6392915420001373
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "offset_finish",
+      "condition": "original_enum",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 631,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:42:07.092694Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_right\",\"clear\"],[\"step_right\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 950662625,
+        "load_duration": 135174875,
+        "prompt_eval_count": 181,
+        "prompt_eval_duration": 151727000,
+        "eval_count": 26,
+        "eval_duration": 659874000
+      },
+      "total_duration": 950662625,
+      "load_duration": 135174875,
+      "prompt_eval_count": 181,
+      "prompt_eval_duration": 151727000,
+      "eval_count": 26,
+      "eval_duration": 659874000,
+      "content": "{\"moves\":[[\"step_right\",\"clear\"],[\"step_right\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"clear\"]]}",
+      "receipt": {
+        "plan_sha256": "a1ba682d9137fb6805fdca887f4eb5d7f413116ce34bb7eee7e7344097d8c646",
+        "sequence_sha256": "5b068edd59b8cc9febc1f7144ae544c1d456bc384c7cc301f4d0d91adf51c21e",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.4,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "31184ba05beee70af7cd688fb42694cc915f399cb16f4fca74c53b1e3f7ef4d7"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "6e122868eefb36a34c33e01af439fc4e5181bbcb4cebd1957ecf9ce9ef4c095c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.4,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "4ef999488c911365758e89fb7e2aad153e4f5e878e152b0d351ddd3b02937c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "3bfce9df56171e2285ff2091049c7c36f4194289005bd29d765ab94c13ff2fae"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.4,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.0192269589751959
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "offset_finish",
+      "condition": "explicit_free",
+      "system": "Return only a JSON object with one field named moves: an array of exactly four pairs, in chronological order. Each pair contains two strings. The first string must be step_left or step_right. The second string must be soft or clear. Choose one identifier per string, never alternatives or coordinates. Every move is a two-beat side step at 120 BPM. Each step moves the planted stance 0.20 m in its named direction. Variation changes arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 748,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:42:08.510262Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1344018791,
+        "load_duration": 123244000,
+        "prompt_eval_count": 193,
+        "prompt_eval_duration": 20847000,
+        "eval_count": 42,
+        "eval_duration": 1196880000
+      },
+      "total_duration": 1344018791,
+      "load_duration": 123244000,
+      "prompt_eval_count": 193,
+      "prompt_eval_duration": 20847000,
+      "eval_count": 42,
+      "eval_duration": 1196880000,
+      "content": "{\n  \"moves\": [\n    [\"step_right\", \"clear\"],\n    [\"step_right\", \"soft\"],\n    [\"step_left\", \"soft\"],\n    [\"step_right\", \"clear\"]\n  ]\n}",
+      "receipt": {
+        "plan_sha256": "a1ba682d9137fb6805fdca887f4eb5d7f413116ce34bb7eee7e7344097d8c646",
+        "sequence_sha256": "5b068edd59b8cc9febc1f7144ae544c1d456bc384c7cc301f4d0d91adf51c21e",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.4,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "31184ba05beee70af7cd688fb42694cc915f399cb16f4fca74c53b1e3f7ef4d7"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "6e122868eefb36a34c33e01af439fc4e5181bbcb4cebd1957ecf9ce9ef4c095c"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.4,
+              "end_root_x_m": 0.2,
+              "source_clip_sha256": "4ef999488c911365758e89fb7e2aad153e4f5e878e152b0d351ddd3b02937c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": 0.2,
+              "end_root_x_m": 0.4,
+              "source_clip_sha256": "3bfce9df56171e2285ff2091049c7c36f4194289005bd29d765ab94c13ff2fae"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "correct": true,
+      "final_root_x": 0.4,
+      "requested_final_x_correct": true,
+      "wall_seconds": 1.4083952920045704
+    }
+  ],
+  "complete": true
+}

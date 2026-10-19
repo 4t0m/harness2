@@ -1,0 +1,512 @@
+{
+  "scope": "Four simple new stepping briefs, one local attempt each; not heldout H2 adaptation, taste, or physics. Host computes relative positions and foot contacts.",
+  "sources": {
+    "harness2/dance_steps.py": "686c023970f231d3d8a8f1fa98dfb6715c1e04746df9dcd22f750e63c96b79b1",
+    "harness2/dance_motion.py": "53ab08bb08ce0c470c1ca28df2a2e97845b9f8b5a6624c25f941b7806dd8cd47",
+    "experiments/dance_steps_probe.py": "7447ec558a9c18b0efb3e867578cc59fd2faf5ef00105e4bc7368f8d60e5c909"
+  },
+  "cases": [
+    {
+      "id": "alternating_soft",
+      "request": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "expected_moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ]
+      ],
+      "expected_final_x": 0.0
+    },
+    {
+      "id": "alternating_clear",
+      "request": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "expected_moves": [
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_left",
+          "clear"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "expected_final_x": 0.0
+    },
+    {
+      "id": "two_left_then_two_right",
+      "request": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "expected_moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "expected_final_x": 0.0
+    },
+    {
+      "id": "offset_finish",
+      "request": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "expected_moves": [
+        [
+          "step_right",
+          "clear"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "expected_final_x": 0.4
+    }
+  ],
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "size": 7162405886
+    },
+    "hermes-lab-qwen3-8b:latest": {
+      "name": "hermes-lab-qwen3-8b:latest",
+      "digest": "ce2f25b8da1b2f736433c5d436bb28c61751bcc4710c6f13697e05170b685552",
+      "size": 5225388180
+    }
+  },
+  "max_calls": 8,
+  "paid_provider_calls": 0,
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_soft",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 607,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:40:08.752848Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"0.20m left|0.0m right\",\"soft|clear\"],[\"0.40m left|0.0m right\",\"soft|clear\"],[\"0.60m left|0.0m right\",\"soft|clear\"],[\"0.80m left|0.0m right\",\"soft|clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 4387282792,
+        "load_duration": 2994074583,
+        "prompt_eval_count": 180,
+        "prompt_eval_duration": 172144000,
+        "eval_count": 77,
+        "eval_duration": 1217576000
+      },
+      "total_duration": 4387282792,
+      "load_duration": 2994074583,
+      "prompt_eval_count": 180,
+      "prompt_eval_duration": 172144000,
+      "eval_count": 77,
+      "eval_duration": 1217576000,
+      "content": "{\"moves\":[[\"0.20m left|0.0m right\",\"soft|clear\"],[\"0.40m left|0.0m right\",\"soft|clear\"],[\"0.60m left|0.0m right\",\"soft|clear\"],[\"0.80m left|0.0m right\",\"soft|clear\"]]}",
+      "correct": false,
+      "error_type": "ValueError",
+      "reason": "unknown step move",
+      "wall_seconds": 4.4321507080458105
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "alternating_clear",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 608,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:40:10.450554Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"0.20m left|0.0m right\",\"soft|clear\"],[\"0.40m left|0.0m right\",\"soft|clear\"],[\"0.60m left|0.0m right\",\"soft|clear\"],[\"0.80m left|0.0m right\",\"soft|clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1649499625,
+        "load_duration": 287245750,
+        "prompt_eval_count": 180,
+        "prompt_eval_duration": 143826000,
+        "eval_count": 77,
+        "eval_duration": 1216136000
+      },
+      "total_duration": 1649499625,
+      "load_duration": 287245750,
+      "prompt_eval_count": 180,
+      "prompt_eval_duration": 143826000,
+      "eval_count": 77,
+      "eval_duration": 1216136000,
+      "content": "{\"moves\":[[\"0.20m left|0.0m right\",\"soft|clear\"],[\"0.40m left|0.0m right\",\"soft|clear\"],[\"0.60m left|0.0m right\",\"soft|clear\"],[\"0.80m left|0.0m right\",\"soft|clear\"]]}",
+      "correct": false,
+      "error_type": "ValueError",
+      "reason": "unknown step move",
+      "wall_seconds": 1.6982217089971527
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "two_left_then_two_right",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 627,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:40:11.956391Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"0.20m left|0.0\",\"soft\"],[\"0.40m left|0.0\",\"soft\"],[\"0.60m left|0.0\",\"soft\"],[\"0.80m left|1.0\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1453724833,
+        "load_duration": 295778833,
+        "prompt_eval_count": 183,
+        "prompt_eval_duration": 145540000,
+        "eval_count": 61,
+        "eval_duration": 1010235000
+      },
+      "total_duration": 1453724833,
+      "load_duration": 295778833,
+      "prompt_eval_count": 183,
+      "prompt_eval_duration": 145540000,
+      "eval_count": 61,
+      "eval_duration": 1010235000,
+      "content": "{\"moves\":[[\"0.20m left|0.0\",\"soft\"],[\"0.40m left|0.0\",\"soft\"],[\"0.60m left|0.0\",\"soft\"],[\"0.80m left|1.0\",\"clear\"]]}",
+      "correct": false,
+      "error_type": "ValueError",
+      "reason": "unknown step move",
+      "wall_seconds": 1.5093078749487177
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "offset_finish",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 631,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:40:13.625024Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"0.20m|0.00m\",\"clear|soft\"],[\"0.40m|0.00m\",\"soft|clear\"],[\"0.20m|0.00m\",\"soft|clear\"],[\"0.20m|0.00m\",\"clear|soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1604418375,
+        "load_duration": 299592500,
+        "prompt_eval_count": 186,
+        "prompt_eval_duration": 146177000,
+        "eval_count": 73,
+        "eval_duration": 1156434000
+      },
+      "total_duration": 1604418375,
+      "load_duration": 299592500,
+      "prompt_eval_count": 186,
+      "prompt_eval_duration": 146177000,
+      "eval_count": 73,
+      "eval_duration": 1156434000,
+      "content": "{\"moves\":[[\"0.20m|0.00m\",\"clear|soft\"],[\"0.40m|0.00m\",\"soft|clear\"],[\"0.20m|0.00m\",\"soft|clear\"],[\"0.20m|0.00m\",\"clear|soft\"]]}",
+      "correct": false,
+      "error_type": "ValueError",
+      "reason": "unknown step move",
+      "wall_seconds": 1.6673180420184508
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_soft",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four soft steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 607,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:40:16.010653Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left|step_right\",\"soft\"],[\"step_right|step_left\",\"soft\"],[\"step_left|step_right\",\"soft\"],[\"step_right|step_left\",\"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2322866916,
+        "load_duration": 1223293333,
+        "prompt_eval_count": 175,
+        "prompt_eval_duration": 336431000,
+        "eval_count": 38,
+        "eval_duration": 759225000
+      },
+      "total_duration": 2322866916,
+      "load_duration": 1223293333,
+      "prompt_eval_count": 175,
+      "prompt_eval_duration": 336431000,
+      "eval_count": 38,
+      "eval_duration": 759225000,
+      "content": "{\"moves\":[[\"step_left|step_right\",\"soft\"],[\"step_right|step_left\",\"soft\"],[\"step_left|step_right\",\"soft\"],[\"step_right|step_left\",\"soft\"]]}",
+      "correct": false,
+      "error_type": "ValueError",
+      "reason": "unknown step move",
+      "wall_seconds": 2.3841542919399217
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "alternating_clear",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Take four clear steps: left, right, left, right. Return to the starting position.",
+      "input_text_characters": 608,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:40:17.060388Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left|step_right\",\"clear\"],[\"step_left|step_right\",\"clear\"],[\"step_left|step_right\",\"clear\"],[\"step_left|step_right\",\"clear\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 986142791,
+        "load_duration": 122433666,
+        "prompt_eval_count": 175,
+        "prompt_eval_duration": 81291000,
+        "eval_count": 38,
+        "eval_duration": 780534000
+      },
+      "total_duration": 986142791,
+      "load_duration": 122433666,
+      "prompt_eval_count": 175,
+      "prompt_eval_duration": 81291000,
+      "eval_count": 38,
+      "eval_duration": 780534000,
+      "content": "{\"moves\":[[\"step_left|step_right\",\"clear\"],[\"step_left|step_right\",\"clear\"],[\"step_left|step_right\",\"clear\"],[\"step_left|step_right\",\"clear\"]]}\n\n",
+      "correct": false,
+      "error_type": "ValueError",
+      "reason": "unknown step move",
+      "wall_seconds": 1.0441801669076085
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "two_left_then_two_right",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step left twice, then right twice. Keep every step soft except the final right step, which is clear.",
+      "input_text_characters": 627,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:40:17.887158Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_left\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"soft\"],[\"step_right\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 768491875,
+        "load_duration": 126062417,
+        "prompt_eval_count": 178,
+        "prompt_eval_duration": 129048000,
+        "eval_count": 26,
+        "eval_duration": 511209000
+      },
+      "total_duration": 768491875,
+      "load_duration": 126062417,
+      "prompt_eval_count": 178,
+      "prompt_eval_duration": 129048000,
+      "eval_count": 26,
+      "eval_duration": 511209000,
+      "content": "{\"moves\":[[\"step_left\",\"soft\"],[\"step_left\",\"soft\"],[\"step_right\",\"soft\"],[\"step_right\",\"clear\"]]}",
+      "validation": {
+        "valid": true,
+        "frame_count": 81,
+        "duration_seconds": 4.0,
+        "final_root_x_m": 0.0,
+        "max_abs_root_x_m": 0.4,
+        "max_joint_delta_m": 0.03158201055186094,
+        "max_segment_error_m": 1.6653345369377348e-16,
+        "max_moving_ankle_lift_m": 0.07000000000000002,
+        "clips": [
+          {
+            "id": "step_left",
+            "variation": "soft",
+            "start_root_x_m": 0.0,
+            "end_root_x_m": -0.2,
+            "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+          },
+          {
+            "id": "step_left",
+            "variation": "soft",
+            "start_root_x_m": -0.2,
+            "end_root_x_m": -0.4,
+            "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+          },
+          {
+            "id": "step_right",
+            "variation": "soft",
+            "start_root_x_m": -0.4,
+            "end_root_x_m": -0.2,
+            "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+          },
+          {
+            "id": "step_right",
+            "variation": "clear",
+            "start_root_x_m": -0.2,
+            "end_root_x_m": 0.0,
+            "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+          }
+        ],
+        "full_rig_validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+          "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+        },
+        "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+      },
+      "receipt": {
+        "plan_sha256": "865e80596ae595e4d1bf95da2bb80188052a727cd355e6407a8901e89ff43368",
+        "sequence_sha256": "1ce3caa4baf924a3699e4a50b08f5d121ed255923d024c3aa426d9dc263359e3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "duration_seconds": 4.0,
+          "final_root_x_m": 0.0,
+          "max_abs_root_x_m": 0.4,
+          "max_joint_delta_m": 0.03158201055186094,
+          "max_segment_error_m": 1.6653345369377348e-16,
+          "max_moving_ankle_lift_m": 0.07000000000000002,
+          "clips": [
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": 0.0,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "dbca554782278040f52e0e9aaf9d6990464d596f69ec263dc93cd880e4a05c98"
+            },
+            {
+              "id": "step_left",
+              "variation": "soft",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": -0.4,
+              "source_clip_sha256": "cb0e38cff2079d854a754e716a564df9bbaf0248ffb9744bbaaaabed9a381c38"
+            },
+            {
+              "id": "step_right",
+              "variation": "soft",
+              "start_root_x_m": -0.4,
+              "end_root_x_m": -0.2,
+              "source_clip_sha256": "0b74b9165cf5057acdc5ffbf0068ea166c5d5f74f73181ce8ac7dd01c417b614"
+            },
+            {
+              "id": "step_right",
+              "variation": "clear",
+              "start_root_x_m": -0.2,
+              "end_root_x_m": 0.0,
+              "source_clip_sha256": "9a6030e1f0ff09f20eae7a00a4c20cb60a119e1652fde7f71fd7fc091c28bb2b"
+            }
+          ],
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.03158201055186094,
+            "max_skeletal_segment_error_m": 1.6653345369377348e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          },
+          "scope": "Technical planted-step and contact checks; no balance, collision, style or avatar-execution claim."
+        }
+      },
+      "compiled": true,
+      "correct": true,
+      "moves": [
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_left",
+          "soft"
+        ],
+        [
+          "step_right",
+          "soft"
+        ],
+        [
+          "step_right",
+          "clear"
+        ]
+      ],
+      "final_root_x": 0.0,
+      "requested_final_x_correct": true,
+      "wall_seconds": 0.8461225409992039
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "offset_finish",
+      "system": "Return strict JSON only: {\"moves\":[[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"],[\"step_left|step_right\",\"soft|clear\"]]}. Four chronological two-beat side steps at 120 BPM. Each step moves the planted stance 0.20 m left or right. Variation affects arm/body accent, not travel distance. No other fields. World +x is right; -x is left. Each step moves the actor exactly 0.20 metres in its named direction. Start at x=0. Use exact move and variation identifiers.",
+      "user": "Step right clearly, right softly, left softly, then right clearly. Finish 0.4 metres right of the start.",
+      "input_text_characters": 631,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:40:19.480161Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"step_right|step_left\",\"clear|soft\"],[\"step_right|step_left\",\"clear|soft\"],[\"step_right|step_left\",\"clear|soft\"],[\"step_right|step_left\",\"clear|soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1515284042,
+        "load_duration": 128444667,
+        "prompt_eval_count": 181,
+        "prompt_eval_duration": 145029000,
+        "eval_count": 46,
+        "eval_duration": 1239847000
+      },
+      "total_duration": 1515284042,
+      "load_duration": 128444667,
+      "prompt_eval_count": 181,
+      "prompt_eval_duration": 145029000,
+      "eval_count": 46,
+      "eval_duration": 1239847000,
+      "content": "{\"moves\":[[\"step_right|step_left\",\"clear|soft\"],[\"step_right|step_left\",\"clear|soft\"],[\"step_right|step_left\",\"clear|soft\"],[\"step_right|step_left\",\"clear|soft\"]]}",
+      "correct": false,
+      "error_type": "ValueError",
+      "reason": "unknown step move",
+      "wall_seconds": 1.5740454170154408
+    }
+  ],
+  "complete": true
+}
