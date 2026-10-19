@@ -39,8 +39,32 @@ class DanceMotionTests(unittest.TestCase):
     def test_rejects_wrong_limb_length(self):
         sequence = dance_motion.generate("restrained")
         sequence["frames"][10]["joints"]["left_knee"][0] += 0.03
-        with self.assertRaisesRegex(ValueError, "wrong limb length"):
+        with self.assertRaisesRegex(ValueError, "wrong skeletal segment length"):
             dance_motion.validate(sequence)
+
+    def test_rejects_deformed_foot_marker_and_torso(self):
+        foot_deformed = dance_motion.generate("broad")
+        foot_deformed["frames"][12]["joints"]["left_foot"][2] += 0.02
+        with self.assertRaisesRegex(ValueError, "wrong skeletal segment length: left_ankle to left_foot"):
+            dance_motion.validate(foot_deformed)
+
+        torso_deformed = dance_motion.generate("restrained")
+        torso_deformed["frames"][20]["joints"]["spine"][2] += 0.02
+        with self.assertRaisesRegex(ValueError, "wrong skeletal segment length: pelvis to spine"):
+            dance_motion.validate(torso_deformed)
+
+    def test_rigid_foot_and_torso_edges_remain_fixed(self):
+        sequence = dance_motion.generate("broad")
+        self.assertIn(["left_ankle", "left_foot"], sequence["bone_edges"])
+        self.assertIn(["right_ankle", "right_foot"], sequence["bone_edges"])
+        self.assertLess(dance_motion.validate(sequence)["max_skeletal_segment_error_m"], 1e-6)
+        for frame in sequence["frames"]:
+            joints = frame["joints"]
+            for side in ("left", "right"):
+                self.assertAlmostEqual(joints[f"{side}_foot"][2],
+                                       joints[f"{side}_ankle"][2] - 0.025)
+            self.assertAlmostEqual(joints["spine"][2] - joints["pelvis"][2], 0.36)
+            self.assertAlmostEqual(joints["neck"][2] - joints["spine"][2], 0.25)
 
     def test_authored_contact_transitions_are_continuous_at_beat_boundaries(self):
         sequence = dance_motion.generate("broad")

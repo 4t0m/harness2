@@ -21,8 +21,31 @@ BONE_EDGES = [list(edge) for limb in LIMBS.values() for edge in limb] + [
     ["pelvis", "left_hip"], ["pelvis", "right_hip"],
     ["pelvis", "spine"], ["spine", "neck"], ["neck", "head"],
     ["left_shoulder", "spine"], ["right_shoulder", "spine"],
+    ["left_ankle", "left_foot"], ["right_ankle", "right_foot"],
 ]
 _LENGTHS = {"upper_leg": 0.46, "lower_leg": 0.46, "upper_arm": 0.30, "lower_arm": 0.28}
+_SEGMENTS = [
+    ("left_hip", "left_knee", 0.46, "leg"),
+    ("left_knee", "left_ankle", 0.46, "leg"),
+    ("right_hip", "right_knee", 0.46, "leg"),
+    ("right_knee", "right_ankle", 0.46, "leg"),
+    ("left_shoulder", "left_elbow", 0.30, "arm"),
+    ("left_elbow", "left_wrist", 0.28, "arm"),
+    ("right_shoulder", "right_elbow", 0.30, "arm"),
+    ("right_elbow", "right_wrist", 0.28, "arm"),
+    ("left_ankle", "left_foot", math.sqrt(0.10**2 + 0.025**2), "foot"),
+    ("right_ankle", "right_foot", math.sqrt(0.10**2 + 0.025**2), "foot"),
+    ("left_hip", "right_hip", 0.26, "torso"),
+    ("left_shoulder", "right_shoulder", 0.44, "torso"),
+    ("pelvis", "left_hip", math.sqrt(0.13**2 + 0.04**2), "torso"),
+    ("pelvis", "right_hip", math.sqrt(0.13**2 + 0.04**2), "torso"),
+    ("pelvis", "spine", 0.36, "torso"),
+    ("spine", "neck", 0.25, "torso"),
+    ("neck", "head", 0.17, "torso"),
+    ("left_shoulder", "spine", math.sqrt(0.22**2 + 0.15**2), "torso"),
+    ("right_shoulder", "spine", math.sqrt(0.22**2 + 0.15**2), "torso"),
+]
+_BONE_LENGTHS = {(start, end): length for start, end, length, _group in _SEGMENTS}
 
 
 def _smooth(u):
@@ -81,20 +104,20 @@ def _frame(t, variant):
               0.92 + 0.018 * (1 - math.cos(math.pi * beat))]
     joints = {
         "pelvis": pelvis,
-        "left_hip": [pelvis[0] - 0.13, 0.0, 0.88],
-        "right_hip": [pelvis[0] + 0.13, 0.0, 0.88],
+        "left_hip": [pelvis[0] - 0.13, 0.0, pelvis[2] - 0.04],
+        "right_hip": [pelvis[0] + 0.13, 0.0, pelvis[2] - 0.04],
         "left_ankle": left_foot,
         "right_ankle": right_foot,
-        "left_foot": [left_foot[0], left_foot[1] + 0.10, 0.055],
-        "right_foot": [right_foot[0], right_foot[1] + 0.10, 0.055],
-        "spine": [pelvis[0], 0.0, 1.28],
-        "neck": [pelvis[0], 0.0, 1.53],
-        "head": [pelvis[0], 0.0, 1.70],
+        "left_foot": [left_foot[0], left_foot[1] + 0.10, left_foot[2] - 0.025],
+        "right_foot": [right_foot[0], right_foot[1] + 0.10, right_foot[2] - 0.025],
+        "spine": [pelvis[0], 0.0, pelvis[2] + 0.36],
+        "neck": [pelvis[0], 0.0, pelvis[2] + 0.61],
+        "head": [pelvis[0], 0.0, pelvis[2] + 0.78],
     }
     joints["left_knee"] = _knee(joints["left_hip"], left_foot)
     joints["right_knee"] = _knee(joints["right_hip"], right_foot)
     for side, sign in (("left", -1), ("right", 1)):
-        shoulder = [pelvis[0] + sign * 0.22, 0.0, 1.43]
+        shoulder = [pelvis[0] + sign * 0.22, 0.0, pelvis[2] + 0.51]
         phase = math.pi * beat + (0 if side == "left" else math.pi)
         arm_reach = 0.18 + 0.06 * amp["arm"] * math.sin(phase)
         elbow_drop = math.sqrt(_LENGTHS["upper_arm"] ** 2 - arm_reach ** 2)
@@ -124,6 +147,8 @@ def generate(variant):
         "coordinate_system": "world x=lateral, y=forward, z=up; ground z=0",
         "bone_edges": [edge[:] for edge in BONE_EDGES],
         "proportions_m": dict(_LENGTHS),
+        "segment_lengths_m": {f"{start}:{end}": length
+                               for start, end, length, _group in _SEGMENTS},
         "scope": "Generic step-touch-like technical prototype; no style authenticity, biomechanics, or artistic quality claim.",
         "frames": frames,
     }
@@ -133,6 +158,13 @@ def validate(sequence):
     """Host-owned screening checks; raises ValueError on malformed or invalid motion."""
     if not isinstance(sequence, dict) or not isinstance(sequence.get("frames"), list):
         raise ValueError("missing frames")
+    expected_segment_lengths = {
+        f"{start}:{end}": length for start, end, length, _group in _SEGMENTS
+    }
+    if sequence.get("bone_edges") != BONE_EDGES:
+        raise ValueError("invalid bone edges")
+    if sequence.get("segment_lengths_m") != expected_segment_lengths:
+        raise ValueError("invalid skeletal segment metadata")
     frames = sequence["frames"]
     expected_count = round(DURATION * FPS) + 1
     if len(frames) != expected_count:
@@ -181,22 +213,14 @@ def validate(sequence):
                     slide = math.dist(joints[f"{side}_ankle"], previous["joints"][f"{side}_ankle"])
                     if slide > 1e-5:
                         raise ValueError(f"planted foot sliding: {side}")
-        length_pairs = [("left_hip", "left_knee", _LENGTHS["upper_leg"]),
-                        ("left_knee", "left_ankle", _LENGTHS["lower_leg"]),
-                        ("right_hip", "right_knee", _LENGTHS["upper_leg"]),
-                        ("right_knee", "right_ankle", _LENGTHS["lower_leg"]),
-                        ("left_shoulder", "left_elbow", _LENGTHS["upper_arm"]),
-                        ("left_elbow", "left_wrist", _LENGTHS["lower_arm"]),
-                        ("right_shoulder", "right_elbow", _LENGTHS["upper_arm"]),
-                        ("right_elbow", "right_wrist", _LENGTHS["lower_arm"])]
-        for start, end, target in length_pairs:
+        for start, end, target, _group in _SEGMENTS:
             error = abs(math.dist(joints[start], joints[end]) - target)
             max_length_error = max(max_length_error, error)
             if error > 1e-6:
-                raise ValueError(f"wrong limb length: {start} to {end}")
+                raise ValueError(f"wrong skeletal segment length: {start} to {end}")
         previous = {"joints": joints, "contacts": contacts}
     if abs(frames[-1]["time"] - DURATION) > 1e-9:
         raise ValueError("wrong duration")
     return {"valid": True, "frame_count": len(frames), "duration_seconds": frames[-1]["time"],
-            "max_joint_delta_m": max_delta, "max_leg_segment_error_m": max_length_error,
+            "max_joint_delta_m": max_delta, "max_skeletal_segment_error_m": max_length_error,
             "scope": "Technical screening only; not a biomechanics or artistic-quality result."}

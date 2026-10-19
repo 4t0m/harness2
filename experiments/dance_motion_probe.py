@@ -1,4 +1,5 @@
 """Generate, validate and render two procedural motion variants in a bounded run."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -11,8 +12,10 @@ def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main():
-    work=Path('/Users/adom/Development/hermes-testing/runs/harness2-dance-motion-v2')
-    output=Path('evidence/dance-motion-render-v2.json')
+    parser=argparse.ArgumentParser();parser.add_argument('--version',type=int,default=3);args=parser.parse_args()
+    if args.version<1:raise SystemExit('invalid version')
+    work=Path('/Users/adom/Development/hermes-testing/runs')/f'harness2-dance-motion-v{args.version}'
+    output=Path('evidence')/f'dance-motion-render-v{args.version}.json'
     if work.exists() or output.exists():raise SystemExit('refusing overwrite')
     work.mkdir()
     report={'scope':'procedural generic step-touch-like stick rig; no model choreography or artistic acceptance',

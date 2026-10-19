@@ -105,3 +105,9 @@ Parent rendered both variants side by side with an inexpensive Blender Workbench
 Media: `/Users/adom/Development/hermes-testing/runs/harness2-dance-motion-v2/comparison.mp4`. Joint tracks: sibling `tracks.json`. Evidence: `dance-motion-render-v2.json`. First render failed because the renderer expected bone_edges nested under metadata; original failed receipt and log remain, and corrected v2 retained the identical track hash.
 
 This is an alternative first executable prototype, not full completion of D1: it does not execute the old D0 symbolic atlas, retarget to the VRM, or produce model-authored choreography. It supplies real tracks we can use next for bounded amplitude selection, span preservation, transition planning and low-cost auditions. Pose interpolation and contact continuity between sampled frames, learned style, musical phrasing and subjective appeal remain open.
+
+## Geometry repair superseding the first render
+
+The v2 prototype had unintended changing ankle-foot and pelvis-attached segment lengths. Its arm/leg checks were too narrow. The investigation in `investigations/2026-10-19-dance-motion-rig-geometry.md` records the measurements. The repaired generator attaches feet to ankles, adds their bone links, translates hips/torso with pelvis and validates all19skeletal segment lengths. Seven focused tests pass.
+
+Use `/Users/adom/Development/hermes-testing/runs/harness2-dance-motion-v3/comparison.mp4` and sibling tracks.json as the current prototype; `evidence/dance-motion-render-v3.json` records source/track/video hashes. All40frames decoded, four seconds at512x320, render pipeline1.88seconds. Parent inspected frames0,1,3. Earlier renders are preserved but superseded. Still no biomechanics, collision screening, continuous-contact proof between samples or human taste acceptance.
