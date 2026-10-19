@@ -18,7 +18,7 @@ The frozen phrase vocabulary remains extremely limited. This trial measures cont
 - Frozen independent briefs: `experiments/dance_motif_cases.py`.
 - Bounded runner and independent replay: `experiments/dance_motif_probe.py`, `experiments/dance_motif_summary.py`.
 - Trial and summary: `evidence/dance-motif-model-v1.json`, `evidence/dance-motif-summary-v1.json`.
-- Preview renderer: `experiments/dance_motif_preview.py`; preview evidence: `evidence/dance-motif-preview-v1.json`.
+- Preview renderer: `experiments/dance_motif_preview.py`; preview evidence: `evidence/dance-motif-preview-v2.json` (original v1 retained).
 
 The completed trial contains 84 calls: 48 local and 36 hosted, with $0.002284306 reported hosted cost. This is a fixed tool-representation comparison, not another Harness² refinement run. A useful compact interface can later become a bounded model-editable planning task in the corrected H2 adapter, with new evaluation briefs and the same host-owned movement checks.
 
@@ -47,3 +47,11 @@ Times exclude host compilation and verification. Expanded initial contexts were 
 Four focused compiler tests pass, including all 32 intents, equality of expanded and compact compilation, seam validation and corruption rejection. The old phrase shelf remains unchanged. The two selected local Qwen outputs are recompiled from raw replies and compared with their stored receipts before rendering; every score contains 321 samples. The video encodes samples 0–319 at 20 fps, while the exact 16-second endpoint sample is saved separately. The flat preview is silent and uses simple illustrated proxies. It demonstrates motif switching and accent control, not dance appeal or finished anime animation. No H3 generation or live avatar service was invoked.
 
 The next useful extension is to offer richer prevalidated motifs and learn which variations a person prefers in paired auditions. Preserve the compact intent interface and separate human preference from grammar checks. For spatial choreography, connect the earlier verified route solver through an explicit contact-aware composition layer; translating planted feet wholesale would invalidate the contact assumptions. Before H3 reference use, validate its current input timing and frame-rate requirements rather than treating this 16-second preview as a ready reference asset.
+
+## Independent audit and preview readback
+
+Sol independently replayed all 84 calls, six source hashes, 64 model/condition/case slots and every repair lineage. Native/provider totals were 22,715 input and 5,414 output tokens. The [expanded-output investigation](../investigations/2026-10-19-motif-expanded-results.md) locates failures in actual missing contrast, section endings and accent placement. Both representations admit the same 32 valid intents. The broad enum schema permits those invalid arrangements; it does not force a correct choreography. Hosted Gemma's success also rules out a universally impossible expanded interface.
+
+The final [16-second local preview](/Users/adom/Development/hermes-testing/runs/harness2-dance-motif-v2/preview.mp4) uses the first qualifying local Qwen sway and pulse calls in fixture order, not an aesthetic shortlist. It is 800×520, 20 fps and 320 encoded frames. Independent readback verifies 11,556 projected joint points and 642 actual source-image root markers; the head stays at least 10 pixels below the detail-label band. Four decoded video frames, one from each section, were visually inspected. This is sparse visual inspection plus full projection checks, not verification of every encoded limb pixel.
+
+V1 media and evidence remain intact. V2 removes a redundant label that was partly covered by the panels; selected model calls, compiled receipts and all projected motion are exactly unchanged. Original renderer source is preserved at commit 4188aa3. The [preview investigation](../investigations/2026-10-19-motif-preview-schema.md) records the preflight data-field/layout corrections and the observed label cleanup. Reproducible final checks: `experiments/dance_motif_preview_check.py` and `evidence/dance-motif-preview-check-v2.json`.

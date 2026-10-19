@@ -1,0 +1,11 @@
+{
+  "scope": "All logged projections recomputed from raw model scores; all actual PNG root markers checked. Does not verify every drawn limb pixel or every encoded video frame. Sparse decoded visual inspection is separate.",
+  "source_evidence_sha256": "fa8e1fac623a425ce81bd8c20e5ffe8c2f9ed2d9d95ea01fd77443a286091aad",
+  "checker_sha256": "b14e55cdb1ef931df85e7905659ffd01b0d185b98f16995c40203779af676cbd",
+  "projected_joint_points_checked": 11556,
+  "actual_png_root_markers_checked": 642,
+  "min_head_label_clearance_px": 10,
+  "video_sha256": "66d1cbf78e450c79bf7710627a42c703042b965fd81cb12da3362094c7def437",
+  "v1_v2_model_motion_and_projection_identical": true,
+  "complete": true
+}

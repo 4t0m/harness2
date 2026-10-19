@@ -23,8 +23,8 @@ from experiments.dance_motif_cases import CASES, score_intent
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_IN = ROOT / "evidence/dance-motif-model-v1.json"
-EVIDENCE_OUT = ROOT / "evidence/dance-motif-preview-v1.json"
-OUTPUT_DIR = Path("/Users/adom/Development/hermes-testing/runs/harness2-dance-motif-v1")
+EVIDENCE_OUT = ROOT / "evidence/dance-motif-preview-v2.json"
+OUTPUT_DIR = Path("/Users/adom/Development/hermes-testing/runs/harness2-dance-motif-v2")
 MODEL_NAME = "hermes-lab-qwen3-8b:latest"
 WIDTH, HEIGHT = 800, 520
 FPS = 20
@@ -247,7 +247,6 @@ def _draw_frame(sequences: list[dict], intents: list[dict], frame_index: int,
                                outline=PALETTE["line"], width=1)
         draw.text(((box[0] + box[2]) // 2 - 4, 82), label,
                   fill=PALETTE["ink"], font=body)
-    draw.text((24, 104), "SECTION", fill=PALETTE["muted"], font=small)
 
     actor_logs = []
     state_by_actor = []
@@ -349,7 +348,7 @@ def _render_video(frame_dir: Path, video_path: Path) -> tuple[dict, str]:
         raise RuntimeError("ffmpeg and ffprobe are required for this preview")
     log_dir = Path("/private/tmp")
     log_dir.mkdir(parents=True, exist_ok=True)
-    descriptor, log_name = tempfile.mkstemp(prefix="harness2-dance-motif-v1-",
+    descriptor, log_name = tempfile.mkstemp(prefix="harness2-dance-motif-v2-",
                                             suffix=".log", dir=log_dir)
     os.close(descriptor)
     log_path = Path(log_name)
