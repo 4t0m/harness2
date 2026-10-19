@@ -347,3 +347,22 @@ def offline_evidence() -> dict[str, Any]:
         "scenes": rows,
     }
 
+
+
+def rejection_feedback(task: Mapping[str, Any], raw: str) -> dict[str, Any] | None:
+    """Host-owned correction facts for one proposal, never an enumerated answer list."""
+    clean = validate_task(task)
+    result = evaluate(clean, raw)
+    if result['valid']:
+        return None
+    try:
+        action = _parse_action(raw)
+    except DispatchError:
+        return {'code': 'invalid_action_schema', 'message': 'Return one action matching action_schema.'}
+    jobs = {j['job_id']: j for j in clean['jobs']}
+    job = jobs.get(action['job_id'])
+    if action['operation'] == 'retry' and job is not None and job['attempt'] >= clean['max_attempts']:
+        return {'code': 'attempt_cap_reached', 'job_id': job['job_id'],
+                'attempt': job['attempt'], 'max_attempts': clean['max_attempts'],
+                'rule': 'Retry requires attempt < max_attempts. Reconsider the current ledger.'}
+    return {'code': 'illegal_action', 'message': 'Proposal violates current ledger rules. Reconsider dependencies, approval, status and retry lineage.'}

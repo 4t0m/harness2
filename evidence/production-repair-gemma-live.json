@@ -1,0 +1,281 @@
+{
+  "scope": "development-only single-sample correction diagnostic; no external jobs",
+  "source": "evidence/production-dispatch-gemma-live.json",
+  "task_id": "blocked-02",
+  "rows": [
+    {
+      "condition": "fresh_repeat",
+      "request": {
+        "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+        "task": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "action_schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "operation",
+            "job_id"
+          ],
+          "properties": {
+            "operation": {
+              "type": "string",
+              "enum": [
+                "dispatch",
+                "retry",
+                "wait"
+              ]
+            },
+            "job_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "rules": [
+          "dispatch only a pending job after dependencies complete and required human approval is present",
+          "retry only a failed job below retry cap without an existing retry child",
+          "wait when every job is blocked, already active, awaiting review, or complete"
+        ]
+      },
+      "content": "{\"operation\": \"retry\", \"job_id\": \"dead_parent\"}",
+      "usage": {
+        "prompt_tokens": 389,
+        "completion_tokens": 17,
+        "total_tokens": 406
+      },
+      "model": "google/gemma-4-26b-a4b-it",
+      "latency_seconds": 1.0470720001030713,
+      "cost": 2.0078e-05,
+      "verdict": {
+        "valid": false,
+        "reason": "action is not among host-derived legal choices",
+        "action": null,
+        "state_preserved": true
+      }
+    },
+    {
+      "condition": "generic_rejection",
+      "request": {
+        "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+        "task": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "action_schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "operation",
+            "job_id"
+          ],
+          "properties": {
+            "operation": {
+              "type": "string",
+              "enum": [
+                "dispatch",
+                "retry",
+                "wait"
+              ]
+            },
+            "job_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "rules": [
+          "dispatch only a pending job after dependencies complete and required human approval is present",
+          "retry only a failed job below retry cap without an existing retry child",
+          "wait when every job is blocked, already active, awaiting review, or complete"
+        ],
+        "previous_proposal": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"dead_parent\"\n}",
+        "host_feedback": "Host rejected the previous proposal. Select a legal action."
+      },
+      "content": "{\"operation\": \"retry\", \"job_id\": \"dead_parent\"}",
+      "usage": {
+        "prompt_tokens": 438,
+        "completion_tokens": 17,
+        "total_tokens": 455
+      },
+      "model": "google/gemma-4-26b-a4b-it",
+      "latency_seconds": 0.8971533329458907,
+      "cost": 3.189e-05,
+      "verdict": {
+        "valid": false,
+        "reason": "action is not among host-derived legal choices",
+        "action": null,
+        "state_preserved": true
+      }
+    },
+    {
+      "condition": "specific_rejection",
+      "request": {
+        "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+        "task": {
+          "task_id": "blocked-02",
+          "brief_revision": "dispatch-r1",
+          "max_attempts": 3,
+          "jobs": [
+            {
+              "job_id": "waiting_child",
+              "status": "pending",
+              "depends_on": [
+                "dead_parent"
+              ],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "dead_parent",
+              "status": "failed",
+              "depends_on": [],
+              "attempt": 3,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            },
+            {
+              "job_id": "active_gamma",
+              "status": "running",
+              "depends_on": [],
+              "attempt": 1,
+              "retry_of": null,
+              "human_approval_required": false,
+              "human_approved": false,
+              "artifact_receipt": null
+            }
+          ]
+        },
+        "action_schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "operation",
+            "job_id"
+          ],
+          "properties": {
+            "operation": {
+              "type": "string",
+              "enum": [
+                "dispatch",
+                "retry",
+                "wait"
+              ]
+            },
+            "job_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "rules": [
+          "dispatch only a pending job after dependencies complete and required human approval is present",
+          "retry only a failed job below retry cap without an existing retry child",
+          "wait when every job is blocked, already active, awaiting review, or complete"
+        ],
+        "previous_proposal": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"dead_parent\"\n}",
+        "host_feedback": "Host rejected retry: dead_parent has attempt=3 and max_attempts=3. Retry requires attempt < max_attempts. Reconsider the current ledger."
+      },
+      "content": "{\"operation\": \"wait\", \"job_id\": null}",
+      "usage": {
+        "prompt_tokens": 458,
+        "completion_tokens": 14,
+        "total_tokens": 472
+      },
+      "model": "google/gemma-4-26b-a4b-it",
+      "latency_seconds": 0.6530166669981554,
+      "cost": 2.2316e-05,
+      "verdict": {
+        "valid": true,
+        "reason": null,
+        "action": {
+          "operation": "wait",
+          "job_id": null
+        },
+        "state_preserved": true
+      }
+    }
+  ]
+}
