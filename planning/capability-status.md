@@ -176,3 +176,7 @@ Five procedural planted-motion phrases now compile model-selected8beat scores in
 ## Selective edits preserve approved motion
 
 Bound source/revision/scope editing now accepts exactly one authorized phrase change and proves62of81samples (including seams) unchanged. Paired new-case results: E2Bfull8/8, patch7/8; Qwen8both8/8. On the same now-observed cases, patch→full with prior failure context stays7/8; fresh full fallback reaches8/8 in9calls. Router decisions use only structural rejection, never expected edits. Full already passes8/8, so retain the simpler E2B baseline and treat routing as experimental.51localcalls,13targeted tests, actual4second source/edit preview; no hosted charges. See [dance-selective-edits.md](dance-selective-edits.md) for measurements and deployment limits. A separate source-backed EDGE candidate note prepares the motion-generation lane; no backend/GPU execution is claimed.
+
+## Fresh selective-edit policy evaluation
+
+On twelve new within-library briefs, E2B full/patch/fresh-fallback scores9/12,9/12,10/12; older Qwen8 scores10/12,11/12,12/12. Both routed conditions structurally accept12/12, but E2B retains two semantically wrong accepted edits.74localcalls; source hashes, all raw replies and route attempts independently replayed. Fresh fallback repairs structural failures without an expected-answer oracle; this is fixed-policy evaluation, not H2 learning. Initial prompts232–264tokens, patch replies14–15tokens. See [dance-edit-policy-evaluation.md](dance-edit-policy-evaluation.md).
