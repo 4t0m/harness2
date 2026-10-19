@@ -1,0 +1,6 @@
+{
+  "source_evidence_sha256": "5bb6a698daee72cc5b58dd9ada3e094cfebd2326571a64af9cbc91583408ac4c",
+  "visual_review": "Parent inspected decoded frames8 and24 from both videos. Baseline Ash/cyan left and Bela/orange right; adapted Bela left and Ash right. Wave follows Bela on the correct timeline; nod subtle at this resolution.",
+  "scope": "Sparse frame inspection plus full sampled joint checks; no full-motion taste acceptance, skinned character or H3 generation.",
+  "selected_post_evaluation": true
+}

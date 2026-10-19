@@ -1,0 +1,176 @@
+{
+  "scope": "Actual k=1 sequential Harness2 guidance refinement on one previously observed gallery case; 12 frozen within-family eval cases. No animation executed.",
+  "source_sha256": "7dd55c534c4acec6e19078a683f10e58e18b84c62893e9143268c7d07c863354",
+  "total_calls": 48,
+  "editor_calls": 3,
+  "paid_usd": 0.001445175,
+  "conditions": [
+    {
+      "model": "gemma4:e2b",
+      "condition": "fixed",
+      "n": 12,
+      "initial_correct": 7,
+      "final_correct": 7,
+      "correction_calls": 5,
+      "first_attempt_metrics": {
+        "prompt_eval_count": {
+          "min": 277,
+          "max": 314,
+          "median": 290.0
+        },
+        "eval_count": {
+          "min": 52,
+          "max": 58,
+          "median": 55.0
+        },
+        "input_text_characters": {
+          "min": 1008,
+          "max": 1169,
+          "median": 1081.5
+        },
+        "wall_seconds": {
+          "min": 1.3757963749812916,
+          "max": 1.5211459998972714,
+          "median": 1.4424413330270909
+        },
+        "load_duration": {
+          "min": 282666083,
+          "max": 311464250,
+          "median": 300052958.5
+        },
+        "prompt_eval_duration": {
+          "min": 192152000,
+          "max": 215394000,
+          "median": 194561500.0
+        },
+        "eval_duration": {
+          "min": 820644000,
+          "max": 964629000,
+          "median": 872132000.0
+        }
+      },
+      "total_call_seconds": 24.80627258378081
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "adapted",
+      "n": 12,
+      "initial_correct": 8,
+      "final_correct": 8,
+      "correction_calls": 0,
+      "first_attempt_metrics": {
+        "prompt_eval_count": {
+          "min": 275,
+          "max": 312,
+          "median": 288.0
+        },
+        "eval_count": {
+          "min": 53,
+          "max": 57,
+          "median": 55.0
+        },
+        "input_text_characters": {
+          "min": 1028,
+          "max": 1189,
+          "median": 1101.5
+        },
+        "wall_seconds": {
+          "min": 1.3839119999902323,
+          "max": 1.514237374998629,
+          "median": 1.4249145209905691
+        },
+        "load_duration": {
+          "min": 283946334,
+          "max": 305275875,
+          "median": 298108937.5
+        },
+        "prompt_eval_duration": {
+          "min": 192428000,
+          "max": 214673000,
+          "median": 193510000.0
+        },
+        "eval_duration": {
+          "min": 836769000,
+          "max": 954680000,
+          "median": 863593000.0
+        }
+      },
+      "total_call_seconds": 17.192774374969304
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "fixed",
+      "n": 12,
+      "initial_correct": 12,
+      "final_correct": 12,
+      "correction_calls": 0,
+      "first_attempt_metrics": {
+        "prompt_eval_count": {
+          "min": 270,
+          "max": 307,
+          "median": 286.5
+        },
+        "eval_count": {
+          "min": 68,
+          "max": 73,
+          "median": 69.5
+        },
+        "input_text_characters": {
+          "min": 1008,
+          "max": 1169,
+          "median": 1081.5
+        },
+        "wall_seconds": {
+          "min": 2.6884994170395657,
+          "max": 3.9625261249020696,
+          "median": 2.901719833025709
+        },
+        "load_duration": {
+          "min": 118466583,
+          "max": 1222260625,
+          "median": 128486583.5
+        },
+        "prompt_eval_duration": {
+          "min": 321041000,
+          "max": 495186000,
+          "median": 387288000.0
+        },
+        "eval_duration": {
+          "min": 2169043000,
+          "max": 2966751000,
+          "median": 2296652500.0
+        }
+      },
+      "total_call_seconds": 37.00948733196128
+    }
+  ],
+  "paired_gains": [
+    "indirect_screen_right_relation_right_first"
+  ],
+  "paired_regressions": [],
+  "source_hashes_match": true,
+  "development": [
+    {
+      "run_id": "actor_staging_h2-oc-agg1/gallery_roles_reversed/base1",
+      "valid": false,
+      "error": null
+    },
+    {
+      "run_id": "actor_staging_h2-oc-seq1/gallery_roles_reversed/c1",
+      "valid": false,
+      "error": null
+    },
+    {
+      "run_id": "actor_staging_h2-oc-seq1/gallery_roles_reversed/dom1",
+      "valid": false,
+      "error": null
+    },
+    {
+      "run_id": "actor_staging_h2-oc-seq1/gallery_roles_reversed/inv1",
+      "valid": false,
+      "error": null
+    }
+  ],
+  "heldout_identity_absent_from_editor_requests": true,
+  "same_frozen_cases_as_failed_v1": true
+}

@@ -1,0 +1,147 @@
+{
+  "model_evidence_sha256": "7dd55c534c4acec6e19078a683f10e58e18b84c62893e9143268c7d07c863354",
+  "case_id": "indirect_screen_right_relation_right_first",
+  "request": "Read the east arch from the audience viewpoint: Bela is on the image-left side of it, while Ash is on the image-right side. Ash gives the first cue, a clear nod; Bela gives the second, a soft wave; Ash is neutral softly in the last cue. Keep both roots in place.",
+  "selection": "Post-evaluation illustrative paired gain, not a new heldout or aggregate evidence.",
+  "scope": "Offline procedural actors; render follows each proposed plan, including the semantically incorrect baseline.",
+  "sources": {
+    "experiments/actor_staging_h2_render.py": "6c995a99589a08146ee6a3b05cf900e9aa4c0307a1e43ae4fb8b3a1153447429",
+    "experiments/actor_staging_render.py": "e24fa2372662c2d446d7f4c6276fe4f6993289c13e62aed97a2c5584f0a9b90d",
+    "experiments/actor_staging_render_probe.py": "10abe8a5d65dc7f2642545c44d10570445fac75d0336da2552d4894aad6986fa"
+  },
+  "renders": [
+    {
+      "condition": "fixed",
+      "call_index": 34,
+      "semantic_correct": false,
+      "plan_sha256": "9e39c7b836601014c06c4245bf8585fcc81ad9177a76460c2349d2f2cd9ada55",
+      "verification": {
+        "passed": true,
+        "max_protected_position_error_m": 1.1450491298364647e-07,
+        "max_segment_length_error_m": 1.1569062546845643e-07,
+        "changed_frames_by_slot": {
+          "0": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "1": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        },
+        "neutral_boundary_frames": [
+          0,
+          15,
+          16,
+          31,
+          32,
+          47
+        ],
+        "scope": "sampled scene joint readback, not biomechanics, collisions, interpolation or human acting acceptance"
+      },
+      "motion_sha256": "2fb95f6acf6a0f38919318c804e6a736dbf5c4a2cd0d905584bb867c51a5e96a",
+      "video": {
+        "width": 512,
+        "height": 320,
+        "avg_frame_rate": "8/1",
+        "duration": "6.000000",
+        "nb_read_frames": "48"
+      },
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-staging-h2-render-v1/fixed/scene.mp4",
+      "video_sha256": "22c8274b14956c27d0329ff6e24e91490ff911fc65f3945fd208ba65fb2a03ed",
+      "wall_seconds": 2.025982749997638,
+      "complete": true
+    },
+    {
+      "condition": "adapted",
+      "call_index": 33,
+      "semantic_correct": true,
+      "plan_sha256": "38b595a7c59e30fe6a2a9040a5a24914c72b258d68b40cca95c6679636265087",
+      "verification": {
+        "passed": true,
+        "max_protected_position_error_m": 1.1450491298364647e-07,
+        "max_segment_length_error_m": 1.1569062546845643e-07,
+        "changed_frames_by_slot": {
+          "0": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "1": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        },
+        "neutral_boundary_frames": [
+          0,
+          15,
+          16,
+          31,
+          32,
+          47
+        ],
+        "scope": "sampled scene joint readback, not biomechanics, collisions, interpolation or human acting acceptance"
+      },
+      "motion_sha256": "788f8abe8f32ee003cbf7d0f8503193d0cf0c143d1ab96bcb4a4cc4f8e32fa88",
+      "video": {
+        "width": 512,
+        "height": 320,
+        "avg_frame_rate": "8/1",
+        "duration": "6.000000",
+        "nb_read_frames": "48"
+      },
+      "path": "/Users/adom/Development/hermes-testing/runs/harness2-staging-h2-render-v1/adapted/scene.mp4",
+      "video_sha256": "db92d5c3f0a0e7dd5547ed0aa64a3d4e17fa8da90bea9459015ce230d7bf7f3b",
+      "wall_seconds": 1.9037115420214832,
+      "complete": true
+    }
+  ],
+  "complete": true
+}

@@ -156,3 +156,7 @@ Both local models planned four two-actor scenes correctly after at most one stru
 ## Compact staging tradeoff
 
 `actor-staging-compact-v1.json` records 20 balanced local calls on four reused cases. Compact output preserves all 13,824 enumerated canonical plans while reducing output to 51–70 tokens. Qwen3 8B improves from 3/4 initial to 4/4, median first response 9.37 to 3.56 s. E2B drops from 3/4 to 2/4 initial and from 4/4 to 3/4 after correction despite faster output. Valid-but-wrong cue order passes structural validation and is caught only by the task oracle. Keep format choice model-specific; no general reliability or adaptation gain claimed. Fresh 4-development/4-evaluation cases are frozen for a future actual Harness² comparison. See dance-lab.md for full metrics and limitations.
+
+## Actual staging refinement and model choice
+
+`actor-staging-h2-v2.json` completes real k=1 H2 recursion with local E2B and three hosted Gemma31B edits ($0.001445175). On 12 frozen cases: E2B fixed7/12, fixed plus correction7/12, adapted8/12; Qwen3 8B fixed12/12. One paired placement gain, no regressions in this sample, but all development rollouts still fail: no reliable learning claim. Two fresh technical renders verify the changed actor placement. The first run's thread-unsafe timeout failure is preserved and repaired with a tested subprocess transport. See dance-lab.md and `actor-staging-h2-summary-v2.json`. Prefer Qwen for current staging interpretation; E2B needs a narrower/decomposed task or better semantic control. The evaluation cases are now observed.
