@@ -1,0 +1,183 @@
+{
+  "scope": "Manual task-decomposition comparison, not learned adaptation. Twelve already-observed cases; no new holdout/generalization claim.",
+  "source_sha256": "605280c25860e0d68a6fd7c13856bf77c8183ec626b26d0191a1bae895a892b9",
+  "conditions": [
+    {
+      "model": "gemma4:e2b",
+      "condition": "one_shot",
+      "n": 12,
+      "correct": 7,
+      "compiled": 12,
+      "median_wall_seconds": 1.4567916255327873,
+      "prompt_eval_count": {
+        "min_total_per_plan": 273,
+        "max_total_per_plan": 310,
+        "median_total_per_plan": 286.0
+      },
+      "eval_count": {
+        "min_total_per_plan": 53,
+        "max_total_per_plan": 58,
+        "median_total_per_plan": 55.0
+      },
+      "input_text_characters": {
+        "min_total_per_plan": 1008,
+        "max_total_per_plan": 1169,
+        "median_total_per_plan": 1081.5
+      },
+      "compile_failures": []
+    },
+    {
+      "model": "gemma4:e2b",
+      "condition": "four_questions",
+      "n": 12,
+      "correct": 4,
+      "compiled": 12,
+      "median_wall_seconds": 3.2857533544301987,
+      "prompt_eval_count": {
+        "min_total_per_plan": 885,
+        "max_total_per_plan": 1033,
+        "median_total_per_plan": 937.0
+      },
+      "eval_count": {
+        "min_total_per_plan": 70,
+        "max_total_per_plan": 74,
+        "median_total_per_plan": 72.0
+      },
+      "input_text_characters": {
+        "min_total_per_plan": 3372,
+        "max_total_per_plan": 4016,
+        "median_total_per_plan": 3666.0
+      },
+      "compile_failures": [],
+      "piece_correct_placement_cue0_cue1_cue2": [
+        12,
+        9,
+        6,
+        9
+      ]
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "one_shot",
+      "n": 12,
+      "correct": 8,
+      "compiled": 9,
+      "median_wall_seconds": 2.9398611040087417,
+      "prompt_eval_count": {
+        "min_total_per_plan": 269,
+        "max_total_per_plan": 306,
+        "median_total_per_plan": 285.5
+      },
+      "eval_count": {
+        "min_total_per_plan": 68,
+        "max_total_per_plan": 76,
+        "median_total_per_plan": 71.0
+      },
+      "input_text_characters": {
+        "min_total_per_plan": 1008,
+        "max_total_per_plan": 1169,
+        "median_total_per_plan": 1081.5
+      },
+      "compile_failures": [
+        {
+          "case_id": "placement_and_cue_amendment_eval",
+          "reason": "unsupported variation"
+        },
+        {
+          "case_id": "exact_ordinal_sequence_left_first",
+          "reason": "unsupported variation"
+        },
+        {
+          "case_id": "two_corrections_last_one_left_first",
+          "reason": "unsupported variation"
+        }
+      ]
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "condition": "four_questions",
+      "n": 12,
+      "correct": 3,
+      "compiled": 12,
+      "median_wall_seconds": 4.111226645996794,
+      "prompt_eval_count": {
+        "min_total_per_plan": 883,
+        "max_total_per_plan": 1031,
+        "median_total_per_plan": 949.0
+      },
+      "eval_count": {
+        "min_total_per_plan": 68,
+        "max_total_per_plan": 72,
+        "median_total_per_plan": 69.5
+      },
+      "input_text_characters": {
+        "min_total_per_plan": 3372,
+        "max_total_per_plan": 4016,
+        "median_total_per_plan": 3666.0
+      },
+      "compile_failures": [],
+      "piece_correct_placement_cue0_cue1_cue2": [
+        12,
+        12,
+        3,
+        4
+      ]
+    }
+  ],
+  "paired": [
+    {
+      "model": "gemma4:e2b",
+      "split_gains": [
+        "exact_ordinal_sequence_right_first"
+      ],
+      "split_regressions": [
+        "actor_perspective_to_screen_side_eval",
+        "alternating_actor_sequence_eval",
+        "repeat_actor_all_slots_right_first",
+        "indirect_screen_left_relation_left_first"
+      ]
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "split_gains": [
+        "exact_ordinal_sequence_left_first"
+      ],
+      "split_regressions": [
+        "ordinal_middle_and_final_eval",
+        "alternating_actor_sequence_eval",
+        "mention_left_actor_first_cue_right",
+        "repeat_actor_all_slots_right_first",
+        "indirect_screen_left_relation_left_first",
+        "indirect_screen_right_relation_right_first"
+      ]
+    }
+  ],
+  "diagnostic": [
+    {
+      "model": "gemma4:e2b",
+      "order": "early",
+      "correct": 2,
+      "n": 4
+    },
+    {
+      "model": "gemma4:e2b",
+      "order": "late",
+      "correct": 3,
+      "n": 4
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "order": "early",
+      "correct": 0,
+      "n": 4
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "order": "late",
+      "correct": 2,
+      "n": 4
+    }
+  ],
+  "total_local_calls": 136,
+  "paid_provider_calls": 0
+}

@@ -1,0 +1,533 @@
+{
+  "scope": "Prompt-field-order diagnostic on two observed cases and later cues; not new heldout or whole-plan success.",
+  "prior_sha256": "605280c25860e0d68a6fd7c13856bf77c8183ec626b26d0191a1bae895a892b9",
+  "script_sha256": "a25f01e44acaa0d4a9221592366fba5dee80a2f82acae582921c0ef712250c10",
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "size": 7162405886
+    },
+    "hermes-lab-qwen3-8b:latest": {
+      "name": "hermes-lab-qwen3-8b:latest",
+      "digest": "ce2f25b8da1b2f736433c5d436bb28c61751bcc4710c6f13697e05170b685552",
+      "size": 5225388180
+    }
+  },
+  "max_calls": 16,
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 1,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\", \"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:48.645891Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_tavi_622\",\"gesture\":\"wave\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3502470291,
+        "load_duration": 2990555000,
+        "prompt_eval_count": 244,
+        "prompt_eval_duration": 181797000,
+        "eval_count": 21,
+        "eval_duration": 325159000
+      },
+      "total_duration": 3502470291,
+      "load_duration": 2990555000,
+      "prompt_eval_count": 244,
+      "prompt_eval_duration": 181797000,
+      "eval_count": 21,
+      "eval_duration": 325159000,
+      "correct": true,
+      "wall_seconds": 3.5567912500118837
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 1,
+      "order": "late",
+      "user": "{\"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}, \"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:49.507302Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_tavi_622\",\"gesture\":\"wave\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 796312500,
+        "load_duration": 292865417,
+        "prompt_eval_count": 245,
+        "prompt_eval_duration": 173534000,
+        "eval_count": 21,
+        "eval_duration": 326494000
+      },
+      "total_duration": 796312500,
+      "load_duration": 292865417,
+      "prompt_eval_count": 245,
+      "prompt_eval_duration": 173534000,
+      "eval_count": 21,
+      "eval_duration": 326494000,
+      "correct": true,
+      "wall_seconds": 0.8513070419430733
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 2,
+      "order": "late",
+      "user": "{\"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}, \"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:50.358351Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_morrow_305\",\"gesture\":\"neutral\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 798250875,
+        "load_duration": 311196625,
+        "prompt_eval_count": 245,
+        "prompt_eval_duration": 172918000,
+        "eval_count": 20,
+        "eval_duration": 311492000
+      },
+      "total_duration": 798250875,
+      "load_duration": 311196625,
+      "prompt_eval_count": 245,
+      "prompt_eval_duration": 172918000,
+      "eval_count": 20,
+      "eval_duration": 311492000,
+      "correct": true,
+      "wall_seconds": 0.8565161670558155
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 2,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\", \"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:51.207161Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_morrow_305\",\"gesture\":\"nod\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 784652208,
+        "load_duration": 299108833,
+        "prompt_eval_count": 244,
+        "prompt_eval_duration": 173894000,
+        "eval_count": 20,
+        "eval_duration": 308469000
+      },
+      "total_duration": 784652208,
+      "load_duration": 299108833,
+      "prompt_eval_count": 244,
+      "prompt_eval_duration": 173894000,
+      "eval_count": 20,
+      "eval_duration": 308469000,
+      "correct": false,
+      "wall_seconds": 0.8477628330001608
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 1,
+      "order": "late",
+      "user": "{\"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}, \"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:52.068147Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"nod\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 797434125,
+        "load_duration": 299314417,
+        "prompt_eval_count": 265,
+        "prompt_eval_duration": 191376000,
+        "eval_count": 20,
+        "eval_duration": 303393000
+      },
+      "total_duration": 797434125,
+      "load_duration": 299314417,
+      "prompt_eval_count": 265,
+      "prompt_eval_duration": 191376000,
+      "eval_count": 20,
+      "eval_duration": 303393000,
+      "correct": false,
+      "wall_seconds": 0.8595895830076188
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 1,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\", \"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:52.931173Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"nod\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 799708875,
+        "load_duration": 300530333,
+        "prompt_eval_count": 264,
+        "prompt_eval_duration": 190552000,
+        "eval_count": 20,
+        "eval_duration": 305275000
+      },
+      "total_duration": 799708875,
+      "load_duration": 300530333,
+      "prompt_eval_count": 264,
+      "prompt_eval_duration": 190552000,
+      "eval_count": 20,
+      "eval_duration": 305275000,
+      "correct": false,
+      "wall_seconds": 0.8649289170280099
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 2,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\", \"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:53.804259Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"neutral\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 807306083,
+        "load_duration": 303133208,
+        "prompt_eval_count": 264,
+        "prompt_eval_duration": 190886000,
+        "eval_count": 20,
+        "eval_duration": 310068000
+      },
+      "total_duration": 807306083,
+      "load_duration": 303133208,
+      "prompt_eval_count": 264,
+      "prompt_eval_duration": 190886000,
+      "eval_count": 20,
+      "eval_duration": 310068000,
+      "correct": true,
+      "wall_seconds": 0.8702137919608504
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 2,
+      "order": "late",
+      "user": "{\"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}, \"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:05:54.660661Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"neutral\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 794494458,
+        "load_duration": 294600083,
+        "prompt_eval_count": 265,
+        "prompt_eval_duration": 190879000,
+        "eval_count": 20,
+        "eval_duration": 305863000
+      },
+      "total_duration": 794494458,
+      "load_duration": 294600083,
+      "prompt_eval_count": 265,
+      "prompt_eval_duration": 190879000,
+      "eval_count": 20,
+      "eval_duration": 305863000,
+      "correct": true,
+      "wall_seconds": 0.8611245839856565
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 1,
+      "order": "late",
+      "user": "{\"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}, \"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:05:56.772974Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_tavi_622\",\"gesture\":\"wave\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2043526208,
+        "load_duration": 1206271791,
+        "prompt_eval_count": 247,
+        "prompt_eval_duration": 443622000,
+        "eval_count": 20,
+        "eval_duration": 389003000
+      },
+      "total_duration": 2043526208,
+      "load_duration": 1206271791,
+      "prompt_eval_count": 247,
+      "prompt_eval_duration": 443622000,
+      "eval_count": 20,
+      "eval_duration": 389003000,
+      "correct": true,
+      "wall_seconds": 2.107847207924351
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 1,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\", \"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:05:57.647481Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_morrow_305\",\"gesture\":\"nod\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 809123708,
+        "load_duration": 129172083,
+        "prompt_eval_count": 246,
+        "prompt_eval_duration": 285096000,
+        "eval_count": 20,
+        "eval_duration": 390125000
+      },
+      "total_duration": 809123708,
+      "load_duration": 129172083,
+      "prompt_eval_count": 246,
+      "prompt_eval_duration": 285096000,
+      "eval_count": 20,
+      "eval_duration": 390125000,
+      "correct": false,
+      "wall_seconds": 0.8730164999142289
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 2,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\", \"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:05:58.515737Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_morrow_305\",\"gesture\":\"nod\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 804422042,
+        "load_duration": 126905792,
+        "prompt_eval_count": 246,
+        "prompt_eval_duration": 283431000,
+        "eval_count": 20,
+        "eval_duration": 389515000
+      },
+      "total_duration": 804422042,
+      "load_duration": 126905792,
+      "prompt_eval_count": 246,
+      "prompt_eval_duration": 283431000,
+      "eval_count": 20,
+      "eval_duration": 389515000,
+      "correct": false,
+      "wall_seconds": 0.8637635830091313
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "ordinal_middle_and_final_eval",
+      "slot": 2,
+      "order": "late",
+      "user": "{\"request\": \"In the audience view, put Morrow on the right of the hall compass and Tavi on the left. Morrow gives the opening cue, a soft nod. Tavi gets the middle cue and gives a clear wave. The closing cue belongs to Morrow, who is neutral softly. Leave their roots stationary.\", \"scene\": {\"actor_ids\": [\"guide_morrow_305\", \"guide_tavi_622\"], \"anchor\": {\"id\": \"hall_compass\", \"x_m\": 0.8}, \"revision\": \"quiet-hall-q7\"}, \"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:05:59.182086Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"guide_morrow_305\",\"gesture\":\"neutral\",\"variation\":\"soft\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 606010167,
+        "load_duration": 128261917,
+        "prompt_eval_count": 247,
+        "prompt_eval_duration": 81744000,
+        "eval_count": 20,
+        "eval_duration": 391112000
+      },
+      "total_duration": 606010167,
+      "load_duration": 128261917,
+      "prompt_eval_count": 247,
+      "prompt_eval_duration": 81744000,
+      "eval_count": 20,
+      "eval_duration": 391112000,
+      "correct": true,
+      "wall_seconds": 0.6697187090758234
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 1,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\", \"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:06:00.070646Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"nod\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 822557417,
+        "load_duration": 122001625,
+        "prompt_eval_count": 266,
+        "prompt_eval_duration": 289854000,
+        "eval_count": 20,
+        "eval_duration": 406437000
+      },
+      "total_duration": 822557417,
+      "load_duration": 122001625,
+      "prompt_eval_count": 266,
+      "prompt_eval_duration": 289854000,
+      "eval_count": 20,
+      "eval_duration": 406437000,
+      "correct": false,
+      "wall_seconds": 0.8880795000586659
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 1,
+      "order": "late",
+      "user": "{\"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}, \"question\": \"Return only chronological slot 1, the second/middle cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:06:01.209223Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"nod\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1073756250,
+        "load_duration": 128470584,
+        "prompt_eval_count": 267,
+        "prompt_eval_duration": 470849000,
+        "eval_count": 20,
+        "eval_duration": 469219000
+      },
+      "total_duration": 1073756250,
+      "load_duration": 128470584,
+      "prompt_eval_count": 267,
+      "prompt_eval_duration": 470849000,
+      "eval_count": 20,
+      "eval_duration": 469219000,
+      "correct": false,
+      "wall_seconds": 1.1351298750378191
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 2,
+      "order": "late",
+      "user": "{\"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}, \"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\"}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:06:02.014773Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"nod\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 748510750,
+        "load_duration": 127430959,
+        "prompt_eval_count": 267,
+        "prompt_eval_duration": 89408000,
+        "eval_count": 20,
+        "eval_duration": 529289000
+      },
+      "total_duration": 748510750,
+      "load_duration": 127430959,
+      "prompt_eval_count": 267,
+      "prompt_eval_duration": 89408000,
+      "eval_count": 20,
+      "eval_duration": 529289000,
+      "correct": false,
+      "wall_seconds": 0.8081313340226188
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "actor_perspective_to_screen_side_eval",
+      "slot": 2,
+      "order": "early",
+      "user": "{\"question\": \"Return only chronological slot 2, the third/final cue. Apply any amendments affecting this cue.\", \"request\": \"Nix should stand on the kiosk's right-hand side as seen by someone facing outward from the stage toward the audience. Therefore Nix appears on the audience's screen-left; Ora stands screen-right. Give Ora a clear nod in the first cue, Nix a soft wave in the second, and Ora a soft neutral pose in the third. No root movement.\", \"scene\": {\"actor_ids\": [\"avatar_nix_177\", \"avatar_ora_238\"], \"anchor\": {\"id\": \"atrium_kiosk\", \"x_m\": -0.55}, \"revision\": \"atrium-cue-f4\"}}",
+      "system": "Read the scene and request carefully. Apply the final amendments in the request. Resolve screen sides independently of chronological cue order. Use exact scene actor IDs. Return only the requested strict JSON.\nAnswer only the requested chronological cue. Return exactly {\"actor\":\"actorID\",\"gesture\":\"wave|nod|neutral\",\"variation\":\"soft|clear\"}, choosing one allowed gesture and variation. Do not output side assignments or other cues.",
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:06:03.059334Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"actor\":\"avatar_ora_238\",\"gesture\":\"nod\",\"variation\":\"clear\"}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 979164708,
+        "load_duration": 125590625,
+        "prompt_eval_count": 266,
+        "prompt_eval_duration": 379147000,
+        "eval_count": 20,
+        "eval_duration": 469419000
+      },
+      "total_duration": 979164708,
+      "load_duration": 125590625,
+      "prompt_eval_count": 266,
+      "prompt_eval_duration": 379147000,
+      "eval_count": 20,
+      "eval_duration": 469419000,
+      "correct": false,
+      "wall_seconds": 1.0438399579143152
+    }
+  ],
+  "complete": true
+}
