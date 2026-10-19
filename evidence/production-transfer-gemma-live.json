@@ -1,0 +1,639 @@
+{
+  "scope": "fresh near-transfer cases; one correction maximum; no external dispatch",
+  "fixtures": [
+    {
+      "task_id": "cap-one",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 1,
+      "jobs": [
+        {
+          "job_id": "paint_base",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "paint_detail",
+          "status": "pending",
+          "depends_on": [
+            "paint_base"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        }
+      ]
+    },
+    {
+      "task_id": "below-two",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 2,
+      "jobs": [
+        {
+          "job_id": "motion_seed",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "motion_finish",
+          "status": "pending",
+          "depends_on": [
+            "motion_seed"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        }
+      ]
+    },
+    {
+      "task_id": "cap-two",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 2,
+      "jobs": [
+        {
+          "job_id": "render_finish",
+          "status": "pending",
+          "depends_on": [
+            "render_seed"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "render_seed",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 2,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        }
+      ]
+    },
+    {
+      "task_id": "below-three",
+      "brief_revision": "dispatch-r1",
+      "max_attempts": 3,
+      "jobs": [
+        {
+          "job_id": "rig_finish",
+          "status": "pending",
+          "depends_on": [
+            "rig_seed"
+          ],
+          "attempt": 1,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        },
+        {
+          "job_id": "rig_seed",
+          "status": "failed",
+          "depends_on": [],
+          "attempt": 2,
+          "retry_of": null,
+          "human_approval_required": false,
+          "human_approved": false,
+          "artifact_receipt": null
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "task_id": "cap-one",
+      "attempts": [
+        {
+          "request": {
+            "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+            "task": {
+              "task_id": "cap-one",
+              "brief_revision": "dispatch-r1",
+              "max_attempts": 1,
+              "jobs": [
+                {
+                  "job_id": "paint_base",
+                  "status": "failed",
+                  "depends_on": [],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                },
+                {
+                  "job_id": "paint_detail",
+                  "status": "pending",
+                  "depends_on": [
+                    "paint_base"
+                  ],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                }
+              ]
+            },
+            "action_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "operation",
+                "job_id"
+              ],
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "dispatch",
+                    "retry",
+                    "wait"
+                  ]
+                },
+                "job_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "rules": [
+              "dispatch only a pending job after dependencies complete and required human approval is present",
+              "retry only a failed job below retry cap without an existing retry child",
+              "wait when every job is blocked, already active, awaiting review, or complete"
+            ]
+          },
+          "content": "{\"operation\": \"retry\", \"job_id\": \"paint_base\"}",
+          "usage": {
+            "prompt_tokens": 331,
+            "completion_tokens": 17,
+            "total_tokens": 348
+          },
+          "model": "google/gemma-4-26b-a4b-it",
+          "latency_seconds": 0.6186666659777984,
+          "cost": 3.82e-05,
+          "verdict": {
+            "valid": false,
+            "reason": "action is not among host-derived legal choices",
+            "action": null,
+            "state_preserved": true
+          }
+        },
+        {
+          "request": {
+            "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+            "task": {
+              "task_id": "cap-one",
+              "brief_revision": "dispatch-r1",
+              "max_attempts": 1,
+              "jobs": [
+                {
+                  "job_id": "paint_base",
+                  "status": "failed",
+                  "depends_on": [],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                },
+                {
+                  "job_id": "paint_detail",
+                  "status": "pending",
+                  "depends_on": [
+                    "paint_base"
+                  ],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                }
+              ]
+            },
+            "action_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "operation",
+                "job_id"
+              ],
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "dispatch",
+                    "retry",
+                    "wait"
+                  ]
+                },
+                "job_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "rules": [
+              "dispatch only a pending job after dependencies complete and required human approval is present",
+              "retry only a failed job below retry cap without an existing retry child",
+              "wait when every job is blocked, already active, awaiting review, or complete"
+            ],
+            "previous_proposal": "{\"operation\": \"retry\", \"job_id\": \"paint_base\"}",
+            "host_feedback": {
+              "code": "attempt_cap_reached",
+              "job_id": "paint_base",
+              "attempt": 1,
+              "max_attempts": 1,
+              "rule": "Retry requires attempt < max_attempts. Reconsider the current ledger."
+            }
+          },
+          "content": "{\"operation\": \"wait\", \"job_id\": null}",
+          "usage": {
+            "prompt_tokens": 412,
+            "completion_tokens": 14,
+            "total_tokens": 426
+          },
+          "model": "google/gemma-4-26b-a4b-it",
+          "latency_seconds": 0.5683527080109343,
+          "cost": 4.142e-05,
+          "verdict": {
+            "valid": true,
+            "reason": null,
+            "action": {
+              "operation": "wait",
+              "job_id": null
+            },
+            "state_preserved": true
+          }
+        }
+      ]
+    },
+    {
+      "task_id": "below-two",
+      "attempts": [
+        {
+          "request": {
+            "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+            "task": {
+              "task_id": "below-two",
+              "brief_revision": "dispatch-r1",
+              "max_attempts": 2,
+              "jobs": [
+                {
+                  "job_id": "motion_seed",
+                  "status": "failed",
+                  "depends_on": [],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                },
+                {
+                  "job_id": "motion_finish",
+                  "status": "pending",
+                  "depends_on": [
+                    "motion_seed"
+                  ],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                }
+              ]
+            },
+            "action_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "operation",
+                "job_id"
+              ],
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "dispatch",
+                    "retry",
+                    "wait"
+                  ]
+                },
+                "job_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "rules": [
+              "dispatch only a pending job after dependencies complete and required human approval is present",
+              "retry only a failed job below retry cap without an existing retry child",
+              "wait when every job is blocked, already active, awaiting review, or complete"
+            ]
+          },
+          "content": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"motion_seed\"\n}",
+          "usage": {
+            "prompt_tokens": 330,
+            "completion_tokens": 24,
+            "total_tokens": 354
+          },
+          "model": "google/gemma-4-26b-a4b-it",
+          "latency_seconds": 1.0214872079668567,
+          "cost": 4.02e-05,
+          "verdict": {
+            "valid": true,
+            "reason": null,
+            "action": {
+              "operation": "retry",
+              "job_id": "motion_seed"
+            },
+            "state_preserved": true
+          }
+        }
+      ]
+    },
+    {
+      "task_id": "cap-two",
+      "attempts": [
+        {
+          "request": {
+            "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+            "task": {
+              "task_id": "cap-two",
+              "brief_revision": "dispatch-r1",
+              "max_attempts": 2,
+              "jobs": [
+                {
+                  "job_id": "render_finish",
+                  "status": "pending",
+                  "depends_on": [
+                    "render_seed"
+                  ],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                },
+                {
+                  "job_id": "render_seed",
+                  "status": "failed",
+                  "depends_on": [],
+                  "attempt": 2,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                }
+              ]
+            },
+            "action_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "operation",
+                "job_id"
+              ],
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "dispatch",
+                    "retry",
+                    "wait"
+                  ]
+                },
+                "job_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "rules": [
+              "dispatch only a pending job after dependencies complete and required human approval is present",
+              "retry only a failed job below retry cap without an existing retry child",
+              "wait when every job is blocked, already active, awaiting review, or complete"
+            ]
+          },
+          "content": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"render_seed\"\n}",
+          "usage": {
+            "prompt_tokens": 331,
+            "completion_tokens": 24,
+            "total_tokens": 355
+          },
+          "model": "google/gemma-4-26b-a4b-it",
+          "latency_seconds": 0.6702112909406424,
+          "cost": 3.133e-05,
+          "verdict": {
+            "valid": false,
+            "reason": "action is not among host-derived legal choices",
+            "action": null,
+            "state_preserved": true
+          }
+        },
+        {
+          "request": {
+            "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+            "task": {
+              "task_id": "cap-two",
+              "brief_revision": "dispatch-r1",
+              "max_attempts": 2,
+              "jobs": [
+                {
+                  "job_id": "render_finish",
+                  "status": "pending",
+                  "depends_on": [
+                    "render_seed"
+                  ],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                },
+                {
+                  "job_id": "render_seed",
+                  "status": "failed",
+                  "depends_on": [],
+                  "attempt": 2,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                }
+              ]
+            },
+            "action_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "operation",
+                "job_id"
+              ],
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "dispatch",
+                    "retry",
+                    "wait"
+                  ]
+                },
+                "job_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "rules": [
+              "dispatch only a pending job after dependencies complete and required human approval is present",
+              "retry only a failed job below retry cap without an existing retry child",
+              "wait when every job is blocked, already active, awaiting review, or complete"
+            ],
+            "previous_proposal": "{\n  \"operation\": \"retry\",\n  \"job_id\": \"render_seed\"\n}",
+            "host_feedback": {
+              "code": "attempt_cap_reached",
+              "job_id": "render_seed",
+              "attempt": 2,
+              "max_attempts": 2,
+              "rule": "Retry requires attempt < max_attempts. Reconsider the current ledger."
+            }
+          },
+          "content": "{\n  \"operation\": \"wait\",\n  \"job_id\": null\n}",
+          "usage": {
+            "prompt_tokens": 418,
+            "completion_tokens": 20,
+            "total_tokens": 438
+          },
+          "model": "google/gemma-4-26b-a4b-it",
+          "latency_seconds": 0.27843129204120487,
+          "cost": 4.54e-05,
+          "verdict": {
+            "valid": true,
+            "reason": null,
+            "action": {
+              "operation": "wait",
+              "job_id": null
+            },
+            "state_preserved": true
+          }
+        }
+      ]
+    },
+    {
+      "task_id": "below-three",
+      "attempts": [
+        {
+          "request": {
+            "instruction": "Select one legal next action from current job state. Do not claim a job ran or generated an artifact.",
+            "task": {
+              "task_id": "below-three",
+              "brief_revision": "dispatch-r1",
+              "max_attempts": 3,
+              "jobs": [
+                {
+                  "job_id": "rig_finish",
+                  "status": "pending",
+                  "depends_on": [
+                    "rig_seed"
+                  ],
+                  "attempt": 1,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                },
+                {
+                  "job_id": "rig_seed",
+                  "status": "failed",
+                  "depends_on": [],
+                  "attempt": 2,
+                  "retry_of": null,
+                  "human_approval_required": false,
+                  "human_approved": false,
+                  "artifact_receipt": null
+                }
+              ]
+            },
+            "action_schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "operation",
+                "job_id"
+              ],
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "dispatch",
+                    "retry",
+                    "wait"
+                  ]
+                },
+                "job_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "rules": [
+              "dispatch only a pending job after dependencies complete and required human approval is present",
+              "retry only a failed job below retry cap without an existing retry child",
+              "wait when every job is blocked, already active, awaiting review, or complete"
+            ]
+          },
+          "content": "{\n\"operation\": \"retry\",\n\"job_id\": \"rig_seed\"\n}",
+          "usage": {
+            "prompt_tokens": 331,
+            "completion_tokens": 22,
+            "total_tokens": 353
+          },
+          "model": "google/gemma-4-26b-a4b-it",
+          "latency_seconds": 0.6123184169409797,
+          "cost": 2.72925e-05,
+          "verdict": {
+            "valid": true,
+            "reason": null,
+            "action": {
+              "operation": "retry",
+              "job_id": "rig_seed"
+            },
+            "state_preserved": true
+          }
+        }
+      ]
+    }
+  ]
+}
