@@ -37,7 +37,8 @@ def reject_constant(_value):
 try:
     config = json.loads(sys.stdin.read())
     payload = json.dumps(config["body"], separators=(",", ":"), allow_nan=False).encode("utf-8")
-    headers = {"Content-Type": "application/json", "Accept": "application/json"}
+    headers = {"Content-Type": "application/json", "Accept": "application/json",
+               "User-Agent": "Harness2-Bounded-JSON/1.0"}
     if config["bearer_env"] is not None:
         secret = os.environ.get(config["bearer_env"])
         if not secret or "\r" in secret or "\n" in secret:

@@ -12,6 +12,7 @@ import hashlib
 import json
 import math
 import os
+import re
 from pathlib import Path
 import secrets
 import signal
@@ -36,7 +37,8 @@ class NoRedirect(HTTPRedirectHandler):
 
 
 def http(method,url,token,body=None,timeout=15):
-    headers={'Authorization':'Bearer '+token,'Content-Type':'application/json'}
+    headers={'Authorization':'Bearer '+token,'Content-Type':'application/json',
+             'Accept':'application/json','User-Agent':'Harness2-Motif-Experiment/1.0'}
     data=None if body is None else json.dumps(body,allow_nan=False).encode()
     request=Request(url,data=data,method=method,headers=headers)
     try:
@@ -231,7 +233,9 @@ def main():
     except BaseException as exc:
         event('trial_ended',error_type=type(exc).__name__,reason=str(exc) if str(exc) in (
             'readiness_deadline','model_process_exited','probe_failed','allocated_bounds_mismatch',
-            'allocation_returned_no_pod','graphql_operation_failed') else 'see_stage')
+            'allocation_returned_no_pod','graphql_operation_failed','account_preflight_failed',
+            'rate_preflight_failed','hardware_identity_mismatch','model_registration_mismatch') or
+            re.fullmatch(r'http_status_[0-9]{3}',str(exc)) else 'see_stage')
     finally:
         if watchdog: watchdog.cancel()
         for _ in range(3):
