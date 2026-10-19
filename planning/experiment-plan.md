@@ -39,4 +39,4 @@ Select training traces only after validation. Do not train the model to echo suc
 - Compare fixed/repair/adapted harnesses on untouched held-out cases with original failures retained.
 - Then connect one flat-avatar adapter and author a few meaningful move variants.
 
-Planning and bootstrap only are complete today; custom adapter, model route, training pipeline and avatar execution in Harness² remain future work.
+Current state: custom actor adapter and live OpenRouter solver trials exist; the improver remains scripted and no adaptation gain is established. The training pipeline and successful live avatar execution remain unfinished. See active-goal.md and local-model-experiment-atlas.md for current evidence and the expanded experiment map.
