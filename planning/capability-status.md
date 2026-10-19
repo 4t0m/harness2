@@ -63,3 +63,13 @@ Both Qwen3 8B and Qwen3 30B-A3B chose all three expected actions, emitted strict
 The real acceptance deadline was five seconds. The 250/500/1000/2000/5000-ms counts in the receipt are retrospective comparisons of measured call durations, not independently executed deadline trials. Thread scheduling and delivery add a small overhead beyond call timing. No API fee was incurred; energy and hardware cost remain unmeasured. Thirteen relevant runtime/adapter/fixture tests passed.
 
 Next integration: connect model-generated, validated gesture intent to the existing offline VRM external-event renderer, preserving immediate host cancellation and preventing delayed completions from restarting motion. Keep that distinct from a persistent viewer and from movement-path planning.
+
+## Local-model-driven 3D interruption (2026-10-19)
+
+`experiments/vrm_model_async_probe.py` now connects local Qwen3 8B intent to the existing offline GPU VRM renderer. Initial strict JSON chose wave_goodbye/right; the host compiled anchor 0.1 plus offset 0.25 to root x=0.35. Initial inference took 0.612 seconds (53 input, 15 output tokens). A second genuine model call was launched when the renderer signaled readiness; the host immediately interrupted. That response arrived after 0.481 seconds with the old revision and was rejected.
+
+`evidence/vrm-model-async-v1.json` records completed rendering, interrupted/stale_rejected events and 39 neutral post-stop frames with no registered mixer and unchanged root. The 48-frame 640x360 video lasts 3.2 playback seconds. Parent inspection of frames 8 and 47 visibly confirmed raised versus lowered arm. Six existing VRM verification tests passed. No hosted model calls occurred.
+
+Media: `/Users/adom/Development/hermes-testing/runs/round6/eidoverse-video/work/eidoverse-harness2-model-async-v1/avatar_probe.mp4`. Source remains the pinned Eidoverse revision. This is a technical character, not a selected production design.
+
+Boundary: frame 12 deliberately waits for the delayed response with a 25-second cap, so inference can be observed in a finite offline render. This synchronization is not continuous real-time playback or an end-to-end interactive latency benchmark. Cancellation restores a sampled neutral pose abruptly, without blending. Relative placement is a root offset, not collision-aware walking. The model only chooses a validated named clip; it does not create choreography. This trial uses trusted host orchestration rather than an additional Harness² adaptation run.
