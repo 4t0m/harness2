@@ -1,0 +1,137 @@
+{
+  "scope": "host-authored gesture edit; no new model inference",
+  "source_sha256": "85975be49a7fd4c7079501cdce94a27f271b4ccb7d9c71063911e35828da58c4",
+  "revised_sha256": "577a713aea078335d29e8a3373653d7dc41638912c1010a8abdfd3cc63d0f212",
+  "changed_frames": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "all_objects_preserved_outside_span": true,
+  "non_arm_objects_preserved_all_frames": true,
+  "source_unchanged": true,
+  "affected_objects": [
+    "right_elbow",
+    "right_forearm",
+    "right_hand",
+    "right_joint",
+    "right_shoulder",
+    "right_upper_arm"
+  ],
+  "render_completed": true,
+  "initial_attempt": "crashed after original preview; retained",
+  "preview_source_frames": [
+    1,
+    5,
+    9,
+    13,
+    17,
+    21,
+    25,
+    29,
+    33,
+    37,
+    41,
+    45
+  ],
+  "preview_fps": 6,
+  "videos": [
+    {
+      "variant": "original",
+      "sha256": "bb7394ec27fcdd80253cc4dea2171fae01e0297e599fff139a05b51bd1848650",
+      "stream": {
+        "width": 320,
+        "height": 320,
+        "r_frame_rate": "6/1",
+        "duration": "2.000000",
+        "nb_read_frames": "12"
+      }
+    },
+    {
+      "variant": "revised",
+      "sha256": "bb7394ec27fcdd80253cc4dea2171fae01e0297e599fff139a05b51bd1848650",
+      "stream": {
+        "width": 320,
+        "height": 320,
+        "r_frame_rate": "6/1",
+        "duration": "2.000000",
+        "nb_read_frames": "12"
+      }
+    }
+  ],
+  "initial_video_pair_valid": false,
+  "initial_video_pair_issue": "Identical videos from in-process curve mutation; original baseline rejected.",
+  "corrected_original_video": "original-isolated.mp4",
+  "corrected_original_sha256": "db28084068e1ecb8c53c464c495127345e9b80b60af9032f526f31dbd37ea1bb",
+  "isolated_pixel_comparison": [
+    {
+      "source_frame": 1,
+      "equal": true
+    },
+    {
+      "source_frame": 5,
+      "equal": true
+    },
+    {
+      "source_frame": 9,
+      "equal": true
+    },
+    {
+      "source_frame": 13,
+      "equal": false
+    },
+    {
+      "source_frame": 17,
+      "equal": false
+    },
+    {
+      "source_frame": 21,
+      "equal": false
+    },
+    {
+      "source_frame": 25,
+      "equal": false
+    },
+    {
+      "source_frame": 29,
+      "equal": false
+    },
+    {
+      "source_frame": 33,
+      "equal": false
+    },
+    {
+      "source_frame": 37,
+      "equal": true
+    },
+    {
+      "source_frame": 41,
+      "equal": true
+    },
+    {
+      "source_frame": 45,
+      "equal": true
+    }
+  ],
+  "comparison_valid": true
+}
