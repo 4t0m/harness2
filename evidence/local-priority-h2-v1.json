@@ -1,0 +1,635 @@
+{
+  "scope": "Local 8B priority solver, hosted editor, actual Harness2 recursion",
+  "calls": [
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 1054,
+      "load_duration": 3497768583,
+      "prompt_eval_duration": 519732999,
+      "eval_duration": 177486000,
+      "prompt_eval_count": 271,
+      "eval_count": 9,
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 271,
+        "completion_tokens": 9
+      },
+      "latency_seconds": 4.2124702910659835,
+      "cost": null
+    },
+    {
+      "model_requested": "google/gemma-4-31b-it",
+      "input_chars": 14687,
+      "content": "```json\n{\n  \"systemprompt\": \"Choose the one supplied option that best satisfies every requirement in the user's brief.\\nConsider constraints and requested next steps together.\\nReturn only a strict JSON object with choice_id set to an option_N identifier.\"\n}\n```",
+      "usage": {
+        "prompt_tokens": 3405,
+        "completion_tokens": 61,
+        "total_tokens": 3466
+      },
+      "latency_seconds": 3.5654437500052154,
+      "cost": 0.0007054
+    },
+    {
+      "model_requested": "google/gemma-4-31b-it",
+      "input_chars": 15279,
+      "content": "```json\n{\n \"systemprompt\": \"You are a production dispatch agent. Choose the one supplied option that best satisfies every requirement in the user's brief.\\n\\nANALYTIC MOVE: Reconcile the brief's constraints (e.g., budget, duration, camera movement, motion integrity) against each option's specifications. Identify options that violate any hard constraint.\\n\\nDECISION RULE: Prioritize options that satisfy all constraints over those that only satisfy some. If multiple options satisfy all constraints, choose the one that best fulfills the primary goal without altering the requested content.\\n\\nReturn only a strict JSON object with choice_id set to an option_N identifier.\"\n}\n```",
+      "usage": {
+        "prompt_tokens": 3543,
+        "completion_tokens": 149,
+        "total_tokens": 3692
+      },
+      "latency_seconds": 5.679262417019345,
+      "cost": 0.0007682
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 1470,
+      "load_duration": 259606625,
+      "prompt_eval_duration": 652979000,
+      "eval_duration": 180041000,
+      "prompt_eval_count": 352,
+      "eval_count": 9,
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 352,
+        "completion_tokens": 9
+      },
+      "latency_seconds": 1.1169413750758395,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 1054,
+      "load_duration": 275632959,
+      "prompt_eval_duration": 22580000,
+      "eval_duration": 173907000,
+      "prompt_eval_count": 271,
+      "eval_count": 9,
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 271,
+        "completion_tokens": 9
+      },
+      "latency_seconds": 1.318148292019032,
+      "cost": null
+    },
+    {
+      "model_requested": "google/gemma-4-31b-it",
+      "input_chars": 12722,
+      "content": "```json\n{\n  \"systemprompt\": \"Choose the one supplied option that best satisfies every requirement in the user's brief.\\nConsider constraints and requested next steps together.\\nReturn only a strict JSON object with choice_id set to an option_N identifier.\"\n}\n```",
+      "usage": {
+        "prompt_tokens": 2980,
+        "completion_tokens": 61,
+        "total_tokens": 3041
+      },
+      "latency_seconds": 3.0967815830372274,
+      "cost": 0.0006204
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 1054,
+      "load_duration": 135040584,
+      "prompt_eval_duration": 37276000,
+      "eval_duration": 170208000,
+      "prompt_eval_count": 271,
+      "eval_count": 9,
+      "content": "{\"choice_id\":\"option_3\"}",
+      "usage": {
+        "prompt_tokens": 271,
+        "completion_tokens": 9
+      },
+      "latency_seconds": 0.34587487508542836,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 928,
+      "load_duration": 132465375,
+      "prompt_eval_duration": 352042000,
+      "eval_duration": 264019000,
+      "prompt_eval_count": 236,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_1\"}",
+      "usage": {
+        "prompt_tokens": 236,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 0.7559635000070557,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 928,
+      "load_duration": 141293750,
+      "prompt_eval_duration": 21848000,
+      "eval_duration": 349692000,
+      "prompt_eval_count": 236,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_1\"}",
+      "usage": {
+        "prompt_tokens": 236,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 0.5166995000327006,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 995,
+      "load_duration": 146293834,
+      "prompt_eval_duration": 573200000,
+      "eval_duration": 281087000,
+      "prompt_eval_count": 249,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_0\"}",
+      "usage": {
+        "prompt_tokens": 249,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 1.0055675830226392,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 995,
+      "load_duration": 255434417,
+      "prompt_eval_duration": 37644000,
+      "eval_duration": 269001000,
+      "prompt_eval_count": 249,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_0\"}",
+      "usage": {
+        "prompt_tokens": 249,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 0.5684967079432681,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 922,
+      "load_duration": 406249166,
+      "prompt_eval_duration": 710737000,
+      "eval_duration": 364788000,
+      "prompt_eval_count": 225,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_3\"}",
+      "usage": {
+        "prompt_tokens": 225,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 1.489168458036147,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 922,
+      "load_duration": 134347083,
+      "prompt_eval_duration": 23831000,
+      "eval_duration": 352964000,
+      "prompt_eval_count": 225,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_3\"}",
+      "usage": {
+        "prompt_tokens": 225,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 0.5149460410466418,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 932,
+      "load_duration": 132639708,
+      "prompt_eval_duration": 728199000,
+      "eval_duration": 276054000,
+      "prompt_eval_count": 227,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_2\"}",
+      "usage": {
+        "prompt_tokens": 227,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 1.1421431669732556,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 932,
+      "load_duration": 117237083,
+      "prompt_eval_duration": 23592000,
+      "eval_duration": 316682000,
+      "prompt_eval_count": 227,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_2\"}",
+      "usage": {
+        "prompt_tokens": 227,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 0.4611514580901712,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 964,
+      "load_duration": 149221875,
+      "prompt_eval_duration": 697779000,
+      "eval_duration": 293589000,
+      "prompt_eval_count": 231,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_1\"}",
+      "usage": {
+        "prompt_tokens": 231,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 1.1477364159654826,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 964,
+      "load_duration": 115355708,
+      "prompt_eval_duration": 23442000,
+      "eval_duration": 320088000,
+      "prompt_eval_count": 231,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_1\"}",
+      "usage": {
+        "prompt_tokens": 231,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 0.4621751670492813,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 943,
+      "load_duration": 140552709,
+      "prompt_eval_duration": 749625000,
+      "eval_duration": 297986000,
+      "prompt_eval_count": 238,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_0\"}",
+      "usage": {
+        "prompt_tokens": 238,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 1.1936592079000548,
+      "cost": null
+    },
+    {
+      "model_requested": "hermes-lab-qwen3-8b:latest",
+      "input_chars": 943,
+      "load_duration": 190942500,
+      "prompt_eval_duration": 26273000,
+      "eval_duration": 416812000,
+      "prompt_eval_count": 238,
+      "eval_count": 10,
+      "content": "{\"choice_id\": \"option_0\"}",
+      "usage": {
+        "prompt_tokens": 238,
+        "completion_tokens": 10
+      },
+      "latency_seconds": 0.6382227080175653,
+      "cost": null
+    }
+  ],
+  "evaluation": [
+    {
+      "task_id": "render_budget_setup_cost",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"choice_id\": \"option_1\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_1",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"choice_id\": \"option_1\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_1",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "preserve_approved_motion_span",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"choice_id\": \"option_0\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_0",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"choice_id\": \"option_0\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_0",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "dependency_before_render",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"choice_id\": \"option_3\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_3",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"choice_id\": \"option_3\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_3",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "single_resource_concurrency",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"choice_id\": \"option_2\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_2",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"choice_id\": \"option_2\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_2",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "uncertain_taste_compare",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"choice_id\": \"option_1\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_1",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"choice_id\": \"option_1\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_1",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "avatar_relative_position",
+      "conditions": {
+        "fixed": [
+          {
+            "content": "{\"choice_id\": \"option_0\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_0",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "adapted": [
+          {
+            "content": "{\"choice_id\": \"option_0\"}",
+            "verdict": {
+              "accepted_format": true,
+              "semantic_correct": true,
+              "valid": true,
+              "choice_id": "option_0",
+              "reason": "correct choice"
+            },
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    }
+  ],
+  "max_calls": 32,
+  "paid_editor_cap": 3,
+  "heldout_sha256": "bea0e02678f82f5ef7b619210a57326d30cce61983bf2e4cf7b53eb7744c0475",
+  "framework": {
+    "domain": "creative-priority",
+    "n_tasks": 1,
+    "seed": null,
+    "done": 1,
+    "failed": 0,
+    "tasks": [
+      {
+        "task": "budget-preview",
+        "status": "ok",
+        "library_entries_before": {
+          "seq": 0
+        }
+      }
+    ]
+  },
+  "selection": {
+    "task_id": "budget-preview",
+    "mode": "seq",
+    "k": 1,
+    "chosen_id": "A",
+    "chosen_label": "c1",
+    "chosen_run_id": "priority_h2-oc-seq1/budget-preview/c1",
+    "chosen_is_base": false,
+    "why": "trivial pool: single final at k=1; delivered without a selector session",
+    "id_map": {
+      "A": "c1"
+    },
+    "dropped": [],
+    "n_candidates": 1,
+    "ok": true,
+    "fallback": false,
+    "error": "",
+    "usd": 0.0,
+    "experience": {},
+    "trivial": true,
+    "evidence": "deliverable",
+    "chosen_run_dir": "runs/local-priority-h2-v1/development/executions/priority_h2-oc-seq1/budget-preview/c1",
+    "chosen_tree_is_base": true,
+    "harness_fingerprint": "f32f824900b3c7b6"
+  },
+  "selected_guidance": "Choose the one supplied option that best satisfies every requirement in the user's brief.\nConsider constraints and requested next steps together.\nReturn only a strict JSON object with choice_id set to an option_N identifier.\n",
+  "guidance_changed": false,
+  "development_call_count": 7,
+  "editor_receipts": [
+    {
+      "label": "dom1.a1",
+      "mode": "model_guidance",
+      "attempts": 1,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md"
+      ],
+      "context_sha256": "01e6ae7dc8e9490e2fa435c92323b75c573677f30785ec5073cac4c8aa985ef7",
+      "content": "```json\n{\n \"systemprompt\": \"You are a production dispatch agent. Choose the one supplied option that best satisfies every requirement in the user's brief.\\n\\nANALYTIC MOVE: Reconcile the brief's constraints (e.g., budget, duration, camera movement, motion integrity) against each option's specifications. Identify options that violate any hard constraint.\\n\\nDECISION RULE: Prioritize options that satisfy all constraints over those that only satisfy some. If multiple options satisfy all constraints, choose the one that best fulfills the primary goal without altering the requested content.\\n\\nReturn only a strict JSON object with choice_id set to an option_N identifier.\"\n}\n```",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3543,
+        "completion_tokens": 149,
+        "total_tokens": 3692
+      },
+      "latency_seconds": 5.679262417019345,
+      "model_served": "google/gemma-4-31b-it",
+      "cost_usd": 0.0007682,
+      "accepted": true,
+      "guidance_sha256": "31f1723688c388976571500337ebc3eee715e28796a292622fa640755ddfea2a"
+    },
+    {
+      "label": "inv1.a1",
+      "mode": "model_guidance",
+      "attempts": 1,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md"
+      ],
+      "context_sha256": "01e6ae7dc8e9490e2fa435c92323b75c573677f30785ec5073cac4c8aa985ef7",
+      "content": "```json\n{\n  \"systemprompt\": \"Choose the one supplied option that best satisfies every requirement in the user's brief.\\nConsider constraints and requested next steps together.\\nReturn only a strict JSON object with choice_id set to an option_N identifier.\"\n}\n```",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3405,
+        "completion_tokens": 61,
+        "total_tokens": 3466
+      },
+      "latency_seconds": 3.5654437500052154,
+      "model_served": "google/gemma-4-31b-it",
+      "cost_usd": 0.0007054,
+      "accepted": true,
+      "guidance_sha256": "be0defd815cc423734750c1ef176e0ba64a270b5d194ad3a7e019d7897b0748f"
+    },
+    {
+      "label": "c1.a1",
+      "mode": "model_guidance",
+      "attempts": 1,
+      "included_files": [
+        "task.md",
+        "harness/systemprompt.md",
+        "rollouts/base1.md",
+        "decisions/dom1.md",
+        "decisions/inv1.md"
+      ],
+      "context_sha256": "f142e40e34bfd79082ad24b051a90febdf064178a6565fb492091e6d2935e91c",
+      "content": "```json\n{\n  \"systemprompt\": \"Choose the one supplied option that best satisfies every requirement in the user's brief.\\nConsider constraints and requested next steps together.\\nReturn only a strict JSON object with choice_id set to an option_N identifier.\"\n}\n```",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2980,
+        "completion_tokens": 61,
+        "total_tokens": 3041
+      },
+      "latency_seconds": 3.0967815830372274,
+      "model_served": "google/gemma-4-31b-it",
+      "cost_usd": 0.0006204,
+      "accepted": true,
+      "guidance_sha256": "be0defd815cc423734750c1ef176e0ba64a270b5d194ad3a7e019d7897b0748f"
+    }
+  ],
+  "development_verdicts": [
+    {
+      "accepted_format": true,
+      "semantic_correct": true,
+      "valid": true,
+      "choice_id": "option_3",
+      "reason": "correct choice"
+    },
+    {
+      "accepted_format": true,
+      "semantic_correct": true,
+      "valid": true,
+      "choice_id": "option_3",
+      "reason": "correct choice"
+    },
+    {
+      "accepted_format": true,
+      "semantic_correct": true,
+      "valid": true,
+      "choice_id": "option_3",
+      "reason": "correct choice"
+    },
+    {
+      "accepted_format": true,
+      "semantic_correct": true,
+      "valid": true,
+      "choice_id": "option_3",
+      "reason": "correct choice"
+    }
+  ]
+}

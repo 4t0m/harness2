@@ -43,3 +43,13 @@ User allows roughly10× additional spending when it improves experiments. Spend 
 ## Local inference update
 
 Ollama on the Mac is now live-verified. Installed older Qwen3 8B and30B-A3B Instruct Q4_K_M completed native menu trials (3/4 and4/4). The30B model also completed the actual relative-intent VRM render through the existing provider interface. See local-serving-checkpoint.md for first-load/warm timings, generation settings and exact identity limits. This qualifies a local Mac route, not dual5090 or RunPod serving. No new model was downloaded.
+
+## Local 8B actual Harness² priority experiment (2026-10-19)
+
+`evidence/local-priority-h2-v1.json` records 16 native Ollama Qwen3-8B calls and three hosted Gemma-4-31B editor calls through the real Harness² recursion. Sol implemented the adapter; Luna independently authored six heldouts without seeing development cases or editor outputs. The runner rotates option positions deterministically and freezes a fixture hash before inference. Host expected choices never enter the editor context.
+
+All six heldouts passed first try with fixed guidance and again with the selected guidance. However, the selected final tree was identical to baseline, despite three accepted intermediate editor outputs. This is **no demonstrated adaptation gain**. The earlier budget failure also did not reproduce under this revised prompt/interface. No correction calls were triggered. These are simple constraint choices, not generated choreography or judged visual quality.
+
+The 16 local calls used 225–352 input tokens, with median end-to-end latency 0.881 seconds (range 0.346–4.212 seconds, including initial loading). The three hosted edits reported $0.002094 total. Local energy and hardware costs were not measured. The local model is older Qwen3 8B, not the incoming Qwen generation.
+
+The new adapter checks semantic correctness separately from formatting, supports exact single-fence repair as an optional axis, and preserves call caps and receipts. Ten relevant adapter/fixture tests passed. Next useful test: multi-step state changes and harder combined constraints, frozen before tuning; do not reuse these six cases as unseen evaluation. The inherited editor prompt still contains production-dispatch wording, which should be made domain-specific before interpreting further adaptation comparisons.

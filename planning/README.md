@@ -33,4 +33,4 @@ The first custom executor should expose typed, narrow tools and return durable r
 
 Build a custom synthetic actor-planning adapter following the extension points in harness2/demo.py: task enumeration, source fixtures, base harness, execution and evidence. Use the same task oracle as the Hermes baseline. First run deterministic proposals, then a model-backed executor. Keep the evaluator outside editable harness trees. Do not shoehorn this into a legal or office benchmark just to reuse a runner.
 
-No actual local endpoint or fine-tuned weights are configured yet. The future dual-5090 host is a deployment target, not a benchmark result. Provider routes must be checked for actual API compatibility; OpenAI-compatible chat completions and Responses API are not interchangeable.
+An existing Mac Ollama endpoint has now been exercised with Qwen3 8B and 30B-A3B; see capability-status.md for measurements. No fine-tuned weights are configured. The future dual-5090 host is a deployment target, not a benchmark result. Provider routes must be checked for actual API compatibility; OpenAI-compatible chat completions and Responses API are not interchangeable.
