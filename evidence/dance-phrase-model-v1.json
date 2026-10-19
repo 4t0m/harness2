@@ -1,0 +1,2904 @@
+{
+  "scope": "Fixed planner and one bounded correction on independently authored new briefs. Not H2 learning, taste judgment, or production semantic verification.",
+  "sources": {
+    "harness2/dance_phrases.py": "80ea5e17135611d65f961a098575e080f80dc14f491fbd6d794dd1462ed69316",
+    "experiments/dance_phrase_cases.py": "bcc8f6648fac3b967ac6a2eab015ca3895fea7761499b8fdfbfe292b31eb2cc8",
+    "experiments/dance_phrase_probe.py": "fc62f699d34e17cc377365342f71da2297aca416fc289b4c0c804b12b79b06b4",
+    "harness2/bounded_json_http.py": "3a1c70854836ae77d437e9fae2f9278924be9b08e4a172d91e15952f10348990"
+  },
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "size": 7162405886
+    },
+    "hermes-lab-qwen3-8b:latest": {
+      "name": "hermes-lab-qwen3-8b:latest",
+      "digest": "ce2f25b8da1b2f736433c5d436bb28c61751bcc4710c6f13697e05170b685552",
+      "size": 5225388180
+    }
+  },
+  "cases": [
+    {
+      "id": "open_then_sway_and_pulse_either_order",
+      "request": "Rise out of rest. While open, include one sway and one pulse, in either order, then settle back to rest. Choose the variation independently for each move.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ],
+            [
+              "pulse",
+              "soft"
+            ],
+            [
+              "pulse",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ],
+            [
+              "pulse",
+              "soft"
+            ],
+            [
+              "pulse",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ]
+        ],
+        "move_counts": {
+          "sway": {
+            "min": 1,
+            "max": 1
+          },
+          "pulse": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "explicit_pulse_and_sway_variations",
+      "request": "Rise first. In the two open middle moves, do one sway softly and one pulse clearly, in either order. Settle last.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "pulse",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "pulse",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ]
+        ],
+        "move_counts": {
+          "sway": {
+            "min": 1,
+            "max": 1
+          },
+          "pulse": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "quiet_hold_rise_settle_hold",
+      "request": "Give the phrase a quiet opening and ending: hold in rest, rise, settle back to rest, and hold there to finish. Either listed variation is fine on each move.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "hold",
+              "soft"
+            ],
+            [
+              "hold",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "hold",
+              "soft"
+            ],
+            [
+              "hold",
+              "clear"
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "repeat_sway_through_open_middle",
+      "request": "Rise, keep the open section swaying for both middle moves, then settle. Pick soft or clear separately for each move.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ]
+        ],
+        "move_counts": {
+          "sway": {
+            "min": 2,
+            "max": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "last_correction_sets_middle_order",
+      "request": "Draft: rise clearly, pulse softly, sway clearly, settle softly. Final correction: keep the clear rise and soft settle, but put the soft sway before the soft pulse. The correction replaces only the two middle moves.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ]
+          ],
+          [
+            [
+              "pulse",
+              "soft"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "held_intro_then_open_choice",
+      "request": "Begin with a soft hold in rest, then rise clearly. For the open middle section choose either sway or pulse, softly. Finish with a clear settle.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "hold",
+              "soft"
+            ]
+          ],
+          [
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "pulse",
+              "soft"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "clear"
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "rise_pulse_optional_second_pulse",
+      "request": "Rise, then make the next move a clear pulse. For the following open move, either sway or pulse using a variation of your choice. Settle softly to end.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "pulse",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ],
+            [
+              "pulse",
+              "soft"
+            ],
+            [
+              "pulse",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ]
+          ]
+        ],
+        "move_counts": {
+          "pulse": {
+            "min": 1,
+            "max": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "open_sway_then_quiet_final_hold",
+      "request": "Rise into the open state, sway once, settle back into rest, and finish with a hold. Choose either variation for each move.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "hold",
+              "soft"
+            ],
+            [
+              "hold",
+              "clear"
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "infeasible_cases_offline_only": [
+    {
+      "id": "infeasible_settle_from_initial_rest",
+      "kind": "infeasible_transition",
+      "request": "The phrase starts in rest. Make settle the very first move, then rise, sway, and settle again. Use any listed variation for each move.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "infeasible_sway_after_return_to_rest",
+      "kind": "infeasible_transition",
+      "request": "Rise, settle all the way back to rest, sway next without rising again, and settle once more. Choose any listed variation for every move.",
+      "constraints": {
+        "allowed_options_by_slot": [
+          [
+            [
+              "rise",
+              "soft"
+            ],
+            [
+              "rise",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "sway",
+              "soft"
+            ],
+            [
+              "sway",
+              "clear"
+            ]
+          ],
+          [
+            [
+              "settle",
+              "soft"
+            ],
+            [
+              "settle",
+              "clear"
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "infeasible_solution_counts": {
+    "infeasible_settle_from_initial_rest": 0,
+    "infeasible_sway_after_return_to_rest": 0
+  },
+  "feasible_plan_counts": {
+    "open_then_sway_and_pulse_either_order": 32,
+    "explicit_pulse_and_sway_variations": 8,
+    "quiet_hold_rise_settle_hold": 16,
+    "repeat_sway_through_open_middle": 16,
+    "last_correction_sets_middle_order": 1,
+    "held_intro_then_open_choice": 2,
+    "rise_pulse_optional_second_pulse": 8,
+    "open_sway_then_quiet_final_hold": 16
+  },
+  "catalog_structurally_valid_plans": 208,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "moves": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "enum": [
+              "rise",
+              "sway",
+              "pulse",
+              "settle",
+              "hold",
+              "soft",
+              "clear"
+            ]
+          }
+        }
+      }
+    },
+    "required": [
+      "moves"
+    ],
+    "additionalProperties": false
+  },
+  "system": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings.",
+  "max_calls": 32,
+  "max_seconds_per_call": 20,
+  "max_output_tokens": 128,
+  "provider_calls_paid": 0,
+  "repair_policy": "Compiler errors returned verbatim. For structurally valid semantic failure, generic reminder only. Experimental oracle triggers repair; arbitrary prose mismatch detection is not a deployed capability.",
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "open_then_sway_and_pulse_either_order",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise out of rest. While open, include one sway and one pulse, in either order, then settle back to rest. Choose the variation independently for each move."
+        }
+      ],
+      "input_text_characters": 819,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:33.401035Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3622183500,
+        "load_duration": 3003448333,
+        "prompt_eval_count": 193,
+        "prompt_eval_duration": 179079000,
+        "eval_count": 27,
+        "eval_duration": 435274000
+      },
+      "total_duration": 3622183500,
+      "load_duration": 3003448333,
+      "prompt_eval_count": 193,
+      "prompt_eval_duration": 179079000,
+      "eval_count": 27,
+      "eval_duration": 435274000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "f43c3962dcdb896299681e1cf7bd8c16049803d1c35b8eb04bdeccb4a2c429ba",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "8a34315052d86bba562aa95bb2222768d5c887a125c3a782c7d982809becddbd",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 3.6842760000145063
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "explicit_pulse_and_sway_variations",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise first. In the two open middle moves, do one sway softly and one pulse clearly, in either order. Settle last."
+        }
+      ],
+      "input_text_characters": 778,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:34.400723Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 925927291,
+        "load_duration": 294042083,
+        "prompt_eval_count": 187,
+        "prompt_eval_duration": 163913000,
+        "eval_count": 27,
+        "eval_duration": 465366000
+      },
+      "total_duration": 925927291,
+      "load_duration": 294042083,
+      "prompt_eval_count": 187,
+      "prompt_eval_duration": 163913000,
+      "eval_count": 27,
+      "eval_duration": 465366000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}",
+      "compiled": true,
+      "violations": [
+        "case_constraint:1"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "271b2040c58a77976950d25ca0b1593ee6640de7628d6dde661d4198bc84ba35",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.9999344580573961
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "explicit_pulse_and_sway_variations",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise first. In the two open middle moves, do one sway softly and one pulse clearly, in either order. Settle last."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "The plan does not fully follow the brief. Re-read the original request, including order and final amendments, and return the corrected plan."
+        }
+      ],
+      "input_text_characters": 998,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:35.299853Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 821894125,
+        "load_duration": 300083458,
+        "prompt_eval_count": 251,
+        "prompt_eval_duration": 99008000,
+        "eval_count": 27,
+        "eval_duration": 419990000
+      },
+      "total_duration": 821894125,
+      "load_duration": 300083458,
+      "prompt_eval_count": 251,
+      "prompt_eval_duration": 99008000,
+      "eval_count": 27,
+      "eval_duration": 419990000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}",
+      "compiled": true,
+      "violations": [
+        "case_constraint:1"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "271b2040c58a77976950d25ca0b1593ee6640de7628d6dde661d4198bc84ba35",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.8930918750120327
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "quiet_hold_rise_settle_hold",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Give the phrase a quiet opening and ending: hold in rest, rise, settle back to rest, and hold there to finish. Either listed variation is fine on each move."
+        }
+      ],
+      "input_text_characters": 821,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:36.303652Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"hold\",\"soft\"],[\"rise\",\"clear\"],[\"settle\",\"soft\"],[\"hold\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 931474292,
+        "load_duration": 294876125,
+        "prompt_eval_count": 195,
+        "prompt_eval_duration": 166238000,
+        "eval_count": 26,
+        "eval_duration": 467955000
+      },
+      "total_duration": 931474292,
+      "load_duration": 294876125,
+      "prompt_eval_count": 195,
+      "prompt_eval_duration": 166238000,
+      "eval_count": 26,
+      "eval_duration": 467955000,
+      "content": "{\"moves\":[[\"hold\",\"soft\"],[\"rise\",\"clear\"],[\"settle\",\"soft\"],[\"hold\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "hold",
+          "soft"
+        ],
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "e1094765bb05609d65b357d7361fa63e9df6d00e8e8d063b0422601b0d923006",
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121",
+          "e15f7377c5062c0ba10e62f1582a7b2b2b2a689a404358003a0cfeee96b5bdf3"
+        ],
+        "sequence_sha256": "4854b943d15e9597bc886c8e7bc455b1844d06a337f74ff0eeec7bfafe763037",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0053943427783843395,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.0015371812694549836,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.002798810472909241,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 1.009722749935463
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "repeat_sway_through_open_middle",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise, keep the open section swaying for both middle moves, then settle. Pick soft or clear separately for each move."
+        }
+      ],
+      "input_text_characters": 781,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:37.282764Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 898011875,
+        "load_duration": 298011792,
+        "prompt_eval_count": 184,
+        "prompt_eval_duration": 163494000,
+        "eval_count": 28,
+        "eval_duration": 434205000
+      },
+      "total_duration": 898011875,
+      "load_duration": 298011792,
+      "prompt_eval_count": 184,
+      "prompt_eval_duration": 163494000,
+      "eval_count": 28,
+      "eval_duration": 434205000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "4cad4318340fd19f7585ba45b4ac6a11a4f2b72097cbf115b4f87249cc1f77b3",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.9697799169225618
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "last_correction_sets_middle_order",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Draft: rise clearly, pulse softly, sway clearly, settle softly. Final correction: keep the clear rise and soft settle, but put the soft sway before the soft pulse. The correction replaces only the two middle moves."
+        }
+      ],
+      "input_text_characters": 879,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:38.24209Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 885532542,
+        "load_duration": 295613333,
+        "prompt_eval_count": 204,
+        "prompt_eval_duration": 171496000,
+        "eval_count": 27,
+        "eval_duration": 415817000
+      },
+      "total_duration": 885532542,
+      "load_duration": 295613333,
+      "prompt_eval_count": 204,
+      "prompt_eval_duration": 171496000,
+      "eval_count": 27,
+      "eval_duration": 415817000,
+      "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [
+        "case_constraint:3"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "f43c3962dcdb896299681e1cf7bd8c16049803d1c35b8eb04bdeccb4a2c429ba",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "0d53e6f6126573286315d79536576f6fbe2b52596222f3cbf552b3756b050d70",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0028935482691470043,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.964675874914974
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "last_correction_sets_middle_order",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Draft: rise clearly, pulse softly, sway clearly, settle softly. Final correction: keep the clear rise and soft settle, but put the soft sway before the soft pulse. The correction replaces only the two middle moves."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "The plan does not fully follow the brief. Re-read the original request, including order and final amendments, and return the corrected plan."
+        }
+      ],
+      "input_text_characters": 1099,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:39.144911Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 822537584,
+        "load_duration": 300772250,
+        "prompt_eval_count": 268,
+        "prompt_eval_duration": 100479000,
+        "eval_count": 27,
+        "eval_duration": 418385000
+      },
+      "total_duration": 822537584,
+      "load_duration": 300772250,
+      "prompt_eval_count": 268,
+      "prompt_eval_duration": 100479000,
+      "eval_count": 27,
+      "eval_duration": 418385000,
+      "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [
+        "case_constraint:3"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "f43c3962dcdb896299681e1cf7bd8c16049803d1c35b8eb04bdeccb4a2c429ba",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "0d53e6f6126573286315d79536576f6fbe2b52596222f3cbf552b3756b050d70",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0028935482691470043,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.8929239580174908
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "held_intro_then_open_choice",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Begin with a soft hold in rest, then rise clearly. For the open middle section choose either sway or pulse, softly. Finish with a clear settle."
+        }
+      ],
+      "input_text_characters": 808,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:40.08081Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 871820541,
+        "load_duration": 287290750,
+        "prompt_eval_count": 191,
+        "prompt_eval_duration": 163390000,
+        "eval_count": 27,
+        "eval_duration": 418587000
+      },
+      "total_duration": 871820541,
+      "load_duration": 287290750,
+      "prompt_eval_count": 191,
+      "prompt_eval_duration": 163390000,
+      "eval_count": 27,
+      "eval_duration": 418587000,
+      "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [
+        "case_constraint:0",
+        "case_constraint:1"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "f43c3962dcdb896299681e1cf7bd8c16049803d1c35b8eb04bdeccb4a2c429ba",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "0d53e6f6126573286315d79536576f6fbe2b52596222f3cbf552b3756b050d70",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0028935482691470043,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.940070541924797
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "held_intro_then_open_choice",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Begin with a soft hold in rest, then rise clearly. For the open middle section choose either sway or pulse, softly. Finish with a clear settle."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "The plan does not fully follow the brief. Re-read the original request, including order and final amendments, and return the corrected plan."
+        }
+      ],
+      "input_text_characters": 1028,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:40.974408Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 814899583,
+        "load_duration": 294377250,
+        "prompt_eval_count": 255,
+        "prompt_eval_duration": 98037000,
+        "eval_count": 27,
+        "eval_duration": 419985000
+      },
+      "total_duration": 814899583,
+      "load_duration": 294377250,
+      "prompt_eval_count": 255,
+      "prompt_eval_duration": 98037000,
+      "eval_count": 27,
+      "eval_duration": 419985000,
+      "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [
+        "case_constraint:0",
+        "case_constraint:1"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "f43c3962dcdb896299681e1cf7bd8c16049803d1c35b8eb04bdeccb4a2c429ba",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "0d53e6f6126573286315d79536576f6fbe2b52596222f3cbf552b3756b050d70",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0028935482691470043,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.8859039579983801
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "rise_pulse_optional_second_pulse",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise, then make the next move a clear pulse. For the following open move, either sway or pulse using a variation of your choice. Settle softly to end."
+        }
+      ],
+      "input_text_characters": 815,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:41.992468Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"pulse\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"soft\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 945567875,
+        "load_duration": 293807625,
+        "prompt_eval_count": 194,
+        "prompt_eval_duration": 163859000,
+        "eval_count": 27,
+        "eval_duration": 485547000
+      },
+      "total_duration": 945567875,
+      "load_duration": 293807625,
+      "prompt_eval_count": 194,
+      "prompt_eval_duration": 163859000,
+      "eval_count": 27,
+      "eval_duration": 485547000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"pulse\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"soft\"]]}",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "513837e77e49422eb6c20343590c08cc44dce811cf892048bdc781526f2ca984",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0025089599196669405,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 1.022865041042678
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "open_sway_then_quiet_final_hold",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise into the open state, sway once, settle back into rest, and finish with a hold. Choose either variation for each move."
+        }
+      ],
+      "input_text_characters": 787,
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T06:13:43.00428Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"settle\",\"soft\"],[\"hold\",\"clear\"]]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 929806167,
+        "load_duration": 302736750,
+        "prompt_eval_count": 187,
+        "prompt_eval_duration": 167474000,
+        "eval_count": 27,
+        "eval_duration": 456974000
+      },
+      "total_duration": 929806167,
+      "load_duration": 302736750,
+      "prompt_eval_count": 187,
+      "prompt_eval_duration": 167474000,
+      "eval_count": 27,
+      "eval_duration": 456974000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"settle\",\"soft\"],[\"hold\",\"clear\"]]}",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121",
+          "e15f7377c5062c0ba10e62f1582a7b2b2b2a689a404358003a0cfeee96b5bdf3"
+        ],
+        "sequence_sha256": "cbd078b2232ce78e1b557cda4b8f56e9b5fc3cb0780687e6f3f163e90c49e92c",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0036387969882402125,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.002798810472909241,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 1.0034149159910157
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "open_sway_then_quiet_final_hold",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise into the open state, sway once, settle back into rest, and finish with a hold. Choose either variation for each move."
+        }
+      ],
+      "input_text_characters": 787,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:44.893301Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"settle\",\"clear\"],[\"hold\",\"soft\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1816912416,
+        "load_duration": 937368291,
+        "prompt_eval_count": 193,
+        "prompt_eval_duration": 384300000,
+        "eval_count": 24,
+        "eval_duration": 492038000
+      },
+      "total_duration": 1816912416,
+      "load_duration": 937368291,
+      "prompt_eval_count": 193,
+      "prompt_eval_duration": 384300000,
+      "eval_count": 24,
+      "eval_duration": 492038000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"settle\",\"clear\"],[\"hold\",\"soft\"]]}\n\n",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "settle",
+          "clear"
+        ],
+        [
+          "hold",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25",
+          "e1094765bb05609d65b357d7361fa63e9df6d00e8e8d063b0422601b0d923006"
+        ],
+        "sequence_sha256": "bd935eb945edc5bc98956814a2610858155663c86fcef07e7ce806299b643054",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.004007207649150306,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.0015371812694549836,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 1.8886113339103758
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "rise_pulse_optional_second_pulse",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise, then make the next move a clear pulse. For the following open move, either sway or pulse using a variation of your choice. Settle softly to end."
+        }
+      ],
+      "input_text_characters": 815,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:45.738622Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"pulse\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"soft\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 767044958,
+        "load_duration": 134251625,
+        "prompt_eval_count": 200,
+        "prompt_eval_duration": 129715000,
+        "eval_count": 24,
+        "eval_duration": 500466000
+      },
+      "total_duration": 767044958,
+      "load_duration": 134251625,
+      "prompt_eval_count": 200,
+      "prompt_eval_duration": 129715000,
+      "eval_count": 24,
+      "eval_duration": 500466000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"pulse\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"soft\"]]}\n\n",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "513837e77e49422eb6c20343590c08cc44dce811cf892048bdc781526f2ca984",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0025089599196669405,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.8457075409824029
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "held_intro_then_open_choice",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Begin with a soft hold in rest, then rise clearly. For the open middle section choose either sway or pulse, softly. Finish with a clear settle."
+        }
+      ],
+      "input_text_characters": 808,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:46.580416Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"hold\",\"soft\"],[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"clear\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 760088292,
+        "load_duration": 137567209,
+        "prompt_eval_count": 196,
+        "prompt_eval_duration": 129419999,
+        "eval_count": 24,
+        "eval_duration": 490603000
+      },
+      "total_duration": 760088292,
+      "load_duration": 137567209,
+      "prompt_eval_count": 196,
+      "prompt_eval_duration": 129419999,
+      "eval_count": 24,
+      "eval_duration": 490603000,
+      "content": "{\"moves\":[[\"hold\",\"soft\"],[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"settle\",\"clear\"]]}\n\n",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "hold",
+          "soft"
+        ],
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "e1094765bb05609d65b357d7361fa63e9df6d00e8e8d063b0422601b0d923006",
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "503542d448b00ed97af2cc818a01700d45436b537f75ed8bb4cb69485d4b81bb",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.004007207649150236,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.0015371812694549836,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.8342722910456359
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "last_correction_sets_middle_order",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Draft: rise clearly, pulse softly, sway clearly, settle softly. Final correction: keep the clear rise and soft settle, but put the soft sway before the soft pulse. The correction replaces only the two middle moves."
+        }
+      ],
+      "input_text_characters": 879,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:47.42465Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"soft\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 764647541,
+        "load_duration": 132734791,
+        "prompt_eval_count": 209,
+        "prompt_eval_duration": 131175000,
+        "eval_count": 24,
+        "eval_duration": 498330000
+      },
+      "total_duration": 764647541,
+      "load_duration": 132734791,
+      "prompt_eval_count": 209,
+      "prompt_eval_duration": 131175000,
+      "eval_count": 24,
+      "eval_duration": 498330000,
+      "content": "{\"moves\":[[\"rise\",\"clear\"],[\"sway\",\"soft\"],[\"pulse\",\"soft\"],[\"settle\",\"soft\"]]}\n\n",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "f43c3962dcdb896299681e1cf7bd8c16049803d1c35b8eb04bdeccb4a2c429ba",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "0866abd5a2dc6108132bff4840ce891ef3b0e73e2e1a281ed703f7c07cd15858",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0028935482691470043,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.006653530396676379,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.8455328339478001
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "repeat_sway_through_open_middle",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise, keep the open section swaying for both middle moves, then settle. Pick soft or clear separately for each move."
+        }
+      ],
+      "input_text_characters": 781,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:48.297024Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 789192708,
+        "load_duration": 134219291,
+        "prompt_eval_count": 191,
+        "prompt_eval_duration": 128687000,
+        "eval_count": 24,
+        "eval_duration": 523975000
+      },
+      "total_duration": 789192708,
+      "load_duration": 134219291,
+      "prompt_eval_count": 191,
+      "prompt_eval_duration": 128687000,
+      "eval_count": 24,
+      "eval_duration": 523975000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}\n\n",
+      "compiled": true,
+      "violations": [
+        "case_constraint:2",
+        "move_count_constraint:sway"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "271b2040c58a77976950d25ca0b1593ee6640de7628d6dde661d4198bc84ba35",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.8626870410516858
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "repeat_sway_through_open_middle",
+      "attempt": 1,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise, keep the open section swaying for both middle moves, then settle. Pick soft or clear separately for each move."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}\n\n"
+        },
+        {
+          "role": "user",
+          "content": "The plan does not fully follow the brief. Re-read the original request, including order and final amendments, and return the corrected plan."
+        }
+      ],
+      "input_text_characters": 1003,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:49.2709Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 894064083,
+        "load_duration": 131934083,
+        "prompt_eval_count": 251,
+        "prompt_eval_duration": 212017000,
+        "eval_count": 24,
+        "eval_duration": 547201000
+      },
+      "total_duration": 894064083,
+      "load_duration": 131934083,
+      "prompt_eval_count": 251,
+      "prompt_eval_duration": 212017000,
+      "eval_count": 24,
+      "eval_duration": 547201000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}\n\n",
+      "compiled": true,
+      "violations": [
+        "case_constraint:2",
+        "move_count_constraint:sway"
+      ],
+      "correct": false,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "271b2040c58a77976950d25ca0b1593ee6640de7628d6dde661d4198bc84ba35",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.9762434170115739
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "quiet_hold_rise_settle_hold",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Give the phrase a quiet opening and ending: hold in rest, rise, settle back to rest, and hold there to finish. Either listed variation is fine on each move."
+        }
+      ],
+      "input_text_characters": 821,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:50.182423Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"hold\",\"soft\"],[\"rise\",\"clear\"],[\"settle\",\"soft\"],[\"hold\",\"clear\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 830271542,
+        "load_duration": 132987959,
+        "prompt_eval_count": 200,
+        "prompt_eval_duration": 145465000,
+        "eval_count": 23,
+        "eval_duration": 549512000
+      },
+      "total_duration": 830271542,
+      "load_duration": 132987959,
+      "prompt_eval_count": 200,
+      "prompt_eval_duration": 145465000,
+      "eval_count": 23,
+      "eval_duration": 549512000,
+      "content": "{\"moves\":[[\"hold\",\"soft\"],[\"rise\",\"clear\"],[\"settle\",\"soft\"],[\"hold\",\"clear\"]]}\n\n",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "hold",
+          "soft"
+        ],
+        [
+          "rise",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ],
+        [
+          "hold",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "e1094765bb05609d65b357d7361fa63e9df6d00e8e8d063b0422601b0d923006",
+          "089ea064220f90c9dd404640d2e0171f1184a9e4ac89d9543c7ec086d3283592",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121",
+          "e15f7377c5062c0ba10e62f1582a7b2b2b2a689a404358003a0cfeee96b5bdf3"
+        ],
+        "sequence_sha256": "4854b943d15e9597bc886c8e7bc455b1844d06a337f74ff0eeec7bfafe763037",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.0053943427783843395,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.0015371812694549836,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.002798810472909241,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.9004570420365781
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "explicit_pulse_and_sway_variations",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise first. In the two open middle moves, do one sway softly and one pulse clearly, in either order. Settle last."
+        }
+      ],
+      "input_text_characters": 778,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:51.224776Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"], [\"sway\",\"soft\"], [\"pulse\",\"clear\"], [\"settle\",\"clear\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 971084000,
+        "load_duration": 123089125,
+        "prompt_eval_count": 193,
+        "prompt_eval_duration": 149401000,
+        "eval_count": 27,
+        "eval_duration": 696375000
+      },
+      "total_duration": 971084000,
+      "load_duration": 123089125,
+      "prompt_eval_count": 193,
+      "prompt_eval_duration": 149401000,
+      "eval_count": 27,
+      "eval_duration": 696375000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"], [\"sway\",\"soft\"], [\"pulse\",\"clear\"], [\"settle\",\"clear\"]]}\n\n",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "soft"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "8ca4a71fa13914da4bd21c41761c0330cc628c0c2050e6bd84776eff7506c13e",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "afef809bda7ada8c1d5e0e753dedb0c25166af95d12e0d7bf5a799f7135d0b25"
+        ],
+        "sequence_sha256": "2546a3fd17fb75b7e2147d5dac99500bbbcf6b14ae9c58d0378ec598e5238088",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002805621368536726,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.009386855175655438,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.030498989295853377,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.030498989295853377,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.030498989295853377,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 1.0447444589808583
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "open_then_sway_and_pulse_either_order",
+      "attempt": 0,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a short procedural dance from this exact catalog. Every move lasts two beats, at 120 BPM. Choose exactly four moves for eight beats. Start and finish at rest. Each move must start in the previous move's ending pose. Catalog: rise rest->open; sway open->open; pulse open->open; settle open->rest; hold rest->rest. Every move has soft and clear variations, which do not change its boundary pose. Follow the user's requested order and variations, including final amendments. Return only strict JSON {\"moves\":[[\"move_id\",\"soft|clear\"], ...]}. Use exact catalog identifiers and variation words. No extra fields, explanations, invented moves, coordinates or timings."
+        },
+        {
+          "role": "user",
+          "content": "Rise out of rest. While open, include one sway and one pulse, in either order, then settle back to rest. Choose the variation independently for each move."
+        }
+      ],
+      "input_text_characters": 819,
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T06:13:52.16762Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}\n\n"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 860605292,
+        "load_duration": 132354375,
+        "prompt_eval_count": 199,
+        "prompt_eval_duration": 149491000,
+        "eval_count": 24,
+        "eval_duration": 576260000
+      },
+      "total_duration": 860605292,
+      "load_duration": 132354375,
+      "prompt_eval_count": 199,
+      "prompt_eval_duration": 149491000,
+      "eval_count": 24,
+      "eval_duration": 576260000,
+      "content": "{\"moves\":[[\"rise\",\"soft\"],[\"sway\",\"clear\"],[\"pulse\",\"clear\"],[\"settle\",\"soft\"]]}\n\n",
+      "compiled": true,
+      "violations": [],
+      "correct": true,
+      "moves": [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ],
+      "motion_receipt": {
+        "catalog_sha256": "8f60e60f787aaf7de20ba10c501f7a9701556691ab17719ca0701b4704af9008",
+        "clip_sha256": [
+          "2f44e434ce7de6df7c862ea6e43c4ccb47421ee8f2cb6ecf06f3a584474a198e",
+          "2228bbabfbd998468a93cd27843bef80daf057e1aa089a5f1e310c874ed4d149",
+          "69a63a583339b43217dc2af0beb894fbb30bbe926dc3634a55342a39e1f5589f",
+          "c4a1863ed2aa801e7594cb5a82a4eef838148b8c71c215c66d2f95e8937ed121"
+        ],
+        "sequence_sha256": "271b2040c58a77976950d25ca0b1593ee6640de7628d6dde661d4198bc84ba35",
+        "validation": {
+          "valid": true,
+          "frame_count": 81,
+          "source_clip_frames": 21,
+          "seam_count": 3,
+          "max_seam_displacement_jump_m": 0.002939876450573151,
+          "source_clip_validation": [
+            {
+              "max_joint_delta_m": 0.02783852767284424,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.017145610322048113,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.012117349699105748,
+              "max_segment_error_m": 1.3877787807814457e-16
+            },
+            {
+              "max_joint_delta_m": 0.027838527672844168,
+              "max_segment_error_m": 1.3877787807814457e-16
+            }
+          ],
+          "max_joint_delta_m": 0.02783852767284424,
+          "max_segment_error_m": 1.3877787807814457e-16,
+          "full_rig_validation": {
+            "valid": true,
+            "frame_count": 81,
+            "duration_seconds": 4.0,
+            "max_joint_delta_m": 0.02783852767284424,
+            "max_skeletal_segment_error_m": 1.3877787807814457e-16,
+            "scope": "Technical screening only; not a biomechanics or artistic-quality result."
+          }
+        }
+      },
+      "wall_seconds": 0.9382153749465942
+    }
+  ],
+  "results": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "open_then_sway_and_pulse_either_order",
+      "attempts": [
+        0
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "explicit_pulse_and_sway_variations",
+      "attempts": [
+        1,
+        2
+      ],
+      "first_correct": false,
+      "final_correct": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "quiet_hold_rise_settle_hold",
+      "attempts": [
+        3
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "repeat_sway_through_open_middle",
+      "attempts": [
+        4
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "last_correction_sets_middle_order",
+      "attempts": [
+        5,
+        6
+      ],
+      "first_correct": false,
+      "final_correct": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "held_intro_then_open_choice",
+      "attempts": [
+        7,
+        8
+      ],
+      "first_correct": false,
+      "final_correct": false
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "rise_pulse_optional_second_pulse",
+      "attempts": [
+        9
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "open_sway_then_quiet_final_hold",
+      "attempts": [
+        10
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "open_sway_then_quiet_final_hold",
+      "attempts": [
+        11
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "rise_pulse_optional_second_pulse",
+      "attempts": [
+        12
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "held_intro_then_open_choice",
+      "attempts": [
+        13
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "last_correction_sets_middle_order",
+      "attempts": [
+        14
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "repeat_sway_through_open_middle",
+      "attempts": [
+        15,
+        16
+      ],
+      "first_correct": false,
+      "final_correct": false
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "quiet_hold_rise_settle_hold",
+      "attempts": [
+        17
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "explicit_pulse_and_sway_variations",
+      "attempts": [
+        18
+      ],
+      "first_correct": true,
+      "final_correct": true
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "open_then_sway_and_pulse_either_order",
+      "attempts": [
+        19
+      ],
+      "first_correct": true,
+      "final_correct": true
+    }
+  ],
+  "complete": true
+}

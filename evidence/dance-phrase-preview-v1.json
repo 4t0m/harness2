@@ -1,0 +1,97 @@
+{
+  "provenance": {
+    "model_evidence_sha256": "6086f6d7551612088d1b0616f04d07fd2c12b3cef1c3d5a056ff2ed1175fc3c8",
+    "selection": "First independently authored case; first accepted plan from each local model. Illustrative only; not selected for subjective quality.",
+    "models": [
+      "gemma4:e2b",
+      "hermes-lab-qwen3-8b:latest"
+    ],
+    "moves": [
+      [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "soft"
+        ],
+        [
+          "settle",
+          "clear"
+        ]
+      ],
+      [
+        [
+          "rise",
+          "soft"
+        ],
+        [
+          "sway",
+          "clear"
+        ],
+        [
+          "pulse",
+          "clear"
+        ],
+        [
+          "settle",
+          "soft"
+        ]
+      ]
+    ],
+    "model_calls": [
+      0,
+      19
+    ]
+  },
+  "labels": [
+    "A",
+    "B"
+  ],
+  "scope": "Illustrative accepted local-model phrase plans, not blinded human taste results.",
+  "tracks_sha256": "c2edb4f5ffd7acfa5e1ad8cb1e6f655e60d5069a8410c97fa4b137b7747dc2c7",
+  "renderer_sha256": "04e7a70d1d8f02f94c2c4e44ecee498017e6e3785189bfb53628a1261febe12f",
+  "readback": {
+    "frames_checked": 40,
+    "actors": 2,
+    "max_position_error_m": 1.0792048474807683e-07,
+    "max_segment_error_m": 1.348481926122247e-07,
+    "scope": "Actual rendered sample joint positions and segment lengths; not skinning, taste, or unsampled dynamics."
+  },
+  "readback_sha256": "9b3a7255cbd99cbf2c8bfecbd873c824ba6eea5a3e39283d840b045bccbf8f29",
+  "complete": true,
+  "path": "/Users/adom/Development/hermes-testing/runs/harness2-dance-phrases-v1/comparison.mp4",
+  "video": {
+    "width": 512,
+    "height": 320,
+    "avg_frame_rate": "10/1",
+    "duration": "4.000000",
+    "nb_read_frames": "40"
+  },
+  "video_sha256": "951e62793ee1356849b9db484ade3e58614b7ee5a28b49eb7c7952e235ec516d",
+  "visual_review": {
+    "method": "Parent inspected six frames decoded from encoded MP4",
+    "frame_indices": [
+      0,
+      10,
+      15,
+      22,
+      28,
+      39
+    ],
+    "finding": "Rise and return visible; planted stance consistent; sway/pulse variation differences subtle at this scale.",
+    "limits": "Sparse still review, not full-motion or human taste acceptance."
+  },
+  "wall_seconds": 1.666186208021827,
+  "acceptance_limits": "Joint-object readback does not verify bone-cylinder mesh endpoints or every encoded pixel; six decoded frames were inspected separately.",
+  "independent_review": {
+    "reviewer": "Sol subagent local_priority_adapter",
+    "result": "Recompiled all52 local/hosted raw replies; saved choices, receipts, violations and correctness match. No oracle fields in prompts/corrections. Scene-joint readback matches source tracks on40samples.",
+    "scope": "Read-only review; no human taste judgment."
+  }
+}

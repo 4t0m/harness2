@@ -1,0 +1,239 @@
+{
+  "scope": "Eight newly authored within-catalog briefs, one sample/model; correctness is host brief constraints, not taste. No learned adaptation. Hosted/local latency includes different runtimes and is not a hardware comparison.",
+  "models": [
+    {
+      "model": "gemma4:e2b",
+      "cases": 8,
+      "first_correct": 5,
+      "after_one_correction": 5,
+      "calls": 11,
+      "all_compiled": true,
+      "first_wall_median_s": 1.001674687024206,
+      "first_wall_range_s": [
+        0.940070541924797,
+        3.6842760000145063
+      ],
+      "input_tokens": {
+        "min": 184,
+        "max": 204,
+        "median": 192.0
+      },
+      "output_tokens": {
+        "min": 26,
+        "max": 28,
+        "median": 27.0
+      },
+      "input_text_characters": {
+        "min": 778,
+        "max": 879,
+        "median": 811.5
+      },
+      "reported_cost_usd": 0,
+      "failed_case_ids": [
+        "explicit_pulse_and_sway_variations",
+        "last_correction_sets_middle_order",
+        "held_intro_then_open_choice"
+      ],
+      "native_initial_decode_seconds_median": 0.44612399999999997,
+      "native_initial_decode_tokens_per_second_median": 60.557109043144735
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "cases": 8,
+      "first_correct": 7,
+      "after_one_correction": 7,
+      "calls": 9,
+      "all_compiled": true,
+      "first_wall_median_s": 0.8815720415441319,
+      "first_wall_range_s": [
+        0.8342722910456359,
+        1.8886113339103758
+      ],
+      "input_tokens": {
+        "min": 191,
+        "max": 209,
+        "median": 197.5
+      },
+      "output_tokens": {
+        "min": 23,
+        "max": 27,
+        "median": 24.0
+      },
+      "input_text_characters": {
+        "min": 778,
+        "max": 879,
+        "median": 811.5
+      },
+      "reported_cost_usd": 0,
+      "failed_case_ids": [
+        "repeat_sway_through_open_middle"
+      ],
+      "native_initial_decode_seconds_median": 0.5122205,
+      "native_initial_decode_tokens_per_second_median": 46.879508832145085
+    },
+    {
+      "model": "qwen/qwen3.6-35b-a3b",
+      "cases": 8,
+      "first_correct": 8,
+      "after_one_correction": 8,
+      "calls": 8,
+      "all_compiled": true,
+      "first_wall_median_s": 1.0006011454970576,
+      "first_wall_range_s": [
+        0.5507638329872862,
+        2.4799373750574887
+      ],
+      "input_tokens": {
+        "min": 187,
+        "max": 205,
+        "median": 193.5
+      },
+      "output_tokens": {
+        "min": 23,
+        "max": 80,
+        "median": 79.0
+      },
+      "input_text_characters": {
+        "min": 778,
+        "max": 879,
+        "median": 811.5
+      },
+      "reported_cost_usd": 0.0007433,
+      "failed_case_ids": []
+    },
+    {
+      "model": "qwen/qwen3.6-27b",
+      "cases": 8,
+      "first_correct": 8,
+      "after_one_correction": 8,
+      "calls": 8,
+      "all_compiled": true,
+      "first_wall_median_s": 0.8972530215396546,
+      "first_wall_range_s": [
+        0.7424907500389963,
+        2.6794244999764487
+      ],
+      "input_tokens": {
+        "min": 187,
+        "max": 205,
+        "median": 193.5
+      },
+      "output_tokens": {
+        "min": 23,
+        "max": 41,
+        "median": 24.0
+      },
+      "input_text_characters": {
+        "min": 778,
+        "max": 879,
+        "median": 811.5
+      },
+      "reported_cost_usd": 0.00091271,
+      "failed_case_ids": []
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "cases": 8,
+      "first_correct": 8,
+      "after_one_correction": 8,
+      "calls": 8,
+      "all_compiled": true,
+      "first_wall_median_s": 0.9839827500400133,
+      "first_wall_range_s": [
+        0.7478011249331757,
+        1.7916857079835609
+      ],
+      "input_tokens": {
+        "min": 196,
+        "max": 333,
+        "median": 266.0
+      },
+      "output_tokens": {
+        "min": 26,
+        "max": 32,
+        "median": 27.0
+      },
+      "input_text_characters": {
+        "min": 778,
+        "max": 879,
+        "median": 811.5
+      },
+      "reported_cost_usd": 0.000193346,
+      "failed_case_ids": []
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "cases": 8,
+      "first_correct": 8,
+      "after_one_correction": 8,
+      "calls": 8,
+      "all_compiled": true,
+      "first_wall_median_s": 1.0580545619595796,
+      "first_wall_range_s": [
+        0.42976316693238914,
+        3.7951527499826625
+      ],
+      "input_tokens": {
+        "min": 189,
+        "max": 208,
+        "median": 196.5
+      },
+      "output_tokens": {
+        "min": 26,
+        "max": 32,
+        "median": 27.0
+      },
+      "input_text_characters": {
+        "min": 778,
+        "max": 879,
+        "median": 811.5
+      },
+      "reported_cost_usd": 0.0007235550000000001,
+      "failed_case_ids": []
+    }
+  ],
+  "source_sha256": {
+    "dance-phrase-model-v1.json": "6086f6d7551612088d1b0616f04d07fd2c12b3cef1c3d5a056ff2ed1175fc3c8",
+    "dance-phrase-hosted-v1.json": "374e13879c5d461c0ff1962a0e6ea550f9b57054e38b15cc24473b116ed659f8"
+  },
+  "dance-phrase-model-v1.json": {
+    "calls": 20,
+    "reported_cost_usd": 0,
+    "cost_unknown": false,
+    "feasible_counts": {
+      "open_then_sway_and_pulse_either_order": 32,
+      "explicit_pulse_and_sway_variations": 8,
+      "quiet_hold_rise_settle_hold": 16,
+      "repeat_sway_through_open_middle": 16,
+      "last_correction_sets_middle_order": 1,
+      "held_intro_then_open_choice": 2,
+      "rise_pulse_optional_second_pulse": 8,
+      "open_sway_then_quiet_final_hold": 16
+    },
+    "infeasible_offline_counts": {
+      "infeasible_settle_from_initial_rest": 0,
+      "infeasible_sway_after_return_to_rest": 0
+    }
+  },
+  "dance-phrase-hosted-v1.json": {
+    "calls": 32,
+    "reported_cost_usd": 0.002572911,
+    "cost_unknown": false,
+    "feasible_counts": {
+      "open_then_sway_and_pulse_either_order": 32,
+      "explicit_pulse_and_sway_variations": 8,
+      "quiet_hold_rise_settle_hold": 16,
+      "repeat_sway_through_open_middle": 16,
+      "last_correction_sets_middle_order": 1,
+      "held_intro_then_open_choice": 2,
+      "rise_pulse_optional_second_pulse": 8,
+      "open_sway_then_quiet_final_hold": 16
+    },
+    "infeasible_offline_counts": {
+      "infeasible_settle_from_initial_rest": 0,
+      "infeasible_sway_after_return_to_rest": 0
+    }
+  },
+  "total_calls": 52,
+  "reported_cost_usd": 0.002572911
+}
