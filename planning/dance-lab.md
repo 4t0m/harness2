@@ -1,0 +1,85 @@
+# Dance lab: choreography, motion and personal taste
+
+User direction: an ambitious Harness²/ChatGPT project for compelling dance, with local-model planning/staging and GPU execution. Many dance styles and subjective taste matter. Repeatedly finding source clips should not be the main workflow. This is a proposed project, not a working dance generator.
+
+## Useful end state
+
+Give the system a track or beat structure, a character/rig, a mood and a few preferences. Receive several short, visibly distinct dance phrases with synchronized previews. Choose appealing moments or explain what feels wrong; revise those spans without losing the good parts. Later assemble longer choreography with variation, buildup and resolution. Keep personal preference separate from physical correctness and genre conventions.
+
+ChatGPT/Sol can serve as interactive choreographic director and help turn informal feedback into experiments. A local model can select and sequence motion phrases, manage constraints and stage jobs. A motion generator/retargeter and renderer do GPU work. Harness² is an offline optimizer of the planning/tool workflow between auditions; it should not be responsible for every frame or asked to learn personal taste solely from model-judge scores.
+
+## Representation: score plus executable motion
+
+A symbolic score describes timing and intent; it is not evidence that a body can perform the dance. Every executable move references an actual tested motion asset or a motion-generator job that has returned valid output.
+
+Each motion phrase carries:
+- Asset/version and provenance; rig/retargeting compatibility.
+- Duration in beats, tempo range and permissible time scaling.
+- Entry/exit stance, supporting foot, heading and root position/velocity.
+- Contact events, turning/travel envelope and required floor space.
+- Energy, amplitude, rhythm accents, body-part emphasis and stylistic tags.
+- Transition compatibility and known visual limitations.
+
+Tags support search; they do not establish stylistic authenticity. Learn what tags are useful through auditions rather than assuming a universal dance taxonomy. Cultural traditions and attribution belong in provenance, with uncertainty retained.
+
+A scene score adds phrase IDs, beat offsets, intensity, facing, floor path, transition IDs, optional mirroring and camera cues. The compiler resolves these into rig motion. Mirroring is only allowed if contacts/handedness and partner constraints remain valid. Root motion and joint motion need consistent coordinates; no teleporting between phrases.
+
+## Working without constant source hunting
+
+1. Start with a small, reusable set of licensed/owned motion phrases or procedurally authored rig motions. Qualify quality and compatibility once.
+2. Add text-conditioned motion generation if a chosen tool supports the actual rig/output contract. Preserve its generated artifacts and provenance; do not assume text-to-motion alone produces polished choreography.
+3. Retrieve from that library by entry/exit state and musical intent. Request new material only for a specific missing capability, such as a turn ending on the left foot.
+4. Keep accepted generated phrases and transitions, so each round improves the reusable collection rather than returning to a blank search page.
+5. Make external reference search optional: a user may supply a clip or name a tradition, but ordinary auditions should run from a brief and the existing library.
+
+No motion backend, dataset license, trained weights or GPU recipe is selected by this note. Verify primary documentation, licensing and artifacts when choosing one. Do not present generated approximations as faithful examples of a named dance tradition without review.
+
+## Two independent evaluation layers
+
+**Execution checks:** valid skeleton, finite joint data, joint-limit compliance, foot-contact plausibility, sliding, self/partner collisions, root continuity, balance proxies, beat timing, duration and decoded rendered output. Balance proxies and contact heuristics are screening signals, not proof of biomechanical feasibility. Stylized/anime constraints may deliberately differ from human biomechanics; declare them before judging.
+
+**Taste review:** groove, phrasing, musicality, anticipation/release, expressive clarity, surprise, coherence, appropriate repetition and character fit. Let the user choose which qualities matter for a given song. A clean physical score can still be boring. A compelling stylized move may violate a generic realism metric. Camera/editing can conceal motion defects or manufacture excitement, so first compare a fixed camera and later judge cinematography separately.
+
+Use short blind A/B auditions, with “both”, “neither” and timestamped keep/change regions. Ask sparse questions that change the next candidate. Keep absolute rejection reasons separate from relative preference. Do not train one scalar “good dance” score from unrelated genres, moods and characters.
+
+## First experiment ladder
+
+| Stage | Deliverable | What would count as evidence |
+|---|---|---|
+| D0 | Synthetic 8-beat phrase score from a tiny atlas | Semantic intent, entry/exit contacts and timing pass host checks; no claim of dancing |
+| D1 | Same score executed on one neutral rig | Decoded joint tracks and fixed-camera preview; inspect continuity |
+| D2 | Three 8–16beat variants using identical assets | Visible variation in rhythm/energy/order; human ranking |
+| D3 | Revise one disliked span | Preserve accepted neighboring motion and beat alignment |
+| D4 | Add a new generated phrase | Actual output fits rig/contact/transition contract and improves options |
+| D5 | 32beat sequence with motif and variation | Human phrase-level coherence; track cumulative drift/repetition |
+| D6 | Retarget accepted choreography to anime avatar | Contact, proportions and expressiveness survive; original retained |
+| D7 | Export scene/reference pack for H3 | Verify H3's real accepted interface; compare motion fidelity after generation |
+| D8 | Duet/partner choreography | Shared timing, spacing, contact and collision checks; higher-risk complexity |
+
+Start with no music upload: explicit beat times/BPM and synthetic rhythm suffice for contract tests. When using actual music, distinguish onset/beat/downbeat/phrase detection confidence and allow correction. A BPM number alone is not musical phrasing; tempo drift and syncopation must be represented.
+
+## What the learning harness can change
+
+Allowed adaptations: planning prompt, compact phrase descriptors, retrieval ranking, candidate breadth, transition-selection guidance, error-feedback format and retry allocation. Track all versions and compute costs.
+
+Host-owned and frozen during comparison: source motion, rig definition, safety/continuity thresholds, musical timeline, held-out clips, completed artifact receipts and user feedback labels. A model cannot improve its score by weakening foot-sliding detection or redefining the desired beat.
+
+Compare: fixed planner; one constrained correction; adapted planner; later tuned model with fixed harness; tuned model plus adapted harness. Use the same motion backend and candidate budget first. If both planner and generator change, label the joint intervention rather than attributing gains to Harness² alone.
+
+Do not overfit to a single preferred sequence. Hold out songs/rhythmic patterns, phrase families, rigs and preference sessions. Retest previous favorites for regression while allowing taste to depend on context. A user-approved sequence can seed training only with explicit provenance and appropriate permission.
+
+## Efficient model allocation
+
+- Tiny/small model: retrieve legal next phrase, choose bounded intensity/facing, reject incompatible move, route feedback to a span.
+- Compact MoE: plan an8–32beat sequence, create controlled alternatives, manage jobs and repair a transition.
+- Dense model/ChatGPT: interpret expressive direction, identify why a sequence feels flat, propose motif/buildup structure and help formulate comparative auditions.
+- GPU motion system: generate/retarget/blend/render. Its useful output rate and failure cost matter more than language-model tokens/s.
+- Deterministic runtime: timing, pose interpolation, leases, rendering dispatch and output checks.
+
+## Cheap first batch and stop rules
+
+Prepare D0 without model calls; include failed transitions, impossible tempo scaling and malformed move IDs. Then a small matched planner batch with held-out move names and rhythms. Advance to D1 only after a real backend/asset/rig contract is verified. Use thumbnails/low-resolution fixed-camera previews before expensive final rendering. Cache unchanged motion and rerender only the edited span plus transition margins.
+
+Cap proposals, generated seconds, render resolution, retries and wall time separately. Stop a round if variants are physically invalid, near-duplicates or insufficiently distinct for useful preference feedback. Report those failures instead of asking the user to rank noise. No rented GPU is needed for the initial symbolic tests; obtain a current finite budget before GPU generation/training.
+
+Success is not “the model wrote a dance plan.” It is a sequence the user finds compelling, with reusable motion and a cheaper/more reliable path to the next good sequence.

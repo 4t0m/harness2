@@ -12,6 +12,7 @@ from harness2.core.schedule import run_domain
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--name', default='gemma-improver-wiring')
+    parser.add_argument('--policy-fields', action='store_true')
     args=parser.parse_args()
     if not args.name.replace('-', '').isalnum():
         raise SystemExit('invalid run name')
@@ -21,10 +22,10 @@ def main():
     adapter=ActorAdapter(root)
     proposer=ActorImprover(adapter.spec.channels['proposer'],base_url='https://openrouter.ai/api/v1',
         model='google/gemma-4-26b-a4b-it',audit_dir=root/'improver-receipts',max_provider_calls=3,
-        request_timeout=25,max_output_tokens=512)
+        request_timeout=25,max_output_tokens=512,policy_fields=args.policy_fields)
     report={'scope':'live model guidance edits within actual Harness2; scripted solver; deliberately planted policy fault',
             'limits':['Four possible policy combinations only','Scripted selection and NO_ENTRY memory','Not evidence of real solver improvement or general creative quality'],
-            'heldout_used_for_editing':False}
+            'heldout_used_for_editing':False, 'policy_fields':args.policy_fields}
     def deadline(*_):
         raise TimeoutError('outer improver trial deadline')
     signal.signal(signal.SIGALRM,deadline)

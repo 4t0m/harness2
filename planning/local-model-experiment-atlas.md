@@ -208,3 +208,7 @@ Defer always-on microphone capture, large GPU sweeps, whole-model fine-tunes, ex
 - runs/live-avatar/receipt.json: local failed bridge attempt, no confirmed delivery or cleanup; ignored local receipt.
 
 All evidence filenames above are under evidence/ unless otherwise specified. Source model facts remain in model-task-portfolio.md; this atlas is our proposed experimental design.
+
+## Expansion: dance generation and choreography
+
+See dance-lab.md for D0–D8: symbolic phrase scores, rig playback, taste auditions, selective revisions, new motion generation, motif development, anime retargeting, H3 export and partner dance. This extends the104-entry initial atlas; no dance backend or visual dance result is claimed. Primary objective: compelling user-preferred motion with reusable assets, rather than repeated source-clip hunting.
