@@ -1,0 +1,1484 @@
+{
+  "scope": "local multi-cue scene planning and bounded repair; no adaptation, walking or taste claim",
+  "models": {
+    "gemma4:e2b": {
+      "name": "gemma4:e2b",
+      "digest": "7fbdbf8f5e45a75bb122155ed546e765b4d9c53a1285f62fd9f506baa1c5a47e",
+      "size": 7162405886
+    },
+    "hermes-lab-qwen3-8b:latest": {
+      "name": "hermes-lab-qwen3-8b:latest",
+      "digest": "ce2f25b8da1b2f736433c5d436bb28c61751bcc4710c6f13697e05170b685552",
+      "size": 5225388180
+    }
+  },
+  "fixture_sha256": "9a7d2e68b6a77c0bd66cdb2bf5ffbe865f23ccc97336bc4dd891e96d93148696",
+  "sources": {
+    "harness2/actor_staging.py": "a449c0c42628289d021ba25d49322dc917fb15b05034fc936fb2688b8d12bcbe",
+    "experiments/actor_staging_probe.py": "b11297f91a0c27b09564830d19497b99b2a39e577e8391b6a9105aceb2834723"
+  },
+  "schema": {
+    "type": "object",
+    "required": [
+      "scene_revision",
+      "placements",
+      "cues"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "scene_revision": {
+        "type": "string"
+      },
+      "placements": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "object",
+          "required": [
+            "actor_id",
+            "anchor_id",
+            "side"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "actor_id": {
+              "type": "string"
+            },
+            "anchor_id": {
+              "type": "string"
+            },
+            "side": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right"
+              ]
+            }
+          }
+        }
+      },
+      "cues": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "required": [
+            "slot",
+            "actor_id",
+            "gesture",
+            "variation"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "slot": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "actor_id": {
+              "type": "string"
+            },
+            "gesture": {
+              "type": "string",
+              "enum": [
+                "wave",
+                "nod",
+                "neutral"
+              ]
+            },
+            "variation": {
+              "type": "string",
+              "enum": [
+                "soft",
+                "clear"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "plinth_pair_intro",
+      "scene": {
+        "revision": "stage-demo-r4",
+        "anchor": {
+          "id": "stone_plinth",
+          "x_m": 0.0
+        },
+        "actor_ids": [
+          "actor_rowan_17",
+          "actor_ivo_42"
+        ]
+      },
+      "request": "Stage Rowan on the screen-left side of the stone plinth and Ivo on its screen-right side. Keep both roots in place throughout the cues. At the first cue, Rowan gives a soft wave; at the second, Ivo gives a clear nod. At the third cue, Rowan is neutral, softly. Each cue begins at its numbered slot, with two seconds per slot.",
+      "expected": {
+        "placements": [
+          {
+            "actor_id": "actor_rowan_17",
+            "anchor_id": "stone_plinth",
+            "side": "left"
+          },
+          {
+            "actor_id": "actor_ivo_42",
+            "anchor_id": "stone_plinth",
+            "side": "right"
+          }
+        ],
+        "cues": [
+          {
+            "slot": 0,
+            "actor_id": "actor_rowan_17",
+            "gesture": "wave",
+            "variation": "soft"
+          },
+          {
+            "slot": 1,
+            "actor_id": "actor_ivo_42",
+            "gesture": "nod",
+            "variation": "clear"
+          },
+          {
+            "slot": 2,
+            "actor_id": "actor_rowan_17",
+            "gesture": "neutral",
+            "variation": "soft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gallery_roles_reversed",
+      "scene": {
+        "revision": "gallery-layout-12",
+        "anchor": {
+          "id": "blue_marker",
+          "x_m": 0.35
+        },
+        "actor_ids": [
+          "unit_mica_08",
+          "unit_sol_31"
+        ]
+      },
+      "request": "For the blue marker, put Sol on screen-left and Mica on screen-right. Do not move either actor's root. At cue 0, Mica nods clearly; at cue 1, Sol waves clearly. At cue 2, Mica is neutral with soft variation. The numbered cue slots are two seconds apart in duration.",
+      "expected": {
+        "placements": [
+          {
+            "actor_id": "unit_sol_31",
+            "anchor_id": "blue_marker",
+            "side": "left"
+          },
+          {
+            "actor_id": "unit_mica_08",
+            "anchor_id": "blue_marker",
+            "side": "right"
+          }
+        ],
+        "cues": [
+          {
+            "slot": 0,
+            "actor_id": "unit_mica_08",
+            "gesture": "nod",
+            "variation": "clear"
+          },
+          {
+            "slot": 1,
+            "actor_id": "unit_sol_31",
+            "gesture": "wave",
+            "variation": "clear"
+          },
+          {
+            "slot": 2,
+            "actor_id": "unit_mica_08",
+            "gesture": "neutral",
+            "variation": "soft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "archive_nod_then_wave",
+      "scene": {
+        "revision": "archive-stage-b9",
+        "anchor": {
+          "id": "archive_stand",
+          "x_m": -0.4
+        },
+        "actor_ids": [
+          "performer_north_6",
+          "performer_kite_29"
+        ]
+      },
+      "request": "Place Kite to the screen-right of the archive stand and North to its screen-left. Keep their roots stationary. North should nod clearly in slot 0; Kite should wave softly in slot 1; and Kite should be neutral with soft variation in slot 2. Each slot lasts two seconds. Nod comes before the wave.",
+      "expected": {
+        "placements": [
+          {
+            "actor_id": "performer_north_6",
+            "anchor_id": "archive_stand",
+            "side": "left"
+          },
+          {
+            "actor_id": "performer_kite_29",
+            "anchor_id": "archive_stand",
+            "side": "right"
+          }
+        ],
+        "cues": [
+          {
+            "slot": 0,
+            "actor_id": "performer_north_6",
+            "gesture": "nod",
+            "variation": "clear"
+          },
+          {
+            "slot": 1,
+            "actor_id": "performer_kite_29",
+            "gesture": "wave",
+            "variation": "soft"
+          },
+          {
+            "slot": 2,
+            "actor_id": "performer_kite_29",
+            "gesture": "neutral",
+            "variation": "soft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiet_checkpoint_pair",
+      "scene": {
+        "revision": "checkpoint-scene-5c",
+        "anchor": {
+          "id": "floor_compass",
+          "x_m": 0.6
+        },
+        "actor_ids": [
+          "guest_elm_53",
+          "guest_rill_14"
+        ]
+      },
+      "request": "At the floor compass, put Elm on screen-right and Rill on screen-left. Keep both actors planted without root travel. Make the whole sequence quiet: Elm gives a soft wave in slot 0, Rill gives a soft nod in slot 1, and Rill is neutral with soft variation in slot 2. Every slot lasts two seconds.",
+      "expected": {
+        "placements": [
+          {
+            "actor_id": "guest_rill_14",
+            "anchor_id": "floor_compass",
+            "side": "left"
+          },
+          {
+            "actor_id": "guest_elm_53",
+            "anchor_id": "floor_compass",
+            "side": "right"
+          }
+        ],
+        "cues": [
+          {
+            "slot": 0,
+            "actor_id": "guest_elm_53",
+            "gesture": "wave",
+            "variation": "soft"
+          },
+          {
+            "slot": 1,
+            "actor_id": "guest_rill_14",
+            "gesture": "nod",
+            "variation": "soft"
+          },
+          {
+            "slot": 2,
+            "actor_id": "guest_rill_14",
+            "gesture": "neutral",
+            "variation": "soft"
+          }
+        ]
+      }
+    }
+  ],
+  "calls": [
+    {
+      "model": "gemma4:e2b",
+      "case_id": "plinth_pair_intro",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"stage-demo-r4\", \"anchor\": {\"id\": \"stone_plinth\", \"x_m\": 0.0}, \"actor_ids\": [\"actor_rowan_17\", \"actor_ivo_42\"]}\nRequest: Stage Rowan on the screen-left side of the stone plinth and Ivo on its screen-right side. Keep both roots in place throughout the cues. At the first cue, Rowan gives a soft wave; at the second, Ivo gives a clear nod. At the third cue, Rowan is neutral, softly. Each cue begins at its numbered slot, with two seconds per slot."
+        }
+      ],
+      "input_text_characters": 966,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:29:44.49898Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"stage-demo-r4\",\n  \"placements\": [\n    {\n      \"actor_id\": \"actor_rowan_17\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"actor_ivo_42\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_ivo_42\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 7614961333,
+        "load_duration": 2992345042,
+        "prompt_eval_count": 265,
+        "prompt_eval_duration": 237741000,
+        "eval_count": 261,
+        "eval_duration": 4381928000
+      },
+      "total_duration": 7614961333,
+      "load_duration": 2992345042,
+      "prompt_eval_count": 265,
+      "prompt_eval_duration": 237741000,
+      "eval_count": 261,
+      "eval_duration": 4381928000,
+      "verdict": {
+        "compiled": false,
+        "semantic_correct": false,
+        "reason": "cues must cover slots 0, 1, 2 exactly once"
+      },
+      "wall_seconds": 7.616235624998808
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "plinth_pair_intro",
+      "kind": "bounded_correction",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"stage-demo-r4\", \"anchor\": {\"id\": \"stone_plinth\", \"x_m\": 0.0}, \"actor_ids\": [\"actor_rowan_17\", \"actor_ivo_42\"]}\nRequest: Stage Rowan on the screen-left side of the stone plinth and Ivo on its screen-right side. Keep both roots in place throughout the cues. At the first cue, Rowan gives a soft wave; at the second, Ivo gives a clear nod. At the third cue, Rowan is neutral, softly. Each cue begins at its numbered slot, with two seconds per slot."
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"stage-demo-r4\",\n  \"placements\": [\n    {\n      \"actor_id\": \"actor_rowan_17\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"actor_ivo_42\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_ivo_42\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Validation feedback: cues must cover slots 0, 1, 2 exactly once Return a corrected complete JSON plan."
+        }
+      ],
+      "input_text_characters": 1706,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:29:49.367799Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"stage-demo-r4\",\n  \"placements\": [\n    {\n      \"actor_id\": \"actor_rowan_17\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"actor_ivo_42\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_ivo_42\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 4865676666,
+        "load_duration": 279818833,
+        "prompt_eval_count": 559,
+        "prompt_eval_duration": 84311000,
+        "eval_count": 261,
+        "eval_duration": 4498567000
+      },
+      "total_duration": 4865676666,
+      "load_duration": 279818833,
+      "prompt_eval_count": 559,
+      "prompt_eval_duration": 84311000,
+      "eval_count": 261,
+      "eval_duration": 4498567000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "stage-demo-r4",
+          "actors": [
+            {
+              "id": "actor_rowan_17",
+              "x_m": -0.85,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "actor_ivo_42",
+              "x_m": 0.85,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "actor_rowan_17",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "actor_ivo_42",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "actor_rowan_17",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 4.867140540969558
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "gallery_roles_reversed",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"gallery-layout-12\", \"anchor\": {\"id\": \"blue_marker\", \"x_m\": 0.35}, \"actor_ids\": [\"unit_mica_08\", \"unit_sol_31\"]}\nRequest: For the blue marker, put Sol on screen-left and Mica on screen-right. Do not move either actor's root. At cue 0, Mica nods clearly; at cue 1, Sol waves clearly. At cue 2, Mica is neutral with soft variation. The numbered cue slots are two seconds apart in duration."
+        }
+      ],
+      "input_text_characters": 907,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:29:54.42349Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"gallery-layout-12\",\n  \"placements\": [\n    {\n      \"actor_id\": \"unit_sol_31\",\n      \"anchor_id\": \"blue_marker\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"unit_mica_08\",\n      \"anchor_id\": \"blue_marker\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"unit_mica_08\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"unit_sol_31\",\n      \"gesture\": \"wave\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"unit_mica_08\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5051641541,
+        "load_duration": 293861708,
+        "prompt_eval_count": 255,
+        "prompt_eval_duration": 242081000,
+        "eval_count": 256,
+        "eval_duration": 4511996000
+      },
+      "total_duration": 5051641541,
+      "load_duration": 293861708,
+      "prompt_eval_count": 255,
+      "prompt_eval_duration": 242081000,
+      "eval_count": 256,
+      "eval_duration": 4511996000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "gallery-layout-12",
+          "actors": [
+            {
+              "id": "unit_mica_08",
+              "x_m": 1.2,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "unit_sol_31",
+              "x_m": -0.5,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "unit_mica_08",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "unit_sol_31",
+              "gesture": "wave",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "unit_mica_08",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 5.052840583026409
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "archive_nod_then_wave",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"archive-stage-b9\", \"anchor\": {\"id\": \"archive_stand\", \"x_m\": -0.4}, \"actor_ids\": [\"performer_north_6\", \"performer_kite_29\"]}\nRequest: Place Kite to the screen-right of the archive stand and North to its screen-left. Keep their roots stationary. North should nod clearly in slot 0; Kite should wave softly in slot 1; and Kite should be neutral with soft variation in slot 2. Each slot lasts two seconds. Nod comes before the wave."
+        }
+      ],
+      "input_text_characters": 949,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:29:59.727393Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"archive-stage-b9\",\n  \"placements\": [\n    {\n      \"actor_id\": \"performer_north_6\",\n      \"anchor_id\": \"archive_stand\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"performer_kite_29\",\n      \"anchor_id\": \"archive_stand\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"performer_north_6\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"performer_kite_29\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"performer_kite_29\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5300409708,
+        "load_duration": 285476375,
+        "prompt_eval_count": 254,
+        "prompt_eval_duration": 269479000,
+        "eval_count": 259,
+        "eval_duration": 4742180000
+      },
+      "total_duration": 5300409708,
+      "load_duration": 285476375,
+      "prompt_eval_count": 254,
+      "prompt_eval_duration": 269479000,
+      "eval_count": 259,
+      "eval_duration": 4742180000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "archive-stage-b9",
+          "actors": [
+            {
+              "id": "performer_north_6",
+              "x_m": -1.25,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "performer_kite_29",
+              "x_m": 0.44999999999999996,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "performer_north_6",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "performer_kite_29",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "performer_kite_29",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 5.302975499886088
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "quiet_checkpoint_pair",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"checkpoint-scene-5c\", \"anchor\": {\"id\": \"floor_compass\", \"x_m\": 0.6}, \"actor_ids\": [\"guest_elm_53\", \"guest_rill_14\"]}\nRequest: At the floor compass, put Elm on screen-right and Rill on screen-left. Keep both actors planted without root travel. Make the whole sequence quiet: Elm gives a soft wave in slot 0, Rill gives a soft nod in slot 1, and Rill is neutral with soft variation in slot 2. Every slot lasts two seconds."
+        }
+      ],
+      "input_text_characters": 941,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:30:05.032677Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"checkpoint-scene-5c\",\n  \"placements\": [\n    {\n      \"actor_id\": \"guest_elm_53\",\n      \"anchor_id\": \"floor_compass\",\n      \"side\": \"right\"\n    },\n    {\n      \"actor_id\": \"guest_rill_14\",\n      \"anchor_id\": \"floor_compass\",\n      \"side\": \"left\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"guest_elm_53\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"guest_rill_14\",\n      \"gesture\": \"nod\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"guest_rill_14\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5300779875,
+        "load_duration": 305991083,
+        "prompt_eval_count": 259,
+        "prompt_eval_duration": 243855000,
+        "eval_count": 256,
+        "eval_duration": 4747830000
+      },
+      "total_duration": 5300779875,
+      "load_duration": 305991083,
+      "prompt_eval_count": 259,
+      "prompt_eval_duration": 243855000,
+      "eval_count": 256,
+      "eval_duration": 4747830000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "checkpoint-scene-5c",
+          "actors": [
+            {
+              "id": "guest_elm_53",
+              "x_m": 1.45,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "guest_rill_14",
+              "x_m": -0.25,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "guest_elm_53",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "guest_rill_14",
+              "gesture": "nod",
+              "variation": "soft"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "guest_rill_14",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 5.302293375018053
+    },
+    {
+      "model": "gemma4:e2b",
+      "case_id": "plinth_pair_intro",
+      "kind": "injected_invalid_actor_repair",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"stage-demo-r4\", \"anchor\": {\"id\": \"stone_plinth\", \"x_m\": 0.0}, \"actor_ids\": [\"actor_rowan_17\", \"actor_ivo_42\"]}\nRequest: Stage Rowan on the screen-left side of the stone plinth and Ivo on its screen-right side. Keep both roots in place throughout the cues. At the first cue, Rowan gives a soft wave; at the second, Ivo gives a clear nod. At the third cue, Rowan is neutral, softly. Each cue begins at its numbered slot, with two seconds per slot."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"scene_revision\": \"stage-demo-r4\", \"placements\": [{\"actor_id\": \"actor_rowan_17\", \"anchor_id\": \"stone_plinth\", \"side\": \"left\"}, {\"actor_id\": \"actor_ivo_42\", \"anchor_id\": \"stone_plinth\", \"side\": \"right\"}], \"cues\": [{\"slot\": 0, \"actor_id\": \"missing_actor\", \"gesture\": \"wave\", \"variation\": \"soft\"}, {\"slot\": 1, \"actor_id\": \"actor_ivo_42\", \"gesture\": \"nod\", \"variation\": \"clear\"}, {\"slot\": 2, \"actor_id\": \"actor_rowan_17\", \"gesture\": \"neutral\", \"variation\": \"soft\"}]}"
+        },
+        {
+          "role": "user",
+          "content": "A test deliberately corrupted one cue actor_id. Validator: cue names unknown actor. Repair only that invalid actor_id. Preserve every other value and array order. Return the complete JSON."
+        }
+      ],
+      "input_text_characters": 1617,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "gemma4:e2b",
+        "created_at": "2026-10-19T05:30:08.919779Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"scene_revision\": \"stage-demo-r4\", \"placements\": [{\"actor_id\": \"actor_rowan_17\", \"anchor_id\": \"stone_plinth\", \"side\": \"left\"}, {\"actor_id\": \"actor_ivo_42\", \"anchor_id\": \"stone_plinth\", \"side\": \"right\"}], \"cues\": [{\"slot\": 0, \"actor_id\": \"actor_rowan_17\", \"gesture\": \"wave\", \"variation\": \"soft\"}, {\"slot\": 1, \"actor_id\": \"actor_ivo_42\", \"gesture\": \"nod\", \"variation\": \"clear\"}, {\"slot\": 2, \"actor_id\": \"actor_rowan_17\", \"gesture\": \"neutral\", \"variation\": \"soft\"}]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 3882163500,
+        "load_duration": 284693167,
+        "prompt_eval_count": 488,
+        "prompt_eval_duration": 212339000,
+        "eval_count": 180,
+        "eval_duration": 3380725000
+      },
+      "total_duration": 3882163500,
+      "load_duration": 284693167,
+      "prompt_eval_count": 488,
+      "prompt_eval_duration": 212339000,
+      "eval_count": 180,
+      "eval_duration": 3380725000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "stage-demo-r4",
+          "actors": [
+            {
+              "id": "actor_rowan_17",
+              "x_m": -0.85,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "actor_ivo_42",
+              "x_m": 0.85,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "actor_rowan_17",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "actor_ivo_42",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "actor_rowan_17",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 3.8834597499808297,
+      "injected_repair": {
+        "injected_not_natural_failure": true,
+        "unchanged_other_values_and_expected_id": true,
+        "broken_proposal": {
+          "scene_revision": "stage-demo-r4",
+          "placements": [
+            {
+              "actor_id": "actor_rowan_17",
+              "anchor_id": "stone_plinth",
+              "side": "left"
+            },
+            {
+              "actor_id": "actor_ivo_42",
+              "anchor_id": "stone_plinth",
+              "side": "right"
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "actor_id": "missing_actor",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "actor_id": "actor_ivo_42",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "actor_id": "actor_rowan_17",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "plinth_pair_intro",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"stage-demo-r4\", \"anchor\": {\"id\": \"stone_plinth\", \"x_m\": 0.0}, \"actor_ids\": [\"actor_rowan_17\", \"actor_ivo_42\"]}\nRequest: Stage Rowan on the screen-left side of the stone plinth and Ivo on its screen-right side. Keep both roots in place throughout the cues. At the first cue, Rowan gives a soft wave; at the second, Ivo gives a clear nod. At the third cue, Rowan is neutral, softly. Each cue begins at its numbered slot, with two seconds per slot."
+        }
+      ],
+      "input_text_characters": 966,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T05:30:20.616113Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"stage-demo-r4\",\n  \"placements\": [\n    {\n      \"actor_id\": \"actor_rowan_17\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"actor_ivo_42\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_ivo_42\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 11691416334,
+        "load_duration": 2980991459,
+        "prompt_eval_count": 262,
+        "prompt_eval_duration": 514041000,
+        "eval_count": 211,
+        "eval_duration": 8192748000
+      },
+      "total_duration": 11691416334,
+      "load_duration": 2980991459,
+      "prompt_eval_count": 262,
+      "prompt_eval_duration": 514041000,
+      "eval_count": 211,
+      "eval_duration": 8192748000,
+      "verdict": {
+        "compiled": false,
+        "semantic_correct": false,
+        "reason": "cues must cover slots 0, 1, 2 exactly once"
+      },
+      "wall_seconds": 11.692969415918924
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "plinth_pair_intro",
+      "kind": "bounded_correction",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"stage-demo-r4\", \"anchor\": {\"id\": \"stone_plinth\", \"x_m\": 0.0}, \"actor_ids\": [\"actor_rowan_17\", \"actor_ivo_42\"]}\nRequest: Stage Rowan on the screen-left side of the stone plinth and Ivo on its screen-right side. Keep both roots in place throughout the cues. At the first cue, Rowan gives a soft wave; at the second, Ivo gives a clear nod. At the third cue, Rowan is neutral, softly. Each cue begins at its numbered slot, with two seconds per slot."
+        },
+        {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"stage-demo-r4\",\n  \"placements\": [\n    {\n      \"actor_id\": \"actor_rowan_17\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"actor_ivo_42\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_ivo_42\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        {
+          "role": "user",
+          "content": "Validation feedback: cues must cover slots 0, 1, 2 exactly once Return a corrected complete JSON plan."
+        }
+      ],
+      "input_text_characters": 1706,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T05:30:30.873844Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"stage-demo-r4\",\n  \"placements\": [\n    {\n      \"actor_id\": \"actor_rowan_17\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"actor_ivo_42\",\n      \"anchor_id\": \"stone_plinth\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"actor_ivo_42\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"actor_rowan_17\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 10253360417,
+        "load_duration": 110121834,
+        "prompt_eval_count": 506,
+        "prompt_eval_duration": 883418000,
+        "eval_count": 211,
+        "eval_duration": 9256759000
+      },
+      "total_duration": 10253360417,
+      "load_duration": 110121834,
+      "prompt_eval_count": 506,
+      "prompt_eval_duration": 883418000,
+      "eval_count": 211,
+      "eval_duration": 9256759000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "stage-demo-r4",
+          "actors": [
+            {
+              "id": "actor_rowan_17",
+              "x_m": -0.85,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "actor_ivo_42",
+              "x_m": 0.85,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "actor_rowan_17",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "actor_ivo_42",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "actor_rowan_17",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 10.254841916961595
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "gallery_roles_reversed",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"gallery-layout-12\", \"anchor\": {\"id\": \"blue_marker\", \"x_m\": 0.35}, \"actor_ids\": [\"unit_mica_08\", \"unit_sol_31\"]}\nRequest: For the blue marker, put Sol on screen-left and Mica on screen-right. Do not move either actor's root. At cue 0, Mica nods clearly; at cue 1, Sol waves clearly. At cue 2, Mica is neutral with soft variation. The numbered cue slots are two seconds apart in duration."
+        }
+      ],
+      "input_text_characters": 907,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T05:30:40.640672Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"gallery-layout-12\",\n  \"placements\": [\n    {\n      \"actor_id\": \"unit_sol_31\",\n      \"anchor_id\": \"blue_marker\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"unit_mica_08\",\n      \"anchor_id\": \"blue_marker\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"unit_mica_08\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"unit_sol_31\",\n      \"gesture\": \"wave\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"unit_mica_08\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 9761869250,
+        "load_duration": 111770500,
+        "prompt_eval_count": 250,
+        "prompt_eval_duration": 465005000,
+        "eval_count": 208,
+        "eval_duration": 9176756000
+      },
+      "total_duration": 9761869250,
+      "load_duration": 111770500,
+      "prompt_eval_count": 250,
+      "prompt_eval_duration": 465005000,
+      "eval_count": 208,
+      "eval_duration": 9176756000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "gallery-layout-12",
+          "actors": [
+            {
+              "id": "unit_mica_08",
+              "x_m": 1.2,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "unit_sol_31",
+              "x_m": -0.5,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "unit_mica_08",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "unit_sol_31",
+              "gesture": "wave",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "unit_mica_08",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 9.763253125012852
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "archive_nod_then_wave",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"archive-stage-b9\", \"anchor\": {\"id\": \"archive_stand\", \"x_m\": -0.4}, \"actor_ids\": [\"performer_north_6\", \"performer_kite_29\"]}\nRequest: Place Kite to the screen-right of the archive stand and North to its screen-left. Keep their roots stationary. North should nod clearly in slot 0; Kite should wave softly in slot 1; and Kite should be neutral with soft variation in slot 2. Each slot lasts two seconds. Nod comes before the wave."
+        }
+      ],
+      "input_text_characters": 949,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T05:30:51.400257Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"archive-stage-b9\",\n  \"placements\": [\n    {\n      \"actor_id\": \"performer_north_6\",\n      \"anchor_id\": \"archive_stand\",\n      \"side\": \"left\"\n    },\n    {\n      \"actor_id\": \"performer_kite_29\",\n      \"anchor_id\": \"archive_stand\",\n      \"side\": \"right\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"performer_north_6\",\n      \"gesture\": \"nod\",\n      \"variation\": \"clear\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"performer_kite_29\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"performer_kite_29\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 10754632500,
+        "load_duration": 127556292,
+        "prompt_eval_count": 251,
+        "prompt_eval_duration": 590981000,
+        "eval_count": 212,
+        "eval_duration": 10029425000
+      },
+      "total_duration": 10754632500,
+      "load_duration": 127556292,
+      "prompt_eval_count": 251,
+      "prompt_eval_duration": 590981000,
+      "eval_count": 212,
+      "eval_duration": 10029425000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "archive-stage-b9",
+          "actors": [
+            {
+              "id": "performer_north_6",
+              "x_m": -1.25,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "performer_kite_29",
+              "x_m": 0.44999999999999996,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "performer_north_6",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "performer_kite_29",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "performer_kite_29",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 10.75590266706422
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "quiet_checkpoint_pair",
+      "kind": "first",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"checkpoint-scene-5c\", \"anchor\": {\"id\": \"floor_compass\", \"x_m\": 0.6}, \"actor_ids\": [\"guest_elm_53\", \"guest_rill_14\"]}\nRequest: At the floor compass, put Elm on screen-right and Rill on screen-left. Keep both actors planted without root travel. Make the whole sequence quiet: Elm gives a soft wave in slot 0, Rill gives a soft nod in slot 1, and Rill is neutral with soft variation in slot 2. Every slot lasts two seconds."
+        }
+      ],
+      "input_text_characters": 941,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T05:31:03.76178Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"scene_revision\": \"checkpoint-scene-5c\",\n  \"placements\": [\n    {\n      \"actor_id\": \"guest_elm_53\",\n      \"anchor_id\": \"floor_compass\",\n      \"side\": \"right\"\n    },\n    {\n      \"actor_id\": \"guest_rill_14\",\n      \"anchor_id\": \"floor_compass\",\n      \"side\": \"left\"\n    }\n  ],\n  \"cues\": [\n    {\n      \"slot\": 0,\n      \"actor_id\": \"guest_elm_53\",\n      \"gesture\": \"wave\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 1,\n      \"actor_id\": \"guest_rill_14\",\n      \"gesture\": \"nod\",\n      \"variation\": \"soft\"\n    },\n    {\n      \"slot\": 2,\n      \"actor_id\": \"guest_rill_14\",\n      \"gesture\": \"neutral\",\n      \"variation\": \"soft\"\n    }\n  ]\n}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 12356084791,
+        "load_duration": 124592583,
+        "prompt_eval_count": 255,
+        "prompt_eval_duration": 642483000,
+        "eval_count": 213,
+        "eval_duration": 11582527000
+      },
+      "total_duration": 12356084791,
+      "load_duration": 124592583,
+      "prompt_eval_count": 255,
+      "prompt_eval_duration": 642483000,
+      "eval_count": 213,
+      "eval_duration": 11582527000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "checkpoint-scene-5c",
+          "actors": [
+            {
+              "id": "guest_elm_53",
+              "x_m": 1.45,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "guest_rill_14",
+              "x_m": -0.25,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "guest_elm_53",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "guest_rill_14",
+              "gesture": "nod",
+              "variation": "soft"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "guest_rill_14",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 12.357977500068955
+    },
+    {
+      "model": "hermes-lab-qwen3-8b:latest",
+      "case_id": "plinth_pair_intro",
+      "kind": "injected_invalid_actor_repair",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Plan a six-second two-actor scene. Return strict JSON only. Use exact scene identities and revision. Place one actor on each side of the anchor. Choose three numbered gesture cues matching the request; each lasts two seconds. Actors stay planted. Host code owns coordinates, timing and rendering. Each cue has slot, actor_id, gesture (wave/nod/neutral), variation (soft/clear). Each placement has actor_id, anchor_id, side (left/right). Root fields: scene_revision, placements, cues. No other fields."
+        },
+        {
+          "role": "user",
+          "content": "Scene: {\"revision\": \"stage-demo-r4\", \"anchor\": {\"id\": \"stone_plinth\", \"x_m\": 0.0}, \"actor_ids\": [\"actor_rowan_17\", \"actor_ivo_42\"]}\nRequest: Stage Rowan on the screen-left side of the stone plinth and Ivo on its screen-right side. Keep both roots in place throughout the cues. At the first cue, Rowan gives a soft wave; at the second, Ivo gives a clear nod. At the third cue, Rowan is neutral, softly. Each cue begins at its numbered slot, with two seconds per slot."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"scene_revision\": \"stage-demo-r4\", \"placements\": [{\"actor_id\": \"actor_rowan_17\", \"anchor_id\": \"stone_plinth\", \"side\": \"left\"}, {\"actor_id\": \"actor_ivo_42\", \"anchor_id\": \"stone_plinth\", \"side\": \"right\"}], \"cues\": [{\"slot\": 0, \"actor_id\": \"missing_actor\", \"gesture\": \"wave\", \"variation\": \"soft\"}, {\"slot\": 1, \"actor_id\": \"actor_ivo_42\", \"gesture\": \"nod\", \"variation\": \"clear\"}, {\"slot\": 2, \"actor_id\": \"actor_rowan_17\", \"gesture\": \"neutral\", \"variation\": \"soft\"}]}"
+        },
+        {
+          "role": "user",
+          "content": "A test deliberately corrupted one cue actor_id. Validator: cue names unknown actor. Repair only that invalid actor_id. Preserve every other value and array order. Return the complete JSON."
+        }
+      ],
+      "input_text_characters": 1617,
+      "options": {
+        "temperature": 0,
+        "num_ctx": 4096,
+        "num_predict": 384
+      },
+      "raw_response": {
+        "model": "hermes-lab-qwen3-8b:latest",
+        "created_at": "2026-10-19T05:31:15.282626Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"scene_revision\": \"stage-demo-r4\", \"placements\": [{\"actor_id\": \"actor_rowan_17\", \"anchor_id\": \"stone_plinth\", \"side\": \"left\"}, {\"actor_id\": \"actor_ivo_42\", \"anchor_id\": \"stone_plinth\", \"side\": \"right\"}], \"cues\": [{\"slot\": 0, \"actor_id\": \"actor_rowan_17\", \"gesture\": \"wave\", \"variation\": \"soft\"}, {\"slot\": 1, \"actor_id\": \"actor_ivo_42\", \"gesture\": \"nod\", \"variation\": \"clear\"}, {\"slot\": 2, \"actor_id\": \"actor_rowan_17\", \"gesture\": \"neutral\", \"variation\": \"soft\"}]}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 11515934917,
+        "load_duration": 110567375,
+        "prompt_eval_count": 467,
+        "prompt_eval_duration": 1006888000,
+        "eval_count": 164,
+        "eval_duration": 10390524000
+      },
+      "total_duration": 11515934917,
+      "load_duration": 110567375,
+      "prompt_eval_count": 467,
+      "prompt_eval_duration": 1006888000,
+      "eval_count": 164,
+      "eval_duration": 10390524000,
+      "verdict": {
+        "compiled": true,
+        "semantic_correct": true,
+        "reason": null,
+        "plan": {
+          "scope": "Static two-actor staging and ordered gesture cues only; positions held throughout, no walking or execution claim.",
+          "scene_revision": "stage-demo-r4",
+          "actors": [
+            {
+              "id": "actor_rowan_17",
+              "x_m": -0.85,
+              "y_m": 0,
+              "z_m": 0
+            },
+            {
+              "id": "actor_ivo_42",
+              "x_m": 0.85,
+              "y_m": 0,
+              "z_m": 0
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "start_s": 0,
+              "end_s": 2,
+              "actor_id": "actor_rowan_17",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "start_s": 2,
+              "end_s": 4,
+              "actor_id": "actor_ivo_42",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "start_s": 4,
+              "end_s": 6,
+              "actor_id": "actor_rowan_17",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ],
+          "fps": 8,
+          "frame_count": 48,
+          "duration_s": 6
+        }
+      },
+      "wall_seconds": 11.517422124976292,
+      "injected_repair": {
+        "injected_not_natural_failure": true,
+        "unchanged_other_values_and_expected_id": true,
+        "broken_proposal": {
+          "scene_revision": "stage-demo-r4",
+          "placements": [
+            {
+              "actor_id": "actor_rowan_17",
+              "anchor_id": "stone_plinth",
+              "side": "left"
+            },
+            {
+              "actor_id": "actor_ivo_42",
+              "anchor_id": "stone_plinth",
+              "side": "right"
+            }
+          ],
+          "cues": [
+            {
+              "slot": 0,
+              "actor_id": "missing_actor",
+              "gesture": "wave",
+              "variation": "soft"
+            },
+            {
+              "slot": 1,
+              "actor_id": "actor_ivo_42",
+              "gesture": "nod",
+              "variation": "clear"
+            },
+            {
+              "slot": 2,
+              "actor_id": "actor_rowan_17",
+              "gesture": "neutral",
+              "variation": "soft"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "max_calls": 18,
+  "api_cost_usd": null,
+  "local_hardware_cost": "unmeasured",
+  "complete": true,
+  "demo": {
+    "path": "/Users/adom/Development/hermes-testing/runs/harness2-actor-staging-v1/gemma4-e2b--plinth_pair_intro.json",
+    "case": "plinth_pair_intro",
+    "model": "gemma4:e2b",
+    "call_index": 1
+  }
+}
