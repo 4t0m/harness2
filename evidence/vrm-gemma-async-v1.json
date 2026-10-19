@@ -1,0 +1,841 @@
+{
+  "scope": "local model intent and genuine delayed model response during finite offline GPU render; no persistent viewer",
+  "model": "gemma4:e2b",
+  "constrained_schema": true,
+  "sent": [
+    {
+      "event": {
+        "eventId": 1,
+        "type": "interrupt",
+        "revision": 2
+      },
+      "elapsed_seconds": 1.5559609159827232
+    },
+    {
+      "event": {
+        "eventId": 2,
+        "type": "gesture",
+        "revision": 1,
+        "gesture": "wave_goodbye"
+      },
+      "elapsed_seconds": 2.2131692910334095
+    }
+  ],
+  "initial_model": {
+    "content": "{\"gesture\": \"wave_goodbye\", \"side\": \"right\"}",
+    "command": {
+      "gesture": "wave_goodbye",
+      "x_position": 0.35
+    },
+    "wall_seconds": 3.7117071660468355,
+    "prompt_tokens": 47,
+    "output_tokens": 16
+  },
+  "delayed_model": {
+    "content": "{\"gesture\": \"wave_goodbye\", \"side\": \"right\"}",
+    "command": {
+      "gesture": "wave_goodbye",
+      "x_position": 0.35
+    },
+    "wall_seconds": 0.6455726670101285,
+    "prompt_tokens": 47,
+    "output_tokens": 16
+  },
+  "state": {
+    "interruptedAt": 9,
+    "events": [
+      {
+        "eventId": 1,
+        "status": "interrupted",
+        "frameIndex": 9,
+        "revision": 2
+      },
+      {
+        "eventId": 2,
+        "status": "stale_rejected",
+        "frameIndex": 12,
+        "revision": 2
+      }
+    ],
+    "samples": [
+      {
+        "frameIndex": 0,
+        "maximumDifference": 1.993388815577302,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 1,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5560464338125496,
+          0.045112265972140055,
+          0.1751727485324827,
+          0.8112285467578052
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 2,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5574283350327552,
+          0.050635234663483845,
+          0.1708573188486376,
+          0.8108745284623506
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 3,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5593008535732826,
+          0.05816500399337843,
+          0.16492029166736102,
+          0.8103090058113633
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 4,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5613230874504215,
+          0.06635671111488446,
+          0.1583897343512727,
+          0.8095837636942057
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 5,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5631621157045765,
+          0.07386106248652075,
+          0.1523406524944269,
+          0.8088172231605109
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 6,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5645040640565586,
+          0.07937270862798874,
+          0.14785708028985972,
+          0.808191449222796
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 7,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5650455505458001,
+          0.08160572619423519,
+          0.14603090454628087,
+          0.8079226486354372
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 8,
+        "maximumDifference": 1.999659019038784,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.5647767475484997,
+          0.08008376246783633,
+          0.14711608034232151,
+          0.8080660092605337
+        ],
+        "mixerRegistered": true
+      },
+      {
+        "frameIndex": 9,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 10,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 11,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 12,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 13,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 14,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 15,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 16,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 17,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 18,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 19,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 20,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 21,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 22,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 23,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 24,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 25,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 26,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 27,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 28,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 29,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 30,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 31,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 32,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 33,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 34,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 35,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 36,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 37,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 38,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 39,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 40,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 41,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 42,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 43,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 44,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 45,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 46,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      },
+      {
+        "frameIndex": 47,
+        "maximumDifference": 0,
+        "root": [
+          0.35,
+          0,
+          0
+        ],
+        "arm": [
+          -0.22594477240896185,
+          -0.12559164346766535,
+          -0.5409079539873504,
+          -0.8003713414568088
+        ],
+        "mixerRegistered": false
+      }
+    ]
+  },
+  "complete": true,
+  "video": {
+    "width": 640,
+    "height": 360,
+    "duration": "3.200000",
+    "nb_read_frames": "48"
+  },
+  "post_stop_samples": 39,
+  "video_sha256": "6b56fdaccea2827bd05635b53df36647410de194e170e4f220f56c9073ac5696",
+  "elapsed_seconds": 2.6665166249731556
+}

@@ -1,4 +1,5 @@
 """External-process interruption and stale response during actual VRM rendering."""
+import argparse
 import concurrent.futures
 from harness2.vrm_intent import compile_intent
 from urllib.request import Request, urlopen
@@ -25,19 +26,23 @@ def verify_recovery(state):
 
 
 def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--gemma-e2b',action='store_true');args=parser.parse_args()
+    model='gemma4:e2b' if args.gemma_e2b else 'hermes-lab-qwen3-8b:latest'
     lab=Path('/Users/adom/Development/hermes-testing')
     source=lab/'runs/round6/eidoverse-video'
-    work=source/'work/eidoverse-harness2-model-async-v1'
-    evidence=Path('evidence/vrm-model-async-v1.json')
+    work=source/('work/eidoverse-harness2-gemma-async-v1' if args.gemma_e2b else 'work/eidoverse-harness2-model-async-v1')
+    evidence=Path('evidence/vrm-gemma-async-v1.json' if args.gemma_e2b else 'evidence/vrm-model-async-v1.json')
     if work.exists() or evidence.exists():raise SystemExit('refusing overwrite')
     if subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD'],text=True).strip()!='9acc1528b2febac11338107645ef500a95985ca5':raise ValueError('source revision changed')
-    report={'scope':'local 8B model intent and genuine delayed model response during finite offline GPU render; no persistent viewer', 'sent':[]}
+    report={'scope':'local model intent and genuine delayed model response during finite offline GPU render; no persistent viewer', 'model':model,'constrained_schema':args.gemma_e2b,'sent':[]}
     def infer_intent():
         begin=time.monotonic()
-        body={'model':'hermes-lab-qwen3-8b:latest','messages':[
+        body={'model':model,'messages':[
             {'role':'system','content':'Return only strict JSON with gesture (salute or wave_goodbye) and side (left or right).'},
             {'role':'user','content':'Wave goodbye while standing to the right of the anchor.'}],
             'stream':False,'think':False,'options':{'num_ctx':2048,'num_predict':64,'temperature':0},'keep_alive':'2m'}
+        if args.gemma_e2b:
+            body['format']={'type':'object','properties':{'gesture':{'type':'string','enum':['salute','wave_goodbye']},'side':{'type':'string','enum':['left','right']}},'required':['gesture','side'],'additionalProperties':False}
         req=Request('http://127.0.0.1:11434/api/chat',data=json.dumps(body).encode(),headers={'Content-Type':'application/json'})
         with urlopen(req,timeout=20) as response: raw=response.read(1048577)
         if len(raw)>1048576:raise ValueError('oversized response')

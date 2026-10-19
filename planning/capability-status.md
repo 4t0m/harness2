@@ -73,3 +73,24 @@ Next integration: connect model-generated, validated gesture intent to the exist
 Media: `/Users/adom/Development/hermes-testing/runs/round6/eidoverse-video/work/eidoverse-harness2-model-async-v1/avatar_probe.mp4`. Source remains the pinned Eidoverse revision. This is a technical character, not a selected production design.
 
 Boundary: frame 12 deliberately waits for the delayed response with a 25-second cap, so inference can be observed in a finite offline render. This synchronization is not continuous real-time playback or an end-to-end interactive latency benchmark. Cancellation restores a sampled neutral pose abruptly, without blending. Relative placement is a root offset, not collision-aware walking. The model only chooses a validated named clip; it does not create choreography. This trial uses trusted host orchestration rather than an additional Harness² adaptation run.
+
+## Small Gemma context and constrained-output trial (2026-10-19)
+
+`experiments/gemma_event_context_probe.py` compares three avatar events under short and synthetic archived context, using installed `gemma4:e2b` and `gemma4:e4b` Q4_K_M models. Exact digests and installed metadata are in the evidence files. This is text-only: no claims about audio windows, transcription, multimodal inputs or maximum context.
+
+| Model | Prompt-only strict correct | After constrained JSON schema | Bare-text-aware semantic baseline (analysis only) |
+|---|---:|---:|---:|
+| Gemma E2B | 2/6 | 6/6 | 5/6 |
+| Gemma E4B | 5/6 | 6/6 | 6/6 |
+
+The bare-text-aware column recognizes an exact known action word for diagnosis; the executor does not accept bare text. E2B's long-context listen case returned neutral, a semantic error beyond formatting. Schema-constrained decoding corrected it in the repeated run, but these twelve pairs are a pilot, not a reliability estimate or unseen generalization test. No prompt or model fine-tuning occurred.
+
+Short prompts were 78–84 input tokens; long prompts were 2176–2182, with 64 explicitly obsolete events. First long-context prefill took 2.670 seconds on E2B and 4.542 seconds on E4B. Later repeated-prefix requests had much shorter prompt evaluation, so cache effects prevent a simple context-length latency claim. First load costs were 7.496/18.781 seconds. The schema run was warm: E2B total 0.518–0.713 seconds, E4B 0.610–0.742 seconds. Do not attribute the baseline-to-schema speed difference to constrained output.
+
+Evidence: `gemma-event-context-v1.json`, `gemma-event-context-schema-v1.json`. Original failures preserved. Candidate default for future small-model trials: constrained output schema plus independent semantic validation and compact authoritative event state. Still test null/unsupported intents separately; the present action enum does not cover arbitrary creative requests.
+
+### Gemma E2B to actual 3D renderer
+
+`experiments/vrm_model_async_probe.py --gemma-e2b` completed the same bounded offline VRM demo with schema-constrained gesture/side intent. Both calls selected wave_goodbye/right; host compiled root x=0.35. Initial inference took 3.712 seconds; delayed inference 0.646 seconds, each 47 input and 16 output tokens. The stale reply was rejected after cancellation; 39 post-stop frames remained neutral. The resulting video hash exactly matches the visually inspected Qwen-driven counterpart because both selected the same motion and cancellation frame. Six VRM verification tests passed.
+
+Evidence: `vrm-gemma-async-v1.json`; media `/Users/adom/Development/hermes-testing/runs/round6/eidoverse-video/work/eidoverse-harness2-gemma-async-v1/avatar_probe.mp4`. Same limitations: finite offline render, bounded frame synchronization, abrupt neutral reset, root-offset placement, technical test character. No audio, walking, learned choreography, continuous viewer, or Harness² adaptation gain is established. All calls this round were local; energy/hardware cost unmeasured.

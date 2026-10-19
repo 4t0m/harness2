@@ -1,0 +1,7 @@
+# Gemma event output failure
+
+The E2B first-pass experiment returned stop but failed four of six strict/repaired checks so far. Expected one JSON action. Hypotheses: (1) correct action in bare text instead of JSON; (2) incorrect semantic action; (3) empty/truncated content or a provider/template mismatch. Inspect saved content, finish reason, token count and requested settings to distinguish them. Do not alter original evidence. If formatting dominates, compare identical cases with host-supplied constrained JSON schema, preserving semantic scoring independently. Repeat only the bounded six cases for each affected model. This is an interface intervention, not evidence of learned model improvement.
+
+Saved E2B responses confirm bare action strings in four cases; three of those strings are semantically correct, while long-context listen returns neutral. Stop reasons and short output counts rule out output-budget truncation in these cases. Exact schema-constrained decoding is the next interface comparison; no permissive parser is being introduced into the command executor.
+
+The completed baseline is E2B 2/6 and E4B 5/6 strict correct; bare-word analysis gives 5/6 and 6/6 semantic correctness. Schema replay is 6/6 for both. This supports format enforcement for the next pilot, not a universal semantic guarantee. The same E2B schema interface also completed the actual offline VRM cancellation experiment.
