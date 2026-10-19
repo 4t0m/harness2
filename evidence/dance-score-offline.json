@@ -1,0 +1,130 @@
+{
+  "scope": "Synthetic symbolic contracts only; no model calls, motion assets or rendering.",
+  "provider_calls": 0,
+  "results": [
+    {
+      "id": "compatible",
+      "score": {
+        "atlas_revision": "synthetic-dance-atlas-v1",
+        "moves": [
+          "settle",
+          "sway",
+          "accent",
+          "resolve"
+        ]
+      },
+      "bpm": 120,
+      "accepted": true,
+      "manifest": {
+        "kind": "symbolic_dance_score",
+        "atlas_revision": "synthetic-dance-atlas-v1",
+        "bpm": 120,
+        "duration_seconds": 4.0,
+        "cues": [
+          {
+            "move_id": "settle",
+            "start_beat": 0,
+            "end_beat": 2,
+            "start_seconds": 0.0,
+            "end_seconds": 1.0
+          },
+          {
+            "move_id": "sway",
+            "start_beat": 2,
+            "end_beat": 4,
+            "start_seconds": 1.0,
+            "end_seconds": 2.0
+          },
+          {
+            "move_id": "accent",
+            "start_beat": 4,
+            "end_beat": 6,
+            "start_seconds": 2.0,
+            "end_seconds": 3.0
+          },
+          {
+            "move_id": "resolve",
+            "start_beat": 6,
+            "end_beat": 8,
+            "start_seconds": 3.0,
+            "end_seconds": 4.0
+          }
+        ],
+        "motion_generated": false,
+        "physical_validity_verified": false,
+        "taste_evaluated": false
+      }
+    },
+    {
+      "id": "wrong_contact_order",
+      "score": {
+        "atlas_revision": "synthetic-dance-atlas-v1",
+        "moves": [
+          "settle",
+          "resolve",
+          "sway",
+          "accent"
+        ]
+      },
+      "bpm": 120,
+      "accepted": false,
+      "reason": "incompatible transition at 1: left to right"
+    },
+    {
+      "id": "unsupported_tempo",
+      "score": {
+        "atlas_revision": "synthetic-dance-atlas-v1",
+        "moves": [
+          "settle",
+          "sway",
+          "accent",
+          "resolve"
+        ]
+      },
+      "bpm": 140,
+      "accepted": false,
+      "reason": "unsupported tempo at 0"
+    },
+    {
+      "id": "unknown_move",
+      "score": {
+        "atlas_revision": "synthetic-dance-atlas-v1",
+        "moves": [
+          "spin"
+        ]
+      },
+      "bpm": 120,
+      "accepted": false,
+      "reason": "unknown move at 0"
+    },
+    {
+      "id": "short_phrase",
+      "score": {
+        "atlas_revision": "synthetic-dance-atlas-v1",
+        "moves": [
+          "settle",
+          "accent",
+          "resolve"
+        ]
+      },
+      "bpm": 120,
+      "accepted": false,
+      "reason": "expected exactly eight beats"
+    },
+    {
+      "id": "unresolved",
+      "score": {
+        "atlas_revision": "synthetic-dance-atlas-v1",
+        "moves": [
+          "settle",
+          "sway",
+          "sway",
+          "sway"
+        ]
+      },
+      "bpm": 120,
+      "accepted": false,
+      "reason": "unresolved final boundary"
+    }
+  ]
+}

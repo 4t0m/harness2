@@ -83,3 +83,11 @@ Prepare D0 without model calls; include failed transitions, impossible tempo sca
 Cap proposals, generated seconds, render resolution, retries and wall time separately. Stop a round if variants are physically invalid, near-duplicates or insufficiently distinct for useful preference feedback. Report those failures instead of asking the user to rank noise. No rented GPU is needed for the initial symbolic tests; obtain a current finite budget before GPU generation/training.
 
 Success is not “the model wrote a dance plan.” It is a sequence the user finds compelling, with reusable motion and a cheaper/more reliable path to the next good sequence.
+
+## D0 receipt (2026-10-19)
+
+Implemented `harness2/dance_score.py`, with three passing test methods and six saved cases in `evidence/dance-score-offline.json`. One compatible eight-beat score compiles to four seconds at 120 BPM. Five invalid proposals are rejected: transition order, tempo, unknown move, short duration and unresolved final stance. The compiler also rejects stale atlas revisions, malformed fields and non-finite tempo. No provider calls or GPU work.
+
+These are synthetic boundary labels, not actual contacts, joint tracks or licensed motion assets. Equality of declared entry/exit labels cannot establish smooth blending, balance, root continuity or attractive choreography. This deliberately tiny atlas has only one useful complete phrase: it tests the contract, not creative diversity. Before a model comparison, expand alternatives and freeze renamed held-out atlases; before an audition, bind descriptors to verified motion and inspect fixed-camera renders.
+
+Next concrete gate: qualify a minimal rig plus several reusable motion phrases, then compare short variants with identical assets and timing. Store keep/change spans and both/neither preferences separately from execution failures. An affordable planner can stage these auditions; a model judge must not stand in for the user's taste.
